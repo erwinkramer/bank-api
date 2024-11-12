@@ -1,0 +1,14 @@
+[
+    {
+        "id": 123,
+        "name": "Guanchen",
+        "isCompliant": true,
+        "bankTier": "A"
+    },
+    {
+        "id": 124,
+        "name": "Canary",
+        "isCompliant": false,
+        "bankTier": "C"
+    }
+]

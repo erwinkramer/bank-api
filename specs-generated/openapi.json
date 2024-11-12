@@ -1,0 +1,792 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Bank API",
+    "description": "The Bank API is a design reference project suitable to bootstrap development for a complaint and modern API.",
+    "termsOfService": "https://en.wikipedia.org/wiki/Terms_of_service#Content",
+    "contact": {
+      "url": "https://www.guanchen.nl"
+    },
+    "license": {
+      "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License",
+      "url": "https://creativecommons.org/licenses/by-nc-sa/4.0"
+    },
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5203/v1"
+    }
+  ],
+  "paths": {
+    "/banks": {
+      "get": {
+        "tags": [
+          "Supervisory"
+        ],
+        "summary": "Get all banks",
+        "description": "Get all banks in the Netherlands.",
+        "operationId": "GetAllBanks",
+        "parameters": [
+          {
+            "name": "Page",
+            "in": "query",
+            "description": "The page of the result.",
+            "required": true,
+            "schema": {
+              "maximum": 2000000,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "The pagesize of the result.",
+            "required": true,
+            "schema": {
+              "maximum": 1200,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32",
+              "default": 21
+            }
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "description": "The ordering query expression can be built with a comma-delimited ordered list of field/property names, followed by `asc` or `desc` keywords. \r\n\r\nBy default, if you don't add these keywords, the API assumes you need Ascending ordering.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "description": "The following filter operators are supported:\r\n\r\n### Conditional Operators\r\n\r\n| Name                  | Operator | Usage example        |\r\n|-----------------------|----------|----------------------|\r\n| Equal                 | `=`      | `FieldName = Value`  |\r\n| NotEqual              | `!=`     | `FieldName !=Value`  |\r\n| LessThan              | `<`      | `FieldName < Value`  |\r\n| GreaterThan           | `>`      | `FieldName > Value`  |\r\n| GreaterThanOrEqual    | `>=`     | `FieldName >=Value`  |\r\n| LessThanOrEqual       | `<=`     | `FieldName <=Value`  |\r\n| Contains - Like       | `=*`     | `FieldName =*Value`  |\r\n| NotContains - NotLike | `!*`     | `FieldName !*Value`  |\r\n| StartsWith            | `^`      | `FieldName ^ Value`  |\r\n| NotStartsWith         | `!^`     | `FieldName !^ Value` |\r\n| EndsWith              | `$`      | `FieldName $ Value`  |\r\n| NotEndsWith           | `!$`     | `FieldName !$ Value` |\r\n\r\n> Tip: If you don't specify any value after `=` or `!=` operators, the API searches for the `default` and `null` values.\r\n\r\n### Logical Operators\r\n\r\n| Name        | Operator | Usage example                                   |\r\n|-------------|----------|-------------------------------------------------|\r\n| AND         | `,`      | `FirstName = Value, LastName = Value2`          |\r\n| OR          | `\\|`     | `FirstName=Value\\|LastName=Value2`              |\r\n| Parenthesis | `()`     | `(FirstName=*Jo,Age<30)\\|(FirstName!=Hn,Age>30)`|\r\n\r\n### Case Insensitive Operator\r\n\r\nThe `/i` operator can be use after string values for case insensitive searches. You should only use this operator after the search value. \r\n\r\nExample:\r\n```\r\nFirstName=John/i\r\n```\r\n\r\nthis query matches with `JOHN`, `john`, `John`, `jOHn`, etc.\r\n    ",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagingOfBankModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Supervisory"
+        ],
+        "summary": "Create a bank",
+        "description": "Create a bank in the Netherlands.",
+        "operationId": "CreateBank",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BankModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/banks/{id}": {
+      "get": {
+        "tags": [
+          "Supervisory"
+        ],
+        "summary": "Get a bank",
+        "description": "Get a bank in the Netherlands.",
+        "operationId": "GetBank",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Supervisory"
+        ],
+        "summary": "Update a bank",
+        "description": "Update a bank in the Netherlands.",
+        "operationId": "UpdateBank",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BankModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Supervisory"
+        ],
+        "summary": "Delete a bank",
+        "description": "Delete a bank in the Netherlands.",
+        "operationId": "DeleteBank",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/teller": {
+      "get": {
+        "tags": [
+          "Administrative"
+        ],
+        "summary": "Get bank teller",
+        "description": "Get the teller of all banks.",
+        "operationId": "GetBankTeller",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Release"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BankModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Id of the bank.",
+            "format": "int32",
+            "default": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the bank.",
+            "default": "Guanchen",
+            "nullable": true
+          },
+          "isCompliant": {
+            "type": "boolean",
+            "description": "Compliancy status of the bank.",
+            "default": true
+          },
+          "bankTier": {
+            "$ref": "#/components/schemas/BankTier"
+          }
+        },
+        "example": {
+          "id": 124,
+          "name": "Canary",
+          "isCompliant": false,
+          "bankTier": "C"
+        }
+      },
+      "BankTier": {
+        "enum": [
+          "A",
+          "B",
+          "C"
+        ],
+        "description": "Tier of the bank.",
+        "default": "A"
+      },
+      "NullableOfReleaseAsset_state": {
+        "type": "integer",
+        "nullable": true
+      },
+      "NullableSimpleUser": {
+        "type": "object",
+        "properties": {
+          "additionalData": {
+            "type": "object",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "eventsUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "followersUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "followingUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "gistsUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "gravatarId": {
+            "type": "string",
+            "nullable": true
+          },
+          "htmlUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "login": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "nodeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizationsUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "receivedEventsUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "reposUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "siteAdmin": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "starredAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "starredUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "subscriptionsUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "nullable": true
+      },
+      "PagingOfBankModel": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BankModel"
+            }
+          }
+        }
+      },
+      "ReactionRollup": {
+        "type": "object",
+        "properties": {
+          "additionalData": {
+            "type": "object",
+            "nullable": true
+          },
+          "confused": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "eyes": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "heart": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "hooray": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "laugh": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "minus1": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "plus1": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "rocket": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "nullable": true
+      },
+      "Release": {
+        "type": "object",
+        "properties": {
+          "additionalData": {
+            "type": "object",
+            "nullable": true
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReleaseAsset"
+            },
+            "nullable": true
+          },
+          "assetsUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "author": {
+            "$ref": "#/components/schemas/SimpleUser"
+          },
+          "body": {
+            "type": "string",
+            "nullable": true
+          },
+          "bodyHtml": {
+            "type": "string",
+            "nullable": true
+          },
+          "bodyText": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "discussionUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "draft": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "htmlUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "mentionsCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "nodeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "prerelease": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "reactions": {
+            "$ref": "#/components/schemas/ReactionRollup"
+          },
+          "tagName": {
+            "type": "string",
+            "nullable": true
+          },
+          "tarballUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "targetCommitish": {
+            "type": "string",
+            "nullable": true
+          },
+          "uploadUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "zipballUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ReleaseAsset": {
+        "type": "object",
+        "properties": {
+          "additionalData": {
+            "type": "object",
+            "nullable": true
+          },
+          "browserDownloadUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "contentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "downloadCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "nodeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "state": {
+            "$ref": "#/components/schemas/NullableOfReleaseAsset_state"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "uploader": {
+            "$ref": "#/components/schemas/NullableSimpleUser"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "SimpleUser": {
+        "type": "object",
+        "properties": {
+          "additionalData": {
+            "type": "object",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "eventsUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "followersUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "followingUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "gistsUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "gravatarId": {
+            "type": "string",
+            "nullable": true
+          },
+          "htmlUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "login": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "nodeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizationsUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "receivedEventsUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "reposUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "siteAdmin": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "starredAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "starredUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "subscriptionsUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "nullable": true
+      }
+    },
+    "securitySchemes": {
+      "ApiKey-Header": {
+        "type": "apiKey",
+        "description": "https://learn.openapis.org/specification/security.html#api-keys",
+        "name": "Ocp-Apim-Subscription-Key",
+        "in": "header"
+      },
+      "ApiKey-Query": {
+        "type": "apiKey",
+        "description": "https://learn.openapis.org/specification/security.html#api-keys",
+        "name": "subscription-key",
+        "in": "query"
+      },
+      "Bearer": {
+        "type": "http",
+        "description": "https://learn.openapis.org/specification/security.html#http-authentication",
+        "scheme": "bearer",
+        "bearerFormat": "Json Web Token"
+      },
+      "OpenIdConnect": {
+        "type": "openIdConnect",
+        "description": "https://learn.openapis.org/specification/security.html#openid-connect",
+        "openIdConnectUrl": "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/v2.0/.well-known/openid-configuration"
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKey-Header": [ ]
+    },
+    {
+      "ApiKey-Query": [ ]
+    },
+    {
+      "Bearer": [ ]
+    },
+    {
+      "OpenIdConnect": [ ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "Supervisory"
+    },
+    {
+      "name": "Administrative"
+    }
+  ]
+}
