@@ -7,7 +7,7 @@
 
 ![Aspire](.images/aspire.png)
 
-The Bank API is a design reference project suitable to bootstrap development for a complaint and modern API.
+The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.
 
 ## Technology stack
 

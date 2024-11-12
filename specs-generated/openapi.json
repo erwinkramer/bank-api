@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Bank API",
-    "description": "The Bank API is a design reference project suitable to bootstrap development for a complaint and modern API.",
+    "description": "The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.",
     "termsOfService": "https://en.wikipedia.org/wiki/Terms_of_service#Content",
     "contact": {
       "url": "https://www.guanchen.nl"
