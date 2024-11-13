@@ -2,10 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/dotnet
 {
 	"name": "Bank API dotnet9",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"build": {
-		"dockerfile": "Dockerfile"
-	},
+	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-9.0-noble",
 
 	"customizations": {
 		"vscode": {
@@ -17,8 +14,8 @@
 				"github.copilot",
 				"humao.rest-client",
 				"ms-azuretools.vscode-docker",
-				"ms-dotnettools.csdevkit",
-				"ms-dotnettools.csharp",
+				"ms-dotnettools.csdevkit", // brings along: ms-dotnettools.csharp, and ms-dotnettools.vscode-dotnet-runtime
+				"ms-graph.kiota",
 				"ms-vscode-remote.remote-containers"
 			]
 		}
@@ -26,6 +23,9 @@
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
+		"ghcr.io/devcontainers/features/dotnet:2": {
+			"version": "8.0"
+		},
 		"ghcr.io/devcontainers/features/node:1": {}
 	},
 
@@ -39,8 +39,13 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// Installation of spectral-cli may take a while (even when using a local package cache), so we use the verbose flag to show progress.
-	"postCreateCommand": "npm install --verbose -g @stoplight/spectral-cli@^6.14.0",
+	"postCreateCommand": "dotnet tool install --global Microsoft.OpenApi.Kiota && npm install --verbose -g @stoplight/spectral-cli@^6.14.0",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	"remoteUser": "vscode"
+	"remoteUser": "vscode",
+
+	// Mount your local .npmrc file into the devcontainer
+	"mounts": [
+		"source=${localEnv:HOME}/.npmrc,target=/home/vscode/.npmrc,type=bind,consistency=cached"
+	]
 }
