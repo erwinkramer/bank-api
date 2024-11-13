@@ -12,14 +12,12 @@
 			"settings": {
 				"terminal.integrated.shell.linux": "/bin/bash"
 			},
-
-			// excluded "ms-dotnettools.csdevkit" since it requested .NET 8.0
 			"extensions": [
 				"donjayamanne.githistory",
 				"github.copilot",
 				"humao.rest-client",
 				"ms-azuretools.vscode-docker",
-				"ms-dotnettools.csharp",
+				"ms-dotnettools.csdevkit", // brings along: ms-dotnettools.csharp, and ms-dotnettools.vscode-dotnet-runtime
 				"ms-graph.kiota",
 				"ms-vscode-remote.remote-containers"
 			]
