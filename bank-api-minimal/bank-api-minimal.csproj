@@ -20,16 +20,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.*-*" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.*-*" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.*-*" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.*-*" /> <!-- can be removed after Gridify fully supports asp.net 9 -->
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.*-*" /> <!-- can be removed after Gridify fully supports asp.net 9 -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.*-*" />
-    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="9.0.*-*">
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="9.0.*-*"> <!-- for OpenApi spec generation -->
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Caching.Hybrid" Version="9.0.*-*" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.*-*" />
-    <PackageReference Include="Microsoft.Kiota.Bundle" Version="1.14.0" />
+    <PackageReference Include="Microsoft.Kiota.Bundle" Version="1.15.*" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.10.*-*" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.10.*-*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.0.*-*" />

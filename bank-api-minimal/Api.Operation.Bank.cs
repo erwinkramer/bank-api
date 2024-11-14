@@ -1,13 +1,14 @@
 using Gridify;
+using Gridify.EntityFramework;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Caching.Hybrid;
 using System.ComponentModel;
 
 public class BankOperation
 {
-    public static Ok<Paging<BankModel>> GetAllBanks([AsParameters] GridQuery query, BankDb db)
+    public static async Task<Ok<Paging<BankModel>>> GetAllBanks([AsParameters] GridQuery query, BankDb db)
     {
-        return TypedResults.Ok(db.Banks.Gridify(query));
+        return TypedResults.Ok(await db.Banks.GridifyAsync(query));;
     }
 
     public static async Task<Results<Ok<BankModel>, NotFound>> GetBank([DefaultValue(1)] int id, BankDb db, HybridCache cache, CancellationToken token = default)

@@ -2,7 +2,7 @@
   "descriptionHash": "A8B3FF4FA538A2BB028EFB20C76C6CF203DF1A960CE76CF3AF6519312C4D211D046AE60754840416BF67F8B7AF6BEE0693E9628FB6C06139021D9CE60F82B1EB",
   "descriptionLocation": "../../../specs-downstream/github-api.json",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.19.1",
+  "kiotaVersion": "1.20.0",
   "clientClassName": "GitHubClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "DownstreamClients.GitHub",
