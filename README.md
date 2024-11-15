@@ -82,6 +82,14 @@ The Bank API is a design reference project suitable to bootstrap development for
     spectral lint ./specs-generated/openapi.json -v -F "hint"
     ```
 
+## Considerations
+
+Cannot use the Kiota VSCode extension yet, because of issue: <https://github.com/microsoft/kiota/issues/5782>
+
+Cannot use the Spectral VSCode extension yet, because of issue: <https://github.com/stoplightio/spectral/issues/2736>
+
+OpenID Connect isn't fully supported in Scalar yet: <https://github.com/scalar/scalar/issues/3656>
+
 ## License
 
 This work is licensed under a

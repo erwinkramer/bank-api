@@ -15,7 +15,6 @@
 				"humao.rest-client",
 				"ms-azuretools.vscode-docker",
 				"ms-dotnettools.csdevkit", // brings along: ms-dotnettools.csharp, and ms-dotnettools.vscode-dotnet-runtime
-				"ms-graph.kiota",
 				"ms-vscode-remote.remote-containers"
 			]
 		}
