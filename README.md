@@ -43,7 +43,7 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 - [.NET 9 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 
-- [Spectral CLI client](https://meta.stoplight.io/docs/spectral/b8391e051b7d8-installation), via `npm install -g @stoplight/spectral-cli`
+- [Spectral CLI client](https://meta.stoplight.io/docs/spectral/b8391e051b7d8-installation), via `npm install --verbose -g @stoplight/spectral-cli@^6.14.1`
 
 - All [recommended Visual Studio Code extensions](.vscode/extensions.json)
 

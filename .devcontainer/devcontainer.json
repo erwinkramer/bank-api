@@ -36,7 +36,7 @@
 	// }
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// Installation of spectral-cli may take a while (even when using a local package cache), so we use the verbose flag to show progress.
-	"postCreateCommand": "npm install --verbose -g @stoplight/spectral-cli@^6.14.0",
+	"postCreateCommand": "npm install --verbose -g @stoplight/spectral-cli@^6.14.1",
 	"remoteUser": "root", //have to use root because of permission issue during dotnet build: https://github.com/microsoft/vscode-remote-release/issues/9099#issuecomment-2290470364
 	"mounts": []
 }
