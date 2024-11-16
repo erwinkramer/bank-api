@@ -5,24 +5,25 @@
 	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-9.0-noble",
 	"customizations": {
 		"vscode": {
-			"settings": {
-				"terminal.integrated.shell.linux": "/bin/bash"
-			},
 			"extensions": [
 				"donjayamanne.githistory",
-				"github.copilot",
 				"humao.rest-client",
 				"ms-azuretools.vscode-docker",
 				"ms-dotnettools.csdevkit", // brings along: ms-dotnettools.csharp, and ms-dotnettools.vscode-dotnet-runtime
 				"ms-vscode-remote.remote-containers",
 				"ms-graph.kiota"
-			]
+			],
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "pwsh",
+				"dotnetAcquisitionExtension.sharedExistingDotnetPath": "/usr/share/dotnet/dotnet"
+			}
 		}
 	},
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/dotnet:2": {
-			"version": "8.0"
+			"version": "9.0",
+			"aspNetCoreRuntimeVersions": "8.0" // for: https://github.com/microsoft/vscode-dotnettools/issues/1094
 		},
 		"ghcr.io/devcontainers/features/node:1": {}
 	},
@@ -36,10 +37,6 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// Installation of spectral-cli may take a while (even when using a local package cache), so we use the verbose flag to show progress.
 	"postCreateCommand": "npm install --verbose -g @stoplight/spectral-cli@^6.14.0",
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	"remoteUser": "vscode",
-	// Mount your local .npmrc file into the devcontainer
-	"mounts": [
-		"source=${localEnv:HOME}/.npmrc,target=/home/vscode/.npmrc,type=bind,consistency=cached"
-	]
+	"remoteUser": "root", //have to use root because of permission issue during dotnet build: https://github.com/microsoft/vscode-remote-release/issues/9099#issuecomment-2290470364
+	"mounts": []
 }
