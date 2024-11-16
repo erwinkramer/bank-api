@@ -47,7 +47,7 @@ The Bank API is a design reference project suitable to bootstrap development for
 
 ## Quick start
 
-- (Optionally) regenerate the GitHub downstream API client by going to the [Kiota workspace](.kiota\workspace.json) and clicking `Re-generate` under `clients`.
+- (Optionally) regenerate the GitHub downstream API client by going to the [Kiota workspace](.kiota/workspace.json) and clicking `Re-generate` under `clients`.
 
 - Start the standalone Aspire Dashboard for logging:
 
