@@ -35,7 +35,7 @@
 	// }
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// Installation of spectral-cli may take a while (even when using a local package cache), so we use the verbose flag to show progress.
-	"postCreateCommand": "dotnet tool install --global Microsoft.OpenApi.Kiota && npm install --verbose -g @stoplight/spectral-cli@^6.14.0",
+	"postCreateCommand": "npm install --verbose -g @stoplight/spectral-cli@^6.14.0",
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	"remoteUser": "vscode",
 	// Mount your local .npmrc file into the devcontainer
