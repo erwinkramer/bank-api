@@ -1,6 +1,6 @@
 using DownstreamClients.GitHub;
 using Microsoft.Kiota.Abstractions.Authentication;
-using Microsoft.Kiota.Http.HttpClientLibrary;
+using Microsoft.Kiota.Bundle;
 
 static partial class ApiBuilder
 {
@@ -9,7 +9,7 @@ static partial class ApiBuilder
         services.AddKiotaHandlers();
         services.AddHttpClient<GitHubClient>().AddTypedClient((client, sp) =>
         {
-            var requestAdapter = new HttpClientRequestAdapter(new AnonymousAuthenticationProvider(), httpClient: client);
+            var requestAdapter = new DefaultRequestAdapter(new AnonymousAuthenticationProvider(), httpClient: client);
             return new GitHubClient(requestAdapter);
         }).AttachKiotaHandlers();
 

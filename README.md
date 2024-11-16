@@ -43,18 +43,11 @@ The Bank API is a design reference project suitable to bootstrap development for
 
 - [Spectral CLI client](https://meta.stoplight.io/docs/spectral/b8391e051b7d8-installation), via `npm install -g @stoplight/spectral-cli`
 
-- [Kiota CLI tool](https://learn.microsoft.com/en-us/openapi/kiota/overview), via `dotnet tool install --global Microsoft.OpenApi.Kiota`, to generate clients for downstream APIs.
-
-- [Visual Studio Code extensions](.vscode/extensions.json)
+- All [recommended Visual Studio Code extensions](.vscode/extensions.json)
 
 ## Quick start
 
-- (Optionally) regenerate the GitHub downstream API client:
-
-    ```powershell
-    kiota download apisguru::github.com --co -o ./specs-downstream/github-api.json
-    kiota generate -l csharp -d ./specs-downstream/github-api.json -c GitHubClient -n DownstreamClients.GitHub -o ./bank-api-minimal/DownstreamClients/GitHub --include-path "/repos/{owner}/{repo}/releases/*" --clean-output
-    ```
+- (Optionally) regenerate the GitHub downstream API client by going to the [Kiota workspace](.kiota\workspace.json) and clicking `Re-generate` under `clients`.
 
 - Start the standalone Aspire Dashboard for logging:
 
@@ -83,8 +76,6 @@ The Bank API is a design reference project suitable to bootstrap development for
     ```
 
 ## Considerations
-
-Cannot use the Kiota VSCode extension yet, because of issue: <https://github.com/microsoft/kiota/issues/5782>
 
 Cannot use the Spectral VSCode extension yet, because of issue: <https://github.com/stoplightio/spectral/issues/2736>
 

@@ -1,0 +1,35 @@
+{
+  "applicationName": "application",
+  "apiDependencies": {
+    "GitHubClient": {
+      "apiDescriptionUrl": "./specs-downstream/github-api.json",
+      "apiDeploymentBaseUrl": "https://api.github.com/",
+      "requests": [
+        {
+          "method": "POST",
+          "uriTemplate": "repos/{owner}/{repo}/releases/generate-notes"
+        },
+        {
+          "method": "GET",
+          "uriTemplate": "repos/{owner}/{repo}/releases/latest"
+        },
+        {
+          "method": "DELETE",
+          "uriTemplate": "repos/{owner}/{repo}/releases/{release_id}"
+        },
+        {
+          "method": "GET",
+          "uriTemplate": "repos/{owner}/{repo}/releases/{release_id}"
+        },
+        {
+          "method": "PATCH",
+          "uriTemplate": "repos/{owner}/{repo}/releases/{release_id}"
+        }
+      ],
+      "extensions": {
+        "x-ms-kiota-hash": "5A335B377635435068A26183EFE9413B4E39096FED39C05D712E1544AD79DE5F",
+        "x-ms-kiota-version": "1.20.0"
+      }
+    }
+  }
+}
