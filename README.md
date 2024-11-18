@@ -33,7 +33,7 @@ The Bank API is a design reference project suitable to bootstrap development for
 
 - [OpenApiAnyFactory](./bank-api-minimal/Api.Helper.OpenApiAnyFactory.cs) from [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) for parsing JSON to `IOpenApiAny` types
 
-- [xUnit](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test) for unit tests
+- [TUnit](https://thomhurst.github.io/TUnit/docs/intro) for unit tests
 
 - [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) in Visual Studio Code for quick local tests via `.http` files
 

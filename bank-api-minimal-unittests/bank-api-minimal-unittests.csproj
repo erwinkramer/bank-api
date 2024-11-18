@@ -8,14 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.*" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.*" />
-    <PackageReference Include="xunit" Version="2.9.*" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.*" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Using Include="Xunit" />
+    <PackageReference Include="TUnit" Version="*" />
   </ItemGroup>
 
    <ItemGroup>
