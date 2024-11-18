@@ -83,6 +83,8 @@ Cannot use the Spectral VSCode extension yet, because of issue: <https://github.
 
 OpenID Connect isn't fully supported in Scalar yet: <https://github.com/scalar/scalar/issues/3656>
 
+Running tests works in VSCode. However, debugging tests doesn't work with TUnit in VSCode yet, please see: <https://github.com/microsoft/vscode-dotnettools/issues/1616#issue-2669360822>
+
 ## License
 
 This work is licensed under a
