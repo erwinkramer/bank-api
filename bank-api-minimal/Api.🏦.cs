@@ -17,6 +17,7 @@ builder.Logging.AddOpenTelemetry(logging =>
             logging.IncludeScopes = true;
         });
 
+builder.Services.AddHealthChecks();
 builder.Services.AddAuthServices();
 builder.Services.AddDataServices();
 builder.Services.AddDownstreamApiServices();
@@ -53,5 +54,6 @@ using (var scope = app.Services.CreateScope())
 
 app.MapBankEndpoints();
 app.MapTellerEndpoints();
+app.MapHealthChecks("/health").RequireAuthorization("bank_subscription");
 
 app.Run();
