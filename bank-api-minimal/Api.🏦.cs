@@ -11,17 +11,11 @@ GlobalConfiguration.ApiExamples = OpenApiAnyFactory.CreateFromJson(File.ReadAllT
 GridifyGlobalConfiguration.EnableEntityFrameworkCompatibilityLayer();
 GridifyGlobalConfiguration.DefaultPageSize = GlobalConfiguration.ApiSettings.PageSize.Default;
 
-builder.Logging.AddOpenTelemetry(logging =>
-        {
-            logging.IncludeFormattedMessage = true;
-            logging.IncludeScopes = true;
-        });
-
+builder.AddLoggingServices();
 builder.Services.AddHealthChecks();
 builder.Services.AddAuthServices();
 builder.Services.AddDataServices();
 builder.Services.AddDownstreamApiServices();
-builder.Services.AddLoggingServices();
 builder.Services.AddOpenApiServices();
 builder.Services.AddRateLimitServices();
 

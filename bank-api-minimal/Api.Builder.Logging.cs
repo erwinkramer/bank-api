@@ -4,9 +4,15 @@ using OpenTelemetry.Trace;
 
 static partial class ApiBuilder
 {
-    public static IServiceCollection AddLoggingServices(this IServiceCollection services)
+    public static IHostApplicationBuilder AddLoggingServices(this IHostApplicationBuilder builder)
     {
-        var otel = services.AddOpenTelemetry();
+        builder.Logging.AddOpenTelemetry(logging =>
+        {
+            logging.IncludeFormattedMessage = true;
+            logging.IncludeScopes = true;
+        });
+
+        var otel = builder.Services.AddOpenTelemetry();
         otel.WithMetrics(metrics =>
         {
             metrics.AddAspNetCoreInstrumentation();
@@ -21,11 +27,11 @@ static partial class ApiBuilder
         });
         otel.UseOtlpExporter();
 
-        services.AddTransient<ILogger>(p =>
+        builder.Services.AddTransient<ILogger>(p =>
         {
             return p.GetRequiredService<ILoggerFactory>().CreateLogger("API logger");
         });
 
-        return services;
+        return builder;
     }
 }
