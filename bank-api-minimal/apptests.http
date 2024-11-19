@@ -17,6 +17,11 @@ Authorization: Bearer {{localToken}}
 
 ###
 
+http://{{host}}/{{apiVersion}}/teller/reports
+Authorization: Bearer {{localToken}}
+
+###
+
 http://{{host}}/{{apiVersion}}/teller
 Authorization: Bearer {{openIdToken}}
 

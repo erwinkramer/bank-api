@@ -12,6 +12,10 @@ static partial class ApiMapper
             .WithName("GetBankTeller").WithSummary("Get bank teller")
             .WithDescription("Get the teller of all banks.");
 
+        tellerItems.MapGet("/reports", TellerOperation.GetBankTellerReports)
+            .WithName("GetBankTellerReports").WithSummary("Get bank teller reports")
+            .WithDescription("Get the teller reports.");
+
         return app;
     }
 }

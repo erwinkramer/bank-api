@@ -258,6 +258,37 @@
           }
         }
       }
+    },
+    "/teller/reports": {
+      "get": {
+        "tags": [
+          "Administrative"
+        ],
+        "summary": "Get bank teller reports",
+        "description": "Get the teller reports.",
+        "operationId": "GetBankTellerReports",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BlobItem"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -301,6 +332,274 @@
         ],
         "description": "Tier of the bank.",
         "default": "A"
+      },
+      "BlobImmutabilityPolicy": {
+        "type": "object",
+        "properties": {
+          "expiresOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "policyMode": {
+            "$ref": "#/components/schemas/NullableOfBlobImmutabilityPolicyMode"
+          }
+        },
+        "nullable": true
+      },
+      "BlobItem": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "snapshot": {
+            "type": "string",
+            "nullable": true
+          },
+          "versionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "isLatestVersion": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "properties": {
+            "$ref": "#/components/schemas/BlobItemProperties"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "tags": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "objectReplicationSourceProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ObjectReplicationPolicy"
+            },
+            "nullable": true
+          },
+          "hasVersionsOnly": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "BlobItemProperties": {
+        "type": "object",
+        "properties": {
+          "lastModified": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "contentLength": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "contentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "contentEncoding": {
+            "type": "string",
+            "nullable": true
+          },
+          "contentLanguage": {
+            "type": "string",
+            "nullable": true
+          },
+          "contentHash": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "contentDisposition": {
+            "type": "string",
+            "nullable": true
+          },
+          "cacheControl": {
+            "type": "string",
+            "nullable": true
+          },
+          "blobSequenceNumber": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "blobType": {
+            "$ref": "#/components/schemas/NullableOfBlobType"
+          },
+          "leaseStatus": {
+            "$ref": "#/components/schemas/NullableOfLeaseStatus"
+          },
+          "leaseState": {
+            "$ref": "#/components/schemas/NullableOfLeaseState"
+          },
+          "leaseDuration": {
+            "$ref": "#/components/schemas/NullableOfLeaseDurationType"
+          },
+          "copyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "copyStatus": {
+            "$ref": "#/components/schemas/NullableOfCopyStatus"
+          },
+          "copySource": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "copyProgress": {
+            "type": "string",
+            "nullable": true
+          },
+          "copyStatusDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "serverEncrypted": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "incrementalCopy": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "destinationSnapshot": {
+            "type": "string",
+            "nullable": true
+          },
+          "remainingRetentionDays": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "accessTier": {
+            "$ref": "#/components/schemas/NullableOfAccessTier"
+          },
+          "accessTierInferred": {
+            "type": "boolean"
+          },
+          "archiveStatus": {
+            "$ref": "#/components/schemas/NullableOfArchiveStatus"
+          },
+          "customerProvidedKeySha256": {
+            "type": "string",
+            "nullable": true
+          },
+          "encryptionScope": {
+            "type": "string",
+            "nullable": true
+          },
+          "tagCount": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "expiresOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isSealed": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "rehydratePriority": {
+            "$ref": "#/components/schemas/NullableOfRehydratePriority"
+          },
+          "lastAccessedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "eTag": {
+            "$ref": "#/components/schemas/NullableOfETag"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "copyCompletedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "accessTierChangedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "immutabilityPolicy": {
+            "$ref": "#/components/schemas/BlobImmutabilityPolicy"
+          },
+          "hasLegalHold": {
+            "type": "boolean"
+          }
+        },
+        "nullable": true
+      },
+      "NullableOfAccessTier": {
+        "type": "object",
+        "nullable": true
+      },
+      "NullableOfArchiveStatus": {
+        "type": "integer",
+        "nullable": true
+      },
+      "NullableOfBlobImmutabilityPolicyMode": {
+        "type": "integer",
+        "nullable": true
+      },
+      "NullableOfBlobType": {
+        "type": "integer",
+        "nullable": true
+      },
+      "NullableOfCopyStatus": {
+        "type": "integer",
+        "nullable": true
+      },
+      "NullableOfETag": {
+        "nullable": true
+      },
+      "NullableOfLeaseDurationType": {
+        "type": "integer",
+        "nullable": true
+      },
+      "NullableOfLeaseState": {
+        "type": "integer",
+        "nullable": true
+      },
+      "NullableOfLeaseStatus": {
+        "type": "integer",
+        "nullable": true
+      },
+      "NullableOfRehydratePriority": {
+        "type": "integer",
+        "nullable": true
       },
       "NullableOfReleaseAsset_state": {
         "type": "integer",
@@ -400,6 +699,37 @@
           }
         },
         "nullable": true
+      },
+      "ObjectReplicationPolicy": {
+        "type": "object",
+        "properties": {
+          "policyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ObjectReplicationRule"
+            },
+            "nullable": true
+          }
+        }
+      },
+      "ObjectReplicationRule": {
+        "type": "object",
+        "properties": {
+          "ruleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "replicationStatus": {
+            "$ref": "#/components/schemas/ObjectReplicationStatus"
+          }
+        }
+      },
+      "ObjectReplicationStatus": {
+        "type": "integer"
       },
       "PagingOfBankModel": {
         "type": "object",
