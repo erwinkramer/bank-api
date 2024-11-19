@@ -31,7 +31,7 @@ The Bank API is a design reference project suitable to bootstrap development for
 
   - [OpenTelemetry with OTLP and the standalone Aspire Dashboard](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-otlp-example) for logging
 
-  - [Aspire.Azure.* libraries](https://learn.microsoft.com/en-us/dotnet/azure/sdk/aspnetcore-guidance) for calling (downstream) Azure Services
+  - [Client integrations](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/integrations-overview#client-integrations) for calling (downstream) Azure and cloud-agnostic services
 
 - [Kiota API client generation](https://learn.microsoft.com/en-us/openapi/kiota/using#client-generation) for calling downstream APIs
 
