@@ -13,8 +13,6 @@ The Bank API is a design reference project suitable to bootstrap development for
 
 - [ASP.NET Core 9.0 - Minimal API](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/overview?view=aspnetcore-9.0) for API development, with following base services:
 
-  - [Azure Clients](https://learn.microsoft.com/en-us/dotnet/azure/sdk/aspnetcore-guidance) for calling (downstream) Azure Services
-
   - [Resilience](https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience?tabs=package-reference) for resilience when calling downstream APIs
 
   - [Health checks](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-9.0) for checking health status
@@ -29,7 +27,11 @@ The Bank API is a design reference project suitable to bootstrap development for
 
   - [OpenApi](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-9.0&tabs=visual-studio) for generating OpenAPI specifications
 
-- [OpenTelemetry with OTLP and the standalone Aspire Dashboard](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-otlp-example) for logging
+- 'Minimal' Aspire features:
+
+  - [OpenTelemetry with OTLP and the standalone Aspire Dashboard](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-otlp-example) for logging
+
+  - [Aspire.Azure.* libraries](https://learn.microsoft.com/en-us/dotnet/azure/sdk/aspnetcore-guidance) for calling (downstream) Azure Services
 
 - [Kiota API client generation](https://learn.microsoft.com/en-us/openapi/kiota/using#client-generation) for calling downstream APIs
 

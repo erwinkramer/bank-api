@@ -13,8 +13,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspire.Azure.Storage.Blobs" Version="9.*" />
     <PackageReference Include="AspNetCore.Authentication.ApiKey" Version="8.*" />
-    <PackageReference Include="Azure.Storage.Blobs" Version="12.*" />
     <PackageReference Include="Gridify" Version="2.15.*" />
     <PackageReference Include="Gridify.EntityFramework" Version="2.15.*" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.*" />
@@ -26,10 +26,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Azure" Version="1.*" />
     <PackageReference Include="Microsoft.Extensions.Caching.Hybrid" Version="9.*-*" />
     <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="9.*" />
-    <PackageReference Include="Microsoft.Extensions.ServiceDiscovery"  Version="9.*" />
+    <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="9.*" />
     <PackageReference Include="Microsoft.Kiota.Bundle" Version="1.15.*" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.10.*" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.10.*" />

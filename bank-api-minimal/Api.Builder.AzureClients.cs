@@ -1,15 +1,12 @@
-
-using Microsoft.Extensions.Azure;
-
 static partial class ApiBuilder
 {
-    public static IServiceCollection AddAzureClients(this IServiceCollection services, IConfigurationSection azureConfig)
+    public static IHostApplicationBuilder AddAzureClients(this IHostApplicationBuilder builder)
     {
-        services.AddAzureClients(options =>
+        builder.AddAzureBlobClient("BankStorage", options =>
         {
-            options.AddBlobServiceClient(azureConfig.GetSection("BankStorage"));
+            options.DisableHealthChecks = true;
         });
 
-        return services;
+        return builder;
     }
 }
