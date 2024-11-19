@@ -6,6 +6,10 @@ static partial class ApiBuilder
 {
     public static IServiceCollection AddDownstreamApiServices(this IServiceCollection services)
     {
+        services.ConfigureHttpClientDefaults(http =>
+        {
+            http.AddStandardResilienceHandler();  // Turn on resilience by default
+        });
         services.AddKiotaHandlers();
         services.AddHttpClient<GitHubClient>().AddTypedClient((client, sp) =>
         {
