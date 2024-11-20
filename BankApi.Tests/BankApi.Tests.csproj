@@ -12,7 +12,7 @@
   </ItemGroup>
 
    <ItemGroup>
-    <ProjectReference Include="..\bank-api-minimal\bank-api-minimal.csproj" />
+    <ProjectReference Include="..\BankApi.Service\BankApi.Service.csproj" />
   </ItemGroup>
 
 </Project>

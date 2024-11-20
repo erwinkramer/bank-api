@@ -39,7 +39,7 @@ The Bank API is a design reference project suitable to bootstrap development for
 
 - [Spectral](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/using-openapi-documents?view=aspnetcore-9.0#lint-generated-openapi-documents-with-spectral) for linting
 
-- [OpenApiAnyFactory](./bank-api-minimal/Api.Helper.OpenApiAnyFactory.cs) from [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) for parsing JSON to `IOpenApiAny` types
+- [OpenApiAnyFactory](./BankApi.Service/Api.Helper.OpenApiAnyFactory.cs) from [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) for parsing JSON to `IOpenApiAny` types
 
 - [TUnit](https://thomhurst.github.io/TUnit/docs/intro) for unit tests
 

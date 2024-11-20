@@ -5,13 +5,13 @@
             "name": "C#: App Host Debug (via Aspire)",
             "type": "dotnet",
             "request": "launch",
-            "projectPath": "${workspaceFolder}/bank-api-minimal-apphost/bank-api-minimal-apphost.csproj"
+            "projectPath": "${workspaceFolder}/BankApi.Orchestration/BankApi.Orchestration.csproj"
         },
         {
             "name": "C#: Api Debug (with standalone Aspire)",
             "type": "dotnet",
             "request": "launch",
-            "projectPath": "${workspaceFolder}/bank-api-minimal/bank-api-minimal.csproj"
+            "projectPath": "${workspaceFolder}/BankApi.Service/BankApi.Service.csproj"
         }
     ]
 }

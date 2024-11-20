@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bank-api-minimal", "bank-api-minimal\bank-api-minimal.csproj", "{A83A6415-2E9B-433B-9751-CF4CF3F60BE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankApi.Service", "BankApi.Service\BankApi.Service.csproj", "{A83A6415-2E9B-433B-9751-CF4CF3F60BE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bank-api-minimal-unittests", "bank-api-minimal-unittests\bank-api-minimal-unittests.csproj", "{4C072298-4DD6-4C10-8876-F25E01F6CE79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApi.Tests", "BankApi.Tests\BankApi.Tests.csproj", "{4C072298-4DD6-4C10-8876-F25E01F6CE79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bank-api-minimal-apphost", "bank-api-minimal-apphost\bank-api-minimal-apphost.csproj", "{6BEDB9E0-C170-4152-B999-272BB34E35B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApi.Orchestration", "BankApi.Orchestration\BankApi.Orchestration.csproj", "{6BEDB9E0-C170-4152-B999-272BB34E35B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
