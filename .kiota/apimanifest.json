@@ -2,7 +2,7 @@
   "applicationName": "application",
   "apiDependencies": {
     "GitHubClient": {
-      "apiDescriptionUrl": "./specs-downstream/github-api.json",
+      "apiDescriptionUrl": "./BankApi.Specs.Downstream/github-api.json",
       "apiDeploymentBaseUrl": "https://api.github.com/",
       "requests": [
         {

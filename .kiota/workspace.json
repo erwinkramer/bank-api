@@ -15,7 +15,7 @@
       "includeAdditionalData": true,
       "excludeBackwardCompatible": false,
       "disabledValidationRules": [],
-      "descriptionLocation": "./specs-downstream/github-api.json",
+      "descriptionLocation": "./BankApi.Specs.Downstream/github-api.json",
       "includePatterns": [
         "/repos/{owner}/{repo}/releases/*"
       ],

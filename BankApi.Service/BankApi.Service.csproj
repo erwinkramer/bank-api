@@ -8,7 +8,7 @@
 
   <PropertyGroup>
       <OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
-      <OpenApiDocumentsDirectory>../specs-generated</OpenApiDocumentsDirectory>
+      <OpenApiDocumentsDirectory>../BankApi.Specs.Generated</OpenApiDocumentsDirectory>
       <OpenApiGenerateDocumentsOptions>--file-name openapi</OpenApiGenerateDocumentsOptions>
   </PropertyGroup>
 
