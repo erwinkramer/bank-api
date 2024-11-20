@@ -1,6 +1,5 @@
 using Gridify;
 using Microsoft.OpenApi.Models;
-using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,15 +29,8 @@ app.MapOpenApi("/openapi/{documentName}.json");
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapScalarApiReference(options =>
-    {
-        options.Theme = ScalarTheme.DeepSpace;
-        options.WithApiKeyAuthentication(options =>
-        {
-            options.Token = "Lifetime Subscription";
-        });
-        options.Title = $"{GlobalConfiguration.ApiDocument.Info.Title} docs | {GlobalConfiguration.ApiDocument.Info.Version}";
-    });
+    app.AddOpenApiScalarReference();
+    app.Services.ProvisionAzureStorage();
 }
 
 using (var scope = app.Services.CreateScope())

@@ -1,9 +1,17 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "name": "C#: App Host Debug (via Aspire)",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/bank-api-minimal-apphost/bank-api-minimal-apphost.csproj"
+        },
+        {
+            "name": "C#: Api Debug (with standalone Aspire)",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/bank-api-minimal/bank-api-minimal.csproj"
+        }
     ]
 }
