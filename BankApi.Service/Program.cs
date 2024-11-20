@@ -33,11 +33,7 @@ if (app.Environment.IsDevelopment())
     app.Services.ProvisionAzureStorage();
 }
 
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<BankDb>();
-    dbContext.Database.EnsureCreated();
-}
+app.Services.EnsureDataServicesCreated();
 
 app.MapBankEndpoints();
 app.MapTellerEndpoints();

@@ -16,4 +16,10 @@ static partial class ApiBuilder
 
         return services;
     }
+
+    public static void EnsureDataServicesCreated(this IServiceProvider provider)
+    {
+        using var scope = provider.CreateScope();
+        scope.ServiceProvider.GetRequiredService<BankDb>().Database.EnsureCreated();
+    }
 }
