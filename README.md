@@ -27,9 +27,11 @@ The Bank API is a design reference project suitable to bootstrap development for
 
   - [OpenApi](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-9.0&tabs=visual-studio) for generating OpenAPI specifications
 
-- 'Minimal' Aspire features:
+- [OpenTelemetry (OTel)](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel) for observability
 
-  - [OpenTelemetry with OTLP and the standalone Aspire Dashboard](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-otlp-example) for logging
+- Selected [.NET Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview) features:
+
+  - [Standalone Aspire Dashboard](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-otlp-example) for developer visualization via OTel
 
   - [Client integrations](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/integrations-overview#client-integrations) for calling (downstream) Azure and cloud-agnostic services
 
@@ -89,11 +91,13 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 ## Considerations
 
-Cannot use the Spectral VSCode extension yet, because of issue: <https://github.com/stoplightio/spectral/issues/2736>
+1. Cannot use the Spectral VSCode extension yet, because of issue: <https://github.com/stoplightio/spectral/issues/2736>
 
-OpenID Connect isn't fully supported in Scalar yet: <https://github.com/scalar/scalar/issues/3656>
+2. OpenID Connect isn't fully supported in Scalar yet: <https://github.com/scalar/scalar/issues/3656>
 
-Running tests works in VSCode. However, debugging tests doesn't work with TUnit in VSCode yet, please see: <https://github.com/microsoft/vscode-dotnettools/issues/1616#issue-2669360822>
+3. Running tests works in VSCode. However, debugging tests doesn't work with TUnit in VSCode yet, please see: <https://github.com/microsoft/vscode-dotnettools/issues/1616#issue-2669360822>
+
+4. To extend OpenTelemetry logging to Application Insights, [expand the OpenTelemetry exporter](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-applicationinsights)
 
 ## License
 
