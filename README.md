@@ -63,7 +63,7 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 - (Optionally) regenerate the GitHub downstream API client by going to the [Kiota workspace](.kiota/workspace.json) and clicking `Re-generate` under `clients`.
 
-- Start the standalone Aspire Dashboard for logging:
+- Start the standalone Aspire Dashboard for developer visualization:
 
     ```powershell
     docker run --rm -it `
