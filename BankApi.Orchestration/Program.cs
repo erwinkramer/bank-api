@@ -7,5 +7,4 @@ var blobs = builder.AddAzureStorage("storage")
 builder.AddProject<Projects.BankApi_Service>("apiservice")
        .WithReference(blobs);
 
-
 builder.Build().Run();
