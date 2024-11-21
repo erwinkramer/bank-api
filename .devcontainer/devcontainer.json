@@ -19,6 +19,9 @@
 			}
 		}
 	},
+	"containerEnv": {
+		"DOTNET_LAUNCH_PROFILE": "http"
+	},
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/dotnet:2": {
@@ -32,7 +35,8 @@
 	"postCreateCommand": "npm install --verbose -g @stoplight/spectral-cli@^6.14.1",
 	"remoteUser": "root", //have to use root because of permission issue during dotnet build: https://github.com/microsoft/vscode-remote-release/issues/9099#issuecomment-2290470364
 	"mounts": [
-		// Bind the azure (credential) folder, requires an unencrypted token cache (assuming host is Windows), so on your host, run `az config set core.encrypt_token_cache=false` first and then login again
+		// Bind the azure (credential) folder, requires an unencrypted token cache (assuming host is Windows).
+		// On your host, run `az config set core.encrypt_token_cache=false` first, login again, then start the container
 		// Please read: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/3033 for more information
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.azure,target=/root/.azure,type=bind"
 	]
