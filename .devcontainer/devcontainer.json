@@ -14,7 +14,7 @@
 				"ms-graph.kiota"
 			],
 			"settings": {
-				"terminal.integrated.defaultProfile.linux": "pwsh",
+				"terminal.integrated.shell.linux": "/bin/bash",
 				"dotnetAcquisitionExtension.sharedExistingDotnetPath": "/usr/share/dotnet/dotnet"
 			}
 		}
@@ -25,18 +25,15 @@
 			"version": "9.0",
 			"aspNetCoreRuntimeVersions": "8.0" // for: https://github.com/microsoft/vscode-dotnettools/issues/1094
 		},
-		"ghcr.io/devcontainers/features/node:1": {}
+		"ghcr.io/devcontainers/features/node:1": {},
+		"ghcr.io/devcontainers/features/azure-cli": {}
 	},
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [5000, 5001],
-	// "portsAttributes": {
-	//		"5001": {
-	//			"protocol": "https"
-	//		}
-	// }
-	// Use 'postCreateCommand' to run commands after the container is created.
 	// Installation of spectral-cli may take a while (even when using a local package cache), so we use the verbose flag to show progress.
 	"postCreateCommand": "npm install --verbose -g @stoplight/spectral-cli@^6.14.1",
 	"remoteUser": "root", //have to use root because of permission issue during dotnet build: https://github.com/microsoft/vscode-remote-release/issues/9099#issuecomment-2290470364
-	"mounts": []
+	"mounts": [
+		// Bind the azure (credential) folder, requires an unencrypted token cache (assuming host is Windows), so on your host, run `az config set core.encrypt_token_cache=false` first and then login again
+		// Please read: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/3033 for more information
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.azure,target=/root/.azure,type=bind"
+	]
 }
