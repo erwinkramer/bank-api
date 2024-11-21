@@ -70,7 +70,7 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 - Validate the OpenAPI definition:
 
     ```powershell
-    spectral lint ./BankApi.Specs.Generated/openapi.json -v -F "hint"
+    spectral lint ./Specs.Generated/openapi.json -v -F "hint"
     ```
 
 ### Run in Aspire minimal mode
