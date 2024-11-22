@@ -9,9 +9,12 @@
 				"donjayamanne.githistory",
 				"humao.rest-client",
 				"ms-azuretools.vscode-docker",
-				"ms-dotnettools.csdevkit", // brings along: ms-dotnettools.csharp, and ms-dotnettools.vscode-dotnet-runtime
+				"ms-dotnettools.vscode-dotnet-runtime",
+				"ms-dotnettools.csharp",
+				"ms-dotnettools.csdevkit",
 				"ms-vscode-remote.remote-containers",
-				"ms-graph.kiota"
+				"ms-graph.kiota",
+				"stoplight.spectral"
 			],
 			"settings": {
 				"terminal.integrated.shell.linux": "/bin/bash",
@@ -28,16 +31,17 @@
 			"version": "9.0",
 			"aspNetCoreRuntimeVersions": "8.0" // for: https://github.com/microsoft/vscode-dotnettools/issues/1094
 		},
-		"ghcr.io/devcontainers/features/node:1": {},
-		"ghcr.io/devcontainers/features/azure-cli": {}
+		"ghcr.io/devcontainers/features/azure-cli": {} // for using the host az cli credentials
 	},
-	// Installation of spectral-cli may take a while (even when using a local package cache), so we use the verbose flag to show progress.
-	"postCreateCommand": "npm install --verbose -g @stoplight/spectral-cli@^6.14.1",
 	"remoteUser": "root", //have to use root because of permission issue during dotnet build: https://github.com/microsoft/vscode-remote-release/issues/9099#issuecomment-2290470364
 	"mounts": [
 		// Bind the azure (credential) folder, requires an unencrypted token cache (assuming host is Windows).
 		// On your host, run `az config set core.encrypt_token_cache=false` first, login again, then start the container
 		// Please read: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/3033 for more information
-		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.azure,target=/root/.azure,type=bind"
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.azure,target=/root/.azure,type=bind",
+		// Bind the Visual Studio Token provider folder
+		"source=${localEnv:HOME}${localEnv:LOCALAPPDATA}/.IdentityService,target=/root/.IdentityService,type=bind",
+		// Bind ASP.NET user secrets folder (please see https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-9.0&tabs=windows#how-the-secret-manager-tool-works)
+		"source=${localEnv:APPDATA}/Microsoft/UserSecrets,target=/root/.microsoft/usersecrets,type=bind"
 	]
 }

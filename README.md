@@ -51,8 +51,6 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 - [.NET 9 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 
-- [Spectral CLI client](https://meta.stoplight.io/docs/spectral/b8391e051b7d8-installation), via `npm install --verbose -g @stoplight/spectral-cli@^6.14.1`
-
 - All [recommended Visual Studio Code extensions](.vscode/extensions.json)
 
 ## Quick start
@@ -93,7 +91,7 @@ This mode just runs the ASP.NET Core API.
 
 ### Run in Aspire mode
 
-This mode starts the API in the context of .NET Aspire.
+This mode starts the API in the context of .NET Aspire. Do not run in Aspire mode inside the Dev Container, it is [not yet suitable for that](https://www.reddit.com/r/dotnet/comments/1fmrrn4/comment/lozi3ps/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button).
 
 1. Make sure the docker runtime is started.
 
@@ -101,13 +99,11 @@ This mode starts the API in the context of .NET Aspire.
 
 ## Considerations
 
-1. Cannot use the Spectral VSCode extension yet, because of issue: <https://github.com/stoplightio/spectral/issues/2736>
+1. OpenID Connect isn't fully supported in Scalar yet: <https://github.com/scalar/scalar/issues/3656>
 
-2. OpenID Connect isn't fully supported in Scalar yet: <https://github.com/scalar/scalar/issues/3656>
+2. Running tests works in VSCode. However, debugging tests doesn't work with TUnit in VSCode yet, please see: <https://github.com/microsoft/vscode-dotnettools/issues/1616#issue-2669360822>
 
-3. Running tests works in VSCode. However, debugging tests doesn't work with TUnit in VSCode yet, please see: <https://github.com/microsoft/vscode-dotnettools/issues/1616#issue-2669360822>
-
-4. To extend OpenTelemetry logging to Application Insights, [expand the OpenTelemetry exporter](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-applicationinsights)
+3. To extend OpenTelemetry logging to Application Insights, [expand the OpenTelemetry exporter](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-applicationinsights)
 
 ## License
 

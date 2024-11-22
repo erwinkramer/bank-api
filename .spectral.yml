@@ -1,1 +1,1 @@
-extends: ["spectral:oas", "spectral:arazzo"]
+extends: ["spectral:oas"]

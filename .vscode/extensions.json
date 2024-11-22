@@ -7,7 +7,8 @@
 		"humao.rest-client",
 		"ms-dotnettools.csharp",
 		"ms-dotnettools.csdevkit",
-		"ms-graph.kiota"
+		"ms-graph.kiota",
+		"stoplight.spectral"
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
 	"unwantedRecommendations": []
