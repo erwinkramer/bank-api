@@ -65,11 +65,7 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 - Run `dotnet build` to output the OpenAPI definition
 
-- Validate the OpenAPI definition:
-
-    ```powershell
-    spectral lint ./Specs.Generated/openapi.json -v -F "hint"
-    ```
+- Validate the OpenAPI definition by going to the [generated.json](/Specs.Generated/openapi.json) definition and check for problems via the Spectral extension.
 
 ### Run in Aspire minimal mode
 
