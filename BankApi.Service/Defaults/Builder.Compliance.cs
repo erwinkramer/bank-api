@@ -13,6 +13,10 @@ static partial class ApiBuilder
         {
             builder.SetRedactor<ErasingRedactor>(
                 new DataClassificationSet([BankTaxonomy.ConfidentialData, BankTaxonomy.RestrictedData]));
+
+            builder.SetRedactor<NullRedactor>(
+                new DataClassificationSet(BankTaxonomy.UnrestrictedData)
+            );
         });
 
         return builder;
