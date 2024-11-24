@@ -25,6 +25,12 @@
         "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:21159",
         "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22171"
       }
+    },
+    "generate-manifest": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "dotnetRunMessages": true,
+      "commandLineArgs": "--publisher manifest --output-path ../Infra.Generated/aspire-manifest.json",
     }
   }
 }
