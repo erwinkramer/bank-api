@@ -9,7 +9,7 @@ public class TellerOperation
 {
     public static async Task<Results<Ok<Release>, NotFound>> GetBankTeller(GitHubClient client, ClaimsPrincipal user, ILogger logger, CancellationToken cancellationToken)
     {
-        logger.LogInformation($"Hi, {user.Identity?.Name}. What's up?");
+        logger.LogInformation($"User - with hashed ID {user.FindFirstValue(ClaimTypes.NameIdentifier)?.GetHashCode()} - requested the bank Teller.");
         return await client.Repos["dotnet"]["runtime"].Releases.Latest.GetAsync(cancellationToken: cancellationToken)
             is Release teller
                ? TypedResults.Ok(teller)
