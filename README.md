@@ -15,7 +15,7 @@ The Bank API is a design reference project suitable to bootstrap development for
 
   - [Resilience](https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience?tabs=package-reference) for resilience when calling downstream APIs
 
-  - [Data Protection](https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/?view=aspnetcore-9.0) for redacting sensitive data
+  - [Compliance](https://andrewlock.net/redacting-sensitive-data-with-microsoft-extensions-compliance/) for redacting sensitive data
 
   - [Health checks](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-9.0) for checking health status
 
