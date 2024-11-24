@@ -11,6 +11,7 @@ GridifyGlobalConfiguration.EnableEntityFrameworkCompatibilityLayer();
 GridifyGlobalConfiguration.DefaultPageSize = GlobalConfiguration.ApiSettings.PageSize.Default;
 
 builder.AddLoggingServices();
+builder.AddComplianceServices();
 builder.AddAzureClients();
 builder.Services.AddHealthChecks();
 builder.Services.AddAuthServices();

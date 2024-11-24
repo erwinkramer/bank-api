@@ -18,6 +18,7 @@ public class BankModel
     public string? Name { get; set; }
 
     [DefaultValue(true)]
+    [ConfidentialData]
     [Description("Compliancy status of the bank.")]
     public bool IsCompliant { get; set; }
 
