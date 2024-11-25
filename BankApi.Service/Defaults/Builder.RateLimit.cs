@@ -1,4 +1,6 @@
-using Microsoft.AspNetCore.RateLimiting;
+using System.Net;
+using System.Security.Claims;
+using System.Threading.RateLimiting;
 
 static partial class ApiBuilder
 {
@@ -6,14 +8,15 @@ static partial class ApiBuilder
     {
         services.AddRateLimiter(options =>
         {
-            options.AddFixedWindowLimiter(policyName: "fixed", options =>
-            {
-                options.AutoReplenishment = GlobalConfiguration.ApiSettings!.FixedWindowRateLimit.AutoReplenishment;
-                options.PermitLimit = GlobalConfiguration.ApiSettings.FixedWindowRateLimit.PermitLimit;
-                options.Window = GlobalConfiguration.ApiSettings.FixedWindowRateLimit.Window;
-                options.QueueProcessingOrder = GlobalConfiguration.ApiSettings.FixedWindowRateLimit.QueueProcessingOrder;
-                options.QueueLimit = GlobalConfiguration.ApiSettings.FixedWindowRateLimit.QueueLimit;
-            });
+            options.RejectionStatusCode = (int)HttpStatusCode.TooManyRequests;
+            options.AddPolicy("fixed", httpContext =>
+                RateLimitPartition.GetFixedWindowLimiter(
+                    partitionKey:
+                        httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier) ?? httpContext.Request.Headers.Host.ToString(),
+                    factory:
+                        partition => GlobalConfiguration.ApiSettings!.FixedWindowRateLimit
+                )
+            );
         });
 
         return services;
