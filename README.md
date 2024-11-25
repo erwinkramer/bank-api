@@ -103,6 +103,8 @@ This mode starts the API in the context of .NET Aspire. Do not run in Aspire mod
 
 3. To extend OpenTelemetry logging to Application Insights, [expand the OpenTelemetry exporter](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-applicationinsights)
 
+Please see the Reddit [r/dotnet](https://www.reddit.com/r/dotnet/comments/1gyql5a/bank_api_modern_api_reference_project/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) post about this project for more considerations and information.
+
 ## License
 
 This work is licensed under a
