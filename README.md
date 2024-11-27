@@ -107,6 +107,8 @@ This mode starts the API in the context of .NET Aspire.
 
 5. [The compliance NullRedactor doesn't seem to work](https://github.com/dotnet/extensions/issues/5691), the redactor is already defined at [Builder.Compliance.cs](/BankApi.Service/Defaults/Builder.Compliance.cs) but not used because of the issue.
 
+6. Dev Containers with the `docker-outside-of-docker` feature instead of `docker-in-docker` [do not work](https://github.com/dotnet/aspire/issues/6830), for now we're using `docker-in-docker`.
+
 Please see the Reddit [r/dotnet post](https://www.reddit.com/r/dotnet/comments/1gyql5a/bank_api_modern_api_reference_project/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) about this project for more considerations and information.
 
 ## Troubleshooting
