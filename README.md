@@ -89,7 +89,7 @@ This mode just runs the ASP.NET Core API.
 
 ### Run in Aspire mode
 
-This mode starts the API in the context of .NET Aspire. Do not run in Aspire mode inside the Dev Container, it is [not yet suitable for that](https://www.reddit.com/r/dotnet/comments/1fmrrn4/comment/lozi3ps/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button).
+This mode starts the API in the context of .NET Aspire.
 
 1. Make sure the docker runtime is started.
 
@@ -104,6 +104,10 @@ This mode starts the API in the context of .NET Aspire. Do not run in Aspire mod
 3. To extend OpenTelemetry logging to Application Insights, [expand the OpenTelemetry exporter](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-applicationinsights)
 
 Please see the Reddit [r/dotnet](https://www.reddit.com/r/dotnet/comments/1gyql5a/bank_api_modern_api_reference_project/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) post about this project for more considerations and information.
+
+## Troubleshooting
+
+- If debugging isn't working properly inside a Dev Container, please clear the Extension Host Cache at `%AppData%\Code\CachedData` (on Windows) and restart VS Code.
 
 ## License
 
