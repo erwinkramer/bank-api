@@ -6,7 +6,17 @@
 
 version: 2
 updates:
- - package-ecosystem: "devcontainers"
-   directory: "/"
-   schedule:
-     interval: weekly
+  - package-ecosystem: devcontainers
+    directory: /
+    schedule:
+      interval: weekly
+      day: thursday
+  - package-ecosystem: nuget
+    directory: /
+    schedule:
+      interval: weekly
+      day: thursday
+    groups:
+      dotnet:
+        patterns:
+          - "*"
