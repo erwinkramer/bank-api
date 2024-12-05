@@ -57,13 +57,15 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 ## Quick start
 
+- Use a 'pwsh' shell (if you want a click-along experience).
+
 - (Optionally) regenerate the GitHub downstream API client by going to the [Kiota workspace](.kiota/workspace.json) and clicking `Re-generate` under `clients`.
 
   ![kiota-workspace-regenerate-client](.images/kiota-workspace-regenerate-client.png)
 
 - Generate a new JWT-token for secured endpoints:
 
-    ```sh
+    ```powershell
     dotnet user-jwts create --scope "bank_api" --role "banker" --project BankApi.Service
     ```
 
