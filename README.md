@@ -57,12 +57,16 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 ## Quick start
 
+- Use a 'pwsh' shell (if you want a click-a-long experience).
+
 - (Optionally) regenerate the GitHub downstream API client by going to the [Kiota workspace](.kiota/workspace.json) and clicking `Re-generate` under `clients`.
+
+  ![kiota-workspace-regenerate-client](.images/kiota-workspace-regenerate-client.png)
 
 - Generate a new JWT-token for secured endpoints:
 
     ```powershell
-    dotnet user-jwts create --scope "bank_api" --role "banker"
+    dotnet user-jwts create --scope "bank_api" --role "banker" --project BankApi.Service
     ```
 
 - Run `dotnet build` to output the OpenAPI definition
@@ -77,15 +81,16 @@ This mode just runs the ASP.NET Core API.
 
     ```powershell
     docker run --rm -it `
-    -p 18888:18888 `
-    -p 4317:18889 `
-    --name aspire-dashboard `
-    mcr.microsoft.com/dotnet/aspire-dashboard:latest
+      -p 18888:18888 `
+      -p 4317:18889 `
+      --name aspire-dashboard `
+      mcr.microsoft.com/dotnet/aspire-dashboard:latest
     ```
 
-    Copy the url shown in the resulting output when running the container, and replace `0.0.0.0` with `localhost`, eg <http://localhost:18888/login?t=123456780abcdef123456780> and open that in your browser, or you can also paste the key after `/login?t=` when the login dialog is shown. The token will change each time you start the container.
+    Copy the url shown in the resulting output when running the container, and replace `0.0.0.0` with `localhost`, eg <http://localhost:18888/login?t=123456780abcdef123456780> and open that in your browser, or you can also paste the key after `/login?t=` when the login dialog is shown.
+    The token will change each time you start the container.
 
-2. Run the [launch config](.vscode/launch.json) `C#: Api Debug (with standalone Aspire)`.
+1. Run the [launch config](.vscode/launch.json) `C#: Api Debug (with standalone Aspire)`.
 
 ### Run in Aspire mode
 
@@ -93,21 +98,21 @@ This mode starts the API in the context of .NET Aspire.
 
 1. Make sure the docker runtime is started.
 
-2. Run the [launch config](.vscode/launch.json) `C#: App Host Debug (via Aspire)`.
+1. Run the [launch config](.vscode/launch.json) `C#: App Host Debug (via Aspire)`.
 
 ## Considerations
 
 1. [OpenID Connect isn't fully supported in Scalar](https://github.com/scalar/scalar/issues/3656).
 
-2. Running tests works in VSCode. However, [debugging tests doesn't work with TUnit in VSCode yet](https://github.com/microsoft/vscode-dotnettools/issues/1616#issue-2669360822).
+1. Running tests works in VSCode. However, [debugging tests doesn't work with TUnit in VSCode yet](https://github.com/microsoft/vscode-dotnettools/issues/1616#issue-2669360822).
 
-3. To extend OpenTelemetry logging to Application Insights, [expand the OpenTelemetry exporter](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-applicationinsights).
+1. To extend OpenTelemetry logging to Application Insights, [expand the OpenTelemetry exporter](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-applicationinsights).
 
-4. [The Aspire dashboard doesn't start the first time inside the Dev Container](https://github.com/dotnet/aspire/issues/6829), open a new tab and paste the same URL, then it works.
+1. [The Aspire dashboard doesn't start the first time inside the Dev Container](https://github.com/dotnet/aspire/issues/6829), open a new tab and paste the same URL, then it works.
 
-5. [The compliance NullRedactor doesn't seem to work](https://github.com/dotnet/extensions/issues/5691), the redactor is already defined at [Builder.Compliance.cs](/BankApi.Service/Defaults/Builder.Compliance.cs) but not used because of the issue.
+1. [The compliance NullRedactor doesn't seem to work](https://github.com/dotnet/extensions/issues/5691), the redactor is already defined at [Builder.Compliance.cs](/BankApi.Service/Defaults/Builder.Compliance.cs) but not used because of the issue.
 
-6. Dev Containers with the `docker-outside-of-docker` feature instead of `docker-in-docker` [do not work](https://github.com/dotnet/aspire/issues/6830), for now we're using `docker-in-docker`.
+1. Dev Containers with the `docker-outside-of-docker` feature instead of `docker-in-docker` [do not work](https://github.com/dotnet/aspire/issues/6830), for now we're using `docker-in-docker`.
 
 Please see the Reddit [r/dotnet post](https://www.reddit.com/r/dotnet/comments/1gyql5a/bank_api_modern_api_reference_project/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) about this project for more considerations and information.
 
