@@ -1,6 +1,6 @@
 using Scalar.AspNetCore;
 
-static partial class ApiBuilder
+public static partial class ApiBuilder
 {
     public static IServiceCollection AddOpenApiServices(this IServiceCollection services)
     {

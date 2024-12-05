@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-static partial class ApiBuilder
+public static partial class ApiBuilder
 {
     public static IServiceCollection AddDataServices(this IServiceCollection services)
     {

@@ -1,6 +1,6 @@
 using Azure.Storage.Blobs;
 
-static partial class ApiBuilder
+public static partial class ApiBuilder
 {
     public static IHostApplicationBuilder AddAzureClients(this IHostApplicationBuilder builder)
     {

@@ -1,5 +1,4 @@
-
-static partial class ApiMapper
+public static partial class ApiMapper
 {
     public static WebApplication MapTellerEndpoints(this WebApplication app)
     {
@@ -13,8 +12,8 @@ static partial class ApiMapper
             .WithDescription("Get the teller of all banks.");
 
         tellerItems.MapGet("/reports", TellerOperation.GetBankTellerReports)
-            .WithName("GetBankTellerReports").WithSummary("Get bank teller reports")
-            .WithDescription("Get the teller reports.");
+            .WithName("GetBankTellerReports").WithSummary("Get modern bank teller reports")
+            .WithDescription("Get the modern teller reports.");
 
         return app;
     }

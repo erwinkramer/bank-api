@@ -7,7 +7,7 @@ Source: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/sr
 using System.Text.Json;
 using Microsoft.OpenApi.Any;
 
-class OpenApiAnyFactory
+public class OpenApiAnyFactory
 {
     public static IOpenApiAny? CreateFromJson(string json)
     {

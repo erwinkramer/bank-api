@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:5203/v1"
+      "url": "http://localhost:5201/v1"
     }
   ],
   "paths": {

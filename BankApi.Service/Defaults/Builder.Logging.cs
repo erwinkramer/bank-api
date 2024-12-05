@@ -2,7 +2,7 @@ using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
-static partial class ApiBuilder
+public static partial class ApiBuilder
 {
     public static IHostApplicationBuilder AddLoggingServices(this IHostApplicationBuilder builder)
     {

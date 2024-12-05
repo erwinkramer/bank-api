@@ -8,10 +8,16 @@
             "projectPath": "${workspaceFolder}/BankApi.Orchestration/BankApi.Orchestration.csproj"
         },
         {
-            "name": "C#: Api Debug (with standalone Aspire)",
+            "name": "C#: Api Debug (with standalone Aspire) - V1",
             "type": "dotnet",
             "request": "launch",
-            "projectPath": "${workspaceFolder}/BankApi.Service/BankApi.Service.csproj"
+            "projectPath": "${workspaceFolder}/BankApi.Service.V1/BankApi.Service.V1.csproj"
+        },
+        {
+            "name": "C#: Api Debug (with standalone Aspire) - V2",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/BankApi.Service.V2/BankApi.Service.V2.csproj"
         }
     ]
 }

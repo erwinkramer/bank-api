@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.JsonWebTokens;
 
-static partial class ApiBuilder
+public static partial class ApiBuilder
 {
     public static IServiceCollection AddAuthServices(this IServiceCollection services)
     {

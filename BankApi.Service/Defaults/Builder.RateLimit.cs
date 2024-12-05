@@ -2,7 +2,7 @@ using System.Net;
 using System.Security.Claims;
 using System.Threading.RateLimiting;
 
-static partial class ApiBuilder
+public static partial class ApiBuilder
 {
     public static IServiceCollection AddRateLimitServices(this IServiceCollection services)
     {

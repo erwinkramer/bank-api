@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApi.Tests", "BankApi.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApi.Orchestration", "BankApi.Orchestration\BankApi.Orchestration.csproj", "{6BEDB9E0-C170-4152-B999-272BB34E35B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApi.Service.V1", "BankApi.Service.V1\BankApi.Service.V1.csproj", "{79605C48-4179-4FCD-9954-E50B0506FB47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApi.Service.V2", "BankApi.Service.V2\BankApi.Service.V2.csproj", "{8F7D2E5E-FBBD-424C-8291-CAD84B96EF09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{6BEDB9E0-C170-4152-B999-272BB34E35B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BEDB9E0-C170-4152-B999-272BB34E35B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BEDB9E0-C170-4152-B999-272BB34E35B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79605C48-4179-4FCD-9954-E50B0506FB47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79605C48-4179-4FCD-9954-E50B0506FB47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79605C48-4179-4FCD-9954-E50B0506FB47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79605C48-4179-4FCD-9954-E50B0506FB47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F7D2E5E-FBBD-424C-8291-CAD84B96EF09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F7D2E5E-FBBD-424C-8291-CAD84B96EF09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F7D2E5E-FBBD-424C-8291-CAD84B96EF09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F7D2E5E-FBBD-424C-8291-CAD84B96EF09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

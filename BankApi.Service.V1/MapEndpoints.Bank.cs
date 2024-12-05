@@ -1,5 +1,4 @@
-
-static partial class ApiMapper
+public static partial class ApiMapper
 {
     public static WebApplication MapBankEndpoints(this WebApplication app)
     {

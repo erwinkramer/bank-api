@@ -11,8 +11,13 @@
     <UserSecretsId>46d58057-b3bc-4f88-a782-ef9d199643f5</UserSecretsId>
   </PropertyGroup>
 
+
   <ItemGroup>
-    <ProjectReference Include="..\BankApi.Service\BankApi.Service.csproj" />
+    <ProjectReference Include="..\BankApi.Service.V1\BankApi.Service.V1.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BankApi.Service.V2\BankApi.Service.V2.csproj" />
   </ItemGroup>
 
   <ItemGroup>

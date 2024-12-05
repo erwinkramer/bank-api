@@ -4,12 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
-
-  <PropertyGroup>
-      <OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
-      <OpenApiDocumentsDirectory>../Specs.Generated</OpenApiDocumentsDirectory>
-      <OpenApiGenerateDocumentsOptions>--file-name openapi</OpenApiGenerateDocumentsOptions>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,10 +17,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.*" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.*" />
-    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="9.*"> <!-- for OpenApi spec generation -->
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Caching.Hybrid" Version="9.*-*" />
     <PackageReference Include="Microsoft.Extensions.Compliance.Redaction" Version="9.*" />
     <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="9.*" />
