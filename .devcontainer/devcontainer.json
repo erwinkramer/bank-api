@@ -6,13 +6,9 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"donjayamanne.githistory",
 				"humao.rest-client",
-				"ms-azuretools.vscode-docker",
-				"ms-dotnettools.vscode-dotnet-runtime",
-				"ms-dotnettools.csharp",
 				"ms-dotnettools.csdevkit",
-				"ms-vscode-remote.remote-containers",
+				"ms-dotnettools.vscodeintellicode-csharp",
 				"ms-graph.kiota",
 				"stoplight.spectral"
 			],

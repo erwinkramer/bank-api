@@ -5,8 +5,8 @@
 	// List of extensions which should be recommended for users of this workspace.
 	"recommendations": [
 		"humao.rest-client",
-		"ms-dotnettools.csharp",
 		"ms-dotnettools.csdevkit",
+		"ms-dotnettools.vscodeintellicode-csharp",
 		"ms-graph.kiota",
 		"stoplight.spectral"
 	],
