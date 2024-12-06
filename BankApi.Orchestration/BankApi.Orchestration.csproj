@@ -8,9 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsAspireHost>true</IsAspireHost>
-    <UserSecretsId>46d58057-b3bc-4f88-a782-ef9d199643f5</UserSecretsId>
   </PropertyGroup>
-
 
   <ItemGroup>
     <ProjectReference Include="..\BankApi.Service.V1\BankApi.Service.V1.csproj" />
