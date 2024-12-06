@@ -8,7 +8,6 @@
 			"extensions": [
 				"humao.rest-client",
 				"ms-dotnettools.csdevkit",
-				"ms-dotnettools.vscodeintellicode-csharp",
 				"ms-graph.kiota",
 				"stoplight.spectral"
 			],
