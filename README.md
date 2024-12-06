@@ -102,27 +102,33 @@ This mode starts the API in the context of .NET Aspire.
 
 ## Considerations
 
+### General
+
 1. [OpenID Connect isn't fully supported in Scalar](https://github.com/scalar/scalar/issues/3656).
 
 1. Running tests works in VSCode. However, [debugging tests doesn't work with TUnit in VSCode yet](https://github.com/microsoft/vscode-dotnettools/issues/1616#issue-2669360822).
 
 1. To extend OpenTelemetry logging to Application Insights, [expand the OpenTelemetry exporter](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-applicationinsights).
 
-1. [The Aspire dashboard doesn't start the first time inside the Dev Container](https://github.com/dotnet/aspire/issues/6829), open a new tab and paste the same URL, then it works.
-
 1. [The compliance NullRedactor doesn't seem to work](https://github.com/dotnet/extensions/issues/5691), the redactor is already defined at [Builder.Compliance.cs](/BankApi.Service/Defaults/Builder.Compliance.cs) but not used because of the issue.
-
-1. Dev Containers with the `docker-outside-of-docker` feature instead of `docker-in-docker` [do not work](https://github.com/dotnet/aspire/issues/6830), for now we're using `docker-in-docker`.
 
 1. Dependabot is enabled for `nuget` packages but [wildcard version notation isn't supported yet](https://github.com/dependabot/dependabot-core/issues/9442#issuecomment-2433046972), which is used extensively in this project.
 
-1. [The OpenAPI document generator shipped with .NET 9 does not fully support API versioning](https://github.com/scalar/scalar/issues/3898#issuecomment-2479087233), a simpler approach with [PathBase](https://andrewlock.net/understanding-pathbase-in-aspnetcore/) is used for now, which works for its use case.
+1. [The OpenAPI document generator shipped with .NET 9 does not fully support API versioning](https://github.com/scalar/scalar/issues/3898#issuecomment-2479087233), a simpler approach with [PathBase](https://andrewlock.net/understanding-pathbase-in-aspnetcore/) is used for now, which is also more convenient for Azure API Management usage.
+
+### Dev Container
+
+1. Dev Containers with the `docker-outside-of-docker` feature instead of `docker-in-docker` [do not work](https://github.com/dotnet/aspire/issues/6830), for now we're using `docker-in-docker`.
+
+1. [The Aspire dashboard doesn't start the first time inside the Dev Container](https://github.com/dotnet/aspire/issues/6829), open a new tab and paste the same URL, then it works.
+
+1. Dev Containers in combination with [Aspire Mode](#run-in-aspire-mode) have [port forwarding mismatch on endpoints](https://github.com/dotnet/aspire/issues/6884), the ports shown for the Scalar pages in the Aspire Dashboard do not match the randomly assigned ports by Aspire. The Scalar pages are still accessible when using the ports assigned by Aspire (check the Ports View in VSCode).
 
 Please see the Reddit [r/dotnet post](https://www.reddit.com/r/dotnet/comments/1gyql5a/bank_api_modern_api_reference_project/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) about this project for more considerations and information.
 
 ## Troubleshooting
 
-- If debugging isn't working properly inside a Dev Container, please clear the Extension Host Cache at `%AppData%\Code\CachedData` (on Windows) and restart VS Code.
+- If debugging isn't working properly inside a Dev Container, please clear the Extension Host Cache at `%AppData%\Code\CachedData` (on Windows) and restart VSCode.
 
 ## License
 
