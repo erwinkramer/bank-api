@@ -11,8 +11,8 @@
     <PackageReference Include="TUnit" Version="*" />
   </ItemGroup>
 
-   <ItemGroup>
-    <ProjectReference Include="..\BankApi.Service\BankApi.Service.csproj" />
+  <ItemGroup>
+    <ProjectReference Include="..\BankApi.Core\BankApi.Core.csproj" />
   </ItemGroup>
 
 </Project>

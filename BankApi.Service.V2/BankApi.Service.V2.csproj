@@ -13,15 +13,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="9.*"> <!-- for
-      OpenApi spec generation -->
+    <!-- for OpenApi spec generation -->
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="9.*">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BankApi.Service\BankApi.Service.csproj" />
+    <ProjectReference Include="..\BankApi.Core\BankApi.Core.csproj" />
   </ItemGroup>
 
 </Project>

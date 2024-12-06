@@ -20,7 +20,7 @@
         "/repos/{owner}/{repo}/releases/*"
       ],
       "excludePatterns": [],
-      "outputPath": "./BankApi.Service/DownstreamClients/GitHub"
+      "outputPath": "./BankApi.Core/DownstreamClients/GitHub"
     }
   },
   "plugins": {}

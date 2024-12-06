@@ -66,12 +66,12 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 - Generate a new JWT-token for secured endpoints:
 
     ```powershell
-    dotnet user-jwts create --scope "bank_api" --role "banker" --project BankApi.Service
+    dotnet user-jwts create --scope "bank_api" --role "banker" --project BankApi.Service.V1
     ```
 
 - Run `dotnet build` to output the OpenAPI definition
 
-- Validate the OpenAPI definition by going to the [generated.json](/Specs.Generated/openapi.json) definition and check for problems via the Spectral extension.
+- Validate the OpenAPI definition by going to the [openapi_v1.json](/Specs.Generated/openapi_v1.json) definition and check for problems via the Spectral extension.
 
 ### Run in Aspire minimal mode
 
@@ -90,7 +90,7 @@ This mode just runs the ASP.NET Core API.
     Copy the url shown in the resulting output when running the container, and replace `0.0.0.0` with `localhost`, eg <http://localhost:18888/login?t=123456780abcdef123456780> and open that in your browser, or you can also paste the key after `/login?t=` when the login dialog is shown.
     The token will change each time you start the container.
 
-1. Run the [launch config](.vscode/launch.json) `C#: Api Debug (with standalone Aspire)`.
+1. Run the [launch config](.vscode/launch.json) `C#: Api Debug (with standalone Aspire) - V1`.
 
 ### Run in Aspire mode
 
