@@ -1,5 +1,9 @@
 extends: ["spectral:oas", "spectral:arazzo"]
 
+aliases:
+  requestOrResponseJsonContent: 
+    - "$..content[application/json]"
+
 rules:
   parameter-description:
     description: All parameters should have a description
@@ -14,7 +18,7 @@ rules:
     description: All object types must include at least one example
     message: Type is missing an example in the schema.
     severity: warn
-    given: $..content[application/json]
+    given: "#requestOrResponseJsonContent"
     then:
       field: schema.example
       function: truthy
