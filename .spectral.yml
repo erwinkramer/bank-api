@@ -10,11 +10,20 @@ rules:
       field: description
       function: truthy
 
-  operation-must-have-examples:
+  operation-must-have-examples-requests:
     description: All object types must include at least one example
-    message: Return or request type is missing an example in the schema.
+    message: Request type is missing an example in the schema.
     severity: warn
     given: $.paths.*.*.*.content[application/json]
+    then:
+      field: schema.example
+      function: truthy
+
+  operation-must-have-examples-responses:
+    description: All object types must include at least one example
+    message: Response type is missing an example in the schema.
+    severity: warn
+    given: $.paths.*.*.*.*.content[application/json]
     then:
       field: schema.example
       function: truthy
