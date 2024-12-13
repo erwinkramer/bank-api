@@ -32,15 +32,13 @@
       ]
     }
   ],
-  "ListTellerReport": [
-    [
-      {
-        "name": "secretz.txt"
-      },
-      {
-        "name": "secretz2.txt"
-      }
-    ]
+  "TellerReport": [
+    {
+      "name": "secretz.txt"
+    },
+    {
+      "name": "secretz2.txt"
+    }
   ],
   "Release": [
     {

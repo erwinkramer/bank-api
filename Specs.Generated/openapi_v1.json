@@ -870,6 +870,9 @@
             "description": "Name of the report.",
             "nullable": true
           }
+        },
+        "example": {
+          "name": "secretz.txt"
         }
       }
     },
