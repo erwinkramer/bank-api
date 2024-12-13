@@ -1,3 +1,20 @@
 {
-    "dotnet.testWindow.useTestingPlatformProtocol": true
+    "dotnet.testWindow.useTestingPlatformProtocol": true,
+    "cSpell.words": [
+        "Apim",
+        "appexamples",
+        "arazzo",
+        "bankitems",
+        "Commitish",
+        "csdevkit",
+        "devcontainers",
+        "dotnettools",
+        "Gridify",
+        "Guanchen",
+        "humao",
+        "kiota",
+        "LOCALAPPDATA",
+        "usersecrets",
+        "zipball"
+    ]
 }

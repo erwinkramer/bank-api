@@ -9,7 +9,8 @@
 				"humao.rest-client",
 				"ms-dotnettools.csdevkit",
 				"ms-graph.kiota",
-				"stoplight.spectral"
+				"stoplight.spectral",
+				"streetsidesoftware.code-spell-checker"
 			],
 			"settings": {
 				"terminal.integrated.shell.linux": "/bin/bash",
