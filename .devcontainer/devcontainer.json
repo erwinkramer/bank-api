@@ -29,15 +29,17 @@
 		"ghcr.io/devcontainers/features/azure-cli:1": {}, // for using the host az cli credentials
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {} // for .NET Aspire resource emulation
 	},
-	"remoteUser": "root", //have to use root because of permission issue during dotnet build: https://github.com/microsoft/vscode-remote-release/issues/9099#issuecomment-2290470364
 	"mounts": [
 		// Bind the azure (credential) folder, requires an unencrypted token cache (assuming host is Windows).
 		// On your host, run `az config set core.encrypt_token_cache=false` first, login again, then start the container
 		// Please read: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/3033 for more information
-		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.azure,target=/root/.azure,type=bind",
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.azure,target=/home/vscode/.azure,type=bind",
 		// Bind the Visual Studio Token provider folder
-		"source=${localEnv:HOME}${localEnv:LOCALAPPDATA}/.IdentityService,target=/root/.IdentityService,type=bind",
+		"source=${localEnv:HOME}${localEnv:LOCALAPPDATA}/.IdentityService,target=/home/vscode/.IdentityService,type=bind",
 		// Bind ASP.NET user secrets folder (please see https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-9.0&tabs=windows#how-the-secret-manager-tool-works)
-		"source=${localEnv:APPDATA}/Microsoft/UserSecrets,target=/root/.microsoft/usersecrets,type=bind"
-	]
+		"source=${localEnv:APPDATA}/Microsoft/UserSecrets,target=/home/vscode/.microsoft/usersecrets,type=bind"
+	],
+	// Remove absolutely every file on the .gitignore list, so we don't run into permission issues. 
+	// Also see https://github.com/microsoft/vscode-remote-release/issues/9099#issuecomment-2541564211
+	"postStartCommand": "git clean -xdf" 
 }
