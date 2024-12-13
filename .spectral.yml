@@ -1,7 +1,7 @@
 extends: ["spectral:oas", "spectral:arazzo"]
 
 aliases:
-  requestOrResponseJsonContent: 
+  requestOrResponseJsonContent:
     - "$..content[application/json]"
 
 rules:
@@ -22,3 +22,13 @@ rules:
     then:
       field: schema.example
       function: truthy
+
+  operation-id-casing:
+    description: Operation id's must be Pascal Case (upper camel case)
+    message: Operation id is not in Pascal Case.
+    severity: warn
+    given: "$..operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z](([a-z0-9]+[A-Z]?)*)$"
