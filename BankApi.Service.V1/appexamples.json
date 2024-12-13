@@ -1,14 +1,110 @@
-[
+{
+  "BankModel": [
     {
-        "id": 123,
-        "name": "Guanchen",
-        "isCompliant": true,
-        "bankTier": "A"
+      "id": 123,
+      "name": "Guanchen",
+      "isCompliant": true,
+      "bankTier": "A"
     },
     {
-        "id": 124,
-        "name": "Canary",
-        "isCompliant": false,
-        "bankTier": "C"
+      "id": 124,
+      "name": "Canary",
+      "isCompliant": false,
+      "bankTier": "C"
     }
-]
+  ],
+  "PagingOfBankModel": [
+    {
+      "count": 2,
+      "data": [
+        {
+          "id": 1,
+          "name": "Foo",
+          "isCompliant": true,
+          "bankTier": "A"
+        },
+        {
+          "id": 2,
+          "name": "Bar",
+          "isCompliant": false,
+          "bankTier": "B"
+        }
+      ]
+    }
+  ],
+  "ListTellerReport": [
+    [
+      {
+        "name": "secretz.txt"
+      },
+      {
+        "name": "secretz2.txt"
+      }
+    ]
+  ],
+  "Release": [
+    {
+      "additionalData": {},
+      "assets": [],
+      "assetsUrl": "https://api.github.com/repos/dotnet/runtime/releases/184973713/assets",
+      "author": {
+        "additionalData": {
+          "user_view_type": "public"
+        },
+        "avatarUrl": "https://avatars.githubusercontent.com/u/30737530?v=4",
+        "email": null,
+        "eventsUrl": "https://api.github.com/users/rbhanda/events{/privacy}",
+        "followersUrl": "https://api.github.com/users/rbhanda/followers",
+        "followingUrl": "https://api.github.com/users/rbhanda/following{/other_user}",
+        "gistsUrl": "https://api.github.com/users/rbhanda/gists{/gist_id}",
+        "gravatarId": "",
+        "htmlUrl": "https://github.com/rbhanda",
+        "id": 30737530,
+        "login": "rbhanda",
+        "name": null,
+        "nodeId": "MDQ6VXNlcjMwNzM3NTMw",
+        "organizationsUrl": "https://api.github.com/users/rbhanda/orgs",
+        "receivedEventsUrl": "https://api.github.com/users/rbhanda/received_events",
+        "reposUrl": "https://api.github.com/users/rbhanda/repos",
+        "siteAdmin": false,
+        "starredAt": null,
+        "starredUrl": "https://api.github.com/users/rbhanda/starred{/owner}{/repo}",
+        "subscriptionsUrl": "https://api.github.com/users/rbhanda/subscriptions",
+        "type": "User",
+        "url": "https://api.github.com/users/rbhanda"
+      },
+      "body": "[Release](https://github.com/dotnet/core/releases/tag/v9.0.0)\r\n\r\n## What's Changed\r\n* [release/9.0] BinaryFormatter tests improvements by @adamsitnik in https://github.com/dotnet/runtime/pull/107540\r\n* [release/9.0] Update dependencies from dotnet/source-build-reference-packages by @dotnet-maestro in https://github.com/dotnet/runtime/pull/107474\r\n* [release/9.0] Branding for GA by @carlossanlop in https://github.com/dotnet/runtime/pull/107879\r\n* [release/9.0] Update dependencies from dotnet/source-build-externals by @dotnet-maestro in https://github.com/dotnet/runtime/pull/107914\r\n* [release/9.0] Update dependencies from dotnet/icu by @dotnet-maestro in https://github.com/dotnet/runtime/pull/107918\r\n* [release/9.0] Update dependencies from dotnet/hotreload-utils by @dotnet-maestro in https://github.com/dotnet/runtime/pull/107916\r\n* [release/9.0] Update dependencies from dotnet/cecil by @dotnet-maestro in https://github.com/dotnet/runtime/pull/107915\r\n* [release/9.0] Update dependencies from dotnet/source-build-reference-packages by @dotnet-maestro in https://github.com/dotnet/runtime/pull/107938\r\n* [release/9.0] Update dependencies from dotnet/source-build-externals by @dotnet-maestro in https://github.com/dotnet/runtime/pull/107982\r\n* [release/9.0] Update dependencies from dotnet/cecil by @dotnet-maestro in https://github.com/dotnet/runtime/pull/107983\r\n* [release/9.0] Remove invalid assert in RSAOpenSsl by @github-actions in https://github.com/dotnet/runtime/pull/107952\r\n* [automated] Merge branch 'release/9.0-rc2' => 'release/9.0' by @github-actions in https://github.com/dotnet/runtime/pull/107928\r\n* [release/9.0] Update dependencies from dotnet/arcade by @dotnet-maestro in https://github.com/dotnet/runtime/pull/107937\r\n* [release/9.0] Update dependencies from dotnet/roslyn by @dotnet-maestro in https://github.com/dotnet/runtime/pull/107984\r\n* [release/9.0] Mitigate JsonObject performance regression. by @github-actions in https://github.com/dotnet/runtime/pull/108014\r\n* [release/9.0] Fix SG nullability annotations for required and init properties. by @github-actions in https://github.com/dotnet/runtime/pull/108013\r\n* [release/9.0] Update dependencies from dotnet/hotreload-utils by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108016\r\n* [release/9.0] Treat -rtm as stable sdk version band by @lewing in https://github.com/dotnet/runtime/pull/107997\r\n* [release/9.0] dont try to capture threadId for NativeAOT by @github-actions in https://github.com/dotnet/runtime/pull/108088\r\n* [release/9.0] Update dependencies from dotnet/runtime by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108140\r\n* [release/9.0] Fix createdump 'stack smashing detected' error on arm64 by @github-actions in https://github.com/dotnet/runtime/pull/108208\r\n* [release/9.0] [browser] Fix fingerprinting and loadAllSatelliteResources=true by @github-actions in https://github.com/dotnet/runtime/pull/108198\r\n* [automated] Merge branch 'release/9.0-rc2' => 'release/9.0' by @github-actions in https://github.com/dotnet/runtime/pull/108006\r\n* [release/9.0] More doc updates for source-of-truth assemblies by @carlossanlop in https://github.com/dotnet/runtime/pull/108257\r\n* [release/9.0] Update dependencies from dotnet/source-build-reference-packages by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108142\r\n* [release/9.0] Update dependencies from dotnet/roslyn by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108061\r\n* [release/9.0] Update dependencies from dotnet/cecil by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108192\r\n* [release/9.0] Update dependencies from dotnet/hotreload-utils by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108193\r\n* [release/9.0] Update dependencies from dotnet/arcade by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108194\r\n* [release/9.0] Update dependencies from dnceng/internal/dotnet-optimization by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108139\r\n* [release/9.0] Reduce funceval abort by @github-actions in https://github.com/dotnet/runtime/pull/108256\r\n* [release/9.0] Update sign-diagnostic-files.yml to skip dac sign in staging by @hoyosjs in https://github.com/dotnet/runtime/pull/108218\r\n* [release/9.0] Root the System.Runtime EventSource by @github-actions in https://github.com/dotnet/runtime/pull/108348\r\n* [release/9.0] Fixing SetSlice, Reshape, TryCopyTo. by @github-actions in https://github.com/dotnet/runtime/pull/108282\r\n* [release/9.0] Update dependencies from dotnet/sdk by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108141\r\n* [release/9.0] Update dependencies from dotnet/source-build-externals by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108436\r\n* [release/9.0] Update dependencies from dotnet/hotreload-utils by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108438\r\n* [release/9.0] Update dependencies from dotnet/roslyn-analyzers by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108367\r\n* [release/9.0] Update dependencies from dotnet/runtime by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108391\r\n* [release/9.0] Update dependencies from dotnet/cecil by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108437\r\n* [release/9.0] Update System.Formats.Nrbf ref sources and restore package description by @github-actions in https://github.com/dotnet/runtime/pull/108467\r\n* [release/9.0] [aot] mono_aot_split_options: reset state after a backslash by @github-actions in https://github.com/dotnet/runtime/pull/108212\r\n* [release/9.0] Fix devirtualization across genericness in the hierarchy by @MichalStrehovsky in https://github.com/dotnet/runtime/pull/108470\r\n* [release/9.0] [cdac][cdac-build-tool] Don't let msbuild rewrite the resource name by @github-actions in https://github.com/dotnet/runtime/pull/108296\r\n* [release/9.0] Fix `InlineArray` swift lowering in mono by @jkurdek in https://github.com/dotnet/runtime/pull/108483\r\n* [release/9.0] Backport PR #108311 - Fix statics issue with barriers by @davidwrighton in https://github.com/dotnet/runtime/pull/108347\r\n* [release/9.0] Fix wrong Region Info Names by @github-actions in https://github.com/dotnet/runtime/pull/108524\r\n* [release/9.0][PERF] Backport python pipeline changes for performance tests by @caaavik-msft in https://github.com/dotnet/runtime/pull/108412\r\n* [release/9.0] Fix IndexOf Optimization Code by @github-actions in https://github.com/dotnet/runtime/pull/108562\r\n* [release/9.0] Updated tsaoptions.json to direct issues to runtime owners by @github-actions in https://github.com/dotnet/runtime/pull/108451\r\n* [release/9.0] JIT: Null out SSA def nodes upon removal in RBO by @github-actions in https://github.com/dotnet/runtime/pull/108548\r\n* [release/9.0] Fix LINQ Last() in ConcatNIterator to also check base case (Concat2Iterator) by @github-actions in https://github.com/dotnet/runtime/pull/108664\r\n* [release/9.0] Merge RC2 changes into 9.0 by @ericstj in https://github.com/dotnet/runtime/pull/108677\r\n* [release/9.0] Update the component resources for the VS descriptions by @marcpopMSFT in https://github.com/dotnet/runtime/pull/108304\r\n* [release/9.0] Update dependencies from dotnet/runtime by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108595\r\n* [release/9.0] Update dependencies from dotnet/sdk by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108597\r\n* [browser][debugging][release/9.0] Removed trailing command that results in a warning by @github-actions in https://github.com/dotnet/runtime/pull/108584\r\n* [release/9.0] Fix IL2104 link by @github-actions in https://github.com/dotnet/runtime/pull/108533\r\n* [release/9.0] linux/arm64: Verify TLS resolver code by @github-actions in https://github.com/dotnet/runtime/pull/108564\r\n* [release/9.0] Tweak Invariant IndexOf logic by @github-actions in https://github.com/dotnet/runtime/pull/108728\r\n* [release/9.0] Update `field` references in property accessors by @github-actions in https://github.com/dotnet/runtime/pull/108222\r\n* [release/9.0] [mini] Don't use Unwind Backtrace on android-amd64 by @github-actions in https://github.com/dotnet/runtime/pull/108294\r\n* [release/9.0] [wasm] Fixes for issue #108519 by @github-actions in https://github.com/dotnet/runtime/pull/108650\r\n* [release/9.0] [mono] Fix alloca builder creation by @github-actions in https://github.com/dotnet/runtime/pull/108654\r\n* [release/9.0] Backport \"JIT: Run single EH region repair pass after layout\" by @amanasifkhalid in https://github.com/dotnet/runtime/pull/108715\r\n* [Ppc64le] binaryformatter and tensors tests fix by @alhad-deshpande in https://github.com/dotnet/runtime/pull/108120\r\n* [release/9.0] Add DefaultMemberAttribute to Test.CoreLib by @github-actions in https://github.com/dotnet/runtime/pull/108258\r\n* [release/9.0] [wasm] Include browser targets if RID is not wasi-wasm by @github-actions in https://github.com/dotnet/runtime/pull/108434\r\n* [release/9.0] [browser] Make boot json file name configurable by @maraf in https://github.com/dotnet/runtime/pull/108708\r\n* [release/9.0] Update dependencies from dotnet/source-build-externals by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108787\r\n* [release/9.0] Update dependencies from dotnet/source-build-reference-packages by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108598\r\n* [release/9.0] Update dependencies from dotnet/roslyn by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108326\r\n* [release/9.0] bgc deadlock fix by @github-actions in https://github.com/dotnet/runtime/pull/108774\r\n* [release/9.0] Remove string.Trim{,Start,End}(ReadOnlySpan<char>) ref-API by @bartonjs in https://github.com/dotnet/runtime/pull/108777\r\n* [release/9.0] Arm64: Use TYP_SIMD8 for AddAcross by @github-actions in https://github.com/dotnet/runtime/pull/108805\r\n* [release/9.0] Update dependencies from dotnet/source-build-reference-packages by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108844\r\n* [release/9.0] Fix optimization of Vector512 AndMask + NotMask to AndNotMask by @github-actions in https://github.com/dotnet/runtime/pull/108803\r\n* [release/9.0] Bump Microsoft.Private.Intellisense to 20241010.1 by @carlossanlop in https://github.com/dotnet/runtime/pull/108766\r\n* [release/9.0] Update dependencies from dotnet/emsdk by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108481\r\n* [release/9.0] Switch `SwiftSelf<T>` position requirement to last by @github-actions in https://github.com/dotnet/runtime/pull/108856\r\n* Use default timeout of 30s. by @ilonatommy in https://github.com/dotnet/runtime/pull/108835\r\n* [release/9.0] Fix CET debugger stepping over CALL instructions by @tommcdon in https://github.com/dotnet/runtime/pull/108872\r\n* [release/9.0] Remove managed EH code frames from stack trace by @github-actions in https://github.com/dotnet/runtime/pull/108831\r\n* [release/9.0] Update dependencies from dotnet/emsdk by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108898\r\n* Port NuGet Audit back to 9.0 by @ericstj in https://github.com/dotnet/runtime/pull/108854\r\n* [release/9.0] fix guid version > 7 by @github-actions in https://github.com/dotnet/runtime/pull/108351\r\n* [release/9.0] Stable branding for GA by @carlossanlop in https://github.com/dotnet/runtime/pull/108899\r\n* [release/9.0] Update dependencies from dotnet/source-build-externals by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108927\r\n* [release/9.0] Update dependencies from dotnet/roslyn-analyzers by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108691\r\n* [release/9.0] Update dependencies from dotnet/cecil by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108788\r\n* [release/9.0] Update dependencies from dotnet/arcade by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108482\r\n* [release/9.0] Update dependencies from dotnet/roslyn by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108975\r\n* [release/9.0] Update dependencies from dotnet/emsdk by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108910\r\n* [release/9.0] Update dependencies from dotnet/runtime by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108842\r\n* [release/9.0] Couple minor docs updates by @github-actions in https://github.com/dotnet/runtime/pull/108453\r\n* [release/9.0] Update dependencies from dotnet/icu by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108516\r\n* [release/9.0] Update dependencies from dotnet/hotreload-utils by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108751\r\n* [release/9.0] Update dependencies from dotnet/sdk by @dotnet-maestro in https://github.com/dotnet/runtime/pull/108843\r\n* [release/9.0] Ignore *.pp files in .gitignore by @github-actions in https://github.com/dotnet/runtime/pull/109003\r\n* [release/9.0] Make System.Formats.Asn1 triple slash documentation the source of truth by @github-actions in https://github.com/dotnet/runtime/pull/108995\r\n* [release/9.0] Ensure a null PublicKey is supported on assembly refs by @github-actions in https://github.com/dotnet/runtime/pull/108928\r\n* [release/9.0] Fix handling of appending keywords to boolean schemas. by @github-actions in https://github.com/dotnet/runtime/pull/108248\r\n* [release/9.0] Update the JSON schema exporter to reuse schemas more aggressively. by @github-actions in https://github.com/dotnet/runtime/pull/108800\r\n* [release/9.0] Initialize m_fInPlaceSS by @github-actions in https://github.com/dotnet/runtime/pull/109013\r\n* [release/9.0] Handle building host test assets with stabilized package versions by @github-actions in https://github.com/dotnet/runtime/pull/109031\r\n* [release/9.0] Fix nativeaot outerloop by @github-actions in https://github.com/dotnet/runtime/pull/109009\r\n* [release/9.0] Initialize managed and native values in the ICustomMarshaler marshaler to null when the other is null. by @github-actions in https://github.com/dotnet/runtime/pull/109096\r\n* [release/9.0] Update dependencies from dotnet/emsdk by @dotnet-maestro in https://github.com/dotnet/runtime/pull/109051\r\n* [release/9.0] Permit unencrypted key exports from CNG by @github-actions in https://github.com/dotnet/runtime/pull/109134\r\n* [release/9.0] Bump downlevels for 9.0 by @lewing in https://github.com/dotnet/runtime/pull/109288\r\n* [release/9.0] Update dependencies from dotnet/emsdk by @dotnet-maestro in https://github.com/dotnet/runtime/pull/109323\r\n\r\n\r\n**Full Changelog**: https://github.com/dotnet/runtime/compare/v9.0.0-rc.2.24473.5...v9.0.0",
+      "bodyHtml": null,
+      "bodyText": null,
+      "createdAt": "2024-10-29T02:12:18+00:00",
+      "discussionUrl": null,
+      "draft": false,
+      "htmlUrl": "https://github.com/dotnet/runtime/releases/tag/v9.0.0",
+      "id": 184973713,
+      "mentionsCount": 17,
+      "name": ".NET 9.0.0",
+      "nodeId": "RE_kwDODI9FZc4LBnmR",
+      "prerelease": false,
+      "publishedAt": "2024-11-12T20:41:56+00:00",
+      "reactions": {
+        "additionalData": {},
+        "confused": 0,
+        "eyes": 1,
+        "heart": 9,
+        "hooray": 24,
+        "laugh": 0,
+        "minus1": 0,
+        "plus1": 16,
+        "rocket": 11,
+        "totalCount": 61,
+        "url": "https://api.github.com/repos/dotnet/runtime/releases/184973713/reactions"
+      },
+      "tagName": "v9.0.0",
+      "tarballUrl": "https://api.github.com/repos/dotnet/runtime/tarball/v9.0.0",
+      "targetCommitish": "main",
+      "uploadUrl": "https://uploads.github.com/repos/dotnet/runtime/releases/184973713/assets{?name,label}",
+      "url": "https://api.github.com/repos/dotnet/runtime/releases/184973713",
+      "zipballUrl": "https://api.github.com/repos/dotnet/runtime/zipball/v9.0.0"
+    }
+  ]
+}
