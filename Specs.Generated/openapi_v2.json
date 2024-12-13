@@ -133,6 +133,7 @@
           {
             "name": "id",
             "in": "path",
+            "description": "Id of the bank.",
             "required": true,
             "schema": {
               "type": "integer",
@@ -171,6 +172,7 @@
           {
             "name": "id",
             "in": "path",
+            "description": "Id of the bank.",
             "required": true,
             "schema": {
               "type": "integer",
@@ -211,6 +213,7 @@
           {
             "name": "id",
             "in": "path",
+            "description": "Id of the bank.",
             "required": true,
             "schema": {
               "type": "integer",

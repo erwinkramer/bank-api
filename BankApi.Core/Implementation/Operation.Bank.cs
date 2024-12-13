@@ -8,10 +8,10 @@ public class BankOperation
 {
     public static async Task<Ok<Paging<BankModel>>> GetAllBanks([AsParameters] GridQuery query, BankDb db)
     {
-        return TypedResults.Ok(await db.Banks.GridifyAsync(query));;
+        return TypedResults.Ok(await db.Banks.GridifyAsync(query));
     }
 
-    public static async Task<Results<Ok<BankModel>, NotFound>> GetBank([DefaultValue(1)] int id, BankDb db, HybridCache cache, CancellationToken token = default)
+    public static async Task<Results<Ok<BankModel>, NotFound>> GetBank([Description("Id of the bank.")][DefaultValue(1)] int id, BankDb db, HybridCache cache, CancellationToken token = default)
     {
         return await cache.GetOrCreateAsync(
            $"bank-{id}",
@@ -29,7 +29,7 @@ public class BankOperation
         return TypedResults.Created($"/bankitems/{bank.Id}", bank);
     }
 
-    public static async Task<Results<NoContent, NotFound>> UpdateBank(int id, BankModel inputBank, BankDb db)
+    public static async Task<Results<NoContent, NotFound>> UpdateBank([Description("Id of the bank.")] int id, BankModel inputBank, BankDb db)
     {
         var bank = await db.Banks.FindAsync(id);
 
@@ -43,7 +43,7 @@ public class BankOperation
         return TypedResults.NoContent();
     }
 
-    public static async Task<Results<NoContent, NotFound>> DeleteBank(int id, BankDb db)
+    public static async Task<Results<NoContent, NotFound>> DeleteBank([Description("Id of the bank.")] int id, BankDb db)
     {
         if (await db.Banks.FindAsync(id) is BankModel bank)
         {
