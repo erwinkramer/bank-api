@@ -116,7 +116,7 @@ This mode starts the API in the context of .NET Aspire.
 
 1. [The OpenAPI document generator shipped with .NET 9 does not fully support API versioning](https://github.com/scalar/scalar/issues/3898#issuecomment-2479087233), a simpler approach with [PathBase](https://andrewlock.net/understanding-pathbase-in-aspnetcore/) is used for now, which is also more convenient for Azure API Management usage.
 
-1. Extending Spectral ruleset from an NPM package  [can be problematic](https://github.com/stoplightio/vscode-spectral/issues/214#issuecomment-2543132932).
+1. Extending Spectral rulesets from an NPM package [can be problematic](https://github.com/stoplightio/vscode-spectral/issues/214#issuecomment-2543132932).
 
 ### Dev Container
 
