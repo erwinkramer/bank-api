@@ -130,7 +130,13 @@ Please see the Reddit [r/dotnet post](https://www.reddit.com/r/dotnet/comments/1
 
 ## Troubleshooting
 
-- If debugging isn't working properly inside a Dev Container, please clear the Extension Host Cache at `%AppData%\Code\CachedData` (on Windows) and restart VSCode.
+- If debugging isn't working properly, please clear the Extension Host Cache at `%AppData%\Code\CachedData` (on Windows) and restart VSCode.
+
+- If getting the error [`unable to get local issuer certificate` with Spectral](https://github.com/stoplightio/vscode-spectral/issues/131#issuecomment-2543187287), make sure to add the CA of your proxy to `NODE_EXTRA_CA_CERTS` and restart VSCode, for example:
+
+```powershell
+[Environment]::SetEnvironmentVariable('NODE_EXTRA_CA_CERTS', 'C:\ZscalerRootCA.crt', 'User')
+```
 
 ## License
 
