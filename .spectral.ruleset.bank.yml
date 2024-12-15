@@ -8,8 +8,18 @@ aliases:
 
 documentationUrl: https://www.guanchen.nl/
 rules:
+  bank-properties-requires-camel-case:
+    description: Property names and acronyms must be in camelCase
+    message: Property name or acronym is not in camelCase.
+    severity: warn
+    given: "$..properties.*~"
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[a-z][a-z0-9]*(([A-Z]{2}|[A-Z])[a-z0-9]+)*$
+
   bank-parameter-description-required:
-    description: All parameters must have a description
+    description: Parameters must have a description
     message: Parameter is missing a description.
     severity: warn
     given: $.paths.*.*.parameters[*]
@@ -18,7 +28,7 @@ rules:
       function: truthy
 
   bank-operation-examples-required:
-    description: All object types must include at least one example
+    description: Object types must include at least one example
     message: Type is missing an example in the schema.
     severity: warn
     given: "#requestOrResponseJsonContent"
@@ -27,8 +37,8 @@ rules:
       function: truthy
 
   bank-operation-id-requires-pascal-case:
-    description: Operation id's must be Pascal Case (upper camel case)
-    message: Operation id is not in Pascal Case.
+    description: Operation id's must be in PascalCase (upper camel case)
+    message: Operation id is not in PascalCase.
     severity: warn
     given: "$..operationId"
     then:
@@ -37,7 +47,7 @@ rules:
         match: "^[A-Z](([a-z0-9]+[A-Z]?)*)$"
 
   bank-operation-response-error-required:
-    description: All operations must have an error response
+    description: Operations must have an error response
     message: Operation is missing an error response.
     severity: warn
     given: $.paths.*.*.responses
