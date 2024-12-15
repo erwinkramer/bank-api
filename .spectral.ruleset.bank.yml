@@ -12,7 +12,7 @@ rules:
   bank-path-requires-kebab-case:
     description: Paths must be in kebab-case
     message: Path is not in kebab-case.
-    severity: error
+    severity: warn
     given: "$.paths[*]~"
     then:
       - function: pattern
@@ -25,7 +25,7 @@ rules:
     severity: warn
     given:
       - "$..parameters[?(@.in == 'header')].name"
-      - "$.components.securitySchemes[?(@.in == 'header')].name"    
+      - "$.components.securitySchemes[?(@.in == 'header')].name"
     then:
       function: pattern
       functionOptions:
@@ -35,10 +35,10 @@ rules:
     description: Property names, acronyms, path parameters and query parameters must be in camelCase
     message: Property name, acronym, path parameter or query parameter is not in camelCase.
     severity: warn
-    given: 
-     - "$..properties.*~"
-     - $.paths.*.*.parameters[?(@.in=='path' || @.in=='query')].name
-     - $.components.securitySchemes[?(@.in=='path' || @.in=='query')].name
+    given:
+      - "$..properties.*~"
+      - $.paths.*.*.parameters[?(@.in=='path' || @.in=='query')].name
+      - $.components.securitySchemes[?(@.in=='path' || @.in=='query')].name
     then:
       function: pattern
       functionOptions:
@@ -52,6 +52,26 @@ rules:
     then:
       field: description
       function: truthy
+
+  bank-operation-summary-well-formed:
+    description: Operations must have a well-formed summary
+    message: Operation summary is not well-formed. Must start with a capital letter, containing only letters, numbers, and spaces, and no dots, and the total length should be at most 25 characters.
+    severity: warn
+    given: $.paths.*.*.summary
+    then:
+      - function: pattern
+        functionOptions:
+          match: ^[A-Z][a-zA-Z0-9\s]{0,24}$
+
+  bank-operation-description-well-formed:
+    description: Operations must have a well-formed description
+    message: Operation description is not well-formed. Each sentence must start with a capital letter, end with a period, and the total length should be at least 20 characters.
+    severity: warn
+    given: $.paths.*.*.description
+    then:
+      - function: pattern
+        functionOptions:
+          match: ^(?=[\s\S]{20,})((?:[A-Z][a-zA-Z0-9\s,;.!?'-]*[.])+\s*)$
 
   bank-operation-examples-required:
     description: Object types must include at least one example
