@@ -65,12 +65,12 @@ rules:
 
   bank-description-well-formed:
     description: Security schemes, parameters and operations must have a well-formed description.
-    message: Security schemes, parameters or operations is not well-formed. Each sentence must start with a capital letter, end with a period, and the total length should be at least 15 characters. Markdown tables and URLs are allowed.
+    message: Security scheme, parameter or operation is not well-formed. Each sentence must start with a capital letter, end with a period, and the total length should be at least 15 characters. Markdown tables and URLs are allowed.
     severity: warn
-    given: 
-     - $.paths.*.*.description
-     - $.paths.*.*.parameters[*].description
-     - "$.components.securitySchemes[*].description"
+    given:
+      - $.paths.*.*.description
+      - $.paths.*.*.parameters[*].description
+      - $.components.securitySchemes[*].description
     then:
       - function: pattern
         functionOptions:

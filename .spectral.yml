@@ -1,2 +1,2 @@
-extends: 
+extends:
   - .spectral.ruleset.bank.yml
