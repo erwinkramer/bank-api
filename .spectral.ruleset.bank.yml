@@ -7,6 +7,7 @@ aliases:
     - "$..content[application/json]"
 
 documentationUrl: https://www.guanchen.nl/
+
 rules:
   bank-path-requires-kebab-case:
     description: Paths must be in kebab-case
@@ -22,7 +23,9 @@ rules:
     description: HTTP headers must be in Hyphenated-Pascal-Case
     message: HTTP header is not in Hyphenated-Pascal-Case.
     severity: warn
-    given: "$..parameters[?(@.in == 'header')].name"
+    given:
+      - "$..parameters[?(@.in == 'header')].name"
+      - "$.components.securitySchemes[?(@.in == 'header')].name"    
     then:
       function: pattern
       functionOptions:
