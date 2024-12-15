@@ -273,7 +273,7 @@
         "tags": [
           "Administrative"
         ],
-        "summary": "Get modern bank teller reports",
+        "summary": "Get bank teller reports",
         "description": "Get the modern teller reports.",
         "operationId": "GetBankTellerReports",
         "responses": {
@@ -413,13 +413,13 @@
     "securitySchemes": {
       "ApiKey-Header": {
         "type": "apiKey",
-        "description": "Api Key scheme, please. see: https://learn.openapis.org/specification/security.html#api-keys.",
+        "description": "Api Key scheme, please see: https://learn.openapis.org/specification/security.html#api-keys.",
         "name": "Ocp-Apim-Subscription-Key",
         "in": "header"
       },
       "ApiKey-Query": {
         "type": "apiKey",
-        "description": "Api Key scheme, please. see: https://learn.openapis.org/specification/security.html#api-keys.",
+        "description": "Api Key scheme, please see: https://learn.openapis.org/specification/security.html#api-keys.",
         "name": "subscriptionKey",
         "in": "query"
       },
@@ -431,7 +431,7 @@
       },
       "OpenIdConnect": {
         "type": "openIdConnect",
-        "description": "OpenID Connect scheme, please. see: https://learn.openapis.org/specification/security.html#openid-connect.",
+        "description": "OpenID Connect scheme, please see: https://learn.openapis.org/specification/security.html#openid-connect.",
         "openIdConnectUrl": "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/v2.0/.well-known/openid-configuration"
       }
     }

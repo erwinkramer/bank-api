@@ -33,11 +33,11 @@ Ocp-Apim-Subscription-Key: Lifetime Subscription
 ###
 
 http://{{host}}/{{apiVersion}}/banks
-  ?Page=1
-  &PageSize=21
-  &OrderBy=bankTier asc, id desc
-  &Filter=id > 1
-  &subscription-key=Lifetime Subscription
+  ?page=1
+  &pageSize=21
+  &orderBy=bankTier asc, id desc
+  &filter=id > 1
+  &subscriptionKey=Lifetime Subscription
 
 ###
 

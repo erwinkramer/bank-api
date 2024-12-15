@@ -431,7 +431,7 @@
       },
       "OpenIdConnect": {
         "type": "openIdConnect",
-        "description": "OpenID Connect scheme, please see: https://learnopenapis.org/specification/securityhtml#openid-connect.",
+        "description": "OpenID Connect scheme, please see: https://learn.openapis.org/specification/security.html#openid-connect.",
         "openIdConnectUrl": "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/v2.0/.well-known/openid-configuration"
       }
     }
