@@ -8,7 +8,17 @@ aliases:
 
 documentationUrl: https://www.guanchen.nl/
 rules:
-  bank-properties-requires-camel-case:
+  bank-header-requires-hyphenated-pascal-case:
+    description: HTTP headers must be in Hyphenated-Pascal-Case
+    message: HTTP header is not in Hyphenated-Pascal-Case.
+    severity: warn
+    given: "$..parameters[?(@.in == 'header')].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][a-z0-9]*)(-[A-Z][a-z0-9]*)*$"
+
+  bank-property-requires-camel-case:
     description: Property names and acronyms must be in camelCase
     message: Property name or acronym is not in camelCase.
     severity: warn
