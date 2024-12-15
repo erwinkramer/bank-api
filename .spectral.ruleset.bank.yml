@@ -8,8 +8,8 @@ aliases:
 
 documentationUrl: https://www.guanchen.nl/
 rules:
-  bank-parameter-description:
-    description: All parameters should have a description
+  bank-parameter-description-required:
+    description: All parameters must have a description
     message: Parameter is missing a description.
     severity: warn
     given: $.paths.*.*.parameters[*]
@@ -17,7 +17,7 @@ rules:
       field: description
       function: truthy
 
-  bank-operation-must-have-examples:
+  bank-operation-examples-required:
     description: All object types must include at least one example
     message: Type is missing an example in the schema.
     severity: warn
@@ -26,7 +26,7 @@ rules:
       field: schema.example
       function: truthy
 
-  bank-operation-id-casing:
+  bank-operation-id-requires-pascal-case:
     description: Operation id's must be Pascal Case (upper camel case)
     message: Operation id is not in Pascal Case.
     severity: warn
