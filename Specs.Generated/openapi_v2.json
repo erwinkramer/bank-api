@@ -29,7 +29,7 @@
         "operationId": "GetAllBanks",
         "parameters": [
           {
-            "name": "Page",
+            "name": "page",
             "in": "query",
             "description": "The page of the result.",
             "required": true,
@@ -42,7 +42,7 @@
             }
           },
           {
-            "name": "PageSize",
+            "name": "pageSize",
             "in": "query",
             "description": "The pagesize of the result.",
             "required": true,
@@ -55,7 +55,7 @@
             }
           },
           {
-            "name": "OrderBy",
+            "name": "orderBy",
             "in": "query",
             "description": "The ordering query expression can be built with a comma-delimited ordered list of field/property names, followed by `asc` or `desc` keywords. \n\nBy default, if you don't add these keywords, the API assumes you need Ascending ordering.",
             "schema": {
@@ -63,7 +63,7 @@
             }
           },
           {
-            "name": "Filter",
+            "name": "filter",
             "in": "query",
             "description": "The following filter operators are supported:\n\n### Conditional Operators\n\n| Name                  | Operator | Usage example        |\n|-----------------------|----------|----------------------|\n| Equal                 | `=`      | `FieldName = Value`  |\n| NotEqual              | `!=`     | `FieldName !=Value`  |\n| LessThan              | `<`      | `FieldName < Value`  |\n| GreaterThan           | `>`      | `FieldName > Value`  |\n| GreaterThanOrEqual    | `>=`     | `FieldName >=Value`  |\n| LessThanOrEqual       | `<=`     | `FieldName <=Value`  |\n| Contains - Like       | `=*`     | `FieldName =*Value`  |\n| NotContains - NotLike | `!*`     | `FieldName !*Value`  |\n| StartsWith            | `^`      | `FieldName ^ Value`  |\n| NotStartsWith         | `!^`     | `FieldName !^ Value` |\n| EndsWith              | `$`      | `FieldName $ Value`  |\n| NotEndsWith           | `!$`     | `FieldName !$ Value` |\n\n> Tip: If you don't specify any value after `=` or `!=` operators, the API searches for the `default` and `null` values.\n\n### Logical Operators\n\n| Name        | Operator | Usage example                                   |\n|-------------|----------|-------------------------------------------------|\n| AND         | `,`      | `FirstName = Value, LastName = Value2`          |\n| OR          | `\\|`     | `FirstName=Value\\|LastName=Value2`              |\n| Parenthesis | `()`     | `(FirstName=*Jo,Age<30)\\|(FirstName!=Hn,Age>30)`|\n\n### Case Insensitive Operator\n\nThe `/i` operator can be use after string values for case insensitive searches. You should only use this operator after the search value. \n\nExample:\n```\nFirstName=John/i\n```\n\nthis query matches with `JOHN`, `john`, `John`, `jOHn`, etc.\n    ",
             "schema": {
@@ -420,7 +420,7 @@
       "ApiKey-Query": {
         "type": "apiKey",
         "description": "https://learn.openapis.org/specification/security.html#api-keys",
-        "name": "subscription-key",
+        "name": "subscriptionKey",
         "in": "query"
       },
       "Bearer": {

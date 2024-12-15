@@ -56,7 +56,7 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
                 {
                     Type = SecuritySchemeType.ApiKey,
                     Description = "https://learn.openapis.org/specification/security.html#api-keys",
-                    Name = "subscription-key",
+                    Name = "subscriptionKey",
                     In = ParameterLocation.Query,
                     Reference = new OpenApiReference
                     {

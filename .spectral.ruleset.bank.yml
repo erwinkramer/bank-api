@@ -32,10 +32,13 @@ rules:
         match: "^([A-Z][a-z0-9]*)(-[A-Z][a-z0-9]*)*$"
 
   bank-property-requires-camel-case:
-    description: Property names and acronyms must be in camelCase
-    message: Property name or acronym is not in camelCase.
+    description: Property names, acronyms, path parameters and query parameters must be in camelCase
+    message: Property name, acronym, path parameter or query parameter is not in camelCase.
     severity: warn
-    given: "$..properties.*~"
+    given: 
+     - "$..properties.*~"
+     - $.paths.*.*.parameters[?(@.in=='path' || @.in=='query')].name
+     - $.components.securitySchemes[?(@.in=='path' || @.in=='query')].name
     then:
       function: pattern
       functionOptions:

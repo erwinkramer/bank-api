@@ -32,7 +32,7 @@ public static partial class ApiBuilder
             })
              .AddApiKeyInQueryParams($"{ApiKeyDefaults.AuthenticationScheme}-Query", options =>
              {
-                 options.KeyName = "subscription-key";
+                 options.KeyName = "subscriptionKey";
                  options.Realm = "API";
                  options.Events = apiKeyEvents;
 
