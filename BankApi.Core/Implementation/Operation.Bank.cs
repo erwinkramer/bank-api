@@ -6,9 +6,14 @@ using System.ComponentModel;
 
 public class BankOperation
 {
-    public static async Task<Ok<Paging<BankModel>>> GetAllBanks([AsParameters] GridQuery query, BankDb db)
+    public static async Task<Results<Ok<Paging<BankModel>>, BadRequest>> GetAllBanks([AsParameters] GridQuery query, BankDb db)
     {
-        return TypedResults.Ok(await db.Banks.GridifyAsync(query));
+        try
+        {
+            return TypedResults.Ok(await db.Banks.GridifyAsync(query));
+        }
+        catch { }
+        return TypedResults.BadRequest();
     }
 
     public static async Task<Results<Ok<BankModel>, NotFound>> GetBank([Description("Id of the bank.")][DefaultValue(1)] int id, BankDb db, HybridCache cache, CancellationToken token = default)
@@ -21,10 +26,17 @@ public class BankOperation
                 : TypedResults.NotFound();
     }
 
-    public static async Task<Created<BankModel>> CreateBank(BankModel bank, BankDb db)
+    public static async Task<Results<Created<BankModel>, BadRequest>> CreateBank(BankModel bank, BankDb db)
     {
-        db.Banks.Add(bank);
-        await db.SaveChangesAsync();
+        try
+        {
+            db.Banks.Add(bank);
+            await db.SaveChangesAsync();
+        }
+        catch
+        {
+            return TypedResults.BadRequest();
+        }
 
         return TypedResults.Created($"/bankitems/{bank.Id}", bank);
     }

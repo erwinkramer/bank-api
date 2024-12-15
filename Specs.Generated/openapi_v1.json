@@ -82,6 +82,9 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal server error"
           }
@@ -114,6 +117,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal server error"

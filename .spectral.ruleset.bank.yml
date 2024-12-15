@@ -1,4 +1,4 @@
-extends: 
+extends:
   - "spectral:oas"
   - "spectral:arazzo"
 
@@ -35,3 +35,16 @@ rules:
       function: pattern
       functionOptions:
         match: "^[A-Z](([a-z0-9]+[A-Z]?)*)$"
+
+  bank-operation-response-error-required:
+    description: All operations must have an error response
+    message: Operation is missing an error response.
+    severity: warn
+    given: $.paths.*.*.responses
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["400"]
+            - required: ["404"]
