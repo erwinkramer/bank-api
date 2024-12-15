@@ -65,7 +65,7 @@
           {
             "name": "filter",
             "in": "query",
-            "description": "The following filter operators are supported:\n\n### Conditional Operators\n\n| Name                  | Operator | Usage example        |\n|-----------------------|----------|----------------------|\n| Equal                 | `=`      | `FieldName = Value`  |\n| NotEqual              | `!=`     | `FieldName !=Value`  |\n| LessThan              | `<`      | `FieldName < Value`  |\n| GreaterThan           | `>`      | `FieldName > Value`  |\n| GreaterThanOrEqual    | `>=`     | `FieldName >=Value`  |\n| LessThanOrEqual       | `<=`     | `FieldName <=Value`  |\n| Contains - Like       | `=*`     | `FieldName =*Value`  |\n| NotContains - NotLike | `!*`     | `FieldName !*Value`  |\n| StartsWith            | `^`      | `FieldName ^ Value`  |\n| NotStartsWith         | `!^`     | `FieldName !^ Value` |\n| EndsWith              | `$`      | `FieldName $ Value`  |\n| NotEndsWith           | `!$`     | `FieldName !$ Value` |\n\n> Tip: If you don't specify any value after `=` or `!=` operators, the API searches for the `default` and `null` values.\n\n### Logical Operators\n\n| Name        | Operator | Usage example                                   |\n|-------------|----------|-------------------------------------------------|\n| AND         | `,`      | `FirstName = Value, LastName = Value2`          |\n| OR          | `\\|`     | `FirstName=Value\\|LastName=Value2`              |\n| Parenthesis | `()`     | `(FirstName=*Jo,Age<30)\\|(FirstName!=Hn,Age>30)`|\n\n### Case Insensitive Operator\n\nThe `/i` operator can be use after string values for case insensitive searches. You should only use this operator after the search value. \n\nExample:\n```\nFirstName=John/i\n```\n\nthis query matches with `JOHN`, `john`, `John`, `jOHn`, etc.\n    ",
+            "description": "The following filter operators are supported:\n\n### Conditional Operators\n\n| Name                  | Operator | Usage example        |\n|-----------------------|----------|----------------------|\n| Equal                 | `=`      | `FieldName = Value`  |\n| NotEqual              | `!=`     | `FieldName !=Value`  |\n| LessThan              | `<`      | `FieldName < Value`  |\n| GreaterThan           | `>`      | `FieldName > Value`  |\n| GreaterThanOrEqual    | `>=`     | `FieldName >=Value`  |\n| LessThanOrEqual       | `<=`     | `FieldName <=Value`  |\n| Contains - Like       | `=*`     | `FieldName =*Value`  |\n| NotContains - NotLike | `!*`     | `FieldName !*Value`  |\n| StartsWith            | `^`      | `FieldName ^ Value`  |\n| NotStartsWith         | `!^`     | `FieldName !^ Value` |\n| EndsWith              | `$`      | `FieldName $ Value`  |\n| NotEndsWith           | `!$`     | `FieldName !$ Value` |\n\n> Tip: If you don't specify any value after `=` or `!=` operators, the API searches for the `default` and `null` values.\n\n### Logical Operators\n\n| Name        | Operator | Usage example                                   |\n|-------------|----------|-------------------------------------------------|\n| AND         | `,`      | `FirstName = Value, LastName = Value2`          |\n| OR          | `\\|`     | `FirstName=Value\\|LastName=Value2`              |\n| Parenthesis | `()`     | `(FirstName=*Jo,Age<30)\\|(FirstName!=Hn,Age>30)`|\n\n### Case Insensitive Operator\n\nThe `/i` operator can be use after string values for case insensitive searches. You should only use this operator after the search value. \n\nExample:\n```\nFirstName=John/i\n```\n\nthis query matches with `JOHN`, `john`, `John`, `jOHn`, etc.",
             "schema": {
               "type": "string"
             }
@@ -413,25 +413,25 @@
     "securitySchemes": {
       "ApiKey-Header": {
         "type": "apiKey",
-        "description": "https://learn.openapis.org/specification/security.html#api-keys",
+        "description": "Api Key scheme, please see: https://learn.openapis.org/specification/security.html#api-keys.",
         "name": "Ocp-Apim-Subscription-Key",
         "in": "header"
       },
       "ApiKey-Query": {
         "type": "apiKey",
-        "description": "https://learn.openapis.org/specification/security.html#api-keys",
+        "description": "Api Key scheme, please see: https://learn.openapis.org/specification/security.html#api-keys.",
         "name": "subscriptionKey",
         "in": "query"
       },
       "Bearer": {
         "type": "http",
-        "description": "https://learn.openapis.org/specification/security.html#http-authentication",
+        "description": "Bearer scheme, please see: https://learn.openapis.org/specification/security.html#http-authentication.",
         "scheme": "bearer",
         "bearerFormat": "Json Web Token"
       },
       "OpenIdConnect": {
         "type": "openIdConnect",
-        "description": "https://learn.openapis.org/specification/security.html#openid-connect",
+        "description": "OpenID Connect scheme, please see: https://learnopenapis.org/specification/securityhtml#openid-connect.",
         "openIdConnectUrl": "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/v2.0/.well-known/openid-configuration"
       }
     }

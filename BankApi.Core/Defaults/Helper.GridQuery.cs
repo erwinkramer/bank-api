@@ -72,7 +72,6 @@ Example:
 FirstName=John/i
 ```
 
-this query matches with `JOHN`, `john`, `John`, `jOHn`, etc.
-    ")]
+this query matches with `JOHN`, `john`, `John`, `jOHn`, etc.")]
     public string? Filter { get; set; }
 }

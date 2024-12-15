@@ -18,7 +18,7 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
             {
                 JwtBearerDefaults.AuthenticationScheme => new OpenApiSecurityScheme
                 {
-                    Description = "https://learn.openapis.org/specification/security.html#http-authentication",
+                    Description = "Bearer scheme, please see: https://learn.openapis.org/specification/security.html#http-authentication.",
                     Type = SecuritySchemeType.Http,
                     Scheme = "bearer",
                     In = ParameterLocation.Header,
@@ -31,7 +31,7 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
                 },
                 OpenIdConnectDefaults.AuthenticationScheme => new OpenApiSecurityScheme
                 {
-                    Description = "https://learn.openapis.org/specification/security.html#openid-connect",
+                    Description = "OpenID Connect scheme, please. see: https://learn.openapis.org/specification/security.html#openid-connect.",
                     Type = SecuritySchemeType.OpenIdConnect,
                     OpenIdConnectUrl = new Uri($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/v2.0/.well-known/openid-configuration"),
                     Reference = new OpenApiReference
@@ -43,7 +43,7 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
                 $"{ApiKeyDefaults.AuthenticationScheme}-Header" => new OpenApiSecurityScheme
                 {
                     Type = SecuritySchemeType.ApiKey,
-                    Description = "https://learn.openapis.org/specification/security.html#api-keys",
+                    Description = "Api Key scheme, please. see: https://learn.openapis.org/specification/security.html#api-keys.",
                     Name = "Ocp-Apim-Subscription-Key",
                     In = ParameterLocation.Header,
                     Reference = new OpenApiReference
@@ -55,7 +55,7 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
                 $"{ApiKeyDefaults.AuthenticationScheme}-Query" => new OpenApiSecurityScheme
                 {
                     Type = SecuritySchemeType.ApiKey,
-                    Description = "https://learn.openapis.org/specification/security.html#api-keys",
+                    Description = "Api Key scheme, please. see: https://learn.openapis.org/specification/security.html#api-keys.",
                     Name = "subscriptionKey",
                     In = ParameterLocation.Query,
                     Reference = new OpenApiReference

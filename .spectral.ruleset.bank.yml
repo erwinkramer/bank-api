@@ -10,7 +10,7 @@ documentationUrl: https://www.guanchen.nl/
 
 rules:
   bank-path-requires-kebab-case:
-    description: Paths must be in kebab-case
+    description: Paths must be in kebab-case.
     message: Path is not in kebab-case.
     severity: warn
     given: "$.paths[*]~"
@@ -20,7 +20,7 @@ rules:
           match: "^(/([a-z0-9]+(-[a-z0-9]+)*|\\{[a-zA-Z0-9_]+\\}))*$"
 
   bank-header-requires-hyphenated-pascal-case:
-    description: HTTP headers must be in Hyphenated-Pascal-Case
+    description: HTTP headers must be in Hyphenated-Pascal-Case.
     message: HTTP header is not in Hyphenated-Pascal-Case.
     severity: warn
     given:
@@ -32,7 +32,7 @@ rules:
         match: "^([A-Z][a-z0-9]*)(-[A-Z][a-z0-9]*)*$"
 
   bank-property-requires-camel-case:
-    description: Property names, acronyms, path parameters and query parameters must be in camelCase
+    description: Property names, acronyms, path parameters and query parameters must be in camelCase.
     message: Property name, acronym, path parameter or query parameter is not in camelCase.
     severity: warn
     given:
@@ -45,7 +45,7 @@ rules:
         match: ^[a-z][a-z0-9]*(([A-Z]{2}|[A-Z])[a-z0-9]+)*$
 
   bank-parameter-description-required:
-    description: Parameters must have a description
+    description: Parameters must have a description.
     message: Parameter is missing a description.
     severity: warn
     given: $.paths.*.*.parameters[*]
@@ -53,28 +53,31 @@ rules:
       field: description
       function: truthy
 
-  bank-operation-summary-well-formed:
-    description: Operations must have a well-formed summary
+  bank-summary-well-formed:
+    description: Operations must have a well-formed summary.
     message: Operation summary is not well-formed. Must start with a capital letter, containing only letters, numbers, and spaces, and no dots, and the total length should be at most 25 characters.
     severity: warn
-    given: $.paths.*.*.summary
+    given: "$..summary"
     then:
       - function: pattern
         functionOptions:
           match: ^[A-Z][a-zA-Z0-9\s]{0,24}$
 
-  bank-operation-description-well-formed:
-    description: Operations must have a well-formed description
-    message: Operation description is not well-formed. Each sentence must start with a capital letter, end with a period, and the total length should be at least 20 characters.
+  bank-description-well-formed:
+    description: Security schemes, parameters and operations must have a well-formed description.
+    message: Security schemes, parameters or operations is not well-formed. Each sentence must start with a capital letter, end with a period, and the total length should be at least 15 characters. Markdown tables and URLs are allowed.
     severity: warn
-    given: $.paths.*.*.description
+    given: 
+     - $.paths.*.*.description
+     - $.paths.*.*.parameters[*].description
+     - "$.components.securitySchemes[*].description"
     then:
       - function: pattern
         functionOptions:
-          match: ^(?=[\s\S]{20,})((?:[A-Z][a-zA-Z0-9\s,;.!?'-]*[.])+\s*)$
+          match: ^(?!.*\|.*\n)(?=[\s\S]{15,})[A-Z][\s\S]*[.]$
 
   bank-operation-examples-required:
-    description: Object types must include at least one example
+    description: Object types must include at least one example.
     message: Type is missing an example in the schema.
     severity: warn
     given: "#requestOrResponseJsonContent"
@@ -83,7 +86,7 @@ rules:
       function: truthy
 
   bank-operation-id-requires-pascal-case:
-    description: Operation id's must be in PascalCase (upper camel case)
+    description: Operation id's must be in PascalCase (upper camel case).
     message: Operation id is not in PascalCase.
     severity: warn
     given: "$..operationId"
@@ -93,7 +96,7 @@ rules:
         match: "^[A-Z](([a-z0-9]+[A-Z]?)*)$"
 
   bank-operation-response-error-required:
-    description: Operations must have an error response
+    description: Operations must have an error response.
     message: Operation is missing an error response.
     severity: warn
     given: $.paths.*.*.responses
