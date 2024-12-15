@@ -8,6 +8,16 @@ aliases:
 
 documentationUrl: https://www.guanchen.nl/
 rules:
+  bank-path-requires-kebab-case:
+    description: Paths must be in kebab-case
+    message: Path is not in kebab-case.
+    severity: error
+    given: "$.paths[*]~"
+    then:
+      - function: pattern
+        functionOptions:
+          match: "^(/([a-z0-9]+(-[a-z0-9]+)*|\\{[a-zA-Z0-9_]+\\}))*$"
+
   bank-header-requires-hyphenated-pascal-case:
     description: HTTP headers must be in Hyphenated-Pascal-Case
     message: HTTP header is not in Hyphenated-Pascal-Case.
