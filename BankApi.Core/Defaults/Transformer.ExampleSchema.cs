@@ -30,9 +30,9 @@ class TransformerExampleSchema() : IOpenApiSchemaTransformer
             schema.Example = (apiExamples!["TellerReport"] as OpenApiArray)!;
         }
 
-        if (context.JsonTypeInfo.Type == typeof(Release))
+        if (context.JsonTypeInfo.Type == typeof(Teller))
         {
-            schema.Example = (apiExamples!["Release"] as OpenApiArray)![0];
+            schema.Example = (apiExamples!["Teller"] as OpenApiArray)![0];
         }
 
         return Task.CompletedTask;
