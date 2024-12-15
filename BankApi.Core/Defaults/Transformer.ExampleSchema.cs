@@ -1,39 +1,35 @@
-using DownstreamClients.GitHub.Models;
 using Gridify;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
-class TransformerExampleSchema() : IOpenApiSchemaTransformer
+class TransformerExampleSchema : IOpenApiSchemaTransformer
 {
     public Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken cancellationToken)
     {
         var apiExamples = GlobalConfiguration.ApiExamples as OpenApiObject;
+        if (apiExamples == null)
+            return Task.CompletedTask;
 
-        if (context.JsonTypeInfo.Type == typeof(BankModel))
+        schema.Example = context.JsonTypeInfo.Type switch
         {
-            schema.Example = (apiExamples!["BankModel"] as OpenApiArray)![0];
-        }
+            Type t when t == typeof(BankModel) =>
+                (apiExamples["BankModel"] as OpenApiArray)?[0],
 
-        if (context.JsonTypeInfo.Type == typeof(Paging<BankModel>))
-        {
-            schema.Example = (apiExamples!["PagingOfBankModel"] as OpenApiArray)![0];
-        }
+            Type t when t == typeof(Paging<BankModel>) =>
+                (apiExamples["PagingOfBankModel"] as OpenApiArray)?[0],
 
-        if (context.JsonTypeInfo.Type == typeof(TellerReport))
-        {
-            schema.Example = (apiExamples!["TellerReport"] as OpenApiArray)![0];
-        }
+            Type t when t == typeof(TellerReport) =>
+                (apiExamples["TellerReport"] as OpenApiArray)?[0],
 
-        if (context.JsonTypeInfo.Type == typeof(List<TellerReport>))
-        {
-            schema.Example = (apiExamples!["TellerReport"] as OpenApiArray)!;
-        }
+            Type t when t == typeof(List<TellerReport>) =>
+                apiExamples["TellerReport"] as OpenApiArray,
 
-        if (context.JsonTypeInfo.Type == typeof(Teller))
-        {
-            schema.Example = (apiExamples!["Teller"] as OpenApiArray)![0];
-        }
+            Type t when t == typeof(Teller) =>
+                (apiExamples["Teller"] as OpenApiArray)?[0],
+
+            _ => schema.Example
+        };
 
         return Task.CompletedTask;
     }

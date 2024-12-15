@@ -288,10 +288,10 @@
                   },
                   "example": [
                     {
-                      "name": "secretz.txt"
+                      "name": "reportOfTheWeek.txt"
                     },
                     {
-                      "name": "secretz2.txt"
+                      "name": "dailyReview.txt"
                     }
                   ]
                 }
@@ -406,7 +406,7 @@
           }
         },
         "example": {
-          "name": "secretz.txt"
+          "name": "reportOfTheWeek.txt"
         }
       }
     },
