@@ -138,6 +138,8 @@ Please see the Reddit [r/dotnet post](https://www.reddit.com/r/dotnet/comments/1
 [Environment]::SetEnvironmentVariable('NODE_EXTRA_CA_CERTS', 'C:\ZscalerRootCA.crt', 'User')
 ```
 
+- [Extending Rulesets with local filepath not refreshing](https://github.com/stoplightio/vscode-spectral/issues/266) when working on Spectral rulesets in VSCode. Force an update in the main [.spectral.yml](.spectral.yml) when changing a file that is used as an extend.
+
 ## License
 
 This work is licensed under a
