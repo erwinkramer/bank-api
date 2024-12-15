@@ -16,10 +16,9 @@ public class TellerOperation
 
         var release = await client.Repos["dotnet"]["runtime"].Releases.Latest.GetAsync(cancellationToken: cancellationToken);
 
-        return release?.Author?.HtmlUrl
-            is string authorGitHubUrl
-             ? TypedResults.Ok(new Teller() { GitHubProfile = new Uri(authorGitHubUrl) })
-             : TypedResults.NotFound();
+        return release?.Author?.HtmlUrl is string authorGitHubUrl
+            ? TypedResults.Ok(new Teller() { GitHubProfile = new Uri(authorGitHubUrl) })
+            : TypedResults.NotFound();
     }
 
     public static async Task<Results<Ok<List<TellerReport>>, NotFound>> GetBankTellerReports(BlobServiceClient blobServiceClient, CancellationToken cancellationToken)
@@ -32,9 +31,8 @@ public class TellerOperation
             reports.Add(new TellerReport() { Name = blobItem.Name });
         }
 
-        if (reports.Any())
-            return TypedResults.Ok(reports);
-
-        return TypedResults.NotFound();
+        return reports is { Count: > 0 }
+            ? TypedResults.Ok(reports)
+            : TypedResults.NotFound();
     }
 }
