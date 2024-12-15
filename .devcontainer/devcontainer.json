@@ -19,7 +19,9 @@
 		}
 	},
 	"containerEnv": {
-		"DOTNET_LAUNCH_PROFILE": "http"
+		"DOTNET_LAUNCH_PROFILE": "http",
+		// Zscaler proxy support when reading custom rulesets over https in Spectral
+		"NODE_EXTRA_CA_CERTS": "${containerWorkspaceFolder}/.certs/ZscalerRootCA.crt" 
 	},
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
