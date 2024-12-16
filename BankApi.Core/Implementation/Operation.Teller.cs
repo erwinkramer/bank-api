@@ -21,17 +21,18 @@ public class TellerOperation
             : TypedResults.NotFound();
     }
 
-    public static async Task<Results<Ok<List<TellerReport>>, NotFound>> GetBankTellerReports(BlobServiceClient blobServiceClient, CancellationToken cancellationToken)
+    public static async Task<Results<Ok<TellerReportList>, NotFound>> GetBankTellerReports(BlobServiceClient blobServiceClient, CancellationToken cancellationToken)
     {
         BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("reports");
 
-        List<TellerReport> reports = new();
+        TellerReportList reports = new();
         await foreach (BlobItem blobItem in containerClient.GetBlobsAsync())
         {
-            reports.Add(new TellerReport() { Name = blobItem.Name });
+            reports.data.Add(new TellerReport() { Name = blobItem.Name });
+            reports.count ++;
         }
 
-        return reports is { Count: > 0 }
+        return reports is { count: > 0 }
             ? TypedResults.Ok(reports)
             : TypedResults.NotFound();
     }

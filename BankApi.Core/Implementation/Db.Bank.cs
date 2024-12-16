@@ -14,14 +14,14 @@ public class BankDb : DbContext
                 BankModel[] data = [
                     new BankModel
                     {
-                        Id = 1,
+                        Id = Guid.Parse("29e26195-cf57-417d-ac1b-998398e2dc88"),
                         BankTier = BankTier.A,
                         IsCompliant = true,
                         Name = "Foo"
                     },
                     new BankModel
                     {
-                        Id = 2,
+                        Id = Guid.Parse("bed8a856-1d6a-4c2e-9392-a126a7eda415"),
                         BankTier = BankTier.B,
                         IsCompliant = false,
                         Name = "Bar"

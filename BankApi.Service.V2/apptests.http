@@ -27,7 +27,7 @@ Authorization: Bearer {{openIdToken}}
 
 ###
 
-https://{{host}}/{{apiVersion}}/banks/1
+https://{{host}}/{{apiVersion}}/banks/bed8a856-1d6a-4c2e-9392-a126a7eda415
 Ocp-Apim-Subscription-Key: Lifetime Subscription
 
 ###
@@ -36,7 +36,7 @@ https://{{host}}/{{apiVersion}}/banks
   ?page=1
   &pageSize=21
   &orderBy=bankTier asc, id desc
-  &filter=id > 1
+  &filter=bankTier != B
 Ocp-Apim-Subscription-Key: Lifetime Subscription
 
 ###
@@ -46,7 +46,7 @@ Ocp-Apim-Subscription-Key: Lifetime Subscription
 Content-Type: application/json
 
 {
-  "id": {{$randomInt 3 707070}},
+  "id": "{{$guid}}",
   "name": "Canary",
   "isCompliant": false,
   "bankTier": "C"

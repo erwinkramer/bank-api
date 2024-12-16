@@ -10,12 +10,13 @@ public enum BankTier
 
 public class BankModel
 {
-    [DefaultValue(1)]
     [Description("Id of the bank.")]
-    public int Id { get; set; }
+    [MaxLength(36)]
+    public Guid Id { get; set; }
 
     [DefaultValue("Guanchen")]
     [Description("Name of the bank.")]
+    [MaxLength(707070)]
     [RegularExpression(".*")]
     public string? Name { get; set; }
 

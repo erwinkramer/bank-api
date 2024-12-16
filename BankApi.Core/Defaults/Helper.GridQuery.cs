@@ -23,7 +23,6 @@ public class GridQuery : IGridifyQuery
     [PageSizeDefaultValue()]
     [PageSizeRange]
     [FromQuery(Name = "pageSize")]
-    [Range(1, 2000000)]
     [Description("The pagesize of the result.")]
     public int PageSize { get; set; }
 

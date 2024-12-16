@@ -48,7 +48,7 @@
             "description": "The pagesize of the result.",
             "required": true,
             "schema": {
-              "maximum": 2000000,
+              "maximum": 1200,
               "minimum": 1,
               "type": "integer",
               "format": "int32",
@@ -405,9 +405,9 @@
             "description": "Id of the bank.",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
+              "maxLength": 36,
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -573,8 +573,9 @@
             "description": "Id of the bank.",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "maxLength": 36,
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -743,8 +744,9 @@
             "description": "Id of the bank.",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "maxLength": 36,
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -1079,18 +1081,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TellerReport"
-                  },
-                  "example": [
-                    {
-                      "name": "reportOfTheWeek.txt"
-                    },
-                    {
-                      "name": "dailyReview.txt"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/TellerReportList"
                 }
               }
             }
@@ -1239,13 +1230,13 @@
           "count": 2,
           "data": [
             {
-              "id": 1,
+              "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
               "name": "Foo",
               "isCompliant": true,
               "bankTier": "A"
             },
             {
-              "id": 2,
+              "id": "956b7056-6e98-4a92-af07-91634ce4d421",
               "name": "Bar",
               "isCompliant": false,
               "bankTier": "B"
@@ -1257,12 +1248,13 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
+            "maxLength": 36,
+            "type": "string",
             "description": "Id of the bank.",
-            "format": "int32",
-            "default": 1
+            "format": "uuid"
           },
           "name": {
+            "maxLength": 707070,
             "pattern": ".*",
             "type": "string",
             "description": "Name of the bank.",
@@ -1279,7 +1271,7 @@
           }
         },
         "example": {
-          "id": 123,
+          "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
           "name": "Guanchen",
           "isCompliant": true,
           "bankTier": "A"
@@ -1298,6 +1290,7 @@
         "type": "object",
         "properties": {
           "gitHubProfile": {
+            "maxLength": 707070,
             "type": "string",
             "description": "GitHub profile of the teller.",
             "format": "uri",
@@ -1318,9 +1311,35 @@
             "description": "Name of the report.",
             "nullable": true
           }
+        }
+      },
+      "TellerReportList": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "maxItems": 1010,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TellerReport"
+            }
+          },
+          "count": {
+            "maximum": 2147483647,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
+          }
         },
         "example": {
-          "name": "reportOfTheWeek.txt"
+          "count": 2,
+          "data": [
+            {
+              "name": "reportOfTheWeek.txt"
+            },
+            {
+              "name": "dailyReview.txt"
+            }
+          ]
         }
       }
     },

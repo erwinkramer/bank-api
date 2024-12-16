@@ -1,13 +1,13 @@
 {
   "BankModel": [
     {
-      "id": 123,
+      "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
       "name": "Guanchen",
       "isCompliant": true,
       "bankTier": "A"
     },
     {
-      "id": 124,
+      "id": "956b7056-6e98-4a92-af07-91634ce4d421",
       "name": "Canary",
       "isCompliant": false,
       "bankTier": "C"
@@ -18,13 +18,13 @@
       "count": 2,
       "data": [
         {
-          "id": 1,
+          "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
           "name": "Foo",
           "isCompliant": true,
           "bankTier": "A"
         },
         {
-          "id": 2,
+          "id": "956b7056-6e98-4a92-af07-91634ce4d421",
           "name": "Bar",
           "isCompliant": false,
           "bankTier": "B"
@@ -32,12 +32,17 @@
       ]
     }
   ],
-  "TellerReport": [
+  "TellerReportList": [
     {
-      "name": "reportOfTheWeek.txt"
-    },
-    {
-      "name": "dailyReview.txt"
+      "count": 2,
+      "data": [
+        {
+          "name": "reportOfTheWeek.txt"
+        },
+        {
+          "name": "dailyReview.txt"
+        }
+      ]
     }
   ],
   "Teller": [

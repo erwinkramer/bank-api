@@ -17,7 +17,7 @@ public class Test
         var result = await BankOperation.CreateBank(new BankModel()
         {
             BankTier = BankTier.A,
-            Id = 123,
+            Id = Guid.NewGuid(),
             IsCompliant = false
         }, databaseContext!);
 
@@ -27,10 +27,11 @@ public class Test
     [Test, DependsOn(nameof(CreateBankReturnsCreated))]
     public async Task UpdateBankReturnsNoContent()
     {
-        var result = await BankOperation.UpdateBank(123, new BankModel()
+        var bankId = Guid.NewGuid();
+        var result = await BankOperation.UpdateBank(bankId, new BankModel()
         {
             BankTier = BankTier.A,
-            Id = 123,
+            Id = bankId,
             IsCompliant = true
         }, databaseContext!);
 
