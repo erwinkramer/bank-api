@@ -48,7 +48,7 @@
             "description": "The pagesize of the result.",
             "required": true,
             "schema": {
-              "maximum": 2000000,
+              "maximum": 1200,
               "minimum": 1,
               "type": "integer",
               "format": "int32",
@@ -105,8 +105,8 @@
               }
             }
           },
-          "400": {
-            "description": "Bad Request",
+          "422": {
+            "description": "Unprocessable Entity",
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
@@ -270,8 +270,8 @@
               }
             }
           },
-          "400": {
-            "description": "Bad Request",
+          "422": {
+            "description": "Unprocessable Entity",
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
@@ -442,6 +442,27 @@
           },
           "404": {
             "description": "Not Found",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
+              "X-RateLimit-Limit": {
+                "schema": {
+                  "maximum": 70707070,
+                  "minimum": 0,
+                  "type": "integer",
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "format": "int32"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
@@ -632,6 +653,27 @@
               }
             }
           },
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
+              "X-RateLimit-Limit": {
+                "schema": {
+                  "maximum": 70707070,
+                  "minimum": 0,
+                  "type": "integer",
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "format": "int32"
+                }
+              }
+            }
+          },
           "500": {
             "description": "Internal server error.",
             "headers": {
@@ -774,6 +816,27 @@
           },
           "404": {
             "description": "Not Found",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
+              "X-RateLimit-Limit": {
+                "schema": {
+                  "maximum": 70707070,
+                  "minimum": 0,
+                  "type": "integer",
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "format": "int32"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
@@ -950,6 +1013,27 @@
               }
             }
           },
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
+              "X-RateLimit-Limit": {
+                "schema": {
+                  "maximum": 70707070,
+                  "minimum": 0,
+                  "type": "integer",
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "format": "int32"
+                }
+              }
+            }
+          },
           "500": {
             "description": "Internal server error.",
             "headers": {
@@ -1088,6 +1172,27 @@
           },
           "404": {
             "description": "Not Found",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
+              "X-RateLimit-Limit": {
+                "schema": {
+                  "maximum": 70707070,
+                  "minimum": 0,
+                  "type": "integer",
+                  "description": "The maximum number of requests you're permitted to make per hour.",
+                  "format": "int32"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
@@ -1322,6 +1427,12 @@
             "items": {
               "$ref": "#/components/schemas/TellerReport"
             }
+          },
+          "count": {
+            "maximum": 2147483647,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
           }
         },
         "example": {

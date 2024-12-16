@@ -6,34 +6,44 @@ using System.Security.Claims;
 
 public class TellerOperation
 {
-    public static async Task<Results<Ok<Teller>, NotFound>> GetBankTeller(GitHubClient client, ClaimsPrincipal user, ILogger logger, CancellationToken cancellationToken)
+    public static async Task<Results<Ok<Teller>, NotFound, UnprocessableEntity>> GetBankTeller(GitHubClient client, ClaimsPrincipal user, ILogger logger, CancellationToken cancellationToken)
     {
-        LogMessage.LogAccessMessage(logger, "teller", new AccessLogModel()
+        try
         {
-            AuthenticationType = user.Identity?.AuthenticationType,
-            UserId = user.FindFirstValue(ClaimTypes.NameIdentifier)
-        });
+            LogMessage.LogAccessMessage(logger, "teller", new AccessLogModel()
+            {
+                AuthenticationType = user.Identity?.AuthenticationType,
+                UserId = user.FindFirstValue(ClaimTypes.NameIdentifier)
+            });
 
-        var release = await client.Repos["dotnet"]["runtime"].Releases.Latest.GetAsync(cancellationToken: cancellationToken);
+            var release = await client.Repos["dotnet"]["runtime"].Releases.Latest.GetAsync(cancellationToken: cancellationToken);
 
-        return release?.Author?.HtmlUrl is string authorGitHubUrl
-            ? TypedResults.Ok(new Teller() { GitHubProfile = new Uri(authorGitHubUrl) })
-            : TypedResults.NotFound();
+            return release?.Author?.HtmlUrl is string authorGitHubUrl
+                ? TypedResults.Ok(new Teller() { GitHubProfile = new Uri(authorGitHubUrl) })
+                : TypedResults.NotFound();
+        }
+        catch { }
+        return TypedResults.UnprocessableEntity();
     }
 
-    public static async Task<Results<Ok<TellerReportList>, NotFound>> GetBankTellerReports(BlobServiceClient blobServiceClient, CancellationToken cancellationToken)
+    public static async Task<Results<Ok<TellerReportList>, NotFound, UnprocessableEntity>> GetBankTellerReports(BlobServiceClient blobServiceClient, CancellationToken cancellationToken)
     {
-        BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("reports");
-
-        TellerReportList reports = new();
-        await foreach (BlobItem blobItem in containerClient.GetBlobsAsync())
+        try
         {
-            reports.data.Add(new TellerReport() { Name = blobItem.Name });
-            reports.count ++;
-        }
+            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("reports");
 
-        return reports is { count: > 0 }
-            ? TypedResults.Ok(reports)
-            : TypedResults.NotFound();
+            TellerReportList reports = new();
+            await foreach (BlobItem blobItem in containerClient.GetBlobsAsync())
+            {
+                reports.data.Add(new TellerReport() { Name = blobItem.Name });
+                reports.count++;
+            }
+
+            return reports is { count: > 0 }
+                ? TypedResults.Ok(reports)
+                : TypedResults.NotFound();
+        }
+        catch { }
+        return TypedResults.UnprocessableEntity();
     }
 }
