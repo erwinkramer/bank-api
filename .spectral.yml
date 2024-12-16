@@ -1,2 +1,3 @@
 extends:
-  - .spectral.ruleset.bank.yml
+  - .spectral/ruleset.bank.yml
+  - .spectral/ruleset.owasp2023.json

@@ -6,11 +6,12 @@ using System.ComponentModel;
 
 public class BankOperation
 {
-    public static async Task<Results<Ok<Paging<BankModel>>, BadRequest>> GetAllBanks([AsParameters] GridQuery query, BankDb db)
+    public static async Task<Results<Ok<AnnotatedPaging<BankModel>>, BadRequest>> GetAllBanks([AsParameters] GridQuery query, BankDb db)
     {
         try
         {
-            return TypedResults.Ok(await db.Banks.GridifyAsync(query));
+            var pagingResult = await db.Banks.GridifyAsync(query);
+            return TypedResults.Ok(new AnnotatedPaging<BankModel>(pagingResult.Count, pagingResult.Data));
         }
         catch { }
         return TypedResults.BadRequest();

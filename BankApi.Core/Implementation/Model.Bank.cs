@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
@@ -15,6 +16,7 @@ public class BankModel
 
     [DefaultValue("Guanchen")]
     [Description("Name of the bank.")]
+    [RegularExpression(".*")]
     public string? Name { get; set; }
 
     [DefaultValue(true)]

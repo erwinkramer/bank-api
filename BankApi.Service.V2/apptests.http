@@ -7,41 +7,41 @@
 
 ###
 
-http://{{host}}/{{apiVersion}}/health
+https://{{host}}/{{apiVersion}}/health
 Ocp-Apim-Subscription-Key: Lifetime Subscription
 
 ###
 
-http://{{host}}/{{apiVersion}}/teller
+https://{{host}}/{{apiVersion}}/teller
 Authorization: Bearer {{localToken}}
 
 ###
 
-http://{{host}}/{{apiVersion}}/teller/reports
+https://{{host}}/{{apiVersion}}/teller/reports
 Authorization: Bearer {{localToken}}
 
 ###
 
-http://{{host}}/{{apiVersion}}/teller
+https://{{host}}/{{apiVersion}}/teller
 Authorization: Bearer {{openIdToken}}
 
 ###
 
-http://{{host}}/{{apiVersion}}/banks/1
+https://{{host}}/{{apiVersion}}/banks/1
 Ocp-Apim-Subscription-Key: Lifetime Subscription
 
 ###
 
-http://{{host}}/{{apiVersion}}/banks
+https://{{host}}/{{apiVersion}}/banks
   ?page=1
   &pageSize=21
   &orderBy=bankTier asc, id desc
   &filter=id > 1
-  &subscriptionKey=Lifetime Subscription
+Ocp-Apim-Subscription-Key: Lifetime Subscription
 
 ###
 
-POST http://{{host}}/{{apiVersion}}/banks
+POST https://{{host}}/{{apiVersion}}/banks
 Ocp-Apim-Subscription-Key: Lifetime Subscription
 Content-Type: application/json
 

@@ -30,13 +30,6 @@ public static partial class ApiBuilder
                 options.Realm = "API";
                 options.Events = apiKeyEvents;
             })
-             .AddApiKeyInQueryParams($"{ApiKeyDefaults.AuthenticationScheme}-Query", options =>
-             {
-                 options.KeyName = "subscriptionKey";
-                 options.Realm = "API";
-                 options.Events = apiKeyEvents;
-
-             })
             .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
             {
                 options.TokenValidationParameters = GlobalConfiguration.ApiSettings!.TokenValidation;
@@ -65,7 +58,6 @@ public static partial class ApiBuilder
             options.AddPolicy("bank_subscription", policy =>
             {
                 policy.RequireAuthenticatedUser(); // an anonymous user can still provide roles and claims if we do not add this
-                policy.AuthenticationSchemes.Add($"{ApiKeyDefaults.AuthenticationScheme}-Query");
                 policy.AuthenticationSchemes.Add($"{ApiKeyDefaults.AuthenticationScheme}-Header");
             });
         });

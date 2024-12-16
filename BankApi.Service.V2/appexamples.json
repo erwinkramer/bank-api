@@ -13,7 +13,7 @@
       "bankTier": "C"
     }
   ],
-  "PagingOfBankModel": [
+  "AnnotatedPagingOfBankModel": [
     {
       "count": 2,
       "data": [

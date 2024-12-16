@@ -23,10 +23,13 @@ public class GridQuery : IGridifyQuery
     [PageSizeDefaultValue()]
     [PageSizeRange]
     [FromQuery(Name = "pageSize")]
+    [Range(1, 2000000)]
     [Description("The pagesize of the result.")]
     public int PageSize { get; set; }
 
     [FromQuery(Name = "orderBy")]
+    [MaxLength(770)]
+    [RegularExpression(".*")]
     [Description(@"The ordering query expression can be built with a comma-delimited ordered list of field/property names, followed by `asc` or `desc` keywords. 
 
 By default, if you don't add these keywords, the API assumes you need Ascending ordering.")]
@@ -34,6 +37,8 @@ By default, if you don't add these keywords, the API assumes you need Ascending 
 
 
     [FromQuery(Name = "filter")]
+    [MaxLength(770)]
+    [RegularExpression(".*")]
     [Description(@"The following filter operators are supported:
 
 ### Conditional Operators

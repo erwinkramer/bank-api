@@ -16,8 +16,8 @@ class TransformerExampleSchema : IOpenApiSchemaTransformer
             Type t when t == typeof(BankModel) =>
                 (apiExamples["BankModel"] as OpenApiArray)?[0],
 
-            Type t when t == typeof(Paging<BankModel>) =>
-                (apiExamples["PagingOfBankModel"] as OpenApiArray)?[0],
+            Type t when t == typeof(AnnotatedPaging<BankModel>) =>
+                (apiExamples["AnnotatedPagingOfBankModel"] as OpenApiArray)?[0],
 
             Type t when t == typeof(TellerReport) =>
                 (apiExamples["TellerReport"] as OpenApiArray)?[0],

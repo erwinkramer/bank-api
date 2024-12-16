@@ -5,7 +5,8 @@ public static partial class ApiMapper
         var bankItems = app.MapGroup("/banks")
             .WithTags("Supervisory")
             .RequireRateLimiting("fixed")
-            .RequireAuthorization("bank_subscription");
+            .RequireAuthorization("bank_subscription")
+            .RequireCors("generic");
 
         bankItems.MapGet("/", BankOperation.GetAllBanks)
             .WithName("GetAllBanks").WithSummary("Get all banks")

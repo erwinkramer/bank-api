@@ -19,6 +19,7 @@ builder.Services.AddDataServices();
 builder.Services.AddDownstreamApiServices();
 builder.Services.AddOpenApiServices();
 builder.Services.AddRateLimitServices();
+builder.Services.AddCorsServices();
 
 var app = builder.Build();
 

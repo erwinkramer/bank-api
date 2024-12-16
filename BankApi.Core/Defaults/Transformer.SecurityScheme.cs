@@ -52,18 +52,6 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
                         Id = $"{ApiKeyDefaults.AuthenticationScheme}-Header"
                     }
                 },
-                $"{ApiKeyDefaults.AuthenticationScheme}-Query" => new OpenApiSecurityScheme
-                {
-                    Type = SecuritySchemeType.ApiKey,
-                    Description = "Api Key scheme, please see: https://learn.openapis.org/specification/security.html#api-keys.",
-                    Name = "subscriptionKey",
-                    In = ParameterLocation.Query,
-                    Reference = new OpenApiReference
-                    {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = $"{ApiKeyDefaults.AuthenticationScheme}-Query"
-                    }
-                },
                 _ => null
             };
 
