@@ -76,6 +76,15 @@ rules:
         functionOptions:
           match: ^(?!.*\|.*\n)(?=[\s\S]{15,})[A-Z][\s\S]*[.]$
 
+  bank-operation-summary-required:
+    description: Operations must have a summary.
+    message: Operation is missing a summary.
+    severity: warn
+    given: $.paths.*.*
+    then:
+      field: summary
+      function: truthy
+
   bank-operation-examples-required:
     description: Object types must include at least one example.
     message: Type is missing an example in the schema.
