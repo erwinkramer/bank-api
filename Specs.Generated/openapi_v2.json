@@ -35,7 +35,7 @@
             "description": "The page of the result.",
             "required": true,
             "schema": {
-              "maximum": 2000000,
+              "maximum": 2147483647,
               "minimum": 1,
               "type": "integer",
               "format": "int32",
@@ -48,7 +48,7 @@
             "description": "The pagesize of the result.",
             "required": true,
             "schema": {
-              "maximum": 1200,
+              "maximum": 2147483647,
               "minimum": 1,
               "type": "integer",
               "format": "int32",
@@ -60,7 +60,7 @@
             "in": "query",
             "description": "The ordering query expression can be built with a comma-delimited ordered list of field/property names, followed by `asc` or `desc` keywords. \n\nBy default, if you don't add these keywords, the API assumes you need Ascending ordering.",
             "schema": {
-              "maxLength": 770,
+              "maxLength": 2147483647,
               "pattern": ".*",
               "type": "string"
             }
@@ -70,7 +70,7 @@
             "in": "query",
             "description": "The following filter operators are supported:\n\n### Conditional Operators\n\n| Name                  | Operator | Usage example        |\n|-----------------------|----------|----------------------|\n| Equal                 | `=`      | `FieldName = Value`  |\n| NotEqual              | `!=`     | `FieldName !=Value`  |\n| LessThan              | `<`      | `FieldName < Value`  |\n| GreaterThan           | `>`      | `FieldName > Value`  |\n| GreaterThanOrEqual    | `>=`     | `FieldName >=Value`  |\n| LessThanOrEqual       | `<=`     | `FieldName <=Value`  |\n| Contains - Like       | `=*`     | `FieldName =*Value`  |\n| NotContains - NotLike | `!*`     | `FieldName !*Value`  |\n| StartsWith            | `^`      | `FieldName ^ Value`  |\n| NotStartsWith         | `!^`     | `FieldName !^ Value` |\n| EndsWith              | `$`      | `FieldName $ Value`  |\n| NotEndsWith           | `!$`     | `FieldName !$ Value` |\n\n> Tip: If you don't specify any value after `=` or `!=` operators, the API searches for the `default` and `null` values.\n\n### Logical Operators\n\n| Name        | Operator | Usage example                                   |\n|-------------|----------|-------------------------------------------------|\n| AND         | `,`      | `FirstName = Value, LastName = Value2`          |\n| OR          | `\\|`     | `FirstName=Value\\|LastName=Value2`              |\n| Parenthesis | `()`     | `(FirstName=*Jo,Age<30)\\|(FirstName!=Hn,Age>30)`|\n\n### Case Insensitive Operator\n\nThe `/i` operator can be use after string values for case insensitive searches. You should only use this operator after the search value. \n\nExample:\n```\nFirstName=John/i\n```\n\nthis query matches with `JOHN`, `john`, `John`, `jOHn`, etc.",
             "schema": {
-              "maxLength": 770,
+              "maxLength": 2147483647,
               "pattern": ".*",
               "type": "string"
             }
@@ -82,14 +82,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -117,14 +117,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -145,14 +145,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -161,7 +161,7 @@
             "content": {
               "InternalServerError": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -173,21 +173,21 @@
             "headers": {
               "WWW-Authenticate": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -205,7 +205,7 @@
             "content": {
               "UnauthorizedRequest": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -225,14 +225,14 @@
               },
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -250,7 +250,7 @@
             "content": {
               "TooManyRequests": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -282,14 +282,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -317,14 +317,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -345,14 +345,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -361,7 +361,7 @@
             "content": {
               "InternalServerError": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -373,21 +373,21 @@
             "headers": {
               "WWW-Authenticate": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -405,7 +405,7 @@
             "content": {
               "UnauthorizedRequest": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -425,14 +425,14 @@
               },
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -450,7 +450,7 @@
             "content": {
               "TooManyRequests": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -487,14 +487,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -522,14 +522,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -550,14 +550,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -578,14 +578,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -594,7 +594,7 @@
             "content": {
               "InternalServerError": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -606,21 +606,21 @@
             "headers": {
               "WWW-Authenticate": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -638,7 +638,7 @@
             "content": {
               "UnauthorizedRequest": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -658,14 +658,14 @@
               },
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -683,7 +683,7 @@
             "content": {
               "TooManyRequests": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -728,14 +728,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -756,14 +756,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -784,14 +784,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -812,14 +812,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -828,7 +828,7 @@
             "content": {
               "InternalServerError": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -840,21 +840,21 @@
             "headers": {
               "WWW-Authenticate": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -872,7 +872,7 @@
             "content": {
               "UnauthorizedRequest": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -892,14 +892,14 @@
               },
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -917,7 +917,7 @@
             "content": {
               "TooManyRequests": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -952,14 +952,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -980,14 +980,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1008,14 +1008,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1036,14 +1036,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1052,7 +1052,7 @@
             "content": {
               "InternalServerError": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1064,21 +1064,21 @@
             "headers": {
               "WWW-Authenticate": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1096,7 +1096,7 @@
             "content": {
               "UnauthorizedRequest": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1116,14 +1116,14 @@
               },
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1141,7 +1141,7 @@
             "content": {
               "TooManyRequests": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1165,14 +1165,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1200,14 +1200,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1228,14 +1228,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1256,14 +1256,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1272,7 +1272,7 @@
             "content": {
               "InternalServerError": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1284,21 +1284,21 @@
             "headers": {
               "WWW-Authenticate": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1316,7 +1316,7 @@
             "content": {
               "UnauthorizedRequest": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1336,14 +1336,14 @@
               },
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1361,7 +1361,7 @@
             "content": {
               "TooManyRequests": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1385,14 +1385,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1420,14 +1420,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1448,14 +1448,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1476,14 +1476,14 @@
             "headers": {
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1492,7 +1492,7 @@
             "content": {
               "InternalServerError": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1504,21 +1504,21 @@
             "headers": {
               "WWW-Authenticate": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1536,7 +1536,7 @@
             "content": {
               "UnauthorizedRequest": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1556,14 +1556,14 @@
               },
               "Access-Control-Allow-Origin": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
               },
               "Access-Control-Expose-Headers": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1581,7 +1581,7 @@
             "content": {
               "TooManyRequests": {
                 "schema": {
-                  "maxLength": 7070,
+                  "maxLength": 2147483647,
                   "pattern": ".*",
                   "type": "string"
                 }
@@ -1604,7 +1604,7 @@
             "format": "int32"
           },
           "data": {
-            "maxItems": 10000,
+            "maxItems": 2147483647,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/BankModel"
@@ -1639,7 +1639,7 @@
             "format": "uuid"
           },
           "name": {
-            "maxLength": 707070,
+            "maxLength": 2147483647,
             "pattern": ".*",
             "type": "string",
             "description": "Name of the bank.",
@@ -1675,7 +1675,7 @@
         "type": "object",
         "properties": {
           "gitHubProfile": {
-            "maxLength": 707070,
+            "maxLength": 36,
             "type": "string",
             "description": "GitHub profile of the teller.",
             "format": "uri",
@@ -1690,7 +1690,7 @@
         "type": "object",
         "properties": {
           "name": {
-            "maxLength": 7070,
+            "maxLength": 2147483647,
             "pattern": ".*",
             "type": "string",
             "description": "Name of the report.",
@@ -1702,7 +1702,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "maxItems": 1010,
+            "maxItems": 2147483647,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TellerReport"

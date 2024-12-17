@@ -15,7 +15,7 @@ public class GridQuery : IGridifyQuery
     }
 
     [DefaultValue(1)]
-    [Range(1, 2000000)]
+    [Range(1, Int32.MaxValue)]
     [FromQuery(Name = "page")]
     [Description("The page of the result.")]
     public int Page { get; set; }
@@ -27,7 +27,7 @@ public class GridQuery : IGridifyQuery
     public int PageSize { get; set; }
 
     [FromQuery(Name = "orderBy")]
-    [MaxLength(770)]
+    [MaxLength(Int32.MaxValue)]
     [RegularExpression(".*")]
     [Description(@"The ordering query expression can be built with a comma-delimited ordered list of field/property names, followed by `asc` or `desc` keywords. 
 
@@ -36,7 +36,7 @@ By default, if you don't add these keywords, the API assumes you need Ascending 
 
 
     [FromQuery(Name = "filter")]
-    [MaxLength(770)]
+    [MaxLength(Int32.MaxValue)]
     [RegularExpression(".*")]
     [Description(@"The following filter operators are supported:
 

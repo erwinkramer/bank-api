@@ -5,15 +5,15 @@ public class TellerReport
 {
     [Description("Name of the report.")]
     [RegularExpression(".*")]
-    [MaxLength(7070)]
+    [MaxLength(Int32.MaxValue)]
     public string? Name { get; set; }
 }
 
 public class TellerReportList
 {
-    [MaxLength(1010)]
+    [MaxLength(Int32.MaxValue)]
     public List<TellerReport> data { get; set; } = new();
 
-    [Range(0, int.MaxValue)]
+    [Range(0, Int32.MaxValue)]
     public int count { get; set; } = 0;
 }

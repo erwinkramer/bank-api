@@ -15,14 +15,14 @@ namespace Gridify
         {
         }
 
-        [Range(0, int.MaxValue)]
+        [Range(0, Int32.MaxValue)]
         public int Count
         {
             get => _paging.Count;
             set => _paging.Count = value;
         }
 
-        [MaxLength(10000)]
+        [MaxLength(Int32.MaxValue)]
         public IEnumerable<T> Data
         {
             get => _paging.Data;

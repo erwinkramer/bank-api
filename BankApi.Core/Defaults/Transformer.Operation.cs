@@ -76,7 +76,7 @@ class TransformerOperation : IOpenApiOperationTransformer
     {
         Type = "string",
         Pattern = ".*",
-        MaxLength = 7070
+        MaxLength = Int32.MaxValue
     };
 
     private OpenApiHeader CreateStringHeader() => new OpenApiHeader

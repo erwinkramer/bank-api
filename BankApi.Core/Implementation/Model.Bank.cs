@@ -16,7 +16,7 @@ public class BankModel
 
     [DefaultValue("Guanchen")]
     [Description("Name of the bank.")]
-    [MaxLength(707070)]
+    [MaxLength(Int32.MaxValue)]
     [RegularExpression(".*")]
     public string? Name { get; set; }
 
