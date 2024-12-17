@@ -1,7 +1,3 @@
-extends:
-  - "spectral:oas"
-  - "spectral:arazzo"
-
 aliases:
   requestOrResponseJsonContent:
     - "$..content[application/json]"
