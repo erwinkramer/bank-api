@@ -16,7 +16,7 @@ public class BankOperation
         return TypedResults.UnprocessableEntity();
     }
 
-    public static async Task<Results<Ok<BankModel>, NotFound, UnprocessableEntity>> GetBank([IdSchema][BankId] Guid id, BankDb db, HybridCache cache, CancellationToken token = default)
+    public static async Task<Results<Ok<BankModel>, NotFound, UnprocessableEntity>> GetBank([Bank][Id] Guid id, BankDb db, HybridCache cache, CancellationToken token = default)
     {
         try
         {
@@ -46,7 +46,7 @@ public class BankOperation
         return TypedResults.Created($"/bankitems/{bank.Id}", bank);
     }
 
-    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> UpdateBank([IdSchema][BankId] Guid id, BankModel inputBank, BankDb db)
+    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> UpdateBank([Bank][Id] Guid id, BankModel inputBank, BankDb db)
     {
         try
         {
@@ -65,7 +65,7 @@ public class BankOperation
         return TypedResults.UnprocessableEntity();
     }
 
-    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> DeleteBank([IdSchema][BankId] Guid id, BankDb db)
+    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> DeleteBank([Bank][Id] Guid id, BankDb db)
     {
         try
         {

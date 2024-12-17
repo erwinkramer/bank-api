@@ -10,7 +10,7 @@ public enum BankTier
 
 public class BankModel
 {
-    [IdSchema][BankId]
+    [Bank][Id]
     public Guid Id { get; set; }
 
     [DefaultValue("Guanchen")]
