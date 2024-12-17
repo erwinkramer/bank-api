@@ -2,8 +2,6 @@ using Gridify;
 using Gridify.EntityFramework;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Caching.Hybrid;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 
 public class BankOperation
 {
@@ -18,7 +16,7 @@ public class BankOperation
         return TypedResults.UnprocessableEntity();
     }
 
-    public static async Task<Results<Ok<BankModel>, NotFound, UnprocessableEntity>> GetBank([Description("Id of the bank.")][MaxLength(36)] Guid id, BankDb db, HybridCache cache, CancellationToken token = default)
+    public static async Task<Results<Ok<BankModel>, NotFound, UnprocessableEntity>> GetBank([IdSchema][BankId] Guid id, BankDb db, HybridCache cache, CancellationToken token = default)
     {
         try
         {
@@ -48,7 +46,7 @@ public class BankOperation
         return TypedResults.Created($"/bankitems/{bank.Id}", bank);
     }
 
-    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> UpdateBank([Description("Id of the bank.")][MaxLength(36)] Guid id, BankModel inputBank, BankDb db)
+    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> UpdateBank([IdSchema][BankId] Guid id, BankModel inputBank, BankDb db)
     {
         try
         {
@@ -67,7 +65,7 @@ public class BankOperation
         return TypedResults.UnprocessableEntity();
     }
 
-    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> DeleteBank([Description("Id of the bank.")][MaxLength(36)] Guid id, BankDb db)
+    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> DeleteBank([IdSchema][BankId] Guid id, BankDb db)
     {
         try
         {

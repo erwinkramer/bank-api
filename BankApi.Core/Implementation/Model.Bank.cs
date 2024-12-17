@@ -10,8 +10,7 @@ public enum BankTier
 
 public class BankModel
 {
-    [Description("Id of the bank.")]
-    [MaxLength(36)]
+    [IdSchema][BankId]
     public Guid Id { get; set; }
 
     [DefaultValue("Guanchen")]

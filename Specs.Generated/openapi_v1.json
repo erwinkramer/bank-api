@@ -1675,7 +1675,7 @@
         "type": "object",
         "properties": {
           "gitHubProfile": {
-            "maxLength": 36,
+            "maxLength": 2147483647,
             "type": "string",
             "description": "GitHub profile of the teller.",
             "format": "uri",
