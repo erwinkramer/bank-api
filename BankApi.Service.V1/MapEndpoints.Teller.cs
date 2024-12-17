@@ -5,7 +5,8 @@ public static partial class ApiMapper
         var tellerItems = app.MapGroup("/teller")
             .WithTags("Administrative")
             .RequireRateLimiting("fixed")
-            .RequireAuthorization("bank_god");
+            .RequireAuthorization("bank_god")
+            .RequireCors("generic");
 
         tellerItems.MapGet("/", TellerOperation.GetBankTeller)
             .WithName("GetBankTeller").WithSummary("Get bank teller")
