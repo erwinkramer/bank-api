@@ -87,9 +87,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -115,9 +122,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -130,6 +144,13 @@
             "description": "Internal server error.",
             "headers": {
               "Access-Control-Allow-Origin": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
+              "Access-Control-Expose-Headers": {
                 "schema": {
                   "maxLength": 7070,
                   "pattern": ".*",
@@ -164,9 +185,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -189,7 +217,7 @@
             "headers": {
               "Retry-After": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "format": "int32"
@@ -202,9 +230,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -252,9 +287,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -280,9 +322,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -295,6 +344,13 @@
             "description": "Internal server error.",
             "headers": {
               "Access-Control-Allow-Origin": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
+              "Access-Control-Expose-Headers": {
                 "schema": {
                   "maxLength": 7070,
                   "pattern": ".*",
@@ -329,9 +385,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -354,7 +417,7 @@
             "headers": {
               "Retry-After": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "format": "int32"
@@ -367,9 +430,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -422,9 +492,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -450,9 +527,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -471,9 +555,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -486,6 +577,13 @@
             "description": "Internal server error.",
             "headers": {
               "Access-Control-Allow-Origin": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
+              "Access-Control-Expose-Headers": {
                 "schema": {
                   "maxLength": 7070,
                   "pattern": ".*",
@@ -520,9 +618,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -545,7 +650,7 @@
             "headers": {
               "Retry-After": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "format": "int32"
@@ -558,9 +663,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -621,9 +733,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -642,9 +761,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -663,9 +789,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -678,6 +811,13 @@
             "description": "Internal server error.",
             "headers": {
               "Access-Control-Allow-Origin": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
+              "Access-Control-Expose-Headers": {
                 "schema": {
                   "maxLength": 7070,
                   "pattern": ".*",
@@ -712,9 +852,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -737,7 +884,7 @@
             "headers": {
               "Retry-After": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "format": "int32"
@@ -750,9 +897,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -803,9 +957,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -824,9 +985,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -845,9 +1013,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -860,6 +1035,13 @@
             "description": "Internal server error.",
             "headers": {
               "Access-Control-Allow-Origin": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
+              "Access-Control-Expose-Headers": {
                 "schema": {
                   "maxLength": 7070,
                   "pattern": ".*",
@@ -894,9 +1076,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -919,7 +1108,7 @@
             "headers": {
               "Retry-After": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "format": "int32"
@@ -932,9 +1121,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -974,9 +1170,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -1002,9 +1205,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -1023,9 +1233,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -1038,6 +1255,13 @@
             "description": "Internal server error.",
             "headers": {
               "Access-Control-Allow-Origin": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
+              "Access-Control-Expose-Headers": {
                 "schema": {
                   "maxLength": 7070,
                   "pattern": ".*",
@@ -1072,9 +1296,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -1097,7 +1328,7 @@
             "headers": {
               "Retry-After": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "format": "int32"
@@ -1110,9 +1341,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -1152,9 +1390,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -1180,9 +1425,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -1201,9 +1453,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -1216,6 +1475,13 @@
             "description": "Internal server error.",
             "headers": {
               "Access-Control-Allow-Origin": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
+              "Access-Control-Expose-Headers": {
                 "schema": {
                   "maxLength": 7070,
                   "pattern": ".*",
@@ -1250,9 +1516,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",
@@ -1275,7 +1548,7 @@
             "headers": {
               "Retry-After": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "format": "int32"
@@ -1288,9 +1561,16 @@
                   "type": "string"
                 }
               },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "maxLength": 7070,
+                  "pattern": ".*",
+                  "type": "string"
+                }
+              },
               "X-RateLimit-Limit": {
                 "schema": {
-                  "maximum": 70707070,
+                  "maximum": 2147483647,
                   "minimum": 0,
                   "type": "integer",
                   "description": "The maximum number of requests you're permitted to make per hour.",

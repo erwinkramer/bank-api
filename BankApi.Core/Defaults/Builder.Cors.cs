@@ -10,7 +10,7 @@ public static partial class ApiBuilder
                        .AllowAnyHeader()
                        .AllowAnyMethod()
                        .AllowAnyOrigin()
-                       .WithExposedHeaders("Access-Control-Allow-Origin");
+                       .WithExposedHeaders("Access-Control-Allow-Origin", "X-RateLimit-Limit", "Content-Type");
              });
          });
 

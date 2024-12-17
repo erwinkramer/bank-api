@@ -13,21 +13,25 @@ Ocp-Apim-Subscription-Key: Lifetime Subscription
 ###
 
 https://{{host}}/{{apiVersion}}/teller
+Origin: https://{{host}} 
 Authorization: Bearer {{localToken}}
 
 ###
 
 https://{{host}}/{{apiVersion}}/teller/reports
+Origin: https://{{host}}
 Authorization: Bearer {{localToken}}
 
 ###
 
 https://{{host}}/{{apiVersion}}/teller
+Origin: https://{{host}} 
 Authorization: Bearer {{openIdToken}}
 
 ###
 
 https://{{host}}/{{apiVersion}}/banks/bed8a856-1d6a-4c2e-9392-a126a7eda415
+Origin: https://{{host}} 
 Ocp-Apim-Subscription-Key: Lifetime Subscription
 
 ###
@@ -37,11 +41,13 @@ https://{{host}}/{{apiVersion}}/banks
   &pageSize=21
   &orderBy=bankTier asc, id desc
   &filter=bankTier != B
+Origin: https://{{host}} 
 Ocp-Apim-Subscription-Key: Lifetime Subscription
 
 ###
 
 POST https://{{host}}/{{apiVersion}}/banks
+Origin: https://{{host}} 
 Ocp-Apim-Subscription-Key: Lifetime Subscription
 Content-Type: application/json
 
