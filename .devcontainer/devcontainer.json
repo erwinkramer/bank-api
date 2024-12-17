@@ -44,5 +44,5 @@
 	],
 	// Remove absolutely every file on the .gitignore list, so we don't run into permission issues. 
 	// Also see https://github.com/microsoft/vscode-remote-release/issues/9099#issuecomment-2541564211
-	"postStartCommand": "git clean -xdf" 
+	"postStartCommand": "git clean -xdf && dotnet dev-certs https --trust" 
 }
