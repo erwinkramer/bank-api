@@ -7,7 +7,8 @@ documentationUrl: https://www.guanchen.nl/
 rules:
   bank-tag-requires-industry-value:
     description: Tags must be from the bank industry.
-    message: This is not an bank industry value chain business capabilities keywords.
+    message:
+      This is not an bank industry value chain business capabilities keywords.
       Please make sure there is at least one qualified tag name.
     given:
       - $.tags.*.name
@@ -65,7 +66,8 @@ rules:
 
   bank-summary-well-formed:
     description: Operations must have a well-formed summary.
-    message: Operation summary is not well-formed. Must start with a capital letter,
+    message:
+      Operation summary is not well-formed. Must start with a capital letter,
       containing only letters, numbers, and spaces, and no dots, and the total length should be at most 25 characters.
     severity: warn
     given: "$..summary"
