@@ -1,4 +1,3 @@
-using Gridify;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
@@ -16,8 +15,8 @@ class TransformerExampleSchema : IOpenApiSchemaTransformer
             Type t when t == typeof(BankModel) =>
                 (apiExamples["BankModel"] as OpenApiArray)?[0],
 
-            Type t when t == typeof(AnnotatedPaging<BankModel>) =>
-                (apiExamples["AnnotatedPagingOfBankModel"] as OpenApiArray)?[0],
+            Type t when t == typeof(Paging<BankModel>) =>
+                (apiExamples["PagingOfBankModel"] as OpenApiArray)?[0],
 
             Type t when t == typeof(TellerReportList) =>
                 (apiExamples["TellerReportList"] as OpenApiArray)?[0],

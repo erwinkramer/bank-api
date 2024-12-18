@@ -1,16 +1,15 @@
-using Gridify;
 using Gridify.EntityFramework;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Caching.Hybrid;
 
 public class BankOperation
 {
-    public static async Task<Results<Ok<AnnotatedPaging<BankModel>>, UnprocessableEntity>> GetAllBanks([AsParameters] GridQuery query, BankDb db)
+    public static async Task<Results<Ok<Paging<BankModel>>, UnprocessableEntity>> GetAllBanks([AsParameters] GridQuery query, BankDb db)
     {
         try
         {
             var pagingResult = await db.Banks.GridifyAsync(query);
-            return TypedResults.Ok(new AnnotatedPaging<BankModel>(pagingResult.Count, pagingResult.Data));
+            return TypedResults.Ok(new Paging<BankModel>(pagingResult.Count, pagingResult.Data));
         }
         catch { }
         return TypedResults.UnprocessableEntity();

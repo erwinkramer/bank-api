@@ -1,34 +1,22 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Gridify
+public class Paging<T> : Gridify.Paging<T>
 {
-    public class AnnotatedPaging<T>
+    public Paging(int count, IEnumerable<T> data) : base(count, data)
     {
-        private readonly Paging<T> _paging;
-
-        public AnnotatedPaging(int count, IEnumerable<T> data)
-        {
-            _paging = new Paging<T>(count, data);
-        }
-
-        public AnnotatedPaging() : this(0, System.Linq.Enumerable.Empty<T>())
-        {
-        }
-
-        [Range(0, Int32.MaxValue)]
-        public int Count
-        {
-            get => _paging.Count;
-            set => _paging.Count = value;
-        }
-
-        [MaxLength(Int32.MaxValue)]
-        public IEnumerable<T> Data
-        {
-            get => _paging.Data;
-            set => _paging.Data = value;
-        }
-
-        public void Deconstruct(out int count, out IEnumerable<T> data) => _paging.Deconstruct(out count, out data);
+        Data = data;
+        Count = count;
     }
+
+    public Paging() : base(0, Enumerable.Empty<T>())
+    {
+        Data = Enumerable.Empty<T>(); // Default initialization
+        Count = 0;
+    }
+
+    [Range(0, Int32.MaxValue)]
+    public new int Count { get; set; }
+
+    [MaxLength(Int32.MaxValue)]
+    public new IEnumerable<T> Data { get; set; }
 }

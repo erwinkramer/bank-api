@@ -107,7 +107,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnnotatedPagingOfBankModel"
+                  "$ref": "#/components/schemas/PagingOfBankModel"
                 }
               }
             }
@@ -1594,41 +1594,6 @@
   },
   "components": {
     "schemas": {
-      "AnnotatedPagingOfBankModel": {
-        "type": "object",
-        "properties": {
-          "count": {
-            "maximum": 2147483647,
-            "minimum": 0,
-            "type": "integer",
-            "format": "int32"
-          },
-          "data": {
-            "maxItems": 2147483647,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BankModel"
-            }
-          }
-        },
-        "example": {
-          "count": 2,
-          "data": [
-            {
-              "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
-              "name": "Foo",
-              "isCompliant": true,
-              "bankTier": "A"
-            },
-            {
-              "id": "956b7056-6e98-4a92-af07-91634ce4d421",
-              "name": "Bar",
-              "isCompliant": false,
-              "bankTier": "B"
-            }
-          ]
-        }
-      },
       "BankModel": {
         "type": "object",
         "properties": {
@@ -1670,6 +1635,41 @@
         ],
         "description": "Tier of the bank.",
         "default": "A"
+      },
+      "PagingOfBankModel": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "maximum": 2147483647,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "maxItems": 2147483647,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BankModel"
+            }
+          }
+        },
+        "example": {
+          "count": 2,
+          "data": [
+            {
+              "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
+              "name": "Foo",
+              "isCompliant": true,
+              "bankTier": "A"
+            },
+            {
+              "id": "956b7056-6e98-4a92-af07-91634ce4d421",
+              "name": "Bar",
+              "isCompliant": false,
+              "bankTier": "B"
+            }
+          ]
+        }
       },
       "Teller": {
         "type": "object",
