@@ -8,7 +8,7 @@ rules:
   bank-tag-requires-industry-value:
     description: Tags must be from the bank industry.
     message:
-      This is not an bank industry value chain business capabilities keywords.
+      This is not a bank industry value chain business capability keyword.
       Please make sure there is at least one qualified tag name.
     given:
       - $.tags.*.name
