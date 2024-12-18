@@ -65,7 +65,7 @@ class TransformerOperation : IOpenApiOperationTransformer
             response.Value.Headers.Add("Access-Control-Allow-Origin", CreateStringHeader());
             response.Value.Headers.Add("Access-Control-Expose-Headers", CreateStringHeader());
 
-            if (response.Key.StartsWith("2") || response.Key.StartsWith("4"))
+            if (response.Key[0] is '2' or '4')
             {
                 response.Value.Headers.Add("X-RateLimit-Limit", CreateIntHeader("The maximum number of requests you're permitted to make per hour."));
             }
