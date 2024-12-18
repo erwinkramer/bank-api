@@ -10,7 +10,8 @@
 				"ms-dotnettools.csdevkit",
 				"ms-graph.kiota",
 				"stoplight.spectral",
-				"streetsidesoftware.code-spell-checker"
+				"streetsidesoftware.code-spell-checker",
+				"github.copilot"
 			],
 			"settings": {
 				"terminal.integrated.shell.linux": "/bin/bash",
