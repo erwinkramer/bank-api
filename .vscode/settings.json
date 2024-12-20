@@ -1,6 +1,9 @@
 {
     "dotnet.testWindow.useTestingPlatformProtocol": true,
     "spectral.rulesetFile": ".spectral/main.yml",
+    "spectral.validateFiles": [
+        "**/Specs.Generated/*.json"
+    ],
     "cSpell.words": [
         "Apim",
         "appexamples",
