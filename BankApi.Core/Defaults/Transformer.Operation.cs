@@ -75,8 +75,8 @@ class TransformerOperation : IOpenApiOperationTransformer
     private OpenApiSchema CreateStringSchema() => new OpenApiSchema
     {
         Type = "string",
-        Pattern = ".*",
-        MaxLength = Int32.MaxValue
+        Pattern = GlobalConfiguration.ApiSettings!.GenericBoundaries.Regex,
+        MaxLength = GlobalConfiguration.ApiSettings!.GenericBoundaries.Maximum
     };
 
     private OpenApiHeader CreateStringHeader() => new OpenApiHeader
@@ -90,8 +90,8 @@ class TransformerOperation : IOpenApiOperationTransformer
         {
             Type = "integer",
             Format = "int32",
-            Minimum = 0,
-            Maximum = Int32.MaxValue,
+            Minimum = GlobalConfiguration.ApiSettings!.GenericBoundaries.Minimum,
+            Maximum = GlobalConfiguration.ApiSettings!.GenericBoundaries.Maximum,
             Description = description
         }
     };

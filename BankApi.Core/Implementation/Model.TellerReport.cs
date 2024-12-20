@@ -4,16 +4,16 @@ using System.ComponentModel.DataAnnotations;
 public class TellerReport
 {
     [Description("Name of the report.")]
-    [RegularExpression(".*")]
-    [MaxLength(Int32.MaxValue)]
+    [GenericRegularExpression]
+    [GenericMaxLength]
     public string? Name { get; set; }
 }
 
 public class TellerReportList
 {
-    [MaxLength(Int32.MaxValue)]
+    [GenericMaxLength]
     public List<TellerReport> data { get; set; } = new();
 
-    [Range(0, Int32.MaxValue)]
+    [GenericRange]
     public int count { get; set; } = 0;
 }

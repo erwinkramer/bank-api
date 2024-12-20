@@ -14,9 +14,9 @@ public class Paging<T> : Gridify.Paging<T>
         Count = 0;
     }
 
-    [Range(0, Int32.MaxValue)]
+    [GenericRange]
     public new int Count { get; set; }
 
-    [MaxLength(Int32.MaxValue)]
+    [GenericMaxLength]
     public new IEnumerable<T> Data { get; set; }
 }
