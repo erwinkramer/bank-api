@@ -1,4 +1,4 @@
 extends:
-  - "spectral:oas"
+  - spectral:oas
   - .spectral/ruleset.bank.yml
-  - .spectral/ruleset.owasp2023.json
+  - https://unpkg.com/@stoplight/spectral-owasp-ruleset/dist/ruleset.mjs
