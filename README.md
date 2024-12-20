@@ -13,11 +13,11 @@ The Bank API is a design reference project suitable to bootstrap development for
 
 The API complies to:
 
-✅ [OWASP API Security Top 10 - v2023](https://owasp.org/API-Security/editions/2023/en/0x11-t10/) via [Spectral OWASP API Security](https://github.com/stoplightio/spectral-owasp-ruleset?tab=readme-ov-file#spectral-owasp-api-security)
+✅ [OWASP API Security Top 10 - v2023](https://owasp.org/API-Security/editions/2023/en/0x11-t10/) via [Spectral OWASP API Security ruleset](https://github.com/stoplightio/spectral-owasp-ruleset?tab=readme-ov-file#spectral-owasp-api-security)
 
 ✅ [OpenAPI Specification v3.0.1](https://spec.openapis.org/oas/v3.0.1.html) via [Spectral "oas" ruleset](https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules)
 
-✅ Additional naming conventions, structure, and clarity via [Bank ruleset](.spectral/ruleset.bank.yml)
+✅ Additional naming conventions, structure, and clarity via [Bank API  project ruleset](.spectral/ruleset.bank.yml)
 
 ✅ [California Consumer Privacy Act (CCPA)](https://oag.ca.gov/privacy/ccpa) and [General Data Protection Regulation (GDPR)](https://europa.eu/youreurope/business/dealing-with-customers/data-protection/data-protection-gdpr/index_en.htm#:~:text=The%20GDPR%20sets%20out%20detailed,people%20living%20in%20the%20EU.) via [ASP.Net Core Compliance](https://andrewlock.net/redacting-sensitive-data-with-microsoft-extensions-compliance/)
 
