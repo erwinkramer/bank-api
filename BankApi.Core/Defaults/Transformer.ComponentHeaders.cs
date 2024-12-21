@@ -12,6 +12,7 @@ class TransformerComponentHeaders() : IOpenApiDocumentTransformer
         });
 
         //because of a bug in the spectral OWASP linter, we add the Access-Control-Allow-Origin header to the components and use it
+        //please see https://github.com/stoplightio/spectral-owasp-ruleset/issues/71
         document.Components.Headers.Add("Access-Control-Allow-Origin", new OpenApiHeader
         {
             Schema = OpenApiFactory.CreateRefSchema("GenericString")
