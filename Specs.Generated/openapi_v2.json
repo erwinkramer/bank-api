@@ -81,27 +81,13 @@
             "description": "OK",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             },
             "content": {
@@ -116,147 +102,24 @@
             "description": "Unprocessable Entity",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             }
           },
           "500": {
-            "description": "Internal server error.",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "InternalServerError": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/500"
           },
           "401": {
-            "description": "Unauthorized request.",
-            "headers": {
-              "WWW-Authenticate": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "UnauthorizedRequest": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/401"
           },
           "429": {
-            "description": "Too many requests.",
-            "headers": {
-              "Retry-After": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The number of seconds to wait before retrying the request.",
-                  "format": "int32"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "TooManyRequests": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/429"
           }
         }
       },
@@ -282,27 +145,13 @@
             "description": "Created",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             },
             "content": {
@@ -317,147 +166,24 @@
             "description": "Unprocessable Entity",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             }
           },
           "500": {
-            "description": "Internal server error.",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "InternalServerError": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/500"
           },
           "401": {
-            "description": "Unauthorized request.",
-            "headers": {
-              "WWW-Authenticate": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "UnauthorizedRequest": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/401"
           },
           "429": {
-            "description": "Too many requests.",
-            "headers": {
-              "Retry-After": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The number of seconds to wait before retrying the request.",
-                  "format": "int32"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "TooManyRequests": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/429"
           }
         }
       }
@@ -488,27 +214,13 @@
             "description": "OK",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             },
             "content": {
@@ -523,27 +235,13 @@
             "description": "Not Found",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             }
           },
@@ -551,147 +249,24 @@
             "description": "Unprocessable Entity",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             }
           },
           "500": {
-            "description": "Internal server error.",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "InternalServerError": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/500"
           },
           "401": {
-            "description": "Unauthorized request.",
-            "headers": {
-              "WWW-Authenticate": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "UnauthorizedRequest": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/401"
           },
           "429": {
-            "description": "Too many requests.",
-            "headers": {
-              "Retry-After": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The number of seconds to wait before retrying the request.",
-                  "format": "int32"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "TooManyRequests": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/429"
           }
         }
       },
@@ -730,27 +305,13 @@
             "description": "No Content",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             }
           },
@@ -758,27 +319,13 @@
             "description": "Not Found",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             }
           },
@@ -786,147 +333,24 @@
             "description": "Unprocessable Entity",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             }
           },
           "500": {
-            "description": "Internal server error.",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "InternalServerError": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/500"
           },
           "401": {
-            "description": "Unauthorized request.",
-            "headers": {
-              "WWW-Authenticate": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "UnauthorizedRequest": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/401"
           },
           "429": {
-            "description": "Too many requests.",
-            "headers": {
-              "Retry-After": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The number of seconds to wait before retrying the request.",
-                  "format": "int32"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "TooManyRequests": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/429"
           }
         }
       },
@@ -955,27 +379,13 @@
             "description": "No Content",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             }
           },
@@ -983,27 +393,13 @@
             "description": "Not Found",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             }
           },
@@ -1011,147 +407,24 @@
             "description": "Unprocessable Entity",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             }
           },
           "500": {
-            "description": "Internal server error.",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "InternalServerError": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/500"
           },
           "401": {
-            "description": "Unauthorized request.",
-            "headers": {
-              "WWW-Authenticate": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "UnauthorizedRequest": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/401"
           },
           "429": {
-            "description": "Too many requests.",
-            "headers": {
-              "Retry-After": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The number of seconds to wait before retrying the request.",
-                  "format": "int32"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "TooManyRequests": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/429"
           }
         }
       }
@@ -1169,27 +442,13 @@
             "description": "OK",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             },
             "content": {
@@ -1204,27 +463,13 @@
             "description": "Not Found",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             }
           },
@@ -1232,147 +477,24 @@
             "description": "Unprocessable Entity",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             }
           },
           "500": {
-            "description": "Internal server error.",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "InternalServerError": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/500"
           },
           "401": {
-            "description": "Unauthorized request.",
-            "headers": {
-              "WWW-Authenticate": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "UnauthorizedRequest": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/401"
           },
           "429": {
-            "description": "Too many requests.",
-            "headers": {
-              "Retry-After": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The number of seconds to wait before retrying the request.",
-                  "format": "int32"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "TooManyRequests": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/429"
           }
         }
       }
@@ -1390,27 +512,13 @@
             "description": "OK",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             },
             "content": {
@@ -1425,27 +533,13 @@
             "description": "Not Found",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             }
           },
@@ -1453,147 +547,24 @@
             "description": "Unprocessable Entity",
             "headers": {
               "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/Access-Control-Expose-Headers"
               },
               "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
+                "$ref": "#/components/headers/X-RateLimit-Limit"
               }
             }
           },
           "500": {
-            "description": "Internal server error.",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "InternalServerError": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/500"
           },
           "401": {
-            "description": "Unauthorized request.",
-            "headers": {
-              "WWW-Authenticate": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "UnauthorizedRequest": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/401"
           },
           "429": {
-            "description": "Too many requests.",
-            "headers": {
-              "Retry-After": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The number of seconds to wait before retrying the request.",
-                  "format": "int32"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "Access-Control-Expose-Headers": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              },
-              "X-RateLimit-Limit": {
-                "schema": {
-                  "maximum": 70707070,
-                  "minimum": 0,
-                  "type": "integer",
-                  "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "TooManyRequests": {
-                "schema": {
-                  "maxLength": 70707070,
-                  "pattern": ".*",
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/responses/429"
           }
         }
       }
@@ -1732,6 +703,115 @@
               "name": "dailyReview.txt"
             }
           ]
+        }
+      }
+    },
+    "responses": {
+      "500": {
+        "description": "Internal server error.",
+        "headers": {
+          "Access-Control-Allow-Origin": {
+            "$ref": "#/components/headers/Access-Control-Allow-Origin"
+          },
+          "Access-Control-Expose-Headers": {
+            "$ref": "#/components/headers/Access-Control-Expose-Headers"
+          }
+        },
+        "content": {
+          "InternalServerError": {
+            "schema": {
+              "maxLength": 70707070,
+              "pattern": ".*",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized request.",
+        "headers": {
+          "WWW-Authenticate": {
+            "schema": {
+              "maxLength": 70707070,
+              "pattern": ".*",
+              "type": "string"
+            }
+          },
+          "Access-Control-Allow-Origin": {
+            "$ref": "#/components/headers/Access-Control-Allow-Origin"
+          },
+          "Access-Control-Expose-Headers": {
+            "$ref": "#/components/headers/Access-Control-Expose-Headers"
+          },
+          "X-RateLimit-Limit": {
+            "$ref": "#/components/headers/X-RateLimit-Limit"
+          }
+        },
+        "content": {
+          "UnauthorizedRequest": {
+            "schema": {
+              "maxLength": 70707070,
+              "pattern": ".*",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "429": {
+        "description": "Too many requests.",
+        "headers": {
+          "Retry-After": {
+            "schema": {
+              "maximum": 70707070,
+              "minimum": 0,
+              "type": "integer",
+              "description": "The number of seconds to wait before retrying the request.",
+              "format": "int32"
+            }
+          },
+          "Access-Control-Allow-Origin": {
+            "$ref": "#/components/headers/Access-Control-Allow-Origin"
+          },
+          "Access-Control-Expose-Headers": {
+            "$ref": "#/components/headers/Access-Control-Expose-Headers"
+          },
+          "X-RateLimit-Limit": {
+            "$ref": "#/components/headers/X-RateLimit-Limit"
+          }
+        },
+        "content": {
+          "TooManyRequests": {
+            "schema": {
+              "maxLength": 70707070,
+              "pattern": ".*",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "headers": {
+      "Access-Control-Allow-Origin": {
+        "schema": {
+          "maxLength": 70707070,
+          "pattern": ".*",
+          "type": "string"
+        }
+      },
+      "Access-Control-Expose-Headers": {
+        "schema": {
+          "maxLength": 70707070,
+          "pattern": ".*",
+          "type": "string"
+        }
+      },
+      "X-RateLimit-Limit": {
+        "schema": {
+          "maximum": 70707070,
+          "minimum": 0,
+          "type": "integer",
+          "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
+          "format": "int32"
         }
       }
     },

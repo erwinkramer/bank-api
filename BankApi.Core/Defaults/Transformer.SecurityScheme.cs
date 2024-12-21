@@ -9,7 +9,6 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
 {
     public async Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
-        document.Components ??= new OpenApiComponents();
         var authenticationSchemes = await authenticationSchemeProvider.GetAllSchemesAsync();
 
         foreach (AuthenticationScheme authenticationScheme in authenticationSchemes)
