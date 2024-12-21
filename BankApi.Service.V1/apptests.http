@@ -28,9 +28,17 @@ https://{{host}}/{{apiVersion}}/teller
 Origin: https://{{host}} 
 Authorization: Bearer {{openIdToken}}
 
-###
+### 
 
 https://{{host}}/{{apiVersion}}/banks/bed8a856-1d6a-4c2e-9392-a126a7eda415
+Origin: https://{{host}} 
+Ocp-Apim-Subscription-Key: Lifetime Subscription
+
+### 
+
+# Error Handler
+
+https://{{host}}/{{apiVersion}}/banks/not-a-guid
 Origin: https://{{host}} 
 Ocp-Apim-Subscription-Key: Lifetime Subscription
 
