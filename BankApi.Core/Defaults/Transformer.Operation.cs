@@ -13,49 +13,40 @@ class TransformerOperation : IOpenApiOperationTransformer
 
     private void AddStandardResponses(OpenApiOperation operation)
     {
-        var responses = new[]
+        operation.Responses.Add("500", new OpenApiResponse
         {
-            (
-                statusCode: "500",
-                description: "Internal server error.",
-                contentKey: "InternalServerError",
-                schema: CreateStringSchema(),
-                headers:  new Dictionary<string, OpenApiHeader>()
-            ),
-            (
-                statusCode: "401",
-                description: "Unauthorized request.",
-                contentKey: "UnauthorizedRequest",
-                schema: CreateStringSchema(),
-                headers: new Dictionary<string, OpenApiHeader>
-                {
-                    { "WWW-Authenticate", CreateStringHeader() }
-                }
-            ),
-            (
-                statusCode: "429",
-                description: "Too many requests.",
-                contentKey: "TooManyRequests",
-                schema: CreateStringSchema(),
-                headers: new Dictionary<string, OpenApiHeader>
-                {
-                    { "Retry-After", CreateIntHeader(null) }
-                }
-            )
-        };
-
-        foreach (var (statusCode, description, contentKey, schema, headers) in responses)
-        {
-            operation.Responses.Add(statusCode, new OpenApiResponse
+            Description = "Internal server error.",
+            Content = new Dictionary<string, OpenApiMediaType>
             {
-                Description = description,
-                Content = new Dictionary<string, OpenApiMediaType>
-                {
-                    { contentKey, new OpenApiMediaType { Schema = schema } }
-                },
-                Headers = headers
-            });
-        }
+                { "InternalServerError", new OpenApiMediaType { Schema = CreateStringSchema() } }
+            }
+        });
+
+        operation.Responses.Add("401", new OpenApiResponse
+        {
+            Description = "Unauthorized request.",
+            Content = new Dictionary<string, OpenApiMediaType>
+            {
+                { "UnauthorizedRequest", new OpenApiMediaType { Schema = CreateStringSchema() } }
+            },
+            Headers = new Dictionary<string, OpenApiHeader>
+            {
+                { "WWW-Authenticate", CreateStringHeader() }
+            }
+        });
+
+        operation.Responses.Add("429", new OpenApiResponse
+        {
+            Description = "Too many requests.",
+            Content = new Dictionary<string, OpenApiMediaType>
+            {
+                { "TooManyRequests", new OpenApiMediaType { Schema = CreateStringSchema() } }
+            },
+            Headers = new Dictionary<string, OpenApiHeader>
+            {
+                { "Retry-After", CreateIntHeader(null) }
+            }
+        });
     }
 
     private void AddHeadersToResponses(OpenApiOperation operation)

@@ -14,11 +14,9 @@ public class GenericMaxLengthAttribute : MaxLengthAttribute
     { }
 }
 
-
 public class GenericRegularExpressionAttribute : RegularExpressionAttribute
 {
     public GenericRegularExpressionAttribute()
         : base(GlobalConfiguration.ApiSettings!.GenericBoundaries.Regex)
     { }
 }
-
