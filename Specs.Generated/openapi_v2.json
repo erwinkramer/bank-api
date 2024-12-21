@@ -572,6 +572,11 @@
   },
   "components": {
     "schemas": {
+      "GenericString": {
+        "maxLength": 70707070,
+        "pattern": ".*",
+        "type": "string"
+      },
       "BankModel": {
         "type": "object",
         "properties": {
@@ -720,9 +725,7 @@
         "content": {
           "InternalServerError": {
             "schema": {
-              "maxLength": 70707070,
-              "pattern": ".*",
-              "type": "string"
+              "$ref": "#/components/schemas/GenericString"
             }
           }
         }
@@ -732,9 +735,7 @@
         "headers": {
           "WWW-Authenticate": {
             "schema": {
-              "maxLength": 70707070,
-              "pattern": ".*",
-              "type": "string"
+              "$ref": "#/components/schemas/GenericString"
             }
           },
           "Access-Control-Allow-Origin": {
@@ -750,9 +751,7 @@
         "content": {
           "UnauthorizedRequest": {
             "schema": {
-              "maxLength": 70707070,
-              "pattern": ".*",
-              "type": "string"
+              "$ref": "#/components/schemas/GenericString"
             }
           }
         }
@@ -782,9 +781,7 @@
         "content": {
           "TooManyRequests": {
             "schema": {
-              "maxLength": 70707070,
-              "pattern": ".*",
-              "type": "string"
+              "$ref": "#/components/schemas/GenericString"
             }
           }
         }
@@ -793,16 +790,12 @@
     "headers": {
       "Access-Control-Allow-Origin": {
         "schema": {
-          "maxLength": 70707070,
-          "pattern": ".*",
-          "type": "string"
+          "$ref": "#/components/schemas/GenericString"
         }
       },
       "Access-Control-Expose-Headers": {
         "schema": {
-          "maxLength": 70707070,
-          "pattern": ".*",
-          "type": "string"
+          "$ref": "#/components/schemas/GenericString"
         }
       },
       "X-RateLimit-Limit": {

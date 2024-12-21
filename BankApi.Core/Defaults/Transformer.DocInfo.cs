@@ -15,6 +15,13 @@ class TransformerDocInfo() : IOpenApiDocumentTransformer
         document.Servers = GlobalConfiguration.ApiDocument!.Servers;
         document.Components ??= new OpenApiComponents();
 
+        document.Components.Schemas.Add("GenericString", new OpenApiSchema
+        {
+            Type = "string",
+            Pattern = GlobalConfiguration.ApiSettings!.GenericBoundaries.Regex,
+            MaxLength = GlobalConfiguration.ApiSettings!.GenericBoundaries.Maximum
+        });
+
         document.Components.Headers.Add("Access-Control-Allow-Origin", CreateStringHeader());
         document.Components.Headers.Add("Access-Control-Expose-Headers", CreateStringHeader());
         document.Components.Headers.Add("X-RateLimit-Limit", CreateIntHeader($"The maximum number of requests you're permitted to make in a window of {GlobalConfiguration.ApiSettings!.FixedWindowRateLimit.Window.Minutes} minutes."));
@@ -24,7 +31,7 @@ class TransformerDocInfo() : IOpenApiDocumentTransformer
             Description = "Internal server error.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "InternalServerError", new OpenApiMediaType { Schema = CreateStringSchema() } }
+                { "InternalServerError", new OpenApiMediaType { Schema = new OpenApiSchema { Reference = new OpenApiReference { Type = ReferenceType.Schema, Id = "GenericString" } } } }
             }
         });
 
@@ -33,7 +40,7 @@ class TransformerDocInfo() : IOpenApiDocumentTransformer
             Description = "Unauthorized request.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "UnauthorizedRequest", new OpenApiMediaType { Schema = CreateStringSchema() } }
+                { "UnauthorizedRequest", new OpenApiMediaType { Schema = new OpenApiSchema { Reference = new OpenApiReference { Type = ReferenceType.Schema, Id = "GenericString" } } } }
             },
             Headers = new Dictionary<string, OpenApiHeader>
             {
@@ -46,15 +53,15 @@ class TransformerDocInfo() : IOpenApiDocumentTransformer
             Description = "Too many requests.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "TooManyRequests", new OpenApiMediaType { Schema = CreateStringSchema() } }
+                { "TooManyRequests", new OpenApiMediaType { Schema = new OpenApiSchema { Reference = new OpenApiReference { Type = ReferenceType.Schema, Id = "GenericString" } } } }
             },
             Headers = new Dictionary<string, OpenApiHeader>
             {
                 { "Retry-After", CreateIntHeader("The number of seconds to wait before retrying the request.") }
             }
-        });     
+        });
 
-        AddHeadersToResponses(document.Components);     
+        AddHeadersToResponses(document.Components);
 
         return Task.CompletedTask;
     }
@@ -73,16 +80,9 @@ class TransformerDocInfo() : IOpenApiDocumentTransformer
         }
     }
 
-    private OpenApiSchema CreateStringSchema() => new OpenApiSchema
-    {
-        Type = "string",
-        Pattern = GlobalConfiguration.ApiSettings!.GenericBoundaries.Regex,
-        MaxLength = GlobalConfiguration.ApiSettings!.GenericBoundaries.Maximum
-    };
-
     private OpenApiHeader CreateStringHeader() => new OpenApiHeader
     {
-        Schema = CreateStringSchema()
+        Schema = new OpenApiSchema { Reference = new OpenApiReference { Type = ReferenceType.Schema, Id = "GenericString" } }
     };
 
     private OpenApiHeader CreateIntHeader(string? description) => new OpenApiHeader
