@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Extensions.Configuration;
 
 public class Test
 {
@@ -8,6 +9,9 @@ public class Test
     [Before(Class)]
     public static Task CreateContext()
     {
+        var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+        GlobalConfiguration.ApiSettings = config.GetRequiredSection("ApiSettings").Get<GlobalConfiguration.SettingsModel>()!;
+
         databaseContext = new MockDb().CreateDbContext();
         return Task.CompletedTask;
     }
