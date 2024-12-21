@@ -7,6 +7,9 @@ public static partial class ApiBuilder
         services.AddOpenApi(GlobalConfiguration.ApiDocument!.Info.Version, options =>
         {
             options.AddDocumentTransformer<TransformerDocInfo>();
+            options.AddDocumentTransformer<TransformerComponentSchemas>();
+            options.AddDocumentTransformer<TransformerComponentHeaders>();
+            options.AddDocumentTransformer<TransformerComponentResponses>();
             options.AddDocumentTransformer<TransformerSecurityScheme>();
             options.AddSchemaTransformer<TransformerExampleSchema>();
             options.AddOperationTransformer<TransformerOperation>();

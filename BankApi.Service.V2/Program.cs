@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 GlobalConfiguration.ApiDocument = builder.Configuration.GetRequiredSection("ApiDocument").Get<OpenApiDocument>()!;
 GlobalConfiguration.ApiSettings = builder.Configuration.GetRequiredSection("ApiSettings").Get<GlobalConfiguration.SettingsModel>()!;
-GlobalConfiguration.ApiExamples = OpenApiAnyFactory.CreateFromJson(File.ReadAllText("./appexamples.json"))!;
+GlobalConfiguration.ApiExamples = OpenApiFactory.CreateFromJson(File.ReadAllText("./appexamples.json"))!;
 
 GridifyGlobalConfiguration.EnableEntityFrameworkCompatibilityLayer();
 GridifyGlobalConfiguration.DefaultPageSize = GlobalConfiguration.ApiSettings.PageSize.Default;

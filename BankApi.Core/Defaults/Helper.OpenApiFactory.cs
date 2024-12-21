@@ -1,14 +1,21 @@
 /*
 
-Source: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/src/Swashbuckle.AspNetCore.SwaggerGen/SwaggerGenerator/OpenApiAnyFactory.cs
+Source is mostly: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/src/Swashbuckle.AspNetCore.SwaggerGen/SwaggerGenerator/OpenApiAnyFactory.cs
 
 */
 
 using System.Text.Json;
 using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
 
-public class OpenApiAnyFactory
+public class OpenApiFactory
 {
+    public static OpenApiHeader CreateGenericIntHeader(string? description) => new OpenApiHeader
+    {
+        Description = description,
+        Schema = new OpenApiSchema { Reference = new OpenApiReference { Type = ReferenceType.Schema, Id = "GenericInt" } }
+    };
+
     public static IOpenApiAny? CreateFromJson(string json)
     {
         try
