@@ -26,7 +26,7 @@ public static partial class ApiBuilder
                 {
                     context.HttpContext.Response.Headers.RetryAfter =
                         ((int)retryAfter.TotalSeconds).ToString();
-                    await context.HttpContext.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("Please try again later."));
+                    await context.HttpContext.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("Rate limit reached. Please try again later."));
                 }
                 return;
             };

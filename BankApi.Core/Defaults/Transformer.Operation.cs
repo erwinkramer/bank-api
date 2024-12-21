@@ -44,7 +44,7 @@ class TransformerOperation : IOpenApiOperationTransformer
             },
             Headers = new Dictionary<string, OpenApiHeader>
             {
-                { "Retry-After", CreateIntHeader(null) }
+                { "Retry-After", CreateIntHeader("The number of seconds to wait before retrying the request.") }
             }
         });
     }
@@ -58,7 +58,7 @@ class TransformerOperation : IOpenApiOperationTransformer
 
             if (response.Key[0] is '2' or '4')
             {
-                response.Value.Headers.Add("X-RateLimit-Limit", CreateIntHeader("The maximum number of requests you're permitted to make per hour."));
+                response.Value.Headers.Add("X-RateLimit-Limit", CreateIntHeader($"The maximum number of requests you're permitted to make in a window of {GlobalConfiguration.ApiSettings!.FixedWindowRateLimit.Window.Minutes} minutes."));
             }
         }
     }
