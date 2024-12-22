@@ -10,10 +10,10 @@ public static partial class ApiBuilder
             var exceptionFeature = context.Features.Get<IExceptionHandlerFeature>();
             switch (exceptionFeature?.Error)
             {
-                case DbException:
+                case InvalidOperationException or ArgumentException:
                     await Results.UnprocessableEntity().ExecuteAsync(context);
                     return;
-                case BadHttpRequestException:
+                case BadHttpRequestException or FormatException:
                     await Results.BadRequest().ExecuteAsync(context);
                     return;
             }
