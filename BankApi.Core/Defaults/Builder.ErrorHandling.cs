@@ -1,26 +1,45 @@
-using System.Data.Common;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 
 public static partial class ApiBuilder
 {
-    public static IApplicationBuilder UseErrorHandling(this IApplicationBuilder app)
+    public static IServiceCollection AddErrorHandling(this IServiceCollection services)
     {
-        app.UseExceptionHandler(exceptionHandlerApp => exceptionHandlerApp.Run(async context =>
+        services.AddExceptionHandler<ExceptionHandler>();
+        services.AddProblemDetails(options =>
         {
-            var exceptionFeature = context.Features.Get<IExceptionHandlerFeature>();
-            switch (exceptionFeature?.Error)
+            options.CustomizeProblemDetails = context =>
             {
-                case InvalidOperationException or ArgumentException:
-                    await Results.UnprocessableEntity().ExecuteAsync(context);
-                    return;
-                case BadHttpRequestException or FormatException:
-                    await Results.BadRequest().ExecuteAsync(context);
-                    return;
+                context.ProblemDetails.Instance = $"{context.HttpContext.Request.Method} {context.HttpContext.Request.Path}";
+                context.ProblemDetails.Extensions.TryAdd("requestId", context.HttpContext.TraceIdentifier);
+            };
+        });
+        return services;
+    }
+}
+
+public class ExceptionHandler(IProblemDetailsService problemDetailsService) : IExceptionHandler
+{
+    public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
+    {
+        var statusCode = exception switch
+        {
+            InvalidOperationException or ArgumentException => StatusCodes.Status422UnprocessableEntity,
+            BadHttpRequestException or FormatException => StatusCodes.Status400BadRequest,
+            _ => StatusCodes.Status500InternalServerError
+        };
+
+        httpContext.Response.StatusCode = statusCode;
+
+        return await problemDetailsService.TryWriteAsync(new ProblemDetailsContext
+        {
+            Exception = exception,
+            HttpContext = httpContext,
+            ProblemDetails = new ProblemDetails
+            {
+                Status = statusCode,
+                Detail = exception.Message
             }
-
-            await Results.Problem().ExecuteAsync(context);
-        }));
-
-        return app;
+        });
     }
 }
