@@ -12,7 +12,7 @@ public static partial class ApiBuilder
         return builder;
     }
 
-    public static async void ProvisionAzureStorage(this IServiceProvider provider)
+    public static async Task ProvisionAzureStorage(this IServiceProvider provider)
     {
         var container = provider.GetRequiredService<BlobServiceClient>()
                                 .GetBlobContainerClient("reports");

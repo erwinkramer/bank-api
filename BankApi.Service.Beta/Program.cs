@@ -35,7 +35,7 @@ app.MapOpenApi("/openapi/{documentName}.json");
 if (app.Environment.IsDevelopment())
 {
     app.AddOpenApiScalarReference();
-    app.Services.ProvisionAzureStorage();
+    await app.Services.ProvisionAzureStorage();
 }
 
 app.Services.EnsureDataServicesCreated();
