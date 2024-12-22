@@ -16,8 +16,6 @@ public static partial class ApiBuilder
         otel.WithMetrics(metrics =>
         {
             metrics.AddAspNetCoreInstrumentation();
-            metrics.AddMeter("Microsoft.AspNetCore.Hosting");
-            metrics.AddMeter("Microsoft.AspNetCore.Server.Kestrel");
         });
         otel.WithTracing(tracing =>
         {
