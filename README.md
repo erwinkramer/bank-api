@@ -132,7 +132,7 @@ This mode starts the API in the context of .NET Aspire.
 
 1. Extending Spectral rulesets from an NPM package [can be problematic](https://github.com/stoplightio/vscode-spectral/issues/214#issuecomment-2543132932).
 
-1. Exception handling is very minimal in this project, it can be improved, via [handler](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/handle-errors?view=aspnetcore-9.0#exception-handler) or [filter](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/min-api-filters?view=aspnetcore-9.0).
+1. Generic exception handling is minimally implemented via [ErrorHandling.cs](./BankApi.Core/Defaults/Builder.ErrorHandling.cs).
 
 ### Dev Container
 

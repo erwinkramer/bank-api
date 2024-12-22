@@ -115,6 +115,9 @@
           "500": {
             "$ref": "#/components/responses/500"
           },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
           "401": {
             "$ref": "#/components/responses/401"
           },
@@ -178,6 +181,9 @@
           },
           "500": {
             "$ref": "#/components/responses/500"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -261,6 +267,9 @@
           },
           "500": {
             "$ref": "#/components/responses/500"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -346,6 +355,9 @@
           "500": {
             "$ref": "#/components/responses/500"
           },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
           "401": {
             "$ref": "#/components/responses/401"
           },
@@ -420,6 +432,9 @@
           "500": {
             "$ref": "#/components/responses/500"
           },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
           "401": {
             "$ref": "#/components/responses/401"
           },
@@ -490,6 +505,9 @@
           "500": {
             "$ref": "#/components/responses/500"
           },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
           "401": {
             "$ref": "#/components/responses/401"
           },
@@ -559,6 +577,9 @@
           },
           "500": {
             "$ref": "#/components/responses/500"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -730,6 +751,27 @@
         },
         "content": {
           "InternalServerError": {
+            "schema": {
+              "$ref": "#/components/schemas/GenericString"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request.",
+        "headers": {
+          "Access-Control-Allow-Origin": {
+            "$ref": "#/components/headers/Access-Control-Allow-Origin"
+          },
+          "Access-Control-Expose-Headers": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-RateLimit-Limit": {
+            "$ref": "#/components/headers/X-RateLimit-Limit"
+          }
+        },
+        "content": {
+          "BadRequest": {
             "schema": {
               "$ref": "#/components/schemas/GenericString"
             }

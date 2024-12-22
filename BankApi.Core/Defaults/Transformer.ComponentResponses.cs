@@ -15,6 +15,15 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             }
         });
 
+        document.Components.Responses.Add("400", new OpenApiResponse
+        {
+            Description = "Bad request.",
+            Content = new Dictionary<string, OpenApiMediaType>
+            {
+                { "BadRequest", new OpenApiMediaType { Schema = OpenApiFactory.CreateRefSchema("GenericString") } }
+            }
+        });
+
         document.Components.Responses.Add("401", new OpenApiResponse
         {
             Description = "Unauthorized request.",

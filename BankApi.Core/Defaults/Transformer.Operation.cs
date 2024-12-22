@@ -18,6 +18,11 @@ class TransformerOperation : IOpenApiOperationTransformer
             Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "500" }
         });
 
+        operation.Responses.Add("400", new OpenApiResponse
+        {
+            Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "400" }
+        });
+
         operation.Responses.Add("401", new OpenApiResponse
         {
             Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "401" }
