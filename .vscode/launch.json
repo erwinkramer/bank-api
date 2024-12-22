@@ -2,22 +2,22 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "C#: App Host Debug (via Aspire)",
+            "name": "Aspire Orchestration",
             "type": "dotnet",
             "request": "launch",
             "projectPath": "${workspaceFolder}/BankApi.Orchestration/BankApi.Orchestration.csproj"
         },
         {
-            "name": "C#: Api Debug (with standalone Aspire) - V1",
+            "name": "API - Stable release channel",
             "type": "dotnet",
             "request": "launch",
-            "projectPath": "${workspaceFolder}/BankApi.Service.V1/BankApi.Service.V1.csproj"
+            "projectPath": "${workspaceFolder}/BankApi.Service.Stable/BankApi.Service.Stable.csproj"
         },
         {
-            "name": "C#: Api Debug (with standalone Aspire) - V2",
+            "name": "API - Beta release channel",
             "type": "dotnet",
             "request": "launch",
-            "projectPath": "${workspaceFolder}/BankApi.Service.V2/BankApi.Service.V2.csproj"
+            "projectPath": "${workspaceFolder}/BankApi.Service.Beta/BankApi.Service.Beta.csproj"
         }
     ]
 }

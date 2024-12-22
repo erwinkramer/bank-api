@@ -11,11 +11,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BankApi.Service.V1\BankApi.Service.V1.csproj" />
+    <ProjectReference Include="..\BankApi.Service.Stable\BankApi.Service.Stable.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BankApi.Service.V2\BankApi.Service.V2.csproj" />
+    <ProjectReference Include="..\BankApi.Service.Beta\BankApi.Service.Beta.csproj" />
   </ItemGroup>
 
   <ItemGroup>

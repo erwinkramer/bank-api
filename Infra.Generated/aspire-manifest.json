@@ -13,15 +13,15 @@
       "type": "value.v0",
       "connectionString": "{storage.outputs.blobEndpoint}"
     },
-    "BankApiService-V1": {
+    "BankApiService-Stable": {
       "type": "project.v0",
-      "path": "../BankApi.Service.V1/BankApi.Service.V1.csproj",
+      "path": "../BankApi.Service.Stable/BankApi.Service.Stable.csproj",
       "env": {
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY": "in_memory",
         "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true",
-        "HTTP_PORTS": "{BankApiService-V1.bindings.http.targetPort}",
+        "HTTP_PORTS": "{BankApiService-Stable.bindings.http.targetPort}",
         "ConnectionStrings__BankStorage": "{BankStorage.connectionString}"
       },
       "bindings": {
@@ -37,15 +37,15 @@
         }
       }
     },
-    "BankApiService-V2": {
+    "BankApiService-Beta": {
       "type": "project.v0",
-      "path": "../BankApi.Service.V2/BankApi.Service.V2.csproj",
+      "path": "../BankApi.Service.Beta/BankApi.Service.Beta.csproj",
       "env": {
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY": "in_memory",
         "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true",
-        "HTTP_PORTS": "{BankApiService-V2.bindings.http.targetPort}",
+        "HTTP_PORTS": "{BankApiService-Beta.bindings.http.targetPort}",
         "ConnectionStrings__BankStorage": "{BankStorage.connectionString}"
       },
       "bindings": {
