@@ -55,7 +55,7 @@ The API complies to:
 
 - [Spectral](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/using-openapi-documents?view=aspnetcore-9.0#lint-generated-openapi-documents-with-spectral) for linting
 
-- [OpenApiAnyFactory](./BankApi.Core/Defaults/Helper.OpenApiAnyFactory.cs) from [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) for parsing JSON to `IOpenApiAny` types
+- [OpenApiAnyFactory](./BankApi.Core/Defaults/Helper.OpenApiFactory.cs) from [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) for parsing JSON to `IOpenApiAny` types
 
 - [TUnit](https://thomhurst.github.io/TUnit/docs/intro) for unit tests
 
