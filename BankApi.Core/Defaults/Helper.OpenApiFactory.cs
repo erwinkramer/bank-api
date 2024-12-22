@@ -10,34 +10,35 @@ using Microsoft.OpenApi.Models;
 
 public class OpenApiFactory
 {
-    public static OpenApiHeader CreateRefHeader(string headerId)
-    {
-        return new OpenApiHeader
-        {
-            Reference = new OpenApiReference
-            {
-                Type = ReferenceType.Header,
-                Id = headerId
-            }
-        };
-    }
-
-    public static OpenApiSchema CreateRefSchema(string schemaId)
-    {
-        return new OpenApiSchema
-        {
-            Reference = new OpenApiReference
-            {
-                Type = ReferenceType.Schema,
-                Id = schemaId
-            }
-        };
-    }
-
-    public static OpenApiHeader CreateGenericIntHeader(string? description) => new OpenApiHeader
+    public static OpenApiHeader CreateHeaderInt(string? description = null) => new OpenApiHeader
     {
         Description = description,
-        Schema = new OpenApiSchema { Reference = new OpenApiReference { Type = ReferenceType.Schema, Id = "GenericInt" } }
+        Schema = CreateSchemaRef("GenericInt")
+    };
+
+     public static OpenApiHeader CreateHeaderString(string? description = null) => new OpenApiHeader
+    {
+        Description = description,
+        Schema = CreateSchemaRef("GenericString")
+    };
+
+    public static OpenApiHeader CreateHeaderRef(string headerId, string? description = null) => new OpenApiHeader
+    {
+        Description = description,
+        Reference = new OpenApiReference
+        {
+            Type = ReferenceType.Header,
+            Id = headerId
+        }
+    };
+
+    public static OpenApiSchema CreateSchemaRef(string schemaId) => new OpenApiSchema
+    {
+        Reference = new OpenApiReference
+        {
+            Type = ReferenceType.Schema,
+            Id = schemaId
+        }
     };
 
     public static IOpenApiAny? CreateFromJson(string json)

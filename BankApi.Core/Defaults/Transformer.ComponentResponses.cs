@@ -11,7 +11,7 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             Description = "Internal server error.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "InternalServerError", new OpenApiMediaType { Schema = OpenApiFactory.CreateRefSchema("GenericString") } }
+                { "InternalServerError", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("GenericString") } }
             }
         });
 
@@ -20,7 +20,7 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             Description = "Bad request.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "BadRequest", new OpenApiMediaType { Schema = OpenApiFactory.CreateRefSchema("GenericString") } }
+                { "BadRequest", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("GenericString") } }
             }
         });
 
@@ -29,11 +29,11 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             Description = "Unauthorized request.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "UnauthorizedRequest", new OpenApiMediaType { Schema = OpenApiFactory.CreateRefSchema("GenericString") } }
+                { "UnauthorizedRequest", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("GenericString") } }
             },
             Headers = new Dictionary<string, OpenApiHeader>
             {
-                { "WWW-Authenticate", OpenApiFactory.CreateRefHeader("GenericStringHeader") }
+                { "WWW-Authenticate", OpenApiFactory.CreateHeaderRef("GenericStringHeader") }
             }
         });
 
@@ -42,11 +42,11 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             Description = "Too many requests.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "TooManyRequests", new OpenApiMediaType { Schema = OpenApiFactory.CreateRefSchema("GenericString") } }
+                { "TooManyRequests", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("GenericString") } }
             },
             Headers = new Dictionary<string, OpenApiHeader>
             {
-                { "Retry-After", OpenApiFactory.CreateGenericIntHeader("The number of seconds to wait before retrying the request.") }
+                { "Retry-After", OpenApiFactory.CreateHeaderInt("The number of seconds to wait before retrying the request.") }
             }
         });
 
@@ -59,12 +59,12 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
     {
         foreach (var response in components.Responses)
         {
-            response.Value.Headers.Add("Access-Control-Allow-Origin", OpenApiFactory.CreateRefHeader("Access-Control-Allow-Origin"));
-            response.Value.Headers.Add("Access-Control-Expose-Headers", OpenApiFactory.CreateRefHeader("GenericStringHeader"));
+            response.Value.Headers.Add("Access-Control-Allow-Origin", OpenApiFactory.CreateHeaderRef("Access-Control-Allow-Origin"));
+            response.Value.Headers.Add("Access-Control-Expose-Headers", OpenApiFactory.CreateHeaderRef("GenericStringHeader"));
 
             if (response.Key[0] is '2' or '4')
             {
-                response.Value.Headers.Add("X-RateLimit-Limit", OpenApiFactory.CreateRefHeader("X-RateLimit-Limit"));
+                response.Value.Headers.Add("X-RateLimit-Limit", OpenApiFactory.CreateHeaderRef("X-RateLimit-Limit"));
             }
         }
     }
