@@ -1,14 +1,15 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authorization;
 
-class TransformerOperation : IOpenApiOperationTransformer
+class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvider) : IOpenApiOperationTransformer
 {
-    public Task TransformAsync(OpenApiOperation operation, OpenApiOperationTransformerContext context, CancellationToken cancellationToken)
+    public async Task TransformAsync(OpenApiOperation operation, OpenApiOperationTransformerContext context, CancellationToken cancellationToken)
     {
         AddStandardResponses(operation);
         AddHeadersToResponses(operation);
-
-        return Task.CompletedTask;
+        await AddSecurityToRequest(operation, authorizationPolicyProvider, context);
     }
 
     private void AddStandardResponses(OpenApiOperation operation)
@@ -46,5 +47,26 @@ class TransformerOperation : IOpenApiOperationTransformer
                 response.Value.Headers.Add("X-RateLimit-Limit", new OpenApiHeader { Reference = new OpenApiReference { Type = ReferenceType.Header, Id = "X-RateLimit-Limit" } });
             }
         }
+    }
+
+    private async Task AddSecurityToRequest(OpenApiOperation operation, IAuthorizationPolicyProvider authorizationPolicyProvider, OpenApiOperationTransformerContext actionDescriptor)
+    {
+        var securityRequirement = new OpenApiSecurityRequirement();
+
+        var policy = actionDescriptor.Description.ActionDescriptor.EndpointMetadata.OfType<AuthorizeAttribute>()
+            .Select(attr => attr.Policy)
+            .FirstOrDefault();
+        if (policy == null) return;
+
+        var endpointPolicy = await authorizationPolicyProvider.GetPolicyAsync(policy);
+        if (endpointPolicy == null) return;
+
+        foreach (var scheme in endpointPolicy.AuthenticationSchemes)
+        {
+            securityRequirement.Add(OpenApiFactory.CreateSecuritySchemaRef(scheme), new List<string>());
+            if (scheme == JwtBearerDefaults.AuthenticationScheme)
+                securityRequirement.Add(OpenApiFactory.CreateSecuritySchemaRef("OpenIdConnect"), new List<string>());
+        }
+        operation.Security.Add(securityRequirement);
     }
 }

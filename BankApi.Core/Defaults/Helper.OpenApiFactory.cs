@@ -16,7 +16,7 @@ public class OpenApiFactory
         Schema = CreateSchemaRef("GenericInt")
     };
 
-     public static OpenApiHeader CreateHeaderString(string? description = null) => new OpenApiHeader
+    public static OpenApiHeader CreateHeaderString(string? description = null) => new OpenApiHeader
     {
         Description = description,
         Schema = CreateSchemaRef("GenericString")
@@ -37,6 +37,15 @@ public class OpenApiFactory
         Reference = new OpenApiReference
         {
             Type = ReferenceType.Schema,
+            Id = schemaId
+        }
+    };
+
+    public static OpenApiSecurityScheme CreateSecuritySchemaRef(string schemaId) => new OpenApiSecurityScheme
+    {
+        Reference = new OpenApiReference
+        {
+            Type = ReferenceType.SecurityScheme,
             Id = schemaId
         }
     };

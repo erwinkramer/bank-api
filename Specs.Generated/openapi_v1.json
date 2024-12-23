@@ -124,7 +124,12 @@
           "429": {
             "$ref": "#/components/responses/429"
           }
-        }
+        },
+        "security": [
+          {
+            "ApiKey-Header": [ ]
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -191,7 +196,12 @@
           "429": {
             "$ref": "#/components/responses/429"
           }
-        }
+        },
+        "security": [
+          {
+            "ApiKey-Header": [ ]
+          }
+        ]
       }
     },
     "/banks/{id}": {
@@ -277,7 +287,12 @@
           "429": {
             "$ref": "#/components/responses/429"
           }
-        }
+        },
+        "security": [
+          {
+            "ApiKey-Header": [ ]
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -364,7 +379,12 @@
           "429": {
             "$ref": "#/components/responses/429"
           }
-        }
+        },
+        "security": [
+          {
+            "ApiKey-Header": [ ]
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -441,7 +461,12 @@
           "429": {
             "$ref": "#/components/responses/429"
           }
-        }
+        },
+        "security": [
+          {
+            "ApiKey-Header": [ ]
+          }
+        ]
       }
     },
     "/teller": {
@@ -514,7 +539,13 @@
           "429": {
             "$ref": "#/components/responses/429"
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer": [ ],
+            "OpenIdConnect": [ ]
+          }
+        ]
       }
     },
     "/teller/reports": {
@@ -587,7 +618,13 @@
           "429": {
             "$ref": "#/components/responses/429"
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer": [ ],
+            "OpenIdConnect": [ ]
+          }
+        ]
       }
     }
   },
