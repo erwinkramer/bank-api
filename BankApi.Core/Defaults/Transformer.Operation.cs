@@ -9,7 +9,7 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
     {
         AddStandardResponses(operation);
         AddHeadersToResponses(operation);
-        await AddSecurityToRequest(operation, authorizationPolicyProvider, context);
+        await AddSecurityPolicyToRequest(operation, authorizationPolicyProvider, context);
     }
 
     private void AddStandardResponses(OpenApiOperation operation)
@@ -49,22 +49,21 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         }
     }
 
-    private async Task AddSecurityToRequest(OpenApiOperation operation, IAuthorizationPolicyProvider authorizationPolicyProvider, OpenApiOperationTransformerContext actionDescriptor)
+    private async Task AddSecurityPolicyToRequest(OpenApiOperation operation, IAuthorizationPolicyProvider authorizationPolicyProvider, OpenApiOperationTransformerContext context)
     {
-        var securityRequirement = new OpenApiSecurityRequirement();
-
-        var policy = actionDescriptor.Description.ActionDescriptor.EndpointMetadata.OfType<AuthorizeAttribute>()
+        var policyName = context.Description.ActionDescriptor.EndpointMetadata.OfType<AuthorizeAttribute>()
             .Select(attr => attr.Policy)
             .FirstOrDefault();
+        if (policyName == null) return;
+
+        var policy = await authorizationPolicyProvider.GetPolicyAsync(policyName);
         if (policy == null) return;
 
-        var endpointPolicy = await authorizationPolicyProvider.GetPolicyAsync(policy);
-        if (endpointPolicy == null) return;
-
-        foreach (var scheme in endpointPolicy.AuthenticationSchemes)
+        var securityRequirement = new OpenApiSecurityRequirement();
+        foreach (var policyScheme in policy.AuthenticationSchemes)
         {
-            securityRequirement.Add(OpenApiFactory.CreateSecuritySchemaRef(scheme), new List<string>());
-            if (scheme == JwtBearerDefaults.AuthenticationScheme)
+            securityRequirement.Add(OpenApiFactory.CreateSecuritySchemaRef(policyScheme), new List<string>());
+            if (policyScheme == JwtBearerDefaults.AuthenticationScheme)
                 securityRequirement.Add(OpenApiFactory.CreateSecuritySchemaRef("OpenIdConnect"), new List<string>());
         }
         operation.Security.Add(securityRequirement);
