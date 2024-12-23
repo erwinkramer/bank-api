@@ -108,7 +108,7 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 ## Quick start
 
-- Use a 'pwsh' shell (if you want a click-a-long experience).
+- Use a `pwsh` shell (for a click-a-long experience).
 
 - (Optionally) regenerate the GitHub downstream API client by going to the [Kiota workspace](.kiota/workspace.json) and clicking `Re-generate` under `clients`.
 
@@ -138,8 +138,8 @@ This mode just runs the ASP.NET Core API.
       mcr.microsoft.com/dotnet/aspire-dashboard:latest
     ```
 
-    Copy the url shown in the resulting output when running the container, and replace `0.0.0.0` with `localhost`, eg <http://localhost:18888/login?t=123456780abcdef123456780> and open that in your browser, or you can also paste the key after `/login?t=` when the login dialog is shown.
-    The token will change each time you start the container.
+    Copy the url shown in the resulting output when running the container, and replace `0.0.0.0` with `localhost` (e.g. <http://localhost:18888/login?t=123456780abcdef123456780>) and open that in a browser, or paste the key part seen after `/login?t=` when the login dialog is shown.
+    The token will change each time the container is started.
 
 1. Run the [launch config](.vscode/launch.json) `API - Stable release channel`.
 
@@ -171,6 +171,12 @@ This mode starts the API in the context of .NET Aspire.
 
 1. Generic exception handling is minimally implemented via [ErrorHandling.cs](./BankApi.Core/Defaults/Builder.ErrorHandling.cs).
 
+1. API owners usually have customers outside of their own company - or outside of their own domain within a company - which inherently means adoption time will be slower for API contract changes, this is why there is a `Stable` and `Beta` version of the API in this project, inspired by the [Microsoft Graph API Current/Beta versioning design](https://learn.microsoft.com/en-us/graph/versioning-and-support#versions). New or modified contract-breaking (beta) operations to API consumers may be served via the `Beta` version without distracting users on the `Stable` version.
+
+    Do not confuse this versioning scheme as a replacement for [DTAP](https://en.wikipedia.org/wiki/Development,_testing,_acceptance_and_production); it is merely complementary to it. Many API changes will affect both the `Stable` and `Beta` endpoints (such as changes to the underlying shared database). That's why they both share a common layer in the form of `BankApi.Core`.
+
+    Nonetheless, versioning is very opinionated and one should always see what the best business and technical fit is. This might change over time and from project to project.
+
 ### Dev Container
 
 1. Dev Containers with the `docker-outside-of-docker` feature instead of `docker-in-docker` [do not work](https://github.com/dotnet/aspire/issues/6830), for now we're using `docker-in-docker`.
@@ -185,7 +191,7 @@ Please see the Reddit r/dotnet [post 1](https://www.reddit.com/r/dotnet/comments
 
 - If debugging isn't working properly, please clear the Extension Host Cache at `%AppData%\Code\CachedData` (on Windows) and restart VSCode.
 
-- If getting the error [`unable to get local issuer certificate` with Spectral](https://github.com/stoplightio/vscode-spectral/issues/131#issuecomment-2543187287), make sure to add the CA of your proxy to `NODE_EXTRA_CA_CERTS` and restart VSCode, for example:
+- If getting the error [`unable to get local issuer certificate` with Spectral](https://github.com/stoplightio/vscode-spectral/issues/131#issuecomment-2543187287), make sure to add the CA of the proxy to `NODE_EXTRA_CA_CERTS` and restart VSCode, for example:
 
 ```powershell
 [Environment]::SetEnvironmentVariable('NODE_EXTRA_CA_CERTS', 'C:\ZscalerRootCA.crt', 'User')
