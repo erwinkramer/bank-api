@@ -1,7 +1,6 @@
 using Gridify;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 
 public class GridQuery : IGridifyQuery
 {

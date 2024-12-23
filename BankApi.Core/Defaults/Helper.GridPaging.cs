@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 public class Paging<T> : Gridify.Paging<T>
 {
     public Paging(int count, IEnumerable<T> data) : base(count, data)
