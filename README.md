@@ -61,6 +61,43 @@ The API complies to:
 
 - [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) in Visual Studio Code for quick local tests via `.http` files
 
+## Design
+
+Technically, the design is layered like the following flowchart.
+
+```mermaid
+flowchart TB
+
+apis[BankApi.Service.Beta / BankApi.Service.Stable]
+aspire[BankApi.Orchestration]
+test[BankApi.Tests]
+
+infra_gen[Infra.Generated]
+specs_gen[Specs.Generated]
+specs_downstream[Specs.Downstream]
+
+subgraph core[BankApi.Core]
+Defaults
+DownstreamClients
+Implementation
+end
+
+specs_downstream -- .kiota --> DownstreamClients
+Defaults --> Implementation
+
+DownstreamClients --> Defaults
+DownstreamClients --> Implementation
+
+Defaults --> apis
+Implementation --> apis
+Implementation --> test
+
+apis --> aspire
+apis --> specs_gen
+
+aspire--> infra_gen
+```
+
 ## Prerequisites
 
 If not using the [Dev Container](.devcontainer/devcontainer.json), install:
