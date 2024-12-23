@@ -13,7 +13,6 @@
     <PackageReference Include="Gridify" Version="2.*" />
     <PackageReference Include="Gridify.EntityFramework" Version="2.*" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.*" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.*" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.*" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.*" />
