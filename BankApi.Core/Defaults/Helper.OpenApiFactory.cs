@@ -10,40 +10,40 @@ using Microsoft.OpenApi.Models;
 
 public class OpenApiFactory
 {
-    public static OpenApiHeader CreateHeaderInt(string? description = null) => new OpenApiHeader
+    public static OpenApiHeader CreateHeaderInt(string? description = null) => new ()
     {
         Description = description,
         Schema = CreateSchemaRef("GenericInt")
     };
 
-    public static OpenApiHeader CreateHeaderString(string? description = null) => new OpenApiHeader
+    public static OpenApiHeader CreateHeaderString(string? description = null) => new ()
     {
         Description = description,
         Schema = CreateSchemaRef("GenericString")
     };
 
-    public static OpenApiHeader CreateHeaderRef(string headerId, string? description = null) => new OpenApiHeader
+    public static OpenApiHeader CreateHeaderRef(string headerId, string? description = null) => new ()
     {
         Description = description,
-        Reference = new OpenApiReference
+        Reference = new ()
         {
             Type = ReferenceType.Header,
             Id = headerId
         }
     };
 
-    public static OpenApiSchema CreateSchemaRef(string schemaId) => new OpenApiSchema
+    public static OpenApiSchema CreateSchemaRef(string schemaId) => new ()
     {
-        Reference = new OpenApiReference
+        Reference = new ()
         {
             Type = ReferenceType.Schema,
             Id = schemaId
         }
     };
 
-    public static OpenApiSecurityScheme CreateSecuritySchemaRef(string schemaId) => new OpenApiSecurityScheme
+    public static OpenApiSecurityScheme CreateSecuritySchemaRef(string schemaId) => new ()
     {
-        Reference = new OpenApiReference
+        Reference = new ()
         {
             Type = ReferenceType.SecurityScheme,
             Id = schemaId
@@ -65,7 +65,7 @@ public class OpenApiFactory
 
     static IOpenApiAny CreateOpenApiArray(JsonElement jsonElement)
     {
-        var openApiArray = new OpenApiArray();
+        OpenApiArray openApiArray = [];
 
         foreach (var item in jsonElement.EnumerateArray())
         {
@@ -77,7 +77,7 @@ public class OpenApiFactory
 
     static IOpenApiAny CreateOpenApiObject(JsonElement jsonElement)
     {
-        var openApiObject = new OpenApiObject();
+        OpenApiObject openApiObject = [];
 
         foreach (var property in jsonElement.EnumerateObject())
         {

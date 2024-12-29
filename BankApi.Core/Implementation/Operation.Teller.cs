@@ -8,7 +8,7 @@ public class TellerOperation
 {
     public static async Task<Results<Ok<Teller>, NotFound, UnprocessableEntity>> GetBankTeller(GitHubClient client, ClaimsPrincipal user, ILogger logger, CancellationToken cancellationToken)
     {
-        LogMessage.LogAccessMessage(logger, "teller", new AccessLogModel()
+        LogMessage.LogAccessMessage(logger, "teller", new ()
         {
             AuthenticationType = user.Identity?.AuthenticationType,
             UserId = user.FindFirstValue(ClaimTypes.NameIdentifier)
@@ -28,7 +28,7 @@ public class TellerOperation
         TellerReportList reports = new();
         await foreach (BlobItem blobItem in containerClient.GetBlobsAsync())
         {
-            reports.data.Add(new TellerReport() { Name = blobItem.Name });
+            reports.data.Add(new () { Name = blobItem.Name });
             reports.count++;
         }
 

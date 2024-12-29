@@ -15,7 +15,7 @@ public static partial class ApiBuilder
         services.AddKiotaHandlers();
         services.AddHttpClient<GitHubClient>().AddTypedClient((client, sp) =>
         {
-            var requestAdapter = new DefaultRequestAdapter(new AnonymousAuthenticationProvider(), httpClient: client)
+            DefaultRequestAdapter requestAdapter = new (new AnonymousAuthenticationProvider(), httpClient: client)
             {
                 BaseUrl = "https://github" // resolved by service discovery
             };

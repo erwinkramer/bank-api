@@ -14,29 +14,29 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
 
     private void AddStandardResponses(OpenApiOperation operation)
     {
-        operation.Responses["500"] = new OpenApiResponse
+        operation.Responses["500"] = new ()
         {
-            Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "500" }
+            Reference = new () { Type = ReferenceType.Response, Id = "500" }
         };
 
-        operation.Responses["422"] = new OpenApiResponse
+        operation.Responses["422"] = new ()
         {
-            Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "422" }
+            Reference = new () { Type = ReferenceType.Response, Id = "422" }
         };
 
-        operation.Responses["400"] = new OpenApiResponse
+        operation.Responses["400"] = new ()
         {
-            Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "400" }
+            Reference = new () { Type = ReferenceType.Response, Id = "400" }
         };
 
-        operation.Responses["401"] = new OpenApiResponse
+        operation.Responses["401"] = new ()
         {
-            Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "401" }
+            Reference = new () { Type = ReferenceType.Response, Id = "401" }
         };
 
-        operation.Responses["429"] = new OpenApiResponse
+        operation.Responses["429"] = new ()
         {
-            Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "429" }
+            Reference = new () { Type = ReferenceType.Response, Id = "429" }
         };
     }
 
@@ -44,12 +44,12 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
     {
         foreach (var response in operation.Responses)
         {
-            response.Value.Headers["Access-Control-Allow-Origin"] = new OpenApiHeader { Reference = new OpenApiReference { Type = ReferenceType.Header, Id = "Access-Control-Allow-Origin" } };
-            response.Value.Headers["Access-Control-Expose-Headers"] = new OpenApiHeader { Reference = new OpenApiReference { Type = ReferenceType.Header, Id = "GenericStringHeader" } };
+            response.Value.Headers["Access-Control-Allow-Origin"] = new () { Reference = new () { Type = ReferenceType.Header, Id = "Access-Control-Allow-Origin" } };
+            response.Value.Headers["Access-Control-Expose-Headers"] = new () { Reference = new () { Type = ReferenceType.Header, Id = "GenericStringHeader" } };
 
             if (response.Key[0] is '2' or '4')
             {
-                response.Value.Headers["X-RateLimit-Limit"] = new OpenApiHeader { Reference = new OpenApiReference { Type = ReferenceType.Header, Id = "X-RateLimit-Limit" } };
+                response.Value.Headers["X-RateLimit-Limit"] = new () { Reference = new () { Type = ReferenceType.Header, Id = "X-RateLimit-Limit" } };
             }
         }
     }
@@ -64,7 +64,7 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         var policy = await authorizationPolicyProvider.GetPolicyAsync(policyName);
         if (policy == null) return;
 
-        var securityRequirement = new OpenApiSecurityRequirement();
+        OpenApiSecurityRequirement securityRequirement = [];
         foreach (var policyScheme in policy.AuthenticationSchemes)
         {
             securityRequirement.Add(OpenApiFactory.CreateSecuritySchemaRef(policyScheme), []);

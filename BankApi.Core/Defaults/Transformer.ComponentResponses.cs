@@ -5,40 +5,40 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
 {
     public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
-        document.Components ??= new OpenApiComponents();
-        document.Components.Responses["500"] = new OpenApiResponse
+        document.Components ??= new ();
+        document.Components.Responses["500"] = new ()
         {
             Description = "Internal server error.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "application/problem+json", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("Problem") } }
+                { "application/problem+json", new () { Schema = OpenApiFactory.CreateSchemaRef("Problem") } }
             }
         };
 
-        document.Components.Responses["400"] = new OpenApiResponse
+        document.Components.Responses["400"] = new ()
         {
             Description = "Bad request.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "application/problem+json", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("Problem") } }
+                { "application/problem+json", new () { Schema = OpenApiFactory.CreateSchemaRef("Problem") } }
             }
         };
 
-        document.Components.Responses["422"] = new OpenApiResponse
+        document.Components.Responses["422"] = new ()
         {
             Description = "Unprocessable Entity.",
-            Content = new Dictionary<string, OpenApiMediaType>
+            Content = new Dictionary<string, OpenApiMediaType>()
             {
-                { "application/problem+json", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("Problem") } }
+                { "application/problem+json", new () { Schema = OpenApiFactory.CreateSchemaRef("Problem") } }
             }
         };
 
-        document.Components.Responses["401"] = new OpenApiResponse
+        document.Components.Responses["401"] = new ()
         {
             Description = "Unauthorized request.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "NoContent" , new OpenApiMediaType {  } }
+                { "NoContent" , new () }
             },
             Headers = new Dictionary<string, OpenApiHeader>
             {
@@ -46,12 +46,12 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             }
         };
 
-        document.Components.Responses["429"] = new OpenApiResponse
+        document.Components.Responses["429"] = new ()
         {
             Description = "Too many requests.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "TooManyRequests", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("GenericString") } }
+                { "TooManyRequests", new () { Schema = OpenApiFactory.CreateSchemaRef("GenericString") } }
             },
             Headers = new Dictionary<string, OpenApiHeader>
             {

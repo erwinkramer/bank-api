@@ -5,7 +5,7 @@ class TransformerComponentHeaders() : IOpenApiDocumentTransformer
 {
     public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
-        document.Components ??= new OpenApiComponents();
+        document.Components ??= new ();
         document.Components.Headers["GenericStringHeader"] = OpenApiFactory.CreateHeaderString();
 
         //because of a bug in the spectral OWASP linter, 

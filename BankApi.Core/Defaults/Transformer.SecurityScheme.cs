@@ -16,25 +16,25 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
             {
                 JwtBearerDefaults.AuthenticationScheme =>
                 [
-                    new OpenApiSecurityScheme
+                    new ()
                     {
                         Description = "Bearer scheme, please see: https://learn.openapis.org/specification/security.html#http-authentication.",
                         Type = SecuritySchemeType.Http,
                         Scheme = "bearer",
                         In = ParameterLocation.Header,
                         BearerFormat = "Json Web Token",
-                        Reference = new OpenApiReference
+                        Reference = new ()
                         {
                             Type = ReferenceType.SecurityScheme,
                             Id = JwtBearerDefaults.AuthenticationScheme
                         }
                     },
-                    new OpenApiSecurityScheme // for Scalar UI or any other API Management UI
+                    new () // for Scalar UI or any other API Management UI
                     {
                         Description = "OpenID Connect scheme, please see: https://learn.openapis.org/specification/security.html#openid-connect.",
                         Type = SecuritySchemeType.OpenIdConnect,
-                        OpenIdConnectUrl = new Uri($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/v2.0/.well-known/openid-configuration"),
-                        Reference = new OpenApiReference
+                        OpenIdConnectUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/v2.0/.well-known/openid-configuration"),
+                        Reference = new ()
                         {
                             Type = ReferenceType.SecurityScheme,
                             Id = "OpenIdConnect"
@@ -43,13 +43,13 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
                 ],
                 $"{ApiKeyDefaults.AuthenticationScheme}-Header" =>
                 [
-                    new OpenApiSecurityScheme
+                    new ()
                     {
                         Type = SecuritySchemeType.ApiKey,
                         Description = "Api Key scheme, please see: https://learn.openapis.org/specification/security.html#api-keys.",
                         Name = "Ocp-Apim-Subscription-Key",
                         In = ParameterLocation.Header,
-                        Reference = new OpenApiReference
+                        Reference = new ()
                         {
                             Type = ReferenceType.SecurityScheme,
                             Id = $"{ApiKeyDefaults.AuthenticationScheme}-Header"
@@ -62,7 +62,7 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
             foreach (var securityScheme in securitySchemes)
             {
                 document.Components.SecuritySchemes[securityScheme.Reference.Id] = securityScheme;
-                document.SecurityRequirements.Add(new OpenApiSecurityRequirement() { { securityScheme, new List<string>() } });
+                document.SecurityRequirements.Add(new () { { securityScheme, new List<string>() } });
             }
         }
     }
