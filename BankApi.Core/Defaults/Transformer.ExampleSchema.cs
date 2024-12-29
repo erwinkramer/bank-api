@@ -6,8 +6,7 @@ class TransformerExampleSchema : IOpenApiSchemaTransformer
 {
     public Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken cancellationToken)
     {
-        var apiExamples = GlobalConfiguration.ApiExamples as OpenApiObject;
-        if (apiExamples == null)
+        if (GlobalConfiguration.ApiExamples is not OpenApiObject apiExamples)
             return Task.CompletedTask;
 
         schema.Example = context.JsonTypeInfo.Type switch
