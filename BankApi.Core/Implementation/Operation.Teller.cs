@@ -17,7 +17,7 @@ public class TellerOperation
         var release = await client.Repos["dotnet"]["runtime"].Releases.Latest.GetAsync(cancellationToken: cancellationToken);
 
         return release?.Author?.HtmlUrl is string authorGitHubUrl
-            ? TypedResults.Ok(new Teller() { GitHubProfile = new Uri(authorGitHubUrl) })
+            ? TypedResults.Ok(new Teller() { GitHubProfile = new (authorGitHubUrl) })
             : TypedResults.NotFound();
     }
 

@@ -6,7 +6,7 @@ public static partial class ApiBuilder
 {
     public static IServiceCollection AddAuthServices(this IServiceCollection services)
     {
-        var apiKeyEvents = new ApiKeyEvents
+        ApiKeyEvents apiKeyEvents = new()
         {
             OnValidateKey = context =>
             {

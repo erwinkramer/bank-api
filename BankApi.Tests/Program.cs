@@ -19,7 +19,7 @@ public class Test
     [Test]
     public async Task CreateBankReturnsCreated()
     {
-        var response = await BankOperation.CreateBank(new BankModel()
+        var response = await BankOperation.CreateBank(new ()
         {
             BankTier = BankTier.A,
             Id = Guid.Parse(bankId),
@@ -32,7 +32,7 @@ public class Test
     [Test, DependsOn(nameof(CreateBankReturnsCreated))]
     public async Task UpdateBankReturnsNoContent()
     {
-        var response = await BankOperation.UpdateBank(Guid.Parse(bankId), new BankModel()
+        var response = await BankOperation.UpdateBank(Guid.Parse(bankId), new ()
         {
             BankTier = BankTier.A,
             Id = Guid.Parse(bankId),
