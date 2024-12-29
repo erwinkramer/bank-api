@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Kiota.Abstractions.Extensions;
 
 class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvider) : IOpenApiOperationTransformer
 {
@@ -15,42 +14,42 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
 
     private void AddStandardResponses(OpenApiOperation operation)
     {
-        operation.Responses.Add("500", new OpenApiResponse
+        operation.Responses["500"] = new OpenApiResponse
         {
             Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "500" }
-        });
+        };
 
-        operation.Responses.AddOrReplace("422", new OpenApiResponse //AddOrReplace because minimally added by internal asp.net core handling
+        operation.Responses["422"] = new OpenApiResponse
         {
             Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "422" }
-        });
+        };
 
-        operation.Responses.Add("400", new OpenApiResponse
+        operation.Responses["400"] = new OpenApiResponse
         {
             Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "400" }
-        });
+        };
 
-        operation.Responses.Add("401", new OpenApiResponse
+        operation.Responses["401"] = new OpenApiResponse
         {
             Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "401" }
-        });
+        };
 
-        operation.Responses.Add("429", new OpenApiResponse
+        operation.Responses["429"] = new OpenApiResponse
         {
             Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "429" }
-        });
+        };
     }
 
     private void AddHeadersToResponses(OpenApiOperation operation)
     {
         foreach (var response in operation.Responses)
         {
-            response.Value.Headers.Add("Access-Control-Allow-Origin", new OpenApiHeader { Reference = new OpenApiReference { Type = ReferenceType.Header, Id = "Access-Control-Allow-Origin" } });
-            response.Value.Headers.Add("Access-Control-Expose-Headers", new OpenApiHeader { Reference = new OpenApiReference { Type = ReferenceType.Header, Id = "GenericStringHeader" } });
+            response.Value.Headers["Access-Control-Allow-Origin"] = new OpenApiHeader { Reference = new OpenApiReference { Type = ReferenceType.Header, Id = "Access-Control-Allow-Origin" } };
+            response.Value.Headers["Access-Control-Expose-Headers"] = new OpenApiHeader { Reference = new OpenApiReference { Type = ReferenceType.Header, Id = "GenericStringHeader" } };
 
             if (response.Key[0] is '2' or '4')
             {
-                response.Value.Headers.Add("X-RateLimit-Limit", new OpenApiHeader { Reference = new OpenApiReference { Type = ReferenceType.Header, Id = "X-RateLimit-Limit" } });
+                response.Value.Headers["X-RateLimit-Limit"] = new OpenApiHeader { Reference = new OpenApiReference { Type = ReferenceType.Header, Id = "X-RateLimit-Limit" } };
             }
         }
     }
@@ -68,9 +67,9 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         var securityRequirement = new OpenApiSecurityRequirement();
         foreach (var policyScheme in policy.AuthenticationSchemes)
         {
-            securityRequirement.Add(OpenApiFactory.CreateSecuritySchemaRef(policyScheme), new List<string>());
+            securityRequirement.Add(OpenApiFactory.CreateSecuritySchemaRef(policyScheme), []);
             if (policyScheme == JwtBearerDefaults.AuthenticationScheme)
-                securityRequirement.Add(OpenApiFactory.CreateSecuritySchemaRef("OpenIdConnect"), new List<string>());
+                securityRequirement.Add(OpenApiFactory.CreateSecuritySchemaRef("OpenIdConnect"), []);
         }
         operation.Security.Add(securityRequirement);
     }
