@@ -38,7 +38,7 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             Description = "Unauthorized request.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "UnauthorizedRequest", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("GenericString") } }
+                { "NoContent" , new OpenApiMediaType {  } }
             },
             Headers = new Dictionary<string, OpenApiHeader>
             {

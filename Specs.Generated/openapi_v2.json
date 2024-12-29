@@ -802,11 +802,7 @@
           }
         },
         "content": {
-          "UnauthorizedRequest": {
-            "schema": {
-              "$ref": "#/components/schemas/GenericString"
-            }
-          }
+          "NoContent": { }
         }
       },
       "429": {
