@@ -11,7 +11,7 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             Description = "Internal server error.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "InternalServerError", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("GenericString") } }
+                { "application/problem+json", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("Problem") } }
             }
         });
 
@@ -20,7 +20,16 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             Description = "Bad request.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "BadRequest", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("GenericString") } }
+                { "application/problem+json", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("Problem") } }
+            }
+        });
+
+        document.Components.Responses.Add("422", new OpenApiResponse
+        {
+            Description = "Unprocessable Entity.",
+            Content = new Dictionary<string, OpenApiMediaType>
+            {
+                { "application/problem+json", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("Problem") } }
             }
         });
 

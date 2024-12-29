@@ -99,18 +99,7 @@
             }
           },
           "422": {
-            "description": "Unprocessable Entity",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              }
-            }
+            "$ref": "#/components/responses/422"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -171,18 +160,7 @@
             }
           },
           "422": {
-            "description": "Unprocessable Entity",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              }
-            }
+            "$ref": "#/components/responses/422"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -262,18 +240,7 @@
             }
           },
           "422": {
-            "description": "Unprocessable Entity",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              }
-            }
+            "$ref": "#/components/responses/422"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -354,18 +321,7 @@
             }
           },
           "422": {
-            "description": "Unprocessable Entity",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              }
-            }
+            "$ref": "#/components/responses/422"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -436,18 +392,7 @@
             }
           },
           "422": {
-            "description": "Unprocessable Entity",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              }
-            }
+            "$ref": "#/components/responses/422"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -514,18 +459,7 @@
             }
           },
           "422": {
-            "description": "Unprocessable Entity",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              }
-            }
+            "$ref": "#/components/responses/422"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -593,18 +527,7 @@
             }
           },
           "422": {
-            "description": "Unprocessable Entity",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              }
-            }
+            "$ref": "#/components/responses/422"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -640,6 +563,32 @@
         "minimum": 0,
         "type": "integer",
         "format": "int32"
+      },
+      "Problem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "title": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "status": {
+            "$ref": "#/components/schemas/GenericInt"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "instance": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "traceId": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "requestId": {
+            "$ref": "#/components/schemas/GenericString"
+          }
+        }
       },
       "BankModel": {
         "type": "object",
@@ -787,9 +736,9 @@
           }
         },
         "content": {
-          "InternalServerError": {
+          "application/problem+json": {
             "schema": {
-              "$ref": "#/components/schemas/GenericString"
+              "$ref": "#/components/schemas/Problem"
             }
           }
         }
@@ -808,9 +757,30 @@
           }
         },
         "content": {
-          "BadRequest": {
+          "application/problem+json": {
             "schema": {
-              "$ref": "#/components/schemas/GenericString"
+              "$ref": "#/components/schemas/Problem"
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Unprocessable Entity.",
+        "headers": {
+          "Access-Control-Allow-Origin": {
+            "$ref": "#/components/headers/Access-Control-Allow-Origin"
+          },
+          "Access-Control-Expose-Headers": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-RateLimit-Limit": {
+            "$ref": "#/components/headers/X-RateLimit-Limit"
+          }
+        },
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Problem"
             }
           }
         }

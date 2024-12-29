@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Kiota.Abstractions.Extensions;
 
 class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvider) : IOpenApiOperationTransformer
 {
@@ -17,6 +18,11 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         operation.Responses.Add("500", new OpenApiResponse
         {
             Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "500" }
+        });
+
+        operation.Responses.AddOrReplace("422", new OpenApiResponse //AddOrReplace because minimally added by internal asp.net core handling
+        {
+            Reference = new OpenApiReference { Type = ReferenceType.Response, Id = "422" }
         });
 
         operation.Responses.Add("400", new OpenApiResponse
