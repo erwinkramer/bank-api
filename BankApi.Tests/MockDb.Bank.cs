@@ -8,6 +8,6 @@ public class MockDb : IDbContextFactory<BankDb>
             .UseInMemoryDatabase(GlobalConfiguration.ApiSettings!.DatabaseName)
             .Options;
 
-        return new (options);
+        return new(options);
     }
 }

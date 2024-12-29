@@ -5,15 +5,15 @@ class TransformerComponentSchemas() : IOpenApiDocumentTransformer
 {
     public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
-        document.Components ??= new ();
-        document.Components.Schemas["GenericString"] = new ()
+        document.Components ??= new();
+        document.Components.Schemas["GenericString"] = new()
         {
             Type = "string",
             Pattern = GlobalConfiguration.ApiSettings!.GenericBoundaries.Regex,
             MaxLength = GlobalConfiguration.ApiSettings!.GenericBoundaries.Maximum
         };
 
-        document.Components.Schemas["GenericInt"] = new ()
+        document.Components.Schemas["GenericInt"] = new()
         {
             Type = "integer",
             Format = "int32",
@@ -21,7 +21,7 @@ class TransformerComponentSchemas() : IOpenApiDocumentTransformer
             Maximum = GlobalConfiguration.ApiSettings!.GenericBoundaries.Maximum,
         };
 
-        document.Components.Schemas["Problem"] = new ()
+        document.Components.Schemas["Problem"] = new()
         {
             Type = "object",
             Properties = new Dictionary<string, OpenApiSchema>

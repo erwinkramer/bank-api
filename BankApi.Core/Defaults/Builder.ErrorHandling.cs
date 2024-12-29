@@ -31,11 +31,11 @@ public class ExceptionHandler(IProblemDetailsService problemDetailsService) : IE
 
         httpContext.Response.StatusCode = statusCode;
 
-        return await problemDetailsService.TryWriteAsync(new ()
+        return await problemDetailsService.TryWriteAsync(new()
         {
             Exception = exception,
             HttpContext = httpContext,
-            ProblemDetails = new ()
+            ProblemDetails = new()
             {
                 Status = statusCode,
                 Detail = exception.Message

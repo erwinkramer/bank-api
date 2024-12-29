@@ -10,40 +10,40 @@ using Microsoft.OpenApi.Models;
 
 public class OpenApiFactory
 {
-    public static OpenApiHeader CreateHeaderInt(string? description = null) => new ()
+    public static OpenApiHeader CreateHeaderInt(string? description = null) => new()
     {
         Description = description,
         Schema = CreateSchemaRef("GenericInt")
     };
 
-    public static OpenApiHeader CreateHeaderString(string? description = null) => new ()
+    public static OpenApiHeader CreateHeaderString(string? description = null) => new()
     {
         Description = description,
         Schema = CreateSchemaRef("GenericString")
     };
 
-    public static OpenApiHeader CreateHeaderRef(string headerId, string? description = null) => new ()
+    public static OpenApiHeader CreateHeaderRef(string headerId, string? description = null) => new()
     {
         Description = description,
-        Reference = new ()
+        Reference = new()
         {
             Type = ReferenceType.Header,
             Id = headerId
         }
     };
 
-    public static OpenApiSchema CreateSchemaRef(string schemaId) => new ()
+    public static OpenApiSchema CreateSchemaRef(string schemaId) => new()
     {
-        Reference = new ()
+        Reference = new()
         {
             Type = ReferenceType.Schema,
             Id = schemaId
         }
     };
 
-    public static OpenApiSecurityScheme CreateSecuritySchemaRef(string schemaId) => new ()
+    public static OpenApiSecurityScheme CreateSecuritySchemaRef(string schemaId) => new()
     {
-        Reference = new ()
+        Reference = new()
         {
             Type = ReferenceType.SecurityScheme,
             Id = schemaId

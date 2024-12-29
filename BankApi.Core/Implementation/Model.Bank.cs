@@ -9,7 +9,8 @@ public enum BankTier
 
 public class BankModel
 {
-    [Bank][Id]
+    [Bank]
+    [Id]
     public Guid Id { get; set; }
 
     [DefaultValue("Guanchen")]
