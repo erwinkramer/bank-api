@@ -6,34 +6,34 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
     public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
         document.Components ??= new OpenApiComponents();
-        document.Components.Responses.Add("500", new OpenApiResponse
+        document.Components.Responses["500"] = new OpenApiResponse
         {
             Description = "Internal server error.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
                 { "application/problem+json", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("Problem") } }
             }
-        });
+        };
 
-        document.Components.Responses.Add("400", new OpenApiResponse
+        document.Components.Responses["400"] = new OpenApiResponse
         {
             Description = "Bad request.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
                 { "application/problem+json", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("Problem") } }
             }
-        });
+        };
 
-        document.Components.Responses.Add("422", new OpenApiResponse
+        document.Components.Responses["422"] = new OpenApiResponse
         {
             Description = "Unprocessable Entity.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
                 { "application/problem+json", new OpenApiMediaType { Schema = OpenApiFactory.CreateSchemaRef("Problem") } }
             }
-        });
+        };
 
-        document.Components.Responses.Add("401", new OpenApiResponse
+        document.Components.Responses["401"] = new OpenApiResponse
         {
             Description = "Unauthorized request.",
             Content = new Dictionary<string, OpenApiMediaType>
@@ -44,9 +44,9 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             {
                 { "WWW-Authenticate", OpenApiFactory.CreateHeaderRef("GenericStringHeader") }
             }
-        });
+        };
 
-        document.Components.Responses.Add("429", new OpenApiResponse
+        document.Components.Responses["429"] = new OpenApiResponse
         {
             Description = "Too many requests.",
             Content = new Dictionary<string, OpenApiMediaType>
@@ -57,7 +57,7 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             {
                 { "Retry-After", OpenApiFactory.CreateHeaderInt("The number of seconds to wait before retrying the request.") }
             }
-        });
+        };
 
         AddHeadersToResponses(document.Components);
 
@@ -68,12 +68,12 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
     {
         foreach (var response in components.Responses)
         {
-            response.Value.Headers.Add("Access-Control-Allow-Origin", OpenApiFactory.CreateHeaderRef("Access-Control-Allow-Origin"));
-            response.Value.Headers.Add("Access-Control-Expose-Headers", OpenApiFactory.CreateHeaderRef("GenericStringHeader"));
+            response.Value.Headers["Access-Control-Allow-Origin"] = OpenApiFactory.CreateHeaderRef("Access-Control-Allow-Origin");
+            response.Value.Headers["Access-Control-Expose-Headers"] = OpenApiFactory.CreateHeaderRef("GenericStringHeader");
 
             if (response.Key[0] is '2' or '4')
             {
-                response.Value.Headers.Add("X-RateLimit-Limit", OpenApiFactory.CreateHeaderRef("X-RateLimit-Limit"));
+                response.Value.Headers["X-RateLimit-Limit"] = OpenApiFactory.CreateHeaderRef("X-RateLimit-Limit");
             }
         }
     }

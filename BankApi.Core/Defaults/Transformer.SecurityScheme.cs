@@ -61,7 +61,7 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
 
             foreach (var securityScheme in securitySchemes)
             {
-                document.Components.SecuritySchemes.Add(securityScheme.Reference.Id, securityScheme);
+                document.Components.SecuritySchemes[securityScheme.Reference.Id] = securityScheme;
                 document.SecurityRequirements.Add(new OpenApiSecurityRequirement() { { securityScheme, new List<string>() } });
             }
         }
