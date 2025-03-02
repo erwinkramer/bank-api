@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.OpenApi;
-using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
 class TransformerDocInfo() : IOpenApiDocumentTransformer
@@ -8,7 +7,7 @@ class TransformerDocInfo() : IOpenApiDocumentTransformer
     {
         foreach (var server in GlobalConfiguration.ApiDocument!.Servers)
         {
-            server.Extensions["x-internal"] = new OpenApiBoolean(false);
+            server.Extensions["x-internal"] = null; // https://github.com/microsoft/OpenAPI.NET/issues/2151
         }
 
         document.Info = GlobalConfiguration.ApiDocument!.Info;
