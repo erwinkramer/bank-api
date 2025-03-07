@@ -102,7 +102,7 @@ aspire--> infra_gen
 
 If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
-- [.NET 9 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 
 - All [recommended Visual Studio Code extensions](.vscode/extensions.json)
 
@@ -165,7 +165,7 @@ This mode starts the API in the context of .NET Aspire.
 
 1. Dependabot is enabled for `nuget` packages but [wildcard version notation isn't supported yet](https://github.com/dependabot/dependabot-core/issues/9442#issuecomment-2433046972), which is used extensively in this project.
 
-1. [The OpenAPI document generator shipped with .NET 9 does not fully support API versioning](https://github.com/scalar/scalar/issues/3898#issuecomment-2479087233), a simpler approach with [PathBase](https://andrewlock.net/understanding-pathbase-in-aspnetcore/) is used for now, which is also more convenient for Azure API Management usage.
+1. [The OpenAPI document generator shipped with .NET 10 does not fully support API versioning](https://github.com/scalar/scalar/issues/3898#issuecomment-2479087233), a simpler approach with [PathBase](https://andrewlock.net/understanding-pathbase-in-aspnetcore/) is used for now, which is also more convenient for Azure API Management usage.
 
 1. Extending Spectral rulesets from an NPM package [can be problematic](https://github.com/stoplightio/vscode-spectral/issues/214#issuecomment-2543132932).
 
