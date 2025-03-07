@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <OutputType>Library</OutputType>
@@ -12,21 +12,21 @@
     <PackageReference Include="AspNetCore.Authentication.ApiKey" Version="8.*" />
     <PackageReference Include="Gridify" Version="2.*" />
     <PackageReference Include="Gridify.EntityFramework" Version="2.*" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.*" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.*" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.*-*" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.*-*" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.*-*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.*-*" />
     <PackageReference Include="Microsoft.Extensions.Caching.Hybrid" Version="9.*-*" />
     <PackageReference Include="Microsoft.Extensions.Compliance.Redaction" Version="9.*" />
     <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="9.*" />
     <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="9.*" />
-    <PackageReference Include="Microsoft.Kiota.Bundle" Version="1.15.*" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.10.*" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.10.*" />
+    <PackageReference Include="Microsoft.Kiota.Bundle" Version="1.*" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.11.*" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.11.*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.*-*" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.*" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.9.*" />
-    <PackageReference Include="Scalar.AspNetCore" Version="1.2.*" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.11.*" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.11.*" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.*" />
   </ItemGroup>
 
 </Project>
