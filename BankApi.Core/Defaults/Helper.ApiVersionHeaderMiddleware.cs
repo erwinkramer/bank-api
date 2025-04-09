@@ -1,8 +1,8 @@
-public class AddApiVersionHeaderMiddleware
+public class ApiVersionHeaderMiddleware
 {
     private readonly RequestDelegate _next;
 
-    public AddApiVersionHeaderMiddleware(RequestDelegate next)
+    public ApiVersionHeaderMiddleware(RequestDelegate next)
     {
         _next = next;
     }
