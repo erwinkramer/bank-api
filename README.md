@@ -17,7 +17,7 @@ The API complies to:
 
 ✅ [OpenAPI Specification v3.0.1](https://spec.openapis.org/oas/v3.0.1.html) via [Spectral "oas" ruleset](https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules)
 
-✅ [NLGov REST API Design Rules](https://github.com/Logius-standaarden/API-Design-Rules/) via [API Design Rules ruleset](https://github.com/Logius-standaarden/API-Design-Rules/blob/develop/linter/spectral.yml)
+✅ [Dutch Public Sector (NLGov) REST API Design Rules](https://github.com/Logius-standaarden/API-Design-Rules/) via [API Design Rules ruleset](https://github.com/Logius-standaarden/API-Design-Rules/blob/develop/linter/spectral.yml)
 
 ✅ Additional naming conventions, structure, and clarity via [Bank API  project ruleset](.spectral/ruleset.bank.yml)
 
