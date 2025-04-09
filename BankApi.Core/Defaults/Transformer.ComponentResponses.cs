@@ -68,6 +68,7 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
     {
         foreach (var response in components.Responses)
         {
+            response.Value.Headers["API-Version"] = OpenApiFactory.CreateHeaderRef("API-Version");
             response.Value.Headers["Access-Control-Allow-Origin"] = OpenApiFactory.CreateHeaderRef("Access-Control-Allow-Origin");
             response.Value.Headers["Access-Control-Expose-Headers"] = OpenApiFactory.CreateHeaderRef("GenericStringHeader");
 
