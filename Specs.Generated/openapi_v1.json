@@ -80,6 +80,9 @@
           "200": {
             "description": "OK",
             "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              },
               "Access-Control-Allow-Origin": {
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
@@ -141,6 +144,9 @@
           "201": {
             "description": "Created",
             "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              },
               "Access-Control-Allow-Origin": {
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
@@ -207,6 +213,9 @@
           "200": {
             "description": "OK",
             "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              },
               "Access-Control-Allow-Origin": {
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
@@ -228,6 +237,9 @@
           "404": {
             "description": "Not Found",
             "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              },
               "Access-Control-Allow-Origin": {
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
@@ -295,6 +307,9 @@
           "204": {
             "description": "No Content",
             "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              },
               "Access-Control-Allow-Origin": {
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
@@ -309,6 +324,9 @@
           "404": {
             "description": "Not Found",
             "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              },
               "Access-Control-Allow-Origin": {
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
@@ -366,6 +384,9 @@
           "204": {
             "description": "No Content",
             "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              },
               "Access-Control-Allow-Origin": {
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
@@ -380,6 +401,9 @@
           "404": {
             "description": "Not Found",
             "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              },
               "Access-Control-Allow-Origin": {
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
@@ -426,6 +450,9 @@
           "200": {
             "description": "OK",
             "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              },
               "Access-Control-Allow-Origin": {
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
@@ -447,6 +474,9 @@
           "404": {
             "description": "Not Found",
             "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              },
               "Access-Control-Allow-Origin": {
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
@@ -494,6 +524,9 @@
           "200": {
             "description": "OK",
             "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              },
               "Access-Control-Allow-Origin": {
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
@@ -515,6 +548,9 @@
           "404": {
             "description": "Not Found",
             "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              },
               "Access-Control-Allow-Origin": {
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
@@ -728,6 +764,9 @@
       "500": {
         "description": "Internal server error.",
         "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          },
           "Access-Control-Allow-Origin": {
             "$ref": "#/components/headers/Access-Control-Allow-Origin"
           },
@@ -746,6 +785,9 @@
       "400": {
         "description": "Bad request.",
         "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          },
           "Access-Control-Allow-Origin": {
             "$ref": "#/components/headers/Access-Control-Allow-Origin"
           },
@@ -767,6 +809,9 @@
       "422": {
         "description": "Unprocessable Entity.",
         "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          },
           "Access-Control-Allow-Origin": {
             "$ref": "#/components/headers/Access-Control-Allow-Origin"
           },
@@ -791,6 +836,9 @@
           "WWW-Authenticate": {
             "$ref": "#/components/headers/GenericStringHeader"
           },
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          },
           "Access-Control-Allow-Origin": {
             "$ref": "#/components/headers/Access-Control-Allow-Origin"
           },
@@ -813,6 +861,9 @@
             "schema": {
               "$ref": "#/components/schemas/GenericInt"
             }
+          },
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
           },
           "Access-Control-Allow-Origin": {
             "$ref": "#/components/headers/Access-Control-Allow-Origin"
@@ -840,6 +891,11 @@
         }
       },
       "Access-Control-Allow-Origin": {
+        "schema": {
+          "$ref": "#/components/schemas/GenericString"
+        }
+      },
+      "API-Version": {
         "schema": {
           "$ref": "#/components/schemas/GenericString"
         }

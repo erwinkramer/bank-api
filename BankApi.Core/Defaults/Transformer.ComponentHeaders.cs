@@ -13,6 +13,8 @@ class TransformerComponentHeaders() : IOpenApiDocumentTransformer
         //please see https://github.com/stoplightio/spectral-owasp-ruleset/issues/71
         document.Components.Headers["Access-Control-Allow-Origin"] = OpenApiFactory.CreateHeaderString();
 
+        document.Components.Headers["API-Version"] = OpenApiFactory.CreateHeaderString();
+
         document.Components.Headers["X-RateLimit-Limit"] = OpenApiFactory.CreateHeaderInt($"The maximum number of requests you're permitted to make in a window of {GlobalConfiguration.ApiSettings!.FixedWindowRateLimit.Window.Minutes} minutes.");
 
         return Task.CompletedTask;

@@ -25,6 +25,7 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
     {
         foreach (var response in operation.Responses)
         {
+            response.Value.Headers["API-Version"] = new() { Reference = new() { Type = ReferenceType.Header, Id = "API-Version" } };
             response.Value.Headers["Access-Control-Allow-Origin"] = new() { Reference = new() { Type = ReferenceType.Header, Id = "Access-Control-Allow-Origin" } };
             response.Value.Headers["Access-Control-Expose-Headers"] = new() { Reference = new() { Type = ReferenceType.Header, Id = "GenericStringHeader" } };
 

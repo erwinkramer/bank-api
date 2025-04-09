@@ -2,3 +2,4 @@ extends:
   - spectral:oas
   - ruleset.bank.yml
   - https://unpkg.com/@stoplight/spectral-owasp-ruleset/dist/ruleset.mjs
+  - https://static.developer.overheid.nl/adr/ruleset.yaml 

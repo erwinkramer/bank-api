@@ -24,6 +24,7 @@ builder.Services.AddErrorHandling();
 
 var app = builder.Build();
 
+app.UseMiddleware<AddApiVersionHeaderMiddleware>();
 app.UseExceptionHandler();
 app.UsePathBase(new($"/{GlobalConfiguration.ApiDocument.Info.Version}")); // Useful when versioning routing happens in an API Management system
 app.UseAuthorization(); // explicitly register because we use path base
