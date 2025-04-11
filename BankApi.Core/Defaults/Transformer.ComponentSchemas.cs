@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi.Models.Interfaces;
 using Microsoft.OpenApi.Models.References;
 
 class TransformerComponentSchemas() : IOpenApiDocumentTransformer
@@ -7,16 +8,16 @@ class TransformerComponentSchemas() : IOpenApiDocumentTransformer
     public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
         document.Components ??= new();
-        document.Components.Schemas ??= new Dictionary<string, OpenApiSchema>();
+        document.Components.Schemas ??= new Dictionary<string, IOpenApiSchema>();
 
-        document.Components.Schemas["GenericString"] = new()
+        document.Components.Schemas["GenericString"] = new OpenApiSchema
         {
             Type = JsonSchemaType.String,
             Pattern = GlobalConfiguration.ApiSettings!.GenericBoundaries.Regex,
             MaxLength = GlobalConfiguration.ApiSettings!.GenericBoundaries.Maximum
         };
 
-        document.Components.Schemas["GenericInt"] = new()
+        document.Components.Schemas["GenericInt"] = new OpenApiSchema
         {
             Type = JsonSchemaType.Integer,
             Format = "int32",
@@ -24,10 +25,10 @@ class TransformerComponentSchemas() : IOpenApiDocumentTransformer
             Maximum = GlobalConfiguration.ApiSettings!.GenericBoundaries.Maximum,
         };
 
-        document.Components.Schemas["Problem"] = new()
+        document.Components.Schemas["Problem"] = new OpenApiSchema
         {
             Type = JsonSchemaType.Object,
-            Properties = new Dictionary<string, OpenApiSchema>
+            Properties = new Dictionary<string, IOpenApiSchema>
             {
                 ["type"] = new OpenApiSchemaReference("GenericString", document),
                 ["title"] = new OpenApiSchemaReference("GenericString", document),

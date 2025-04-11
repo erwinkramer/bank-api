@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi.Models.Interfaces;
 
 class TransformerComponentHeaders() : IOpenApiDocumentTransformer
 {
     public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
         document.Components ??= new();
-        document.Components.Headers ??= new Dictionary<string, OpenApiHeader>();
+        document.Components.Headers ??= new Dictionary<string, IOpenApiHeader>();
 
         document.Components.Headers["GenericStringHeader"] = OpenApiFactory.CreateHeaderString(document);
 

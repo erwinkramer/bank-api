@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi.Models.Interfaces;
 using Microsoft.OpenApi.Models.References;
 
 class TransformerComponentResponses() : IOpenApiDocumentTransformer
@@ -7,9 +8,9 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
     public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
         document.Components ??= new();
-        document.Components.Responses ??= new Dictionary<string, OpenApiResponse>();
+        document.Components.Responses ??= new Dictionary<string, IOpenApiResponse>();
 
-        document.Components.Responses["500"] = new()
+        document.Components.Responses["500"] = new OpenApiResponse
         {
             Description = "Internal server error.",
             Content = new Dictionary<string, OpenApiMediaType>
@@ -18,7 +19,7 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             }
         };
 
-        document.Components.Responses["400"] = new()
+        document.Components.Responses["400"] = new OpenApiResponse
         {
             Description = "Bad request.",
             Content = new Dictionary<string, OpenApiMediaType>
@@ -27,7 +28,7 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             }
         };
 
-        document.Components.Responses["422"] = new()
+        document.Components.Responses["422"] = new OpenApiResponse
         {
             Description = "Unprocessable Entity.",
             Content = new Dictionary<string, OpenApiMediaType>()
@@ -36,27 +37,27 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             }
         };
 
-        document.Components.Responses["401"] = new()
+        document.Components.Responses["401"] = new OpenApiResponse
         {
             Description = "Unauthorized request.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
                 { "NoContent" , new () }
             },
-            Headers = new Dictionary<string, OpenApiHeader>
+            Headers = new Dictionary<string, IOpenApiHeader>
             {
                 { "WWW-Authenticate", new OpenApiHeaderReference("GenericStringHeader", document) }
             }
         };
 
-        document.Components.Responses["429"] = new()
+        document.Components.Responses["429"] = new OpenApiResponse
         {
             Description = "Too many requests.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
                 { "TooManyRequests", new () { Schema = new OpenApiSchemaReference("GenericString", document) } }
             },
-            Headers = new Dictionary<string, OpenApiHeader>
+            Headers = new Dictionary<string, IOpenApiHeader>
             {
                 { "Retry-After", OpenApiFactory.CreateHeaderInt(document, "The number of seconds to wait before retrying the request.") }
             }

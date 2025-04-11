@@ -14,13 +14,4 @@ public class OpenApiFactory
         Description = description,
         Schema = new OpenApiSchemaReference("GenericString", doc)
     };
-
-    public static OpenApiSecurityScheme CreateSecuritySchemaRef(string schemaId) => new()
-    {
-        Reference = new()
-        {
-            Type = ReferenceType.SecurityScheme,
-            Id = schemaId
-        }
-    };
 }
