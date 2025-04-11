@@ -31,17 +31,19 @@ rules:
           match: "^(/([a-z0-9]+(-[a-z0-9]+)*|\\{[a-zA-Z0-9_]+\\}))*$"
 
   bank-header-requires-hyphenated-pascal-case:
-    description: HTTP headers must be in Hyphenated-Pascal-Case.
-    message: HTTP header is not in Hyphenated-Pascal-Case.
+    description: HTTP headers must be in Hyphenated-Pascal-Case, exceptions are API-Version and WWW-Authenticate.
+    message: HTTP header is not in Hyphenated-Pascal-Case, exceptions are API-Version and WWW-Authenticate.
     severity: warn
-    given:
-      - "$..parameters[?(@.in == 'header')].name"
-      - "$.components.securitySchemes[?(@.in == 'header')].name"
+    given: 
+     - "$..responses..headers"
+     - "$..parameters[?(@.in == 'header')].name"
+     - "$.components.securitySchemes[?(@.in == 'header')].name"
     then:
+      field: "@key"
       function: pattern
       functionOptions:
-        match: "^([A-Z][a-z0-9]*)(-[A-Z][a-z0-9]*)*$"
-
+        match: "^(API-Version|WWW-Authenticate|([A-Z][a-z0-9]*)(-[A-Z][a-z0-9]*)*)$"
+        
   bank-property-requires-camel-case:
     description: Property names, acronyms, path parameters and query parameters must be in camelCase.
     message: Property name, acronym, path parameter or query parameter is not in camelCase.

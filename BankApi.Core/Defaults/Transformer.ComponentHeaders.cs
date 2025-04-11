@@ -15,7 +15,7 @@ class TransformerComponentHeaders() : IOpenApiDocumentTransformer
 
         document.Components.Headers["API-Version"] = OpenApiFactory.CreateHeaderString();
 
-        document.Components.Headers["X-RateLimit-Limit"] = OpenApiFactory.CreateHeaderInt($"The maximum number of requests you're permitted to make in a window of {GlobalConfiguration.ApiSettings!.FixedWindowRateLimit.Window.Minutes} minutes.");
+        document.Components.Headers["X-Rate-Limit-Limit"] = OpenApiFactory.CreateHeaderInt($"The maximum number of requests you're permitted to make in a window of {GlobalConfiguration.ApiSettings!.FixedWindowRateLimit.Window.Minutes} minutes.");
 
         return Task.CompletedTask;
     }
