@@ -12,7 +12,7 @@ public static partial class ApiBuilder
             options.RejectionStatusCode = (int)HttpStatusCode.TooManyRequests;
             options.AddPolicy("fixed", httpContext =>
             {
-                httpContext.Response.Headers["X-RateLimit-Limit"] = GlobalConfiguration.ApiSettings!.FixedWindowRateLimit.PermitLimit.ToString();
+                httpContext.Response.Headers["X-Rate-Limit-Limit"] = GlobalConfiguration.ApiSettings!.FixedWindowRateLimit.PermitLimit.ToString();
 
                 return RateLimitPartition.GetFixedWindowLimiter(
                     partitionKey:

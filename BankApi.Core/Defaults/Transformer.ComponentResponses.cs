@@ -72,12 +72,13 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
     {
         foreach (var response in doc.Components.Responses)
         {
+            response.Value.Headers["API-Version"] = new OpenApiHeaderReference("API-Version", doc);
             response.Value.Headers["Access-Control-Allow-Origin"] = new OpenApiHeaderReference("Access-Control-Allow-Origin", doc);
             response.Value.Headers["Access-Control-Expose-Headers"] = new OpenApiHeaderReference("GenericStringHeader", doc);
 
             if (response.Key[0] is '2' or '4')
             {
-                response.Value.Headers["X-RateLimit-Limit"] = new OpenApiHeaderReference("X-RateLimit-Limit", doc);
+                response.Value.Headers["X-Rate-Limit-Limit"] = new OpenApiHeaderReference("X-Rate-Limit-Limit", doc);
             }
         }
     }

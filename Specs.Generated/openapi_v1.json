@@ -830,6 +830,9 @@
       "500": {
         "description": "Internal server error.",
         "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          },
           "Access-Control-Allow-Origin": {
             "$ref": "#/components/headers/Access-Control-Allow-Origin"
           },
@@ -848,14 +851,17 @@
       "400": {
         "description": "Bad request.",
         "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          },
           "Access-Control-Allow-Origin": {
             "$ref": "#/components/headers/Access-Control-Allow-Origin"
           },
           "Access-Control-Expose-Headers": {
             "$ref": "#/components/headers/GenericStringHeader"
           },
-          "X-RateLimit-Limit": {
-            "$ref": "#/components/headers/X-RateLimit-Limit"
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
           }
         },
         "content": {
@@ -869,14 +875,17 @@
       "422": {
         "description": "Unprocessable Entity.",
         "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          },
           "Access-Control-Allow-Origin": {
             "$ref": "#/components/headers/Access-Control-Allow-Origin"
           },
           "Access-Control-Expose-Headers": {
             "$ref": "#/components/headers/GenericStringHeader"
           },
-          "X-RateLimit-Limit": {
-            "$ref": "#/components/headers/X-RateLimit-Limit"
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
           }
         },
         "content": {
@@ -893,14 +902,17 @@
           "WWW-Authenticate": {
             "$ref": "#/components/headers/GenericStringHeader"
           },
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          },
           "Access-Control-Allow-Origin": {
             "$ref": "#/components/headers/Access-Control-Allow-Origin"
           },
           "Access-Control-Expose-Headers": {
             "$ref": "#/components/headers/GenericStringHeader"
           },
-          "X-RateLimit-Limit": {
-            "$ref": "#/components/headers/X-RateLimit-Limit"
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
           }
         },
         "content": {
@@ -916,14 +928,17 @@
               "$ref": "#/components/schemas/GenericInt"
             }
           },
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          },
           "Access-Control-Allow-Origin": {
             "$ref": "#/components/headers/Access-Control-Allow-Origin"
           },
           "Access-Control-Expose-Headers": {
             "$ref": "#/components/headers/GenericStringHeader"
           },
-          "X-RateLimit-Limit": {
-            "$ref": "#/components/headers/X-RateLimit-Limit"
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
           }
         },
         "content": {
@@ -946,7 +961,12 @@
           "$ref": "#/components/schemas/GenericString"
         }
       },
-      "X-RateLimit-Limit": {
+      "API-Version": {
+        "schema": {
+          "$ref": "#/components/schemas/GenericString"
+        }
+      },
+      "X-Rate-Limit-Limit": {
         "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
         "schema": {
           "$ref": "#/components/schemas/GenericInt"
