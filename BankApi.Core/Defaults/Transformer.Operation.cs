@@ -8,6 +8,9 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
 {
     public async Task TransformAsync(OpenApiOperation operation, OpenApiOperationTransformerContext context, CancellationToken cancellationToken)
     {
+        operation.Responses ??= new();
+        operation.Security ??= new List<OpenApiSecurityRequirement>();
+
         AddStandardResponses(operation);
         AddHeadersToResponses(operation);
         await AddSecurityPolicyToRequest(operation, authorizationPolicyProvider, context);
@@ -26,8 +29,8 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
     {
         foreach (var response in operation.Responses)
         {
-            response.Value.Headers["API-Version"] = new OpenApiHeaderReference("API-Version"); 
-            response.Value.Headers["Access-Control-Allow-Origin"] = new OpenApiHeaderReference("Access-Control-Allow-Origin"); 
+            response.Value.Headers["API-Version"] = new OpenApiHeaderReference("API-Version");
+            response.Value.Headers["Access-Control-Allow-Origin"] = new OpenApiHeaderReference("Access-Control-Allow-Origin");
             response.Value.Headers["Access-Control-Expose-Headers"] = new OpenApiHeaderReference("GenericStringHeader");
 
             if (response.Key[0] is '2' or '4')
