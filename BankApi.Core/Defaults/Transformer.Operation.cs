@@ -31,7 +31,7 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
 
             if (response.Key[0] is '2' or '4')
             {
-                response.Value.Headers["X-RateLimit-Limit"] = new() { Reference = new() { Type = ReferenceType.Header, Id = "X-RateLimit-Limit" } };
+                response.Value.Headers["X-Rate-Limit-Limit"] = new() { Reference = new() { Type = ReferenceType.Header, Id = "X-Rate-Limit-Limit" } };
             }
         }
     }

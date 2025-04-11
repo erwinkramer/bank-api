@@ -74,7 +74,7 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
 
             if (response.Key[0] is '2' or '4')
             {
-                response.Value.Headers["X-RateLimit-Limit"] = OpenApiFactory.CreateHeaderRef("X-RateLimit-Limit");
+                response.Value.Headers["X-Rate-Limit-Limit"] = OpenApiFactory.CreateHeaderRef("X-Rate-Limit-Limit");
             }
         }
     }

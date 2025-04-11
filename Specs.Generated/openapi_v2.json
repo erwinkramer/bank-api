@@ -89,8 +89,8 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
             },
             "content": {
@@ -153,8 +153,8 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
             },
             "content": {
@@ -222,8 +222,8 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
             },
             "content": {
@@ -246,8 +246,8 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
             }
           },
@@ -316,8 +316,8 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
             }
           },
@@ -333,8 +333,8 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
             }
           },
@@ -393,8 +393,8 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
             }
           },
@@ -410,8 +410,8 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
             }
           },
@@ -459,8 +459,8 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
             },
             "content": {
@@ -483,8 +483,8 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
             }
           },
@@ -533,8 +533,8 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
             },
             "content": {
@@ -557,8 +557,8 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
             }
           },
@@ -794,8 +794,8 @@
           "Access-Control-Expose-Headers": {
             "$ref": "#/components/headers/GenericStringHeader"
           },
-          "X-RateLimit-Limit": {
-            "$ref": "#/components/headers/X-RateLimit-Limit"
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
           }
         },
         "content": {
@@ -818,8 +818,8 @@
           "Access-Control-Expose-Headers": {
             "$ref": "#/components/headers/GenericStringHeader"
           },
-          "X-RateLimit-Limit": {
-            "$ref": "#/components/headers/X-RateLimit-Limit"
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
           }
         },
         "content": {
@@ -845,8 +845,8 @@
           "Access-Control-Expose-Headers": {
             "$ref": "#/components/headers/GenericStringHeader"
           },
-          "X-RateLimit-Limit": {
-            "$ref": "#/components/headers/X-RateLimit-Limit"
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
           }
         },
         "content": {
@@ -871,8 +871,8 @@
           "Access-Control-Expose-Headers": {
             "$ref": "#/components/headers/GenericStringHeader"
           },
-          "X-RateLimit-Limit": {
-            "$ref": "#/components/headers/X-RateLimit-Limit"
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
           }
         },
         "content": {
@@ -900,7 +900,7 @@
           "$ref": "#/components/schemas/GenericString"
         }
       },
-      "X-RateLimit-Limit": {
+      "X-Rate-Limit-Limit": {
         "description": "The maximum number of requests you're permitted to make in a window of 2 minutes.",
         "schema": {
           "$ref": "#/components/schemas/GenericInt"
