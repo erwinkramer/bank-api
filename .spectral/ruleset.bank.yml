@@ -19,6 +19,11 @@ rules:
       function: format-object-response
       functionOptions:
         elementName: "bankTier"
+        requiredElements:
+          - enum
+          - description
+        optionalElements:
+          - default
 
   bank-tag-requires-industry-value:
     description: Tags must be from the bank industry.

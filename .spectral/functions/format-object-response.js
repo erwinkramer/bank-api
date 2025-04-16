@@ -8,16 +8,22 @@ export default createRulesetFunction(
             additionalProperties: false,
             properties: {
                 elementName: true,
+                requiredElements: {
+                    type: "array",
+                    items: { type: "string" },
+                },
+                optionalElements: {
+                    type: "array",
+                    items: { type: "string" },
+                },
             },
-            required: ["elementName"],
+            required: ["elementName", "requiredElements", "optionalElements"],
         },
     },
     (targetVal, options) => {
-        const { elementName } = options;
+        const { elementName, requiredElements, optionalElements } = options;
 
         if (typeof targetVal === "object" && targetVal[elementName]) {
-            const requiredElements = ["enum", "description"];
-            const optionalElements = ["default"];
             const allAllowedElements = [...requiredElements, ...optionalElements];
             const results = [];
 
