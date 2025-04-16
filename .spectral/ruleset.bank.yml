@@ -6,7 +6,7 @@ documentationUrl: https://www.guanchen.nl/
 
 functionsDir: './functions'
 functions:
-  - format-object-response
+  - format-object
 
 rules:
   bank-tier-format-object-response:
@@ -16,7 +16,7 @@ rules:
     given:
     - $.paths.*.*.responses[*].content[application/json].schema.properties
     then:
-      function: format-object-response
+      function: format-object
       functionOptions:
         elementName: "bankTier"
         requiredElements:
