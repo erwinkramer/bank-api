@@ -6,25 +6,9 @@ documentationUrl: https://www.guanchen.nl/
 
 functionsDir: "./functions"
 functions:
-  - format-object
+  - well-formed-object
 
 rules:
-  bank-tier-format-object-response:
-    description: Response 'bankTier' element should be in the correct format.
-    message: "{{error}}"
-    severity: warn
-    given:
-      - $.paths.*.*.responses[*].content[application/json].schema.properties
-    then:
-      function: format-object
-      functionOptions:
-        elementName: "bankTier"
-        requiredElements:
-          - enum
-          - description
-        optionalElements:
-          - default
-
   bank-tag-requires-industry-value:
     description: Tags must be from the bank industry.
     message:
@@ -112,6 +96,22 @@ rules:
       - function: pattern
         functionOptions:
           match: ^(?!.*\|.*\n)(?=[\s\S]{15,})[A-Z][\s\S]*[.]$
+
+  bank-tier-response-well-formed-object:
+    description: Bank tier in response must be a well-formed object.
+    message: "{{error}}"
+    severity: warn
+    given:
+      - $.paths.*.*.responses[*].content[application/json].schema.properties
+    then:
+      function: well-formed-object
+      functionOptions:
+        elementName: "bankTier"
+        requiredElements:
+          - enum
+          - description
+        optionalElements:
+          - default
 
   bank-operation-summary-required:
     description: Operations must have a summary.
