@@ -17,6 +17,8 @@ rules:
     - $.paths.*.*.responses[*].content[application/json].schema.properties
     then:
       function: format-object-response
+      functionOptions:
+        elementName: "bankTier"
 
   bank-tag-requires-industry-value:
     description: Tags must be from the bank industry.
