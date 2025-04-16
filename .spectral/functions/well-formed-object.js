@@ -8,12 +8,12 @@ export default createRulesetFunction(
             additionalProperties: false,
             properties: {
                 elementName: true,
-                requiredElements: {
+                requiredProperties: {
                     type: "array",
                     items: { type: "string" },
                     default: []
                 },
-                optionalElements: {
+                optionalProperties: {
                     type: "array",
                     items: { type: "string" },
                     default: []
@@ -23,10 +23,10 @@ export default createRulesetFunction(
         },
     },
     (targetVal, options) => {
-        const { elementName, requiredElements = [], optionalElements = [] } = options;
+        const { elementName, requiredProperties = [], optionalProperties = [] } = options;
 
         if (typeof targetVal === "object" && targetVal[elementName]) {
-            const allAllowedElements = [...requiredElements, ...optionalElements];
+            const allAllowedProperties = [...requiredProperties, ...optionalProperties];
             const results = [];
 
             // Check if 'properties' exists inside the element
@@ -40,11 +40,11 @@ export default createRulesetFunction(
             const properties = targetVal[elementName].properties;
 
             // Check for missing required elements inside 'properties'
-            const missingElements = requiredElements.filter(
+            const missingProperties = requiredProperties.filter(
                 (element) => !properties[element]
             );
-            if (missingElements.length > 0) {
-                missingElements.forEach((element) => {
+            if (missingProperties.length > 0) {
+                missingProperties.forEach((element) => {
                     results.push({
                         message: `${elementName}.properties must contain an element named "${element}".`,
                     });
@@ -52,11 +52,11 @@ export default createRulesetFunction(
             }
 
             // Check for unexpected elements inside 'properties'
-            const unexpectedElements = Object.keys(properties).filter(
-                (element) => !allAllowedElements.includes(element)
+            const unexpectedProperties = Object.keys(properties).filter(
+                (element) => !allAllowedProperties.includes(element)
             );
-            if (unexpectedElements.length > 0) {
-                unexpectedElements.forEach((element) => {
+            if (unexpectedProperties.length > 0) {
+                unexpectedProperties.forEach((element) => {
                     results.push({
                         message: `${elementName}.properties contains an unexpected element named "${element}".`,
                     });

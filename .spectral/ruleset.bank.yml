@@ -107,10 +107,10 @@ rules:
       function: well-formed-object
       functionOptions:
         elementName: "metadata"
-        requiredElements:
+        requiredProperties:
           - count
           - pageSize
-        optionalElements:
+        optionalProperties:
           - limit
 
   bank-operation-summary-required:
