@@ -97,8 +97,8 @@ rules:
         functionOptions:
           match: ^(?!.*\|.*\n)(?=[\s\S]{15,})[A-Z][\s\S]*[.]$
 
-  bank-tier-response-well-formed-object:
-    description: Bank tier in response must be a well-formed object.
+  bank-metadata-response-well-formed-object:
+    description: Metadata in response must be a well-formed object.
     message: "{{error}}"
     severity: warn
     given:
