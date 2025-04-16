@@ -9,8 +9,8 @@ functions:
   - format-object-response
 
 rules:
-  bank-format-object-response:
-    description: Response object should be in the correct format
+  bank-tier-format-object-response:
+    description: Response bankTier object should be in the correct format
     message: '{{error}}'
     severity: warn
     given:

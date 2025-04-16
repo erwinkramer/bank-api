@@ -11,17 +11,19 @@ export default createRulesetFunction(
                 requiredElements: {
                     type: "array",
                     items: { type: "string" },
+                    default: []
                 },
                 optionalElements: {
                     type: "array",
                     items: { type: "string" },
+                    default: []
                 },
             },
-            required: ["elementName", "requiredElements", "optionalElements"],
+            required: ["elementName", "requiredElements"],
         },
     },
     (targetVal, options) => {
-        const { elementName, requiredElements, optionalElements } = options;
+        const { elementName, requiredElements = [], optionalElements = [] } = options;
 
         if (typeof targetVal === "object" && targetVal[elementName]) {
             const allAllowedElements = [...requiredElements, ...optionalElements];
