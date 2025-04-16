@@ -106,12 +106,12 @@ rules:
     then:
       function: well-formed-object
       functionOptions:
-        elementName: "bankTier"
+        elementName: "metadata"
         requiredElements:
-          - enum
-          - description
+          - count
+          - pageSize
         optionalElements:
-          - default
+          - limit
 
   bank-operation-summary-required:
     description: Operations must have a summary.

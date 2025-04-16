@@ -29,26 +29,36 @@ export default createRulesetFunction(
             const allAllowedElements = [...requiredElements, ...optionalElements];
             const results = [];
 
-            // Check for missing required elements
+            // Check if 'properties' exists inside the element
+            if (!targetVal[elementName].properties) {
+                results.push({
+                    message: `${elementName} must contain a 'properties' element.`,
+                });
+                return results;
+            }
+
+            const properties = targetVal[elementName].properties;
+
+            // Check for missing required elements inside 'properties'
             const missingElements = requiredElements.filter(
-                (element) => !targetVal[elementName][element]
+                (element) => !properties[element]
             );
             if (missingElements.length > 0) {
                 missingElements.forEach((element) => {
                     results.push({
-                        message: `${elementName} must contain an element named "${element}".`,
+                        message: `${elementName}.properties must contain an element named "${element}".`,
                     });
                 });
             }
 
-            // Check for unexpected elements
-            const unexpectedElements = Object.keys(targetVal[elementName]).filter(
+            // Check for unexpected elements inside 'properties'
+            const unexpectedElements = Object.keys(properties).filter(
                 (element) => !allAllowedElements.includes(element)
             );
             if (unexpectedElements.length > 0) {
                 unexpectedElements.forEach((element) => {
                     results.push({
-                        message: `${elementName} contains an unexpected element named "${element}".`,
+                        message: `${elementName}.properties contains an unexpected element named "${element}".`,
                     });
                 });
             }

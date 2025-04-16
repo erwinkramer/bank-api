@@ -119,7 +119,7 @@
         },
         "security": [
           {
-            "ApiKey-Header": [ ]
+            "ApiKey-Header": []
           }
         ]
       },
@@ -183,7 +183,7 @@
         },
         "security": [
           {
-            "ApiKey-Header": [ ]
+            "ApiKey-Header": []
           }
         ]
       }
@@ -269,7 +269,7 @@
         },
         "security": [
           {
-            "ApiKey-Header": [ ]
+            "ApiKey-Header": []
           }
         ]
       },
@@ -356,7 +356,7 @@
         },
         "security": [
           {
-            "ApiKey-Header": [ ]
+            "ApiKey-Header": []
           }
         ]
       },
@@ -433,7 +433,7 @@
         },
         "security": [
           {
-            "ApiKey-Header": [ ]
+            "ApiKey-Header": []
           }
         ]
       }
@@ -506,8 +506,8 @@
         },
         "security": [
           {
-            "Bearer": [ ],
-            "OpenIdConnect": [ ]
+            "Bearer": [],
+            "OpenIdConnect": []
           }
         ]
       }
@@ -580,8 +580,8 @@
         },
         "security": [
           {
-            "Bearer": [ ],
-            "OpenIdConnect": [ ]
+            "Bearer": [],
+            "OpenIdConnect": []
           }
         ]
       }
@@ -671,11 +671,28 @@
       "PagingOfBankModel": {
         "type": "object",
         "properties": {
-          "count": {
-            "maximum": 70707070,
-            "minimum": 0,
-            "type": "integer",
-            "format": "int32"
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "count": {
+                "maximum": 70707070,
+                "minimum": 0,
+                "type": "integer",
+                "format": "int32"
+              },
+              "pageSize": {
+                "maximum": 70707070,
+                "minimum": 1,
+                "type": "integer",
+                "format": "int32"
+              },
+              "limit": {
+                "maximum": 70707070,
+                "minimum": 1,
+                "type": "integer",
+                "format": "int32"
+              }
+            }
           },
           "data": {
             "maxItems": 70707070,
@@ -850,7 +867,7 @@
           }
         },
         "content": {
-          "NoContent": { }
+          "NoContent": {}
         }
       },
       "429": {
@@ -929,13 +946,13 @@
   },
   "security": [
     {
-      "ApiKey-Header": [ ]
+      "ApiKey-Header": []
     },
     {
-      "Bearer": [ ]
+      "Bearer": []
     },
     {
-      "OpenIdConnect": [ ]
+      "OpenIdConnect": []
     }
   ],
   "tags": [
