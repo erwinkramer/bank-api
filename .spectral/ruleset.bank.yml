@@ -4,7 +4,20 @@ aliases:
 
 documentationUrl: https://www.guanchen.nl/
 
+functionsDir: './functions'
+functions:
+  - format-object-response
+
 rules:
+  bank-format-object-response:
+    description: Response object should be in the correct format
+    message: '{{error}}'
+    severity: warn
+    given:
+    - $.paths.*.*.responses[*].content[application/json].schema.properties
+    then:
+      function: format-object-response
+
   bank-tag-requires-industry-value:
     description: Tags must be from the bank industry.
     message:
