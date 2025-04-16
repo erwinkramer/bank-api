@@ -19,7 +19,7 @@ export default createRulesetFunction(
                     default: []
                 },
             },
-            required: ["elementName", "requiredElements"],
+            required: ["elementName"],
         },
     },
     (targetVal, options) => {
