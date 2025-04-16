@@ -4,17 +4,17 @@ aliases:
 
 documentationUrl: https://www.guanchen.nl/
 
-functionsDir: './functions'
+functionsDir: "./functions"
 functions:
   - format-object
 
 rules:
   bank-tier-format-object-response:
-    description: Response bankTier object should be in the correct format
-    message: '{{error}}'
+    description: Response 'bankTier' element should be in the correct format.
+    message: "{{error}}"
     severity: warn
     given:
-    - $.paths.*.*.responses[*].content[application/json].schema.properties
+      - $.paths.*.*.responses[*].content[application/json].schema.properties
     then:
       function: format-object
       functionOptions:
@@ -54,16 +54,16 @@ rules:
     description: HTTP headers must be in Hyphenated-Pascal-Case, exceptions are API-Version and WWW-Authenticate.
     message: HTTP header is not in Hyphenated-Pascal-Case, exceptions are API-Version and WWW-Authenticate.
     severity: warn
-    given: 
-     - "$..responses..headers"
-     - "$..parameters[?(@.in == 'header')].name"
-     - "$.components.securitySchemes[?(@.in == 'header')].name"
+    given:
+      - "$..responses..headers"
+      - "$..parameters[?(@.in == 'header')].name"
+      - "$.components.securitySchemes[?(@.in == 'header')].name"
     then:
       field: "@key"
       function: pattern
       functionOptions:
         match: "^(API-Version|WWW-Authenticate|([A-Z][a-z0-9]*)(-[A-Z][a-z0-9]*)*)$"
-        
+
   bank-property-requires-camel-case:
     description: Property names, acronyms, path parameters and query parameters must be in camelCase.
     message: Property name, acronym, path parameter or query parameter is not in camelCase.
