@@ -109,9 +109,11 @@ rules:
         elementName: "metadata"
         requiredProperties:
           - count
-          - pageSize
         optionalProperties:
-          - limit
+          - page
+          - hasMorePages
+          - totalCount
+          - pageSize
 
   bank-operation-summary-required:
     description: Operations must have a summary.
