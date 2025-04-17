@@ -29,15 +29,16 @@ export default createRulesetFunction(
             const allAllowedProperties = [...requiredProperties, ...optionalProperties];
             const results = [];
 
-            // Check if 'properties' exists inside the element
-            if (!targetVal[elementName].properties) {
+            // Check if 'properties' exists inside the element or within 'allOf'/'anyOf'
+            const containers = [targetVal[elementName], ...(targetVal[elementName].allOf || []), ...(targetVal[elementName].anyOf || [])];
+            let properties = containers.find(item => item.properties)?.properties || null;
+
+            if (!properties) {
                 results.push({
-                    message: `${elementName} must contain a 'properties' element.`,
+                    message: `${elementName} must contain a 'properties' element, or it must be defined within 'allOf' or 'anyOf'.`,
                 });
                 return results;
             }
-
-            const properties = targetVal[elementName].properties;
 
             // Check for missing required elements inside 'properties'
             const missingProperties = requiredProperties.filter(
