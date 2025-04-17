@@ -5,11 +5,11 @@ using System.ComponentModel;
 public class GridQuery : IGridifyQuery
 {
     public GridQuery() { }
-    public GridQuery(int page, int pageSize, string filter, string? orderBy = null)
+    public GridQuery(int page, int pageSize, string filter, string? sort = null)
     {
         Page = page;
         PageSize = pageSize;
-        OrderBy = orderBy;
+        Sort = sort;
         Filter = filter;
     }
 
@@ -25,14 +25,13 @@ public class GridQuery : IGridifyQuery
     [Description("The pagesize of the result.")]
     public int PageSize { get; set; }
 
-    [FromQuery(Name = "orderBy")]
+    [FromQuery(Name = "sort")]
     [GenericMaxLength]
     [GenericRegularExpression]
-    [Description(@"The ordering query expression can be built with a comma-delimited ordered list of field/property names, followed by `asc` or `desc` keywords. 
+    [Description(@"The sorting query expression can be built with a comma-delimited sorted list of field/property names, followed by `asc` or `desc` keywords. 
 
-By default, if you don't add these keywords, the API assumes you need Ascending ordering.")]
-    public string? OrderBy { get; set; }
-
+By default, if you don't add these keywords, the API assumes you need Ascending sorting.")]
+    public string? Sort { get; set; }
 
     [FromQuery(Name = "filter")]
     [GenericMaxLength]
