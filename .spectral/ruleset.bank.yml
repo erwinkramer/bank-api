@@ -102,7 +102,7 @@ rules:
     message: "{{error}}"
     severity: warn
     given:
-      - $.paths.*.*.responses[*].content[application/json].schema.properties
+      - $.paths.*.*.responses[*].content[*].schema.properties
     then:
       function: well-formed-object
       functionOptions:
