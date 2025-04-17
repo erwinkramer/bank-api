@@ -56,9 +56,9 @@
             }
           },
           {
-            "name": "orderBy",
+            "name": "sort",
             "in": "query",
-            "description": "The ordering query expression can be built with a comma-delimited ordered list of field/property names, followed by `asc` or `desc` keywords. \n\nBy default, if you don't add these keywords, the API assumes you need Ascending ordering.",
+            "description": "The sorting query expression can be built with a comma-delimited sorted list of field/property names, followed by `asc` or `desc` keywords. \n\nBy default, if you don't add these keywords, the API assumes you need Ascending sorting.",
             "schema": {
               "maxLength": 70707070,
               "pattern": ".*",

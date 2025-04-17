@@ -9,7 +9,7 @@ public class GridQuery : IGridifyQuery
     {
         Page = page;
         PageSize = pageSize;
-        Sort = sort;
+        OrderBy = sort;
         Filter = filter;
     }
 
@@ -31,7 +31,7 @@ public class GridQuery : IGridifyQuery
     [Description(@"The sorting query expression can be built with a comma-delimited sorted list of field/property names, followed by `asc` or `desc` keywords. 
 
 By default, if you don't add these keywords, the API assumes you need Ascending sorting.")]
-    public string? Sort { get; set; }
+    public string? OrderBy { get; set; }
 
     [FromQuery(Name = "filter")]
     [GenericMaxLength]
