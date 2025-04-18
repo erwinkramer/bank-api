@@ -6,7 +6,7 @@ using System.Security.Claims;
 
 public class TellerOperation
 {
-    public static async Task<Results<Ok<Teller>, NotFound, UnprocessableEntity>> GetBankTeller(GitHubClient client, ClaimsPrincipal user, ILogger logger, CancellationToken cancellationToken)
+    public static async Task<Results<Ok<Teller>, NotFound, UnprocessableEntity>> GetBankTeller(GitHubClient client, ClaimsPrincipal user, ILogger logger, CancellationToken token = default)
     {
         LogMessage.LogAccessMessage(logger, "teller", new()
         {
@@ -14,19 +14,19 @@ public class TellerOperation
             UserId = user.FindFirstValue(ClaimTypes.NameIdentifier)
         });
 
-        var release = await client.Repos["dotnet"]["runtime"].Releases.Latest.GetAsync(cancellationToken: cancellationToken);
+        var release = await client.Repos["dotnet"]["runtime"].Releases.Latest.GetAsync(cancellationToken: token);
 
         return release?.Author?.HtmlUrl is string authorGitHubUrl
             ? TypedResults.Ok(new Teller() { GitHubProfile = new(authorGitHubUrl) })
             : TypedResults.NotFound();
     }
 
-    public static async Task<Results<Ok<TellerReportList>, NotFound, UnprocessableEntity>> GetBankTellerReports(BlobServiceClient blobServiceClient, CancellationToken cancellationToken)
+    public static async Task<Results<Ok<TellerReportList>, NotFound, UnprocessableEntity>> GetBankTellerReports(BlobServiceClient blobServiceClient, CancellationToken token = default)
     {
         BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("reports");
 
         TellerReportList reports = new();
-        await foreach (BlobItem blobItem in containerClient.GetBlobsAsync())
+        await foreach (BlobItem blobItem in containerClient.GetBlobsAsync(cancellationToken: token))
         {
             reports.data.Add(new() { Name = blobItem.Name });
             reports.count++;
