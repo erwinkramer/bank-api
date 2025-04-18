@@ -4,6 +4,10 @@ aliases:
 
 documentationUrl: https://www.guanchen.nl/
 
+functionsDir: "./functions"
+functions:
+  - well-formed-object
+
 rules:
   bank-tag-requires-industry-value:
     description: Tags must be from the bank industry.
@@ -34,16 +38,16 @@ rules:
     description: HTTP headers must be in Hyphenated-Pascal-Case, exceptions are API-Version and WWW-Authenticate.
     message: HTTP header is not in Hyphenated-Pascal-Case, exceptions are API-Version and WWW-Authenticate.
     severity: warn
-    given: 
-     - "$..responses..headers"
-     - "$..parameters[?(@.in == 'header')].name"
-     - "$.components.securitySchemes[?(@.in == 'header')].name"
+    given:
+      - "$..responses..headers"
+      - "$..parameters[?(@.in == 'header')].name"
+      - "$.components.securitySchemes[?(@.in == 'header')].name"
     then:
       field: "@key"
       function: pattern
       functionOptions:
         match: "^(API-Version|WWW-Authenticate|([A-Z][a-z0-9]*)(-[A-Z][a-z0-9]*)*)$"
-        
+
   bank-property-requires-camel-case:
     description: Property names, acronyms, path parameters and query parameters must be in camelCase.
     message: Property name, acronym, path parameter or query parameter is not in camelCase.
@@ -92,6 +96,24 @@ rules:
       - function: pattern
         functionOptions:
           match: ^(?!.*\|.*\n)(?=[\s\S]{15,})[A-Z][\s\S]*[.]$
+
+  bank-response-metadata-well-formed-object:
+    description: Metadata in response must be a well-formed object.
+    message: "{{error}}"
+    severity: warn
+    given:
+      - $.paths.*.*.responses[*].content[*].schema.properties
+    then:
+      function: well-formed-object
+      functionOptions:
+        elementName: "metadata"
+        requiredProperties:
+          - count
+        optionalProperties:
+          - page
+          - hasMorePages
+          - totalCount
+          - pageSize
 
   bank-operation-summary-required:
     description: Operations must have a summary.
