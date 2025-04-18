@@ -15,7 +15,7 @@ The API complies to:
 
 ✅ [OWASP API Security Top 10 - v2023](https://owasp.org/API-Security/editions/2023/en/0x11-t10/) via [Spectral OWASP API Security ruleset](https://github.com/stoplightio/spectral-owasp-ruleset?tab=readme-ov-file#spectral-owasp-api-security)
 
-✅ [OpenAPI Specification v3.0.1](https://spec.openapis.org/oas/v3.0.1.html) via [Spectral "oas" ruleset](https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules)
+✅ [OpenAPI Specification v3.1.1](https://spec.openapis.org/oas/v3.1.1.html) via [Spectral "oas" ruleset](https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules)
 
 ✅ [Dutch Public Sector (NLGov) REST API Design Rules](https://github.com/Logius-standaarden/API-Design-Rules/) via [API Design Rules ruleset](https://github.com/Logius-standaarden/API-Design-Rules/blob/develop/linter/spectral.yml)
 
@@ -104,7 +104,7 @@ aspire--> infra_gen
 
 If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
-- [.NET 9 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 
 - All [recommended Visual Studio Code extensions](.vscode/extensions.json)
 
@@ -167,7 +167,7 @@ This mode starts the API in the context of .NET Aspire.
 
 1. Dependabot is enabled for `nuget` packages but [wildcard version notation isn't supported yet](https://github.com/dependabot/dependabot-core/issues/9442#issuecomment-2433046972), which is used extensively in this project.
 
-1. [The OpenAPI document generator shipped with .NET 9 does not fully support API versioning](https://github.com/scalar/scalar/issues/3898#issuecomment-2479087233), a simpler approach with [PathBase](https://andrewlock.net/understanding-pathbase-in-aspnetcore/) is used for now, which is also more convenient for Azure API Management usage.
+1. [The OpenAPI document generator shipped with .NET 10 does not fully support API versioning](https://github.com/scalar/scalar/issues/3898#issuecomment-2479087233), a simpler approach with [PathBase](https://andrewlock.net/understanding-pathbase-in-aspnetcore/) is used for now, which is also more convenient for Azure API Management usage.
 
 1. Extending Spectral rulesets from an NPM package [can be problematic](https://github.com/stoplightio/vscode-spectral/issues/214#issuecomment-2543132932).
 

@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.1.1",
   "info": {
     "title": "Bank API",
     "description": "The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.",
@@ -16,7 +16,7 @@
   "servers": [
     {
       "url": "https://localhost:5201/v1",
-      "x-internal": false
+      "x-internal": null
     }
   ],
   "paths": {
@@ -80,18 +80,9 @@
           "200": {
             "description": "OK",
             "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              },
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              }
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
             },
             "content": {
               "application/json": {
@@ -102,19 +93,43 @@
             }
           },
           "422": {
-            "$ref": "#/components/responses/422"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "500": {
-            "$ref": "#/components/responses/500"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { }
+            }
           },
           "400": {
-            "$ref": "#/components/responses/400"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "401": {
-            "$ref": "#/components/responses/401"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "429": {
-            "$ref": "#/components/responses/429"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           }
         },
         "security": [
@@ -144,18 +159,9 @@
           "201": {
             "description": "Created",
             "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              },
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              }
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
             },
             "content": {
               "application/json": {
@@ -166,19 +172,43 @@
             }
           },
           "422": {
-            "$ref": "#/components/responses/422"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "500": {
-            "$ref": "#/components/responses/500"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { }
+            }
           },
           "400": {
-            "$ref": "#/components/responses/400"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "401": {
-            "$ref": "#/components/responses/401"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "429": {
-            "$ref": "#/components/responses/429"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           }
         },
         "security": [
@@ -213,18 +243,9 @@
           "200": {
             "description": "OK",
             "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              },
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              }
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
             },
             "content": {
               "application/json": {
@@ -237,34 +258,49 @@
           "404": {
             "description": "Not Found",
             "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              },
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              }
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
             }
           },
           "422": {
-            "$ref": "#/components/responses/422"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "500": {
-            "$ref": "#/components/responses/500"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { }
+            }
           },
           "400": {
-            "$ref": "#/components/responses/400"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "401": {
-            "$ref": "#/components/responses/401"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "429": {
-            "$ref": "#/components/responses/429"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           }
         },
         "security": [
@@ -307,51 +343,57 @@
           "204": {
             "description": "No Content",
             "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              },
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              }
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
             }
           },
           "404": {
             "description": "Not Found",
             "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              },
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              }
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
             }
           },
           "422": {
-            "$ref": "#/components/responses/422"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "500": {
-            "$ref": "#/components/responses/500"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { }
+            }
           },
           "400": {
-            "$ref": "#/components/responses/400"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "401": {
-            "$ref": "#/components/responses/401"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "429": {
-            "$ref": "#/components/responses/429"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           }
         },
         "security": [
@@ -384,51 +426,57 @@
           "204": {
             "description": "No Content",
             "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              },
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              }
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
             }
           },
           "404": {
             "description": "Not Found",
             "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              },
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              }
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
             }
           },
           "422": {
-            "$ref": "#/components/responses/422"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "500": {
-            "$ref": "#/components/responses/500"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { }
+            }
           },
           "400": {
-            "$ref": "#/components/responses/400"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "401": {
-            "$ref": "#/components/responses/401"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "429": {
-            "$ref": "#/components/responses/429"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           }
         },
         "security": [
@@ -450,18 +498,9 @@
           "200": {
             "description": "OK",
             "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              },
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              }
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
             },
             "content": {
               "application/json": {
@@ -474,34 +513,49 @@
           "404": {
             "description": "Not Found",
             "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              },
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              }
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
             }
           },
           "422": {
-            "$ref": "#/components/responses/422"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "500": {
-            "$ref": "#/components/responses/500"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { }
+            }
           },
           "400": {
-            "$ref": "#/components/responses/400"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "401": {
-            "$ref": "#/components/responses/401"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "429": {
-            "$ref": "#/components/responses/429"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           }
         },
         "security": [
@@ -524,18 +578,9 @@
           "200": {
             "description": "OK",
             "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              },
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              }
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
             },
             "content": {
               "application/json": {
@@ -548,34 +593,49 @@
           "404": {
             "description": "Not Found",
             "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              },
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              }
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
             }
           },
           "422": {
-            "$ref": "#/components/responses/422"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "500": {
-            "$ref": "#/components/responses/500"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { }
+            }
           },
           "400": {
-            "$ref": "#/components/responses/400"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "401": {
-            "$ref": "#/components/responses/401"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           },
           "429": {
-            "$ref": "#/components/responses/429"
+            "description": null,
+            "headers": {
+              "Access-Control-Allow-Origin": { },
+              "Access-Control-Expose-Headers": { },
+              "X-RateLimit-Limit": { }
+            }
           }
         },
         "security": [
@@ -589,43 +649,6 @@
   },
   "components": {
     "schemas": {
-      "GenericString": {
-        "maxLength": 70707070,
-        "pattern": ".*",
-        "type": "string"
-      },
-      "GenericInt": {
-        "maximum": 70707070,
-        "minimum": 0,
-        "type": "integer",
-        "format": "int32"
-      },
-      "Problem": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/GenericString"
-          },
-          "title": {
-            "$ref": "#/components/schemas/GenericString"
-          },
-          "status": {
-            "$ref": "#/components/schemas/GenericInt"
-          },
-          "detail": {
-            "$ref": "#/components/schemas/GenericString"
-          },
-          "instance": {
-            "$ref": "#/components/schemas/GenericString"
-          },
-          "traceId": {
-            "$ref": "#/components/schemas/GenericString"
-          },
-          "requestId": {
-            "$ref": "#/components/schemas/GenericString"
-          }
-        }
-      },
       "BankModel": {
         "type": "object",
         "properties": {
@@ -638,10 +661,12 @@
           "name": {
             "maxLength": 70707070,
             "pattern": ".*",
-            "type": "string",
+            "type": [
+              "null",
+              "string"
+            ],
             "description": "Name of the bank.",
-            "default": "Guanchen",
-            "nullable": true
+            "default": "Guanchen"
           },
           "isCompliant": {
             "type": "boolean",
@@ -667,6 +692,17 @@
         ],
         "description": "Tier of the bank.",
         "default": "A"
+      },
+      "GenericInt": {
+        "maximum": 70707070,
+        "minimum": 0,
+        "type": "integer",
+        "format": "int32"
+      },
+      "GenericString": {
+        "maxLength": 70707070,
+        "pattern": ".*",
+        "type": "string"
       },
       "PagingOfBankModel": {
         "type": "object",
@@ -703,15 +739,43 @@
           ]
         }
       },
+      "Problem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "title": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "status": {
+            "$ref": "#/components/schemas/GenericInt"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "instance": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "traceId": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "requestId": {
+            "$ref": "#/components/schemas/GenericString"
+          }
+        }
+      },
       "Teller": {
         "type": "object",
         "properties": {
           "gitHubProfile": {
             "maxLength": 70707070,
-            "type": "string",
+            "type": [
+              "null",
+              "string"
+            ],
             "description": "GitHub profile of the teller.",
-            "format": "uri",
-            "nullable": true
+            "format": "uri"
           }
         },
         "example": {
@@ -724,9 +788,11 @@
           "name": {
             "maxLength": 70707070,
             "pattern": ".*",
-            "type": "string",
-            "description": "Name of the report.",
-            "nullable": true
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Name of the report."
           }
         }
       },
