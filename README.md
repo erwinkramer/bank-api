@@ -179,13 +179,7 @@ This mode starts the API in the context of .NET Aspire.
 
     Nonetheless, versioning is very opinionated and one should always see what the best business and technical fit is. This might change over time and from project to project.
 
-### Dev Container
-
 1. Dev Containers with the `docker-outside-of-docker` feature instead of `docker-in-docker` [do not work](https://github.com/dotnet/aspire/issues/6830), for now we're using `docker-in-docker`.
-
-1. [The Aspire dashboard doesn't start the first time inside the Dev Container](https://github.com/dotnet/aspire/issues/6829), open a new tab and paste the same URL, then it works.
-
-1. Dev Containers in combination with [Aspire Mode](#run-in-aspire-mode) have [port forwarding mismatch on endpoints](https://github.com/dotnet/aspire/issues/6884), the ports shown for the Scalar pages in the Aspire Dashboard do not match the randomly assigned ports by Aspire. The Scalar pages are still accessible when using the ports assigned by Aspire (check the Ports View in VSCode).
 
 Please see the Reddit r/dotnet [post 1](https://www.reddit.com/r/dotnet/comments/1gyql5a/bank_api_modern_api_reference_project/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) and [post 2](https://www.reddit.com/r/dotnet/comments/1hji970/bank_api_modern_api_reference_now_complies_to/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) about this project for more considerations and information.
 
