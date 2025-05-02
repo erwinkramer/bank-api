@@ -1,8 +1,8 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/dotnet
 {
-	"name": "Bank API dotnet9",
-	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-9.0-bookworm", // bookworm is more up to date (with .NET SDK) than noble
+	"name": "Bank API dotnet10",
+	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-10.0-preview-trixie", // trixie is more up to date (with .NET SDK) than noble
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -22,7 +22,7 @@
 	"containerEnv": {
 		"DOTNET_LAUNCH_PROFILE": "http",
 		// Zscaler proxy support when reading custom rulesets over https in Spectral
-		"NODE_EXTRA_CA_CERTS": "${containerWorkspaceFolder}/.certs/ZscalerRootCA.crt" 
+		"NODE_EXTRA_CA_CERTS": "${containerWorkspaceFolder}/.certs/ZscalerRootCA.crt"
 	},
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
@@ -45,5 +45,5 @@
 	],
 	// Remove absolutely every file on the .gitignore list, so we don't run into permission issues. 
 	// Also see https://github.com/microsoft/vscode-remote-release/issues/9099#issuecomment-2541564211
-	"postStartCommand": "git clean -xdf && dotnet dev-certs https --trust" 
+	"postStartCommand": "git clean -xdf && dotnet dev-certs https --trust"
 }
