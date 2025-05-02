@@ -40,7 +40,7 @@
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.azure,target=/home/vscode/.azure,type=bind",
 		// Bind the Visual Studio Token provider folder
 		"source=${localEnv:HOME}${localEnv:LOCALAPPDATA}/.IdentityService,target=/home/vscode/.IdentityService,type=bind",
-		// Bind ASP.NET user secrets folder (please see https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-9.0&tabs=windows#how-the-secret-manager-tool-works)
+		// Bind ASP.NET user secrets folder (please see https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets#how-the-secret-manager-tool-works)
 		"source=${localEnv:APPDATA}/Microsoft/UserSecrets,target=/home/vscode/.microsoft/usersecrets,type=bind"
 	],
 	// Remove absolutely every file on the .gitignore list, so we don't run into permission issues. 
