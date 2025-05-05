@@ -6,13 +6,12 @@ public static partial class ApiBuilder
 {
     public static IHostApplicationBuilder AddLoggingServices(this IHostApplicationBuilder builder)
     {
-        builder.Logging.AddOpenTelemetry(logging =>
-        {
-            logging.IncludeFormattedMessage = true;
-            logging.IncludeScopes = true;
-        });
-
         var otel = builder.Services.AddOpenTelemetry();
+        otel.WithLogging(logging => { }, options =>
+        {
+            options.IncludeFormattedMessage = true;
+            options.IncludeScopes = true;
+        });
         otel.WithMetrics(metrics =>
         {
             metrics.AddAspNetCoreInstrumentation();
