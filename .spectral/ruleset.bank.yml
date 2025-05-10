@@ -9,7 +9,7 @@ functions:
   - well-formed-object
 
 rules:
-  bank-tag-requires-industry-value:
+  bank:tag-requires-industry-value:
     description: Tags must be from the bank industry.
     message:
       This is not a bank industry value chain business capability keyword.
@@ -24,17 +24,7 @@ rules:
           - Supervisory
           - Administrative
 
-  bank-path-requires-kebab-case:
-    description: Paths must be in kebab-case.
-    message: Path is not in kebab-case.
-    severity: warn
-    given: "$.paths[*]~"
-    then:
-      - function: pattern
-        functionOptions:
-          match: "^(/([a-z0-9]+(-[a-z0-9]+)*|\\{[a-zA-Z0-9_]+\\}))*$"
-
-  bank-header-requires-hyphenated-pascal-case:
+  bank:header-requires-hyphenated-pascal-case:
     description: HTTP headers must be in Hyphenated-Pascal-Case, exceptions are API-Version and WWW-Authenticate.
     message: HTTP header is not in Hyphenated-Pascal-Case, exceptions are API-Version and WWW-Authenticate.
     severity: warn
@@ -48,7 +38,7 @@ rules:
       functionOptions:
         match: "^(API-Version|WWW-Authenticate|([A-Z][a-z0-9]*)(-[A-Z][a-z0-9]*)*)$"
 
-  bank-property-requires-camel-case:
+  bank:property-requires-camel-case:
     description: Property names, acronyms, path parameters and query parameters must be in camelCase.
     message: Property name, acronym, path parameter or query parameter is not in camelCase.
     severity: warn
@@ -61,7 +51,7 @@ rules:
       functionOptions:
         match: ^[a-z][a-z0-9]*(([A-Z]{2}|[A-Z])[a-z0-9]+)*$
 
-  bank-parameter-description-required:
+  bank:parameter-description-required:
     description: Parameters must have a description.
     message: Parameter is missing a description.
     severity: warn
@@ -70,7 +60,7 @@ rules:
       field: description
       function: truthy
 
-  bank-summary-well-formed:
+  bank:summary-well-formed:
     description: Operations must have a well-formed summary.
     message:
       Operation summary is not well-formed. Must start with a capital letter,
@@ -82,7 +72,7 @@ rules:
         functionOptions:
           match: ^[A-Z][a-zA-Z0-9\s]{0,24}$
 
-  bank-description-well-formed:
+  bank:description-well-formed:
     description: Security schemes, parameters and operations must have a well-formed description.
     message: Security scheme, parameter or operation is not well-formed.
       Each sentence must start with a capital letter, end with a period,
@@ -97,7 +87,7 @@ rules:
         functionOptions:
           match: ^(?!.*\|.*\n)(?=[\s\S]{15,})[A-Z][\s\S]*[.]$
 
-  bank-response-metadata-well-formed-object:
+  bank:response-metadata-well-formed-object:
     description: Metadata in response must be a well-formed object.
     message: "{{error}}"
     severity: warn
@@ -115,7 +105,7 @@ rules:
           - totalCount
           - pageSize
 
-  bank-operation-summary-required:
+  bank:operation-summary-required:
     description: Operations must have a summary.
     message: Operation is missing a summary.
     severity: warn
@@ -124,7 +114,7 @@ rules:
       field: summary
       function: truthy
 
-  bank-operation-examples-required:
+  bank:operation-examples-required:
     description: Object types must include at least one example.
     message: Type is missing an example in the schema.
     severity: warn
@@ -133,7 +123,7 @@ rules:
       field: schema.example
       function: truthy
 
-  bank-operation-id-requires-pascal-case:
+  bank:operation-id-requires-pascal-case:
     description: Operation id's must be in PascalCase (upper camel case).
     message: Operation id is not in PascalCase.
     severity: warn

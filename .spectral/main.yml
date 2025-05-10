@@ -1,5 +1,4 @@
 extends:
-  - spectral:oas
-  - ruleset.bank.yml
-  - https://unpkg.com/@stoplight/spectral-owasp-ruleset/dist/ruleset.mjs
-  - https://static.developer.overheid.nl/adr/ruleset.yaml 
+  - ruleset.bank.yml #Bank API  project ruleset
+  - https://unpkg.com/@stoplight/spectral-owasp-ruleset/dist/ruleset.mjs #OWASP API Security Top 10 - v2023
+  - https://static.developer.overheid.nl/adr/ruleset.yaml  #Dutch Public Sector (NLGov) REST API Design Rules, includes Spectral "oas" ruleset
