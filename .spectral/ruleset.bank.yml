@@ -15,7 +15,7 @@ rules:
       This is not a bank industry value chain business capability keyword.
       Please make sure there is at least one qualified tag name.
     given:
-      - $.tags.*.name
+      - $.tags.*.name #only global tags have to be checked when used in combination with operation-tag-defined: https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules#operation-tag-defined
     severity: warn
     then:
       function: enumeration
