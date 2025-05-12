@@ -21,8 +21,8 @@ class TransformerComponentSchemas() : IOpenApiDocumentTransformer
         {
             Type = JsonSchemaType.Integer,
             Format = "int32",
-            Minimum = GlobalConfiguration.ApiSettings!.GenericBoundaries.Minimum,
-            Maximum = GlobalConfiguration.ApiSettings!.GenericBoundaries.Maximum,
+            Minimum = GlobalConfiguration.ApiSettings!.GenericBoundaries.Minimum.ToString(),
+            Maximum = GlobalConfiguration.ApiSettings!.GenericBoundaries.Maximum.ToString(),
         };
 
         document.Components.Schemas["Problem"] = new OpenApiSchema

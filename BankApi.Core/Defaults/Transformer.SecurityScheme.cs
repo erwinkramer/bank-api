@@ -63,6 +63,7 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
                 if(scheme.Key is null) continue;
 
                 document.Components.SecuritySchemes[scheme.Key] = scheme.Value;
+                document.Security ??= new List<OpenApiSecurityRequirement>();
                 document.Security.Add(new() { { new OpenApiSecuritySchemeReference(scheme.Key), new List<string>() } });
             }
         }

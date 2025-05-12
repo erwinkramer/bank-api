@@ -70,6 +70,8 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
 
     private void AddHeadersToResponses(OpenApiDocument doc)
     {
+        if (doc.Components?.Responses == null) return;
+
         foreach (var response in doc.Components.Responses)
         {
             response.Value.Headers["API-Version"] = new OpenApiHeaderReference("API-Version", doc);

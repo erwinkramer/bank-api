@@ -18,15 +18,17 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
 
     private void AddStandardResponses(OpenApiOperation operation)
     {
-        operation.Responses["500"] = new OpenApiResponseReference("500");
-        operation.Responses["422"] = new OpenApiResponseReference("422");
-        operation.Responses["400"] = new OpenApiResponseReference("400");
-        operation.Responses["401"] = new OpenApiResponseReference("401");
-        operation.Responses["429"] = new OpenApiResponseReference("429");
+        operation.Responses!["500"] = new OpenApiResponseReference("500");
+        operation.Responses!["422"] = new OpenApiResponseReference("422");
+        operation.Responses!["400"] = new OpenApiResponseReference("400");
+        operation.Responses!["401"] = new OpenApiResponseReference("401");
+        operation.Responses!["429"] = new OpenApiResponseReference("429");
     }
 
     private void AddHeadersToResponses(OpenApiOperation operation)
     {
+        if (operation.Responses == null) return;
+
         foreach (var response in operation.Responses)
         {
             response.Value.Headers["API-Version"] = new OpenApiHeaderReference("API-Version");
@@ -57,6 +59,7 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
             if (policyScheme == JwtBearerDefaults.AuthenticationScheme)
                 securityRequirement.Add(new OpenApiSecuritySchemeReference("OpenIdConnect"), []);
         }
+        operation.Security ??= new List<OpenApiSecurityRequirement>();
         operation.Security.Add(securityRequirement);
     }
 }

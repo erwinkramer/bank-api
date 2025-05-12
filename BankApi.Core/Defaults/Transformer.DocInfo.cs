@@ -5,9 +5,9 @@ class TransformerDocInfo() : IOpenApiDocumentTransformer
 {
     public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
-        foreach (var server in GlobalConfiguration.ApiDocument!.Servers)
+        foreach (var server in GlobalConfiguration.ApiDocument!.Servers!)
         {
-            server.Extensions["x-internal"] = null; // https://github.com/microsoft/OpenAPI.NET/issues/2151
+            server.Extensions["x-internal"] = new Microsoft.OpenApi.Any.OpenApiAny(true); // https://github.com/microsoft/OpenAPI.NET/issues/2151
         }
 
         document.Info = GlobalConfiguration.ApiDocument!.Info;

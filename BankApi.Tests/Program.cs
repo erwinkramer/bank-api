@@ -24,7 +24,7 @@ public class Test
             BankTier = BankTier.A,
             Id = Guid.Parse(bankId),
             IsCompliant = false
-        }, databaseContext!);
+        }, databaseContext!, null);
 
         await Assert.That(response.Result).IsTypeOf<Created<BankModel>>();
     }
@@ -37,7 +37,7 @@ public class Test
             BankTier = BankTier.A,
             Id = Guid.Parse(bankId),
             IsCompliant = true
-        }, databaseContext!);
+        }, databaseContext!, null);
 
         await Assert.That(response.Result).IsTypeOf<NoContent>();
     }
