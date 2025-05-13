@@ -16,7 +16,7 @@
   "servers": [
     {
       "url": "https://localhost:5201/v1",
-      "x-internal": true
+      "x-internal": false
     }
   ],
   "paths": {
