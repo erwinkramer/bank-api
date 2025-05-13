@@ -1,3 +1,5 @@
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using Gridify;
 using Microsoft.OpenApi.Models;
 
@@ -5,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 GlobalConfiguration.ApiDocument = builder.Configuration.GetRequiredSection("ApiDocument").Get<OpenApiDocument>()!;
 GlobalConfiguration.ApiSettings = builder.Configuration.GetRequiredSection("ApiSettings").Get<GlobalConfiguration.SettingsModel>()!;
-GlobalConfiguration.ApiExamples = OpenApiFactory.CreateFromJson(File.ReadAllText("./appexamples.json"))!;
+GlobalConfiguration.ApiExamples = JsonSerializer.Deserialize<JsonObject>(File.ReadAllText("./appexamples.json"))!;
 
 GridifyGlobalConfiguration.EnableEntityFrameworkCompatibilityLayer();
 GridifyGlobalConfiguration.DefaultPageSize = GlobalConfiguration.ApiSettings.PageSize.Default;
@@ -13,6 +15,7 @@ GridifyGlobalConfiguration.DefaultPageSize = GlobalConfiguration.ApiSettings.Pag
 builder.AddLoggingServices();
 builder.AddComplianceServices();
 builder.AddAzureClients();
+builder.Services.ConfigureJson();
 builder.Services.AddHealthChecks();
 builder.Services.AddAuthServices();
 builder.Services.AddDataServices();

@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.1.1",
   "info": {
     "title": "Bank API",
     "description": "The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.",
@@ -589,43 +589,6 @@
   },
   "components": {
     "schemas": {
-      "GenericString": {
-        "maxLength": 70707070,
-        "pattern": ".*",
-        "type": "string"
-      },
-      "GenericInt": {
-        "maximum": 70707070,
-        "minimum": 0,
-        "type": "integer",
-        "format": "int32"
-      },
-      "Problem": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/GenericString"
-          },
-          "title": {
-            "$ref": "#/components/schemas/GenericString"
-          },
-          "status": {
-            "$ref": "#/components/schemas/GenericInt"
-          },
-          "detail": {
-            "$ref": "#/components/schemas/GenericString"
-          },
-          "instance": {
-            "$ref": "#/components/schemas/GenericString"
-          },
-          "traceId": {
-            "$ref": "#/components/schemas/GenericString"
-          },
-          "requestId": {
-            "$ref": "#/components/schemas/GenericString"
-          }
-        }
-      },
       "BankModel": {
         "type": "object",
         "properties": {
@@ -638,10 +601,12 @@
           "name": {
             "maxLength": 70707070,
             "pattern": ".*",
-            "type": "string",
+            "type": [
+              "null",
+              "string"
+            ],
             "description": "Name of the bank.",
-            "default": "Guanchen",
-            "nullable": true
+            "default": "Guanchen"
           },
           "isCompliant": {
             "type": "boolean",
@@ -667,6 +632,17 @@
         ],
         "description": "Tier of the bank.",
         "default": "A"
+      },
+      "GenericInt": {
+        "maximum": 70707070,
+        "minimum": 0,
+        "type": "integer",
+        "format": "int32"
+      },
+      "GenericString": {
+        "maxLength": 70707070,
+        "pattern": ".*",
+        "type": "string"
       },
       "PagingOfBankModel": {
         "type": "object",
@@ -703,15 +679,43 @@
           ]
         }
       },
+      "Problem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "title": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "status": {
+            "$ref": "#/components/schemas/GenericInt"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "instance": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "traceId": {
+            "$ref": "#/components/schemas/GenericString"
+          },
+          "requestId": {
+            "$ref": "#/components/schemas/GenericString"
+          }
+        }
+      },
       "Teller": {
         "type": "object",
         "properties": {
           "gitHubProfile": {
             "maxLength": 70707070,
-            "type": "string",
+            "type": [
+              "null",
+              "string"
+            ],
             "description": "GitHub profile of the teller.",
-            "format": "uri",
-            "nullable": true
+            "format": "uri"
           }
         },
         "example": {
@@ -724,9 +728,11 @@
           "name": {
             "maxLength": 70707070,
             "pattern": ".*",
-            "type": "string",
-            "description": "Name of the report.",
-            "nullable": true
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Name of the report."
           }
         }
       },
