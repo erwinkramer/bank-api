@@ -16,7 +16,7 @@
   "servers": [
     {
       "url": "https://localhost:5202/v2",
-      "x-internal": null
+      "x-internal": true
     }
   ],
   "paths": {
@@ -37,7 +37,11 @@
             "schema": {
               "maximum": 70707070,
               "minimum": 1,
-              "type": "integer",
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
               "format": "int32",
               "default": 1
             }
@@ -50,7 +54,11 @@
             "schema": {
               "maximum": 70707070,
               "minimum": 1,
-              "type": "integer",
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
               "format": "int32",
               "default": 21
             }
@@ -79,11 +87,6 @@
         "responses": {
           "200": {
             "description": "OK",
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -93,43 +96,19 @@
             }
           },
           "422": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/422"
           },
           "500": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { }
-            }
+            "$ref": "#/components/responses/500"
           },
           "400": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/400"
           },
           "401": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/401"
           },
           "429": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/429"
           }
         },
         "security": [
@@ -158,11 +137,6 @@
         "responses": {
           "201": {
             "description": "Created",
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -172,43 +146,19 @@
             }
           },
           "422": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/422"
           },
           "500": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { }
-            }
+            "$ref": "#/components/responses/500"
           },
           "400": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/400"
           },
           "401": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/401"
           },
           "429": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/429"
           }
         },
         "security": [
@@ -242,11 +192,6 @@
         "responses": {
           "200": {
             "description": "OK",
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -256,51 +201,22 @@
             }
           },
           "404": {
-            "description": "Not Found",
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "description": "Not Found"
           },
           "422": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/422"
           },
           "500": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { }
-            }
+            "$ref": "#/components/responses/500"
           },
           "400": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/400"
           },
           "401": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/401"
           },
           "429": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/429"
           }
         },
         "security": [
@@ -341,59 +257,25 @@
         },
         "responses": {
           "204": {
-            "description": "No Content",
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "description": "No Content"
           },
           "404": {
-            "description": "Not Found",
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "description": "Not Found"
           },
           "422": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/422"
           },
           "500": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { }
-            }
+            "$ref": "#/components/responses/500"
           },
           "400": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/400"
           },
           "401": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/401"
           },
           "429": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/429"
           }
         },
         "security": [
@@ -424,59 +306,25 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "description": "No Content"
           },
           "404": {
-            "description": "Not Found",
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "description": "Not Found"
           },
           "422": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/422"
           },
           "500": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { }
-            }
+            "$ref": "#/components/responses/500"
           },
           "400": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/400"
           },
           "401": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/401"
           },
           "429": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/429"
           }
         },
         "security": [
@@ -497,11 +345,6 @@
         "responses": {
           "200": {
             "description": "OK",
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -511,51 +354,22 @@
             }
           },
           "404": {
-            "description": "Not Found",
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "description": "Not Found"
           },
           "422": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/422"
           },
           "500": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { }
-            }
+            "$ref": "#/components/responses/500"
           },
           "400": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/400"
           },
           "401": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/401"
           },
           "429": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/429"
           }
         },
         "security": [
@@ -577,11 +391,6 @@
         "responses": {
           "200": {
             "description": "OK",
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -591,51 +400,22 @@
             }
           },
           "404": {
-            "description": "Not Found",
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "description": "Not Found"
           },
           "422": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/422"
           },
           "500": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { }
-            }
+            "$ref": "#/components/responses/500"
           },
           "400": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/400"
           },
           "401": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/401"
           },
           "429": {
-            "description": null,
-            "headers": {
-              "Access-Control-Allow-Origin": { },
-              "Access-Control-Expose-Headers": { },
-              "X-RateLimit-Limit": { }
-            }
+            "$ref": "#/components/responses/429"
           }
         },
         "security": [
@@ -710,7 +490,11 @@
           "count": {
             "maximum": 70707070,
             "minimum": 0,
-            "type": "integer",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
             "format": "int32"
           },
           "data": {
@@ -809,7 +593,11 @@
           "count": {
             "maximum": 70707070,
             "minimum": 0,
-            "type": "integer",
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
             "format": "int32"
           }
         },
@@ -994,15 +782,9 @@
     }
   },
   "security": [
-    {
-      "ApiKey-Header": [ ]
-    },
-    {
-      "Bearer": [ ]
-    },
-    {
-      "OpenIdConnect": [ ]
-    }
+    { },
+    { },
+    { }
   ],
   "tags": [
     {

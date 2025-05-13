@@ -16,7 +16,8 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             Content = new Dictionary<string, OpenApiMediaType>
             {
                 { "application/problem+json", new () { Schema = new OpenApiSchemaReference("Problem", document) } }
-            }
+            },
+            Headers = new Dictionary<string, IOpenApiHeader>()
         };
 
         document.Components.Responses["400"] = new OpenApiResponse
@@ -25,7 +26,8 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             Content = new Dictionary<string, OpenApiMediaType>
             {
                 { "application/problem+json", new () { Schema = new OpenApiSchemaReference("Problem", document) } }
-            }
+            },
+            Headers = new Dictionary<string, IOpenApiHeader>()
         };
 
         document.Components.Responses["422"] = new OpenApiResponse
@@ -34,7 +36,8 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             Content = new Dictionary<string, OpenApiMediaType>()
             {
                 { "application/problem+json", new () { Schema = new OpenApiSchemaReference("Problem", document) } }
-            }
+            },
+            Headers = new Dictionary<string, IOpenApiHeader>()
         };
 
         document.Components.Responses["401"] = new OpenApiResponse

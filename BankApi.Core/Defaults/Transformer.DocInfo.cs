@@ -7,6 +7,7 @@ class TransformerDocInfo() : IOpenApiDocumentTransformer
     {
         foreach (var server in GlobalConfiguration.ApiDocument!.Servers!)
         {
+            server.Extensions ??= new();
             server.Extensions["x-internal"] = new Microsoft.OpenApi.Any.OpenApiAny(true); // https://github.com/microsoft/OpenAPI.NET/issues/2151
         }
 
