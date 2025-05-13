@@ -32,7 +32,7 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         foreach (var response in operation.Responses)
         {
             if(response.Value.Headers == null)
-                throw new InvalidOperationException($"Headers is null and it's read only :(( @ {response.Key}"); // TODO
+                continue; //TODO https://github.com/dotnet/aspnetcore/issues/61898
 
             response.Value.Headers["API-Version"] = new OpenApiHeaderReference("API-Version", document);
             response.Value.Headers["Access-Control-Allow-Origin"] = new OpenApiHeaderReference("Access-Control-Allow-Origin", document);

@@ -782,9 +782,15 @@
     }
   },
   "security": [
-    { },
-    { },
-    { }
+    {
+      "ApiKey-Header": [ ]
+    },
+    {
+      "Bearer": [ ]
+    },
+    {
+      "OpenIdConnect": [ ]
+    }
   ],
   "tags": [
     {
