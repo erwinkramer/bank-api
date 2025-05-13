@@ -31,16 +31,17 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
 
         foreach (var response in operation.Responses)
         {
-            if(response.Value.Headers == null)
-                continue; //TODO https://github.com/dotnet/aspnetcore/issues/61898
-
-            response.Value.Headers["API-Version"] = new OpenApiHeaderReference("API-Version", document);
-            response.Value.Headers["Access-Control-Allow-Origin"] = new OpenApiHeaderReference("Access-Control-Allow-Origin", document);
-            response.Value.Headers["Access-Control-Expose-Headers"] = new OpenApiHeaderReference("GenericStringHeader", document);
-
-            if (response.Key[0] is '2' or '4')
+            if (response.Value is OpenApiResponse concrete)
             {
-                response.Value.Headers["X-Rate-Limit-Limit"] = new OpenApiHeaderReference("X-Rate-Limit-Limit", document);
+                concrete.Headers ??= [];
+                concrete.Headers["API-Version"] = new OpenApiHeaderReference("API-Version", document);
+                concrete.Headers["Access-Control-Allow-Origin"] = new OpenApiHeaderReference("Access-Control-Allow-Origin", document);
+                concrete.Headers["Access-Control-Expose-Headers"] = new OpenApiHeaderReference("GenericStringHeader", document);
+
+                if (response.Key[0] is '2' or '4')
+                {
+                    concrete.Headers["X-Rate-Limit-Limit"] = new OpenApiHeaderReference("X-Rate-Limit-Limit", document);
+                }
             }
         }
     }
