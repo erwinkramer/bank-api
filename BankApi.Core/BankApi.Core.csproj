@@ -21,7 +21,7 @@
     <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="9.*" />
     <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="9.*" />
     <PackageReference Include="Microsoft.Kiota.Bundle" Version="1.*" />
-    <PackageReference Include="Microsoft.OpenApi" Version="2.0.0-preview.17" />
+    <PackageReference Include="Microsoft.OpenApi" Version="2.0.0-preview.18" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.11.*" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.11.*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.*-*" />
