@@ -159,8 +159,6 @@ This mode starts the API in the context of .NET Aspire.
 
 1. [OpenID Connect isn't fully supported in Scalar](https://github.com/scalar/scalar/issues/3656).
 
-1. Running tests works in VSCode. However, [debugging tests doesn't work with TUnit in VSCode yet](https://github.com/microsoft/vscode-dotnettools/issues/1616#issue-2669360822).
-
 1. To extend OpenTelemetry logging to Application Insights, [expand the OpenTelemetry exporter](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-applicationinsights).
 
 1. [The compliance NullRedactor doesn't seem to work](https://github.com/dotnet/extensions/issues/5691), the redactor is already defined at [Builder.Compliance.cs](/BankApi.Core/Defaults/Builder.Compliance.cs) but not used because of the issue.
