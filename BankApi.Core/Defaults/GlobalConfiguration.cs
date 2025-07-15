@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using System.Text.Json.Nodes;
 using System.Threading.RateLimiting;
 

@@ -1,5 +1,4 @@
-using Microsoft.OpenApi.Models;
-using Microsoft.OpenApi.Models.References;
+using Microsoft.OpenApi;
 
 public class OpenApiFactory
 {

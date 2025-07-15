@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OpenApi;
-using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.OpenApi.Models.References;
+using Microsoft.OpenApi;
 
 class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvider) : IOpenApiOperationTransformer
 {
@@ -33,7 +32,7 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         {
             if (response.Value is OpenApiResponse concrete)
             {
-                concrete.Headers ??= [];
+                concrete.Headers ??= new Dictionary<string, IOpenApiHeader>();
                 concrete.Headers["API-Version"] = new OpenApiHeaderReference("API-Version", document);
                 concrete.Headers["Access-Control-Allow-Origin"] = new OpenApiHeaderReference("Access-Control-Allow-Origin", document);
                 concrete.Headers["Access-Control-Expose-Headers"] = new OpenApiHeaderReference("GenericStringHeader", document);

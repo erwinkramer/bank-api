@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.OpenApi;
-using Microsoft.OpenApi.Models;
-using Microsoft.OpenApi.Models.Interfaces;
+using Microsoft.OpenApi;
 
 class TransformerComponentHeaders() : IOpenApiDocumentTransformer
 {
