@@ -24,6 +24,7 @@ builder.Services.AddOpenApiServices();
 builder.Services.AddRateLimitServices();
 builder.Services.AddCorsServices();
 builder.Services.AddErrorHandling();
+builder.Services.AddValidation(); // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-10.0#enable-built-in-validation-support-for-minimal-apis
 
 var app = builder.Build();
 
