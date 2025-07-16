@@ -2,6 +2,7 @@ using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using DownstreamClients.GitHub;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 public class TellerOperation
@@ -21,7 +22,7 @@ public class TellerOperation
             : TypedResults.NotFound();
     }
 
-    public static async Task<Results<Ok<TellerReportList>, NotFound, UnprocessableEntity>> GetBankTellerReports(BlobServiceClient blobServiceClient, CancellationToken token = default)
+    public static async Task<Results<Ok<TellerReportList>, NotFound, UnprocessableEntity>> GetBankTellerReports([FromServices] BlobServiceClient blobServiceClient, CancellationToken token = default)
     {
         BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("reports");
 
