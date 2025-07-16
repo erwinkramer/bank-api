@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/dotnet
 {
 	"name": "Bank API dotnet10",
-	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-10.0-preview-trixie", // trixie is more up to date (with .NET SDK) than noble
+	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-10.0-preview-noble", // https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/dotnet/tags
 	"customizations": {
 		"vscode": {
 			"extensions": [
