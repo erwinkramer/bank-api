@@ -21,7 +21,7 @@ public class BankOperation
         return TypedResults.Ok(cachedResult);
     }
 
-    public static async Task<Results<Ok<BankModel>, NotFound, UnprocessableEntity>> GetBank([Bank][Id] Guid id, [FromServices] BankDb db, HybridCache cache, CancellationToken token = default)
+    public static async Task<Results<Ok<BankModel>, NotFound, UnprocessableEntity>> GetBank([Bank] Guid id, [FromServices] BankDb db, HybridCache cache, CancellationToken token = default)
     {
         return await cache.GetOrCreateAsync(
         $"bank-{id}",
@@ -40,7 +40,7 @@ public class BankOperation
         return TypedResults.Created($"/bankitems/{bank.Id}", bank);
     }
 
-    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> UpdateBank([Bank][Id] Guid id, BankModel inputBank, [FromServices] BankDb db, HybridCache? cache)
+    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> UpdateBank([Bank] Guid id, BankModel inputBank, [FromServices] BankDb db, HybridCache? cache)
     {
         var bank = await db.Banks.FindAsync(id);
         if (bank is null) return TypedResults.NotFound();
@@ -58,7 +58,7 @@ public class BankOperation
         return TypedResults.NoContent();
     }
 
-    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> DeleteBank([Bank][Id] Guid id, [FromServices] BankDb db, HybridCache cache)
+    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> DeleteBank([Bank] Guid id, [FromServices] BankDb db, HybridCache cache)
     {
         if (await db.Banks.FindAsync(id) is BankModel bank)
         {

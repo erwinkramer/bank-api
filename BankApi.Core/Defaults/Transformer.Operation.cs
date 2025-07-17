@@ -13,6 +13,7 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         AddStandardResponses(operation, context.Document!);
         AddHeadersToResponses(operation, context.Document!);
         await AddSecurityPolicyToRequest(operation, authorizationPolicyProvider, context);
+        AddMaxLengthToGuidParameters(operation);
     }
 
     private void AddStandardResponses(OpenApiOperation operation, OpenApiDocument document)
@@ -65,4 +66,20 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         operation.Security ??= new List<OpenApiSecurityRequirement>();
         operation.Security.Add(securityRequirement);
     }
+
+    private void AddMaxLengthToGuidParameters(OpenApiOperation operation)
+    {
+        if (operation.Parameters == null) return;
+
+        foreach (var parameter in operation.Parameters)
+        {
+            if (parameter.Schema is OpenApiSchema schema &&
+                schema.Type == JsonSchemaType.String &&
+                string.Equals(schema.Format, "uuid", StringComparison.OrdinalIgnoreCase))
+            {
+                schema.MaxLength = 36;
+            }
+        }
+    }
+
 }
