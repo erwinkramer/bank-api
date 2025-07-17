@@ -30,11 +30,21 @@ class TransformerComponentSchemas() : IOpenApiDocumentTransformer
             {
                 ["type"] = new OpenApiSchemaReference("GenericString", document),
                 ["title"] = new OpenApiSchemaReference("GenericString", document),
-                ["status"] =  new OpenApiSchemaReference("GenericInt", document),
-                ["detail"] =  new OpenApiSchemaReference("GenericString", document),
-                ["instance"] =  new OpenApiSchemaReference("GenericString", document),
-                ["traceId"] =  new OpenApiSchemaReference("GenericString", document),
-                ["requestId"] =  new OpenApiSchemaReference("GenericString", document)
+                ["status"] = new OpenApiSchemaReference("GenericInt", document),
+                ["detail"] = new OpenApiSchemaReference("GenericString", document),
+                ["instance"] = new OpenApiSchemaReference("GenericString", document),
+                ["traceId"] = new OpenApiSchemaReference("GenericString", document),
+                ["requestId"] = new OpenApiSchemaReference("GenericString", document),
+                ["errors"] = new OpenApiSchema // matches https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpvalidationproblemdetails.errors?view=aspnetcore-10.0#microsoft-aspnetcore-http-httpvalidationproblemdetails-errors
+                {
+                    Type = JsonSchemaType.Object,
+                    AdditionalProperties = new OpenApiSchema
+                    {
+                        Type = JsonSchemaType.Array,
+                        Items = new OpenApiSchemaReference("GenericString", document),
+                        MaxItems = GlobalConfiguration.ApiSettings!.GenericBoundaries.Maximum,
+                    }
+                }
             }
         };
 

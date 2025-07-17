@@ -702,6 +702,16 @@
           },
           "requestId": {
             "$ref": "#/components/schemas/GenericString"
+          },
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "maxItems": 70707070,
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/GenericString"
+              }
+            }
           }
         }
       },
