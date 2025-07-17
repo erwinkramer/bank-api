@@ -6,6 +6,7 @@ public static partial class ApiBuilder
     {
         services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
         {
+            options.SerializerOptions.UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow;
             options.SerializerOptions.NumberHandling = JsonNumberHandling.Strict;
         });
         return services;
