@@ -5,13 +5,10 @@ class TransformerGuidSchema : IOpenApiSchemaTransformer
 {
     public Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken cancellationToken)
     {
-        if (schema is OpenApiSchema concreteSchema)
+        if (schema.Type == JsonSchemaType.String &&
+            string.Equals(schema.Format, "uuid", StringComparison.OrdinalIgnoreCase))
         {
-            if (concreteSchema.Type == JsonSchemaType.String &&
-                string.Equals(concreteSchema.Format, "uuid", StringComparison.OrdinalIgnoreCase))
-            {
-                concreteSchema.MaxLength = 36;
-            }
+            schema.MaxLength = 36;
         }
 
         return Task.CompletedTask;
