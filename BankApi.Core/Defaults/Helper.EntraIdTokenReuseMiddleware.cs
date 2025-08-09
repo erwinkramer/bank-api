@@ -29,12 +29,11 @@ public class EntraIdTokenReuseMiddleware
             return;
         }
 
-        // Cache claims to avoid repeated lookups
-        var claims = context.User.Claims.ToDictionary(c => c.Type, c => c.Value);
+        var aioClaimValue = context.User.FindFirst("aio")?.Value;
+        var oidClaimValue = context.User.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier")?.Value;
 
         // Make sure it's an Entra ID token
-        if (!claims.TryGetValue("aio", out var aioClaimValue) ||
-        !claims.TryGetValue("http://schemas.microsoft.com/identity/claims/objectidentifier", out var oidClaimValue))
+        if (aioClaimValue == null || oidClaimValue == null)
         {
             await _next(context);
             return;
@@ -44,14 +43,14 @@ public class EntraIdTokenReuseMiddleware
         var oidBlockKey = $"blocked_oid:{oidClaimValue}";
 
         // Check if this oid is already blocked, expiry of cache can be set to default here
-        if (await hybridCache.GetOrCreateAsync(oidBlockKey, async _ => false, cancellationToken: cancellationToken))
+        if (await hybridCache.GetOrCreateAsync(oidBlockKey, async innerToken => false, cancellationToken: cancellationToken))
         {
             context.Response.StatusCode = StatusCodes.Status403Forbidden;
             await context.Response.WriteAsync("Forbidden: This identity is blocked due to token replay, please contact the API owner.");
             return;
         }
 
-        var tokenExpClaimValue = claims["exp"];
+        var tokenExpClaimValue = context.User.FindFirst("exp")?.Value!; // guaranteed to be present in Entra ID tokens
         var tokenExpirationTime = DateTimeOffset.FromUnixTimeSeconds(long.Parse(tokenExpClaimValue));
         var tokenTimeUntilExpiration = tokenExpirationTime - DateTimeOffset.UtcNow;
 
@@ -71,7 +70,7 @@ public class EntraIdTokenReuseMiddleware
         // it means a value already existed, and the token is a replay.
         if (tokenReuseResult != uniqueId)
         {
-            // Token replay detected — block all tokens with the same oid for a very long time
+            // Token replay detected, block all tokens with the same oid for a very long time
             await hybridCache.SetAsync(
                 oidBlockKey,
                 true,
