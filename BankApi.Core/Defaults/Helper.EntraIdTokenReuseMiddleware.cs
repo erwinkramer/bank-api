@@ -5,11 +5,11 @@ using Microsoft.Extensions.Caching.Hybrid;
 /// When detected as a reuse, all requests where tokens have the same "oid" claim (Object ID of the 
 /// identity creating the token) will be blocked indefinitely.</para>
 /// 
-/// <para> Uses the "aio" claim, only found in Entra ID tokens to detect reuse. 
+/// <para> Uses the "aio" claim, only found in Entra ID tokens, to detect reuse. 
 /// As Microsoft describes this claim: "An internal claim that's used to record data for token reuse". 
 /// The claim value is always unique for each new token, so it is suitable for the functionality here.</para>
 /// 
-/// <para> Please configure an out-of-process secondary cache, so blacklisted entries will be more persistent.</para>
+/// <para> Please configure an out-of-process secondary cache for HybridCache, so blacklisted entries will be more persistent.</para>
 /// </summary>
 public class EntraIdTokenReuseMiddleware
 {
