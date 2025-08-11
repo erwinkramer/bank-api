@@ -28,6 +28,7 @@ app.UseMiddleware<ApiVersionHeaderMiddleware>();
 app.UseExceptionHandler();
 app.UsePathBase(new($"/{GlobalConfiguration.ApiDocument.Info.Version}")); // Useful when versioning routing happens in an API Management system
 app.UseAuthorization(); // explicitly register because we use path base
+app.UseMiddleware<EntraIdTokenReuseMiddleware>(); // needs to be at least after authorization
 app.UseRateLimiter();
 app.UseCors();
 
