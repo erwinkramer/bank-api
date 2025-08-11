@@ -30,15 +30,16 @@ public class BankOperation
                 : TypedResults.NotFound();
     }
 
-    public static async Task<Results<Created<BankModel>, UnprocessableEntity>> CreateBank(BankModel bank, BankDb db, HybridCache cache)
+    public static async Task<Results<Created<BankModel>, UnprocessableEntity>> CreateBank(BankModel bank, BankDb db, HybridCache? cache)
     {
         await db.Banks.AddAsync(bank);
         await db.SaveChangesAsync();
-        await cache.RemoveByTagAsync("banks");
+        if (cache != null)
+            await cache.RemoveByTagAsync("banks");
         return TypedResults.Created($"/bankitems/{bank.Id}", bank);
     }
 
-    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> UpdateBank([Bank][Id] Guid id, BankModel inputBank, BankDb db, HybridCache cache)
+    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> UpdateBank([Bank][Id] Guid id, BankModel inputBank, BankDb db, HybridCache? cache)
     {
         var bank = await db.Banks.FindAsync(id);
         if (bank is null) return TypedResults.NotFound();
@@ -47,9 +48,12 @@ public class BankOperation
         bank.IsCompliant = inputBank.IsCompliant;
 
         await db.SaveChangesAsync();
-        await cache.RemoveAsync($"bank-{id}");
-        await cache.RemoveByTagAsync("banks");
-
+        if(cache != null)
+        {
+            await cache.RemoveAsync($"bank-{id}");
+            await cache.RemoveByTagAsync("banks");
+        }
+        
         return TypedResults.NoContent();
     }
 
