@@ -1,14 +1,15 @@
+using System.Text.Json.Nodes;
 using Microsoft.AspNetCore.OpenApi;
-using Microsoft.OpenApi.Any;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 
 class TransformerDocInfo() : IOpenApiDocumentTransformer
 {
     public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
-        foreach (var server in GlobalConfiguration.ApiDocument!.Servers)
+        foreach (var server in GlobalConfiguration.ApiDocument!.Servers!)
         {
-            server.Extensions["x-internal"] = new OpenApiBoolean(false);
+            server.Extensions ??= new Dictionary<string, IOpenApiExtension>();
+            server.Extensions["x-internal"] = new JsonNodeExtension(JsonValue.Create(false));
         }
 
         document.Info = GlobalConfiguration.ApiDocument!.Info;

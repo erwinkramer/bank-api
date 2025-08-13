@@ -1,11 +1,13 @@
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using Gridify;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
 GlobalConfiguration.ApiDocument = builder.Configuration.GetRequiredSection("ApiDocument").Get<OpenApiDocument>()!;
 GlobalConfiguration.ApiSettings = builder.Configuration.GetRequiredSection("ApiSettings").Get<GlobalConfiguration.SettingsModel>()!;
-GlobalConfiguration.ApiExamples = OpenApiFactory.CreateFromJson(File.ReadAllText("./appexamples.json"))!;
+GlobalConfiguration.ApiExamples = JsonSerializer.Deserialize<JsonObject>(File.ReadAllText("./appexamples.json"))!;
 
 GridifyGlobalConfiguration.EnableEntityFrameworkCompatibilityLayer();
 GridifyGlobalConfiguration.DefaultPageSize = GlobalConfiguration.ApiSettings.PageSize.Default;
@@ -13,6 +15,7 @@ GridifyGlobalConfiguration.DefaultPageSize = GlobalConfiguration.ApiSettings.Pag
 builder.AddLoggingServices();
 builder.AddComplianceServices();
 builder.AddAzureClients();
+builder.Services.ConfigureJson();
 builder.Services.AddHealthChecks();
 builder.Services.AddAuthServices();
 builder.Services.AddDataServices();
@@ -21,6 +24,7 @@ builder.Services.AddOpenApiServices();
 builder.Services.AddRateLimitServices();
 builder.Services.AddCorsServices();
 builder.Services.AddErrorHandling();
+builder.Services.AddValidation(); // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-10.0#enable-built-in-validation-support-for-minimal-apis
 
 var app = builder.Build();
 
