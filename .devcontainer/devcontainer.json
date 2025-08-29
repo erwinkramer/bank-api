@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/dotnet
 {
 	"name": "Bank API dotnet10",
-	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-10.0-preview-noble", // https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/dotnet/tags
+	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-10.0-preview-trixie", // https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/dotnet/tags
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -31,7 +31,9 @@
 			"aspNetCoreRuntimeVersions": "8.0" // for: https://github.com/microsoft/vscode-dotnettools/issues/1094
 		},
 		"ghcr.io/devcontainers/features/azure-cli:1": {}, // for using the host az cli credentials
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {} // for .NET Aspire resource emulation
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"moby": false
+		} // for .NET Aspire resource emulation
 	},
 	"mounts": [
 		// Bind the azure (credential) folder, requires an unencrypted token cache (assuming host is Windows).
