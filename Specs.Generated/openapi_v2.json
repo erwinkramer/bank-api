@@ -614,6 +614,7 @@
             "default": true
           },
           "bankTier": {
+            "description": "Tier of the bank.",
             "$ref": "#/components/schemas/BankTier"
           }
         },
@@ -631,7 +632,6 @@
           "B",
           "C"
         ],
-        "description": "Tier of the bank.",
         "default": "A"
       },
       "GenericInt": {
