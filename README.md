@@ -121,7 +121,7 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 - Generate a new JWT-token for secured endpoints:
 
     ```powershell
-    dotnet user-jwts create --scope "bank_api" --role "banker" --project BankApi.Service.Stable
+    dotnet user-jwts create --scope "bank_api" --role "banker" --valid-for 3650d --project BankApi.Service.Stable
     ```
 
 - Run `dotnet build` to output the OpenAPI definition
