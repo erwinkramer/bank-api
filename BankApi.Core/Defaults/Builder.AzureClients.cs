@@ -4,7 +4,7 @@ public static partial class ApiBuilder
 {
     public static IHostApplicationBuilder AddAzureClients(this IHostApplicationBuilder builder)
     {
-        builder.AddAzureBlobClient("BankStorage", options =>
+        builder.AddAzureBlobServiceClient("BankStorage", options =>
         {
             options.DisableHealthChecks = false;
         });
