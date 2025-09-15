@@ -18,8 +18,9 @@ public class JwsResponseSigningMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
-        // Skip signing for scalar (UI) requests
-        if (context.Request.Path.StartsWithSegments("/scalar"))
+        // Paths to skip signing
+        var skipPaths = new[] { "/scalar", "/openapi", "/health" };
+        if (skipPaths.Any(p => context.Request.Path.StartsWithSegments(p, StringComparison.OrdinalIgnoreCase)))
         {
             await _next(context);
             return;
