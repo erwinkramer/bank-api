@@ -1,9 +1,11 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using System.Security.Cryptography;
 using Gridify;
 using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
+var ecSigner = ECDsa.Create(ECCurve.NamedCurves.nistP521); // Typically, you'd load this from a secure location and not create a new one each time
 
 GlobalConfiguration.ApiDocument = builder.Configuration.GetRequiredSection("ApiDocument").Get<OpenApiDocument>()!;
 GlobalConfiguration.ApiSettings = builder.Configuration.GetRequiredSection("ApiSettings").Get<GlobalConfiguration.SettingsModel>()!;
@@ -28,6 +30,7 @@ builder.Services.AddValidation(); // https://learn.microsoft.com/en-us/aspnet/co
 
 var app = builder.Build();
 
+app.UseMiddleware<JwsResponseSigningMiddleware>(ecSigner);
 app.UseMiddleware<ApiVersionHeaderMiddleware>();
 app.UseExceptionHandler();
 app.UsePathBase(new($"/{GlobalConfiguration.ApiDocument.Info.Version}")); // Useful when versioning routing happens in an API Management system
