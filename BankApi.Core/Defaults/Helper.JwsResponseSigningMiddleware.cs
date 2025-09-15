@@ -18,16 +18,23 @@ public class JwsResponseSigningMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
+        // Skip signing for scalar (UI) requests
+        if (context.Request.Path.StartsWithSegments("/scalar"))
+        {
+            await _next(context);
+            return;
+        }
+
         var originalBodyStream = context.Response.Body;
-        using var memoryStream = new MemoryStream();
+
+        await using var memoryStream = new MemoryStream();
         context.Response.Body = memoryStream;
 
-        await _next(context); // Let the response be written to memoryStream
+        await _next(context);
 
         memoryStream.Seek(0, SeekOrigin.Begin);
-        var responseBody = await new StreamReader(memoryStream).ReadToEndAsync();
+        byte[] responseBytes = memoryStream.ToArray();
 
-        // Create JWS header
         var extraHeaders = new Dictionary<string, object>
         {
             { "iat", DateTimeOffset.UtcNow.ToUnixTimeSeconds() },
@@ -35,14 +42,22 @@ public class JwsResponseSigningMiddleware
         };
 
         // Sign the response body using ECDSA
-        string jws = JWT.Encode(responseBody, _ecSigner, JwsAlgorithm.ES512, extraHeaders, options: new JwtOptions { DetachPayload = true });
+        string jws = JWT.EncodeBytes(
+            responseBytes,
+            _ecSigner,
+            JwsAlgorithm.ES512,
+            extraHeaders,
+            options: new JwtOptions { DetachPayload = true });
 
-        // Add signature header
         context.Response.Headers["X-JWS-Signature"] = jws;
 
-        // Write the original response back to the body
+        // Verify the signature (for debugging purposes)
+        //JWT.VerifyBytes(jws, new Jwk(_ecSigner, false), payload: responseBytes);
+
+        // Replay original response body
         memoryStream.Seek(0, SeekOrigin.Begin);
-        await memoryStream.CopyToAsync(originalBodyStream);
+        await memoryStream.CopyToAsync(originalBodyStream, context.RequestAborted);
+
         context.Response.Body = originalBodyStream;
     }
 }
