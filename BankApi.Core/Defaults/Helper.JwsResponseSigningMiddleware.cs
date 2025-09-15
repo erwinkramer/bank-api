@@ -8,7 +8,7 @@ public class JwsResponseSigningMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly ECDsa _ecSigner;
-    private static readonly string[] headerCritValue = ["iat", "alg"];
+    private static readonly string[] headerCritValue = ["kid", "alg"];
     private static readonly string[] pathsToSkip = ["/scalar", "/openapi", "/health"];
 
     public JwsResponseSigningMiddleware(RequestDelegate next, ECDsa ecSigner)
@@ -37,8 +37,9 @@ public class JwsResponseSigningMiddleware
 
         var extraHeaders = new Dictionary<string, object>
         {
+            { "crit", headerCritValue },
             { "iat", DateTimeOffset.UtcNow.ToUnixTimeSeconds() },
-            { "crit", headerCritValue }
+            { "kid", "bank-api-2025-1" }
         };
 
         // Sign the response body using ECDSA
