@@ -25,8 +25,8 @@ rules:
           - Administrative
 
   bank:header-requires-hyphenated-pascal-case:
-    description: HTTP headers must be in Hyphenated-Pascal-Case, exceptions are API-Version and WWW-Authenticate.
-    message: HTTP header is not in Hyphenated-Pascal-Case, exceptions are API-Version and WWW-Authenticate.
+    description: HTTP headers must be in Hyphenated-Pascal-Case, exceptions are API-Version, WWW-Authenticate and X-JWS-Signature.
+    message: HTTP header is not in Hyphenated-Pascal-Case, exceptions are API-Version, WWW-Authenticate and X-JWS-Signature.
     severity: warn
     given:
       - "$..responses..headers"
