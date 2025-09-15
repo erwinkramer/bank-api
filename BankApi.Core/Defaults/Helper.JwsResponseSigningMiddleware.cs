@@ -8,6 +8,7 @@ public class JwsResponseSigningMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly ECDsa _ecSigner;
+    private static readonly string[] headerCritValue = ["iat", "alg"];
 
     public JwsResponseSigningMiddleware(RequestDelegate next, ECDsa ecSigner)
     {
@@ -30,11 +31,11 @@ public class JwsResponseSigningMiddleware
         var extraHeaders = new Dictionary<string, object>
         {
             { "iat", DateTimeOffset.UtcNow.ToUnixTimeSeconds() },
-            { "crit", new[] { "iat" } }
+            { "crit", headerCritValue }
         };
 
         // Sign the response body using ECDSA
-        string jws = JWT.Encode(responseBody, _ecSigner, JwsAlgorithm.ES512, extraHeaders);
+        string jws = JWT.Encode(responseBody, _ecSigner, JwsAlgorithm.ES512, extraHeaders, options: new JwtOptions { DetachPayload = true });
 
         // Add signature header
         context.Response.Headers["X-JWS-Signature"] = jws;
