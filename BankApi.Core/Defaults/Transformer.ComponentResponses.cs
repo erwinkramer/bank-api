@@ -78,6 +78,7 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             response.Value.Headers!["API-Version"] = new OpenApiHeaderReference("API-Version", doc);
             response.Value.Headers["Access-Control-Allow-Origin"] = new OpenApiHeaderReference("Access-Control-Allow-Origin", doc);
             response.Value.Headers["Access-Control-Expose-Headers"] = new OpenApiHeaderReference("GenericStringHeader", doc);
+            response.Value.Headers["X-JWS-Signature"] = new OpenApiHeaderReference("GenericStringHeader", doc);
 
             if (response.Key[0] is '2' or '4')
             {

@@ -37,6 +37,7 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
                 concrete.Headers["API-Version"] = new OpenApiHeaderReference("API-Version", document);
                 concrete.Headers["Access-Control-Allow-Origin"] = new OpenApiHeaderReference("Access-Control-Allow-Origin", document);
                 concrete.Headers["Access-Control-Expose-Headers"] = new OpenApiHeaderReference("GenericStringHeader", document);
+                concrete.Headers["X-JWS-Signature"] = new OpenApiHeaderReference("GenericStringHeader", document);
 
                 if (response.Key[0] is '2' or '4')
                 {

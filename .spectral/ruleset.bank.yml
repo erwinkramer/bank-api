@@ -36,7 +36,7 @@ rules:
       field: "@key"
       function: pattern
       functionOptions:
-        match: "^(API-Version|WWW-Authenticate|([A-Z][a-z0-9]*)(-[A-Z][a-z0-9]*)*)$"
+        match: "^(API-Version|WWW-Authenticate|X-JWS-Signature|([A-Z][a-z0-9]*)(-[A-Z][a-z0-9]*)*)$"
 
   bank:property-requires-camel-case:
     description: Property names, acronyms, path parameters and query parameters must be in camelCase.
