@@ -9,6 +9,7 @@ public class JwsResponseSigningMiddleware
     private readonly RequestDelegate _next;
     private readonly ECDsa _ecSigner;
     private static readonly string[] headerCritValue = ["iat", "alg"];
+    private static readonly string[] pathsToSkip = ["/scalar", "/openapi", "/health"];
 
     public JwsResponseSigningMiddleware(RequestDelegate next, ECDsa ecSigner)
     {
@@ -18,9 +19,7 @@ public class JwsResponseSigningMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
-        // Paths to skip signing
-        var skipPaths = new[] { "/scalar", "/openapi", "/health" };
-        if (skipPaths.Any(p => context.Request.Path.StartsWithSegments(p, StringComparison.OrdinalIgnoreCase)))
+        if (pathsToSkip.Any(p => context.Request.Path.StartsWithSegments(p, StringComparison.OrdinalIgnoreCase)))
         {
             await _next(context);
             return;
