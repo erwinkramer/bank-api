@@ -7,6 +7,10 @@
 
 ###
 
+https://{{host}}/{{apiVersion}}/.well-known/jwks.json
+
+###
+
 https://{{host}}/{{apiVersion}}/health
 Ocp-Apim-Subscription-Key: Lifetime Subscription
 
