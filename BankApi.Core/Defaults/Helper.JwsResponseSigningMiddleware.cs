@@ -7,14 +7,14 @@ using System.Security.Cryptography;
 public class JwsResponseSigningMiddleware
 {
     private readonly RequestDelegate _next;
-    private readonly ECDsa _ecSigner;
+    private readonly Jwk _jwk;
     private static readonly string[] headerCritValue = ["kid", "alg"];
     private static readonly string[] pathsToSkip = ["/scalar", "/openapi", "/health"];
 
-    public JwsResponseSigningMiddleware(RequestDelegate next, ECDsa ecSigner)
+    public JwsResponseSigningMiddleware(RequestDelegate next, Jwk jwk)
     {
         _next = next;
-        _ecSigner = ecSigner;
+        _jwk = jwk;
     }
 
     public async Task InvokeAsync(HttpContext context)
@@ -39,13 +39,13 @@ public class JwsResponseSigningMiddleware
         {
             { "crit", headerCritValue },
             { "iat", DateTimeOffset.UtcNow.ToUnixTimeSeconds() },
-            { "kid", "bank-api-2025-1" }
+            { "kid", _jwk.KeyId }
         };
 
         // Sign the response body using ECDSA
         string jws = JWT.EncodeBytes(
             responseBytes,
-            _ecSigner,
+            _jwk,
             JwsAlgorithm.ES512,
             extraHeaders,
             options: new JwtOptions { DetachPayload = true });
