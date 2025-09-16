@@ -1,5 +1,4 @@
 using Jose;
-using System.Security.Cryptography;
 
 /// <summary>
 /// <para> This middleware class signs the response body of each HTTP response using JSON Web Signature (JWS) with ECDSA.</para>
