@@ -39,7 +39,7 @@ The API complies to:
 
   - [Rate limiting](https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit) for rate limiting
 
-  - [API Key, JWT bearer and OpenID Connection-based authentication](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/security#configuring-authentication-strategy) for security
+  - [API Key, JWT bearer and OpenID Connection-based authentication](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/security#configuring-authentication-strategy) for security, with token reuse prevention for Entra ID tokens
 
   - [OpenApi](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi) for generating OpenAPI specifications
 
@@ -59,11 +59,11 @@ The API complies to:
 
 - [Spectral](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/using-openapi-documents#lint-generated-openapi-documents-with-spectral) for linting
 
-- [OpenApiAnyFactory](./BankApi.Core/Defaults/Helper.OpenApiFactory.cs) from [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) for parsing JSON to `IOpenApiAny` types
-
 - [TUnit](https://thomhurst.github.io/TUnit/docs/intro) for unit tests
 
 - [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) in Visual Studio Code for quick local tests via `.http` files
+
+- [JSON Web Signature (JWS)](https://datatracker.ietf.org/doc/html/rfc7515) for signing API responses, with [JSON Web Key Set (JWKS)](https://datatracker.ietf.org/doc/html/rfc7517#appendix-A.1) endpoint for validating these responses
 
 ## Design
 
