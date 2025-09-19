@@ -2,3 +2,6 @@ extends:
   - ruleset.bank.yml #Bank API project ruleset
   - https://unpkg.com/@stoplight/spectral-owasp-ruleset/dist/ruleset.mjs #OWASP API Security Top 10 - v2023
   - https://static.developer.overheid.nl/adr/ruleset.yaml #Dutch Public Sector (NLGov) REST API Design Rules, includes Spectral "oas" ruleset
+
+rules:
+  openapi3: "off" # NLGov rule to check for openapi version is too strict in the current version, already changed in a newer version of the ruleset, but not yet released
