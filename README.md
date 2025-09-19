@@ -23,6 +23,10 @@ The API complies to:
 
 ✅ [California Consumer Privacy Act (CCPA)](https://oag.ca.gov/privacy/ccpa) and [General Data Protection Regulation (GDPR)](https://europa.eu/youreurope/business/dealing-with-customers/data-protection/data-protection-gdpr/index_en.htm#:~:text=The%20GDPR%20sets%20out%20detailed,people%20living%20in%20the%20EU.) via [ASP.Net Core Compliance](https://andrewlock.net/redacting-sensitive-data-with-microsoft-extensions-compliance/)
 
+✅ [RFC 7515 - JSON Web Signature (JWS)](https://datatracker.ietf.org/doc/html/rfc7515) for response signing, via `X-JWS-Signature` header
+
+✅ [RFC 7517 - JSON Web Key Set (JWKs)](https://datatracker.ietf.org/doc/html/rfc7517#appendix-A.1) for validating JWS responses, via `/.well-known/jwks.json` endpoint
+
 ## Technology stack
 
 - [ASP.NET Core 10.0 - Minimal API](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/overview?view=aspnetcore-10.0) for API development, with following base services:
@@ -64,10 +68,6 @@ The API complies to:
 - [TUnit](https://thomhurst.github.io/TUnit/docs/intro) for unit tests
 
 - [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) in Visual Studio Code for quick local tests via `.http` files
-
-- [JSON Web Signature (JWS)](https://datatracker.ietf.org/doc/html/rfc7515) for signing API responses, with:
-
-  - [JSON Web Key Set (JWKS)](https://datatracker.ietf.org/doc/html/rfc7517#appendix-A.1) endpoint for validating these responses
 
 ## Design
 
