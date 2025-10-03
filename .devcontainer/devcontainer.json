@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/dotnet
 {
 	"name": "Bank API dotnet10",
-	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-10.0-preview-trixie", // https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/dotnet/tags
+	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-10.0-preview-noble", // https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/dotnet/tags
 	"customizations": {
 		"vscode": {
 			"extensions": [
