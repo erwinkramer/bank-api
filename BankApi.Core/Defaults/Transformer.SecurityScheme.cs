@@ -2,7 +2,7 @@ using AspNetCore.Authentication.ApiKey;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OpenApi;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 
 class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSchemeProvider) : IOpenApiDocumentTransformer
 {
@@ -10,59 +10,62 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
     {
         var authenticationSchemes = await authenticationSchemeProvider.GetAllSchemesAsync();
 
+        document.Components ??= new();
+        document.Components.SecuritySchemes ??= new Dictionary<string, IOpenApiSecurityScheme>();
+
         foreach (AuthenticationScheme authenticationScheme in authenticationSchemes)
         {
-            OpenApiSecurityScheme[] securitySchemes = authenticationScheme.Name switch
+            Dictionary<string, OpenApiSecurityScheme> securitySchemes = authenticationScheme.Name switch
             {
-                JwtBearerDefaults.AuthenticationScheme =>
-                [
-                    new ()
+                JwtBearerDefaults.AuthenticationScheme => new()
+                {
                     {
-                        Description = "Bearer scheme, please see: https://learn.openapis.org/specification/security.html#http-authentication.",
-                        Type = SecuritySchemeType.Http,
-                        Scheme = "bearer",
-                        In = ParameterLocation.Header,
-                        BearerFormat = "Json Web Token",
-                        Reference = new ()
+                        JwtBearerDefaults.AuthenticationScheme,
+                        new OpenApiSecurityScheme
                         {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = JwtBearerDefaults.AuthenticationScheme
+                            Description = "Bearer scheme, please see: https://learn.openapis.org/specification/security.html#http-authentication.",
+                            Type = SecuritySchemeType.Http,
+                            Scheme = "bearer",
+                            In = ParameterLocation.Header,
+                            BearerFormat = "Json Web Token"
                         }
                     },
-                    new () // for Scalar UI or any other API Management UI
                     {
-                        Description = "OpenID Connect scheme, please see: https://learn.openapis.org/specification/security.html#openid-connect.",
-                        Type = SecuritySchemeType.OpenIdConnect,
-                        OpenIdConnectUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/v2.0/.well-known/openid-configuration"),
-                        Reference = new ()
+                        "OpenIdConnect",
+                        new OpenApiSecurityScheme
                         {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "OpenIdConnect"
+                            Description = "OpenID Connect scheme, please see: https://learn.openapis.org/specification/security.html#openid-connect.",
+                            Type = SecuritySchemeType.OpenIdConnect,
+                            OpenIdConnectUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/v2.0/.well-known/openid-configuration")
                         }
                     }
-                ],
-                $"{ApiKeyDefaults.AuthenticationScheme}-Header" =>
-                [
-                    new ()
+                },
+                $"{ApiKeyDefaults.AuthenticationScheme}-Header" => new()
+                {
                     {
-                        Type = SecuritySchemeType.ApiKey,
-                        Description = "Api Key scheme, please see: https://learn.openapis.org/specification/security.html#api-keys.",
-                        Name = "Ocp-Apim-Subscription-Key",
-                        In = ParameterLocation.Header,
-                        Reference = new ()
+                        $"{ApiKeyDefaults.AuthenticationScheme}-Header",
+                        new OpenApiSecurityScheme
                         {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = $"{ApiKeyDefaults.AuthenticationScheme}-Header"
+                            Type = SecuritySchemeType.ApiKey,
+                            Description = "Api Key scheme, please see: https://learn.openapis.org/specification/security.html#api-keys.",
+                            Name = "Ocp-Apim-Subscription-Key",
+                            In = ParameterLocation.Header
                         }
                     }
-                ],
-                _ => []
+                },
+                _ => new()
             };
 
-            foreach (var securityScheme in securitySchemes)
+            foreach (var scheme in securitySchemes)
             {
-                document.Components.SecuritySchemes[securityScheme.Reference.Id] = securityScheme;
-                document.SecurityRequirements.Add(new() { { securityScheme, new List<string>() } });
+                if (scheme.Key is null) continue;
+
+                document.Components.SecuritySchemes[scheme.Key] = scheme.Value;
+                document.Security ??= new List<OpenApiSecurityRequirement>();
+                document.Security.Add(new()
+                {
+                    { new OpenApiSecuritySchemeReference(scheme.Key, document), [] }
+                });
             }
         }
     }
