@@ -2,7 +2,7 @@
   "applicationName": "application",
   "apiDependencies": {
     "GitHubClient": {
-      "apiDescriptionUrl": "./Specs.Downstream/github-api.json",
+      "apiDescriptionUrl": "https://github.com/github/rest-api-description/raw/refs/heads/main/descriptions/api.github.com/api.github.com.json",
       "apiDeploymentBaseUrl": "https://api.github.com/",
       "requests": [
         {
@@ -27,7 +27,7 @@
         }
       ],
       "extensions": {
-        "x-ms-kiota-hash": "92CF92E12E19B859E69061384CC331EDFE0C9C8D5638FD8B00B2EA0BD3561285",
+        "x-ms-kiota-hash": "6213483BB1F77D5AACFD50F88FC86FAF619FDD9D9BD62AA4D512D3CB768D6565",
         "x-ms-kiota-version": "1.28.0"
       }
     }

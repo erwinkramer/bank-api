@@ -82,7 +82,6 @@ test[BankApi.Tests]
 
 infra_gen[Infra.Generated]
 specs_gen[Specs.Generated]
-specs_downstream[Specs.Downstream]
 
 subgraph core[BankApi.Core]
 Defaults
@@ -90,7 +89,6 @@ DownstreamClients
 Implementation
 end
 
-specs_downstream -- .kiota --> DownstreamClients
 Defaults --> Implementation
 
 DownstreamClients --> Defaults

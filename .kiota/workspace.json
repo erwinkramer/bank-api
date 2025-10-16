@@ -15,7 +15,7 @@
       "includeAdditionalData": true,
       "excludeBackwardCompatible": false,
       "disabledValidationRules": [],
-      "descriptionLocation": "./Specs.Downstream/github-api.json",
+      "descriptionLocation": "https://github.com/github/rest-api-description/raw/refs/heads/main/descriptions/api.github.com/api.github.com.json",
       "includePatterns": [
         "/repos/{owner}/{repo}/releases/*"
       ],
