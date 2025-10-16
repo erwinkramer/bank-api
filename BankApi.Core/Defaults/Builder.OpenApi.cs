@@ -25,6 +25,7 @@ public static partial class ApiBuilder
         app.MapScalarApiReference(options =>
         {
             options.Theme = ScalarTheme.DeepSpace;
+            options.ForceDarkMode();
             options.AddApiKeyAuthentication($"{ApiKeyDefaults.AuthenticationScheme}-Header", options =>
             {
                 options.Value = "Lifetime Subscription";
