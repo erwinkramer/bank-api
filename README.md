@@ -122,11 +122,17 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
   ![kiota-workspace-regenerate-client](.images/kiota-workspace-regenerate-client.png)
 
+- (Optionally) regenerate the ASP.NET Core HTTPS development certificate:
+
+  ```powershell
+  dotnet dev-certs https -ep ./.certs/AspNetDev.pfx --trust
+  ```
+
 - Generate a new JWT-token for secured endpoints:
 
-    ```powershell
-    dotnet user-jwts create --scope "bank_api" --role "banker" --valid-for 3650d --project BankApi.Service.Stable
-    ```
+  ```powershell
+  dotnet user-jwts create --scope "bank_api" --role "banker" --valid-for 3650d --project BankApi.Service.Stable
+  ```
 
 - Run `dotnet build` to output the OpenAPI definition
 

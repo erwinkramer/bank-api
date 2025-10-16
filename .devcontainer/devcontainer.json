@@ -28,7 +28,7 @@
 	"features": {
 		"ghcr.io/devcontainers/features/dotnet:2": {
 			"version": "none", // already pre-installed with image
-			"aspNetCoreRuntimeVersions": "8.0" // for: https://github.com/microsoft/vscode-dotnettools/issues/1094
+			"aspNetCoreRuntimeVersions": "9.0" // for: https://github.com/microsoft/vscode-dotnettools/issues/1094
 		},
 		"ghcr.io/devcontainers/features/azure-cli:1": {}, // for using the host az cli credentials
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {
@@ -47,5 +47,5 @@
 	],
 	// Remove absolutely every file on the .gitignore list, so we don't run into permission issues. 
 	// Also see https://github.com/microsoft/vscode-remote-release/issues/9099#issuecomment-2541564211
-	"postStartCommand": "git clean -xdf && dotnet dev-certs https --trust"
+	"postStartCommand": "git clean -xdf && dotnet dev-certs https --clean --import ${containerWorkspaceFolder}/.certs/AspNetDev.pfx -p ''"
 }
