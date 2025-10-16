@@ -1,10 +1,11 @@
+using AspNetCore.Authentication.ApiKey;
 using Scalar.AspNetCore;
 
 public static partial class ApiBuilder
 {
     public static IServiceCollection AddOpenApiServices(this IServiceCollection services)
     {
-        services.AddOpenApi(GlobalConfiguration.ApiDocument!.Info.Version, options =>
+        services.AddOpenApi(GlobalConfiguration.ApiDocument!.Info.Version!, options =>
         {
             options.AddDocumentTransformer<TransformerDocInfo>();
             options.AddDocumentTransformer<TransformerComponentSchemas>();
@@ -12,6 +13,7 @@ public static partial class ApiBuilder
             options.AddDocumentTransformer<TransformerComponentResponses>();
             options.AddDocumentTransformer<TransformerSecurityScheme>();
             options.AddSchemaTransformer<TransformerExampleSchema>();
+            options.AddSchemaTransformer<TransformerGuidSchema>();
             options.AddOperationTransformer<TransformerOperation>();
         });
 
@@ -23,9 +25,10 @@ public static partial class ApiBuilder
         app.MapScalarApiReference(options =>
         {
             options.Theme = ScalarTheme.DeepSpace;
-            options.WithApiKeyAuthentication(options =>
+            options.ForceDarkMode();
+            options.AddApiKeyAuthentication($"{ApiKeyDefaults.AuthenticationScheme}-Header", options =>
             {
-                options.Token = "Lifetime Subscription";
+                options.Value = "Lifetime Subscription";
             });
             options.Title = $"{GlobalConfiguration.ApiDocument!.Info.Title} docs | {GlobalConfiguration.ApiDocument.Info.Version}";
         });

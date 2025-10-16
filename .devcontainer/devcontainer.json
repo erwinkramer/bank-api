@@ -1,8 +1,8 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/dotnet
 {
-	"name": "Bank API dotnet9",
-	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-9.0-bookworm", // bookworm is more up to date (with .NET SDK) than noble
+	"name": "Bank API dotnet10",
+	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-10.0-noble", // https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/dotnet/tags
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -22,16 +22,18 @@
 	"containerEnv": {
 		"DOTNET_LAUNCH_PROFILE": "http",
 		// Zscaler proxy support when reading custom rulesets over https in Spectral
-		"NODE_EXTRA_CA_CERTS": "${containerWorkspaceFolder}/.certs/ZscalerRootCA.crt" 
+		"NODE_EXTRA_CA_CERTS": "${containerWorkspaceFolder}/.certs/ZscalerRootCA.crt"
 	},
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/dotnet:2": {
 			"version": "none", // already pre-installed with image
-			"aspNetCoreRuntimeVersions": "8.0" // for: https://github.com/microsoft/vscode-dotnettools/issues/1094
+			"aspNetCoreRuntimeVersions": "9.0" // for: https://github.com/microsoft/vscode-dotnettools/issues/1094
 		},
 		"ghcr.io/devcontainers/features/azure-cli:1": {}, // for using the host az cli credentials
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {} // for .NET Aspire resource emulation
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"moby": false
+		} // for .NET Aspire resource emulation
 	},
 	"mounts": [
 		// Bind the azure (credential) folder, requires an unencrypted token cache (assuming host is Windows).
@@ -40,10 +42,10 @@
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.azure,target=/home/vscode/.azure,type=bind",
 		// Bind the Visual Studio Token provider folder
 		"source=${localEnv:HOME}${localEnv:LOCALAPPDATA}/.IdentityService,target=/home/vscode/.IdentityService,type=bind",
-		// Bind ASP.NET user secrets folder (please see https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-9.0&tabs=windows#how-the-secret-manager-tool-works)
+		// Bind ASP.NET user secrets folder (please see https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets#how-the-secret-manager-tool-works)
 		"source=${localEnv:APPDATA}/Microsoft/UserSecrets,target=/home/vscode/.microsoft/usersecrets,type=bind"
 	],
 	// Remove absolutely every file on the .gitignore list, so we don't run into permission issues. 
 	// Also see https://github.com/microsoft/vscode-remote-release/issues/9099#issuecomment-2541564211
-	"postStartCommand": "git clean -xdf && dotnet dev-certs https --trust" 
+	"postStartCommand": "git clean -xdf && dotnet dev-certs https --clean --import ${containerWorkspaceFolder}/.certs/AspNetDev.pfx -p ''"
 }

@@ -1,12 +1,15 @@
+using Azure.Identity;
 using Azure.Storage.Blobs;
 
 public static partial class ApiBuilder
 {
     public static IHostApplicationBuilder AddAzureClients(this IHostApplicationBuilder builder)
     {
-        builder.AddAzureBlobClient("BankStorage", options =>
+        var credential = new DefaultAzureCredential();
+
+        builder.AddAzureBlobServiceClient("BankStorage", options =>
         {
-            options.DisableHealthChecks = false;
+            options.Credential = credential;
         });
 
         return builder;

@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.1.1",
   "info": {
     "title": "Bank API",
     "description": "The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.",
@@ -89,6 +89,9 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
+              "X-JWS-Signature": {
+                "$ref": "#/components/headers/GenericStringHeader"
+              },
               "X-Rate-Limit-Limit": {
                 "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
@@ -151,6 +154,9 @@
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
+                "$ref": "#/components/headers/GenericStringHeader"
+              },
+              "X-JWS-Signature": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
               "X-Rate-Limit-Limit": {
@@ -222,6 +228,9 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
+              "X-JWS-Signature": {
+                "$ref": "#/components/headers/GenericStringHeader"
+              },
               "X-Rate-Limit-Limit": {
                 "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
@@ -244,6 +253,9 @@
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
+                "$ref": "#/components/headers/GenericStringHeader"
+              },
+              "X-JWS-Signature": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
               "X-Rate-Limit-Limit": {
@@ -316,6 +328,9 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
+              "X-JWS-Signature": {
+                "$ref": "#/components/headers/GenericStringHeader"
+              },
               "X-Rate-Limit-Limit": {
                 "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
@@ -331,6 +346,9 @@
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
+                "$ref": "#/components/headers/GenericStringHeader"
+              },
+              "X-JWS-Signature": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
               "X-Rate-Limit-Limit": {
@@ -393,6 +411,9 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
+              "X-JWS-Signature": {
+                "$ref": "#/components/headers/GenericStringHeader"
+              },
               "X-Rate-Limit-Limit": {
                 "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
@@ -408,6 +429,9 @@
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
+                "$ref": "#/components/headers/GenericStringHeader"
+              },
+              "X-JWS-Signature": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
               "X-Rate-Limit-Limit": {
@@ -459,6 +483,9 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
+              "X-JWS-Signature": {
+                "$ref": "#/components/headers/GenericStringHeader"
+              },
               "X-Rate-Limit-Limit": {
                 "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
@@ -481,6 +508,9 @@
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
+                "$ref": "#/components/headers/GenericStringHeader"
+              },
+              "X-JWS-Signature": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
               "X-Rate-Limit-Limit": {
@@ -533,6 +563,9 @@
               "Access-Control-Expose-Headers": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
+              "X-JWS-Signature": {
+                "$ref": "#/components/headers/GenericStringHeader"
+              },
               "X-Rate-Limit-Limit": {
                 "$ref": "#/components/headers/X-Rate-Limit-Limit"
               }
@@ -555,6 +588,9 @@
                 "$ref": "#/components/headers/Access-Control-Allow-Origin"
               },
               "Access-Control-Expose-Headers": {
+                "$ref": "#/components/headers/GenericStringHeader"
+              },
+              "X-JWS-Signature": {
                 "$ref": "#/components/headers/GenericStringHeader"
               },
               "X-Rate-Limit-Limit": {
@@ -589,16 +625,97 @@
   },
   "components": {
     "schemas": {
-      "GenericString": {
-        "maxLength": 70707070,
-        "pattern": ".*",
-        "type": "string"
+      "BankModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "maxLength": 36,
+            "type": "string",
+            "description": "Id of the bank.",
+            "format": "uuid"
+          },
+          "name": {
+            "maxLength": 70707070,
+            "pattern": ".*",
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Name of the bank.",
+            "default": "Guanchen"
+          },
+          "isCompliant": {
+            "type": "boolean",
+            "description": "Compliancy status of the bank.",
+            "default": true
+          },
+          "bankTier": {
+            "description": "Tier of the bank.",
+            "$ref": "#/components/schemas/BankTier"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
+          "name": "Guanchen",
+          "isCompliant": true,
+          "bankTier": "A"
+        }
+      },
+      "BankTier": {
+        "enum": [
+          "A",
+          "B",
+          "C"
+        ],
+        "default": "A"
       },
       "GenericInt": {
         "maximum": 70707070,
         "minimum": 0,
         "type": "integer",
         "format": "int32"
+      },
+      "GenericString": {
+        "maxLength": 70707070,
+        "pattern": ".*",
+        "type": "string"
+      },
+      "PagingOfBankModel": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "maximum": 70707070,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "maxItems": 70707070,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BankModel"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "count": 2,
+          "data": [
+            {
+              "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
+              "name": "Foo",
+              "isCompliant": true,
+              "bankTier": "A"
+            },
+            {
+              "id": "956b7056-6e98-4a92-af07-91634ce4d421",
+              "name": "Bar",
+              "isCompliant": false,
+              "bankTier": "B"
+            }
+          ]
+        }
       },
       "Problem": {
         "type": "object",
@@ -623,84 +740,17 @@
           },
           "requestId": {
             "$ref": "#/components/schemas/GenericString"
-          }
-        }
-      },
-      "BankModel": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "maxLength": 36,
-            "type": "string",
-            "description": "Id of the bank.",
-            "format": "uuid"
           },
-          "name": {
-            "maxLength": 70707070,
-            "pattern": ".*",
-            "type": "string",
-            "description": "Name of the bank.",
-            "default": "Guanchen",
-            "nullable": true
-          },
-          "isCompliant": {
-            "type": "boolean",
-            "description": "Compliancy status of the bank.",
-            "default": true
-          },
-          "bankTier": {
-            "$ref": "#/components/schemas/BankTier"
-          }
-        },
-        "example": {
-          "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
-          "name": "Guanchen",
-          "isCompliant": true,
-          "bankTier": "A"
-        }
-      },
-      "BankTier": {
-        "enum": [
-          "A",
-          "B",
-          "C"
-        ],
-        "description": "Tier of the bank.",
-        "default": "A"
-      },
-      "PagingOfBankModel": {
-        "type": "object",
-        "properties": {
-          "count": {
-            "maximum": 70707070,
-            "minimum": 0,
-            "type": "integer",
-            "format": "int32"
-          },
-          "data": {
-            "maxItems": 70707070,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BankModel"
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "maxItems": 70707070,
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/GenericString"
+              }
             }
           }
-        },
-        "example": {
-          "count": 2,
-          "data": [
-            {
-              "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
-              "name": "Foo",
-              "isCompliant": true,
-              "bankTier": "A"
-            },
-            {
-              "id": "956b7056-6e98-4a92-af07-91634ce4d421",
-              "name": "Bar",
-              "isCompliant": false,
-              "bankTier": "B"
-            }
-          ]
         }
       },
       "Teller": {
@@ -708,12 +758,15 @@
         "properties": {
           "gitHubProfile": {
             "maxLength": 70707070,
-            "type": "string",
+            "type": [
+              "null",
+              "string"
+            ],
             "description": "GitHub profile of the teller.",
-            "format": "uri",
-            "nullable": true
+            "format": "uri"
           }
         },
+        "additionalProperties": false,
         "example": {
           "gitHubProfile": "https://github.com/rbhanda"
         }
@@ -724,11 +777,14 @@
           "name": {
             "maxLength": 70707070,
             "pattern": ".*",
-            "type": "string",
-            "description": "Name of the report.",
-            "nullable": true
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Name of the report."
           }
-        }
+        },
+        "additionalProperties": false
       },
       "TellerReportList": {
         "type": "object",
@@ -747,6 +803,7 @@
             "format": "int32"
           }
         },
+        "additionalProperties": false,
         "example": {
           "count": 2,
           "data": [
@@ -772,6 +829,9 @@
           },
           "Access-Control-Expose-Headers": {
             "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-JWS-Signature": {
+            "$ref": "#/components/headers/GenericStringHeader"
           }
         },
         "content": {
@@ -792,6 +852,9 @@
             "$ref": "#/components/headers/Access-Control-Allow-Origin"
           },
           "Access-Control-Expose-Headers": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-JWS-Signature": {
             "$ref": "#/components/headers/GenericStringHeader"
           },
           "X-Rate-Limit-Limit": {
@@ -816,6 +879,9 @@
             "$ref": "#/components/headers/Access-Control-Allow-Origin"
           },
           "Access-Control-Expose-Headers": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-JWS-Signature": {
             "$ref": "#/components/headers/GenericStringHeader"
           },
           "X-Rate-Limit-Limit": {
@@ -845,6 +911,9 @@
           "Access-Control-Expose-Headers": {
             "$ref": "#/components/headers/GenericStringHeader"
           },
+          "X-JWS-Signature": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
           "X-Rate-Limit-Limit": {
             "$ref": "#/components/headers/X-Rate-Limit-Limit"
           }
@@ -869,6 +938,9 @@
             "$ref": "#/components/headers/Access-Control-Allow-Origin"
           },
           "Access-Control-Expose-Headers": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-JWS-Signature": {
             "$ref": "#/components/headers/GenericStringHeader"
           },
           "X-Rate-Limit-Limit": {

@@ -1,14 +1,14 @@
 using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Any;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
+using System.Text.Json.Nodes;
 using System.Threading.RateLimiting;
 
 public static class GlobalConfiguration
 {
    public static OpenApiDocument? ApiDocument { get; set; }
 
-   public static IOpenApiAny? ApiExamples { get; set; }
+   public static JsonObject? ApiExamples { get; set; }
 
    public static SettingsModel? ApiSettings { get; set; }
 
