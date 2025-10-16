@@ -2,7 +2,6 @@ using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using DownstreamClients.GitHub;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 public class TellerOperation
