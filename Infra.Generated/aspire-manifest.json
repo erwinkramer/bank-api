@@ -3,11 +3,7 @@
   "resources": {
     "storage": {
       "type": "azure.bicep.v0",
-      "path": "storage.module.bicep",
-      "params": {
-        "principalId": "",
-        "principalType": ""
-      }
+      "path": "storage.module.bicep"
     },
     "BankStorage": {
       "type": "value.v0",
@@ -59,6 +55,15 @@
           "protocol": "tcp",
           "transport": "http"
         }
+      }
+    },
+    "storage-roles": {
+      "type": "azure.bicep.v0",
+      "path": "storage-roles.module.bicep",
+      "params": {
+        "storage_outputs_name": "{storage.outputs.name}",
+        "principalType": "",
+        "principalId": ""
       }
     }
   }

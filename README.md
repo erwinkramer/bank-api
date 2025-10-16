@@ -128,6 +128,12 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
   dotnet dev-certs https --clean && dotnet dev-certs https -ep ./.certs/AspNetDev.pfx -p '' --trust
   ```
 
+- (Optionally) regenerate the Aspire [manifest](https://learn.microsoft.com/en-us/dotnet/aspire/deployment/manifest-format#generate-a-manifest):
+
+  ```powershell
+  dotnet run --project BankApi.Orchestration --publisher manifest --output-path ../Infra.Generated/aspire-manifest.json
+  ```
+
 - Generate a new JWT-token for secured endpoints:
 
   ```powershell
