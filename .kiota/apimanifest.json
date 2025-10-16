@@ -27,8 +27,8 @@
         }
       ],
       "extensions": {
-        "x-ms-kiota-hash": "E72FD17CA0E661FD20746C9AFACA23BD0E00899BD476AEFA96C237A0D376190C",
-        "x-ms-kiota-version": "1.25.1"
+        "x-ms-kiota-hash": "92CF92E12E19B859E69061384CC331EDFE0C9C8D5638FD8B00B2EA0BD3561285",
+        "x-ms-kiota-version": "1.28.0"
       }
     }
   }
