@@ -125,7 +125,7 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 - (Optionally) regenerate the ASP.NET Core HTTPS development certificate:
 
   ```powershell
-  dotnet dev-certs https -ep ./.certs/AspNetDev.pfx --trust
+  dotnet dev-certs https --clean && dotnet dev-certs https -ep ./.certs/AspNetDev.pfx -p '' --trust
   ```
 
 - Generate a new JWT-token for secured endpoints:
