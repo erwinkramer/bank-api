@@ -142,6 +142,8 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 This mode just runs the ASP.NET Core API.
 
+1. Make sure the docker runtime is started.
+
 1. Start the standalone Aspire Dashboard for developer visualization:
 
     ```powershell
@@ -152,14 +154,14 @@ This mode just runs the ASP.NET Core API.
       mcr.microsoft.com/dotnet/aspire-dashboard:latest
     ```
 
-    Copy the url shown in the resulting output when running the container, and replace `0.0.0.0` with `localhost` (e.g. <http://localhost:18888/login?t=123456780abcdef123456780>) and open that in a browser, or paste the key part seen after `/login?t=` when the login dialog is shown.
+    Copy the url shown in the resulting output when running the container (e.g. <http://localhost:18888/login?t=123456780abcdef123456780>) and open that in a browser, or paste the key part seen after `/login?t=` when the login dialog is shown.
     The token will change each time the container is started.
 
 1. Run the [launch config](.vscode/launch.json) `API - Stable release channel`.
 
 ### Run in Aspire mode
 
-This mode starts the API in the context of .NET Aspire.
+This mode starts the [Stable](/BankApi.Service.Stable/) and [Beta](/BankApi.Service.Beta/) versions of the API in context of .NET Aspire.
 
 1. Make sure the docker runtime is started.
 
