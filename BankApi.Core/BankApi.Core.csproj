@@ -8,25 +8,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Azure.Storage.Blobs" Version="9.*" />
+    <PackageReference Include="Aspire.Azure.Storage.Blobs" Version="13.*" />
     <PackageReference Include="AspNetCore.Authentication.ApiKey" Version="9.*" />
     <PackageReference Include="Gridify" Version="2.*" />
     <PackageReference Include="Gridify.EntityFramework" Version="2.*" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.*-*" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.*-*" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.*-*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.*-*" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Hybrid" Version="9.*" />
-    <PackageReference Include="Microsoft.Extensions.Compliance.Redaction" Version="9.*" />
-    <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="9.*" />
-    <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="9.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.*" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.*" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Hybrid" Version="10.*" />
+    <PackageReference Include="Microsoft.Extensions.Compliance.Redaction" Version="10.*" />
+    <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="10.*" />
+    <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="10.*" />
     <PackageReference Include="Microsoft.Kiota.Bundle" Version="1.*" />
-    <PackageReference Include="Microsoft.OpenApi" Version="2.*" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.13.*" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.13.*" />
+    <PackageReference Include="Microsoft.OpenApi" Version="2.*" /> <!-- Requires to stay on v2, please read https://github.com/microsoft/OpenAPI.NET/blob/main/CONTRIBUTING.md#branches-and-support-policy -->
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.14.*" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.14.*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.13.*-*" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.13.*" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.13.*" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.14.*-*" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.14.*-*" />
     <PackageReference Include="Scalar.AspNetCore" Version="2.*" />
     <PackageReference Include="jose-jwt" Version="5.*" />
   </ItemGroup>

@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <!-- for OpenApi spec generation -->
-    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="10.*-*">
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="10.*">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
