@@ -21,7 +21,7 @@
     <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="10.*" />
     <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="10.*" />
     <PackageReference Include="Microsoft.Kiota.Bundle" Version="1.*" />
-    <PackageReference Include="Microsoft.OpenApi" Version="2.*" /> <!-- Requires to stay on v2, please read https://github.com/microsoft/OpenAPI.NET/blob/main/CONTRIBUTING.md#branches-and-support-policy -->
+    <PackageReference Include="Microsoft.OpenApi" Version="3.0.0" /> <!-- Requires to stay on v2, please read https://github.com/microsoft/OpenAPI.NET/blob/main/CONTRIBUTING.md#branches-and-support-policy -->
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.14.*" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.14.*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.13.*-*" />
