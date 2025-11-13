@@ -14,9 +14,9 @@ updates:
     schedule:
       interval: weekly
       day: thursday
-      ignore:
-        - dependency-name: "Microsoft.OpenApi"
-          versions: ["<2.0.0", ">=3.0.0"]
+    ignore:
+      - dependency-name: "Microsoft.OpenApi"
+        versions: ["<2.0.0", ">=3.0.0"]
     groups:
       dotnet:
         patterns:
