@@ -2,7 +2,7 @@ aliases:
   requestOrResponseJsonContent:
     - "$..content[application/json]"
 
-documentationUrl: https://www.guanchen.nl/
+documentationUrl: https://guanchen.nl/
 
 functionsDir: "./functions"
 functions:
