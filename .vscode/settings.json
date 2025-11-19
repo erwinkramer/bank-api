@@ -1,6 +1,6 @@
 {
     "dotnet.testWindow.useTestingPlatformProtocol": true,
-    "spectral.rulesetFile": ".spectral/main.yml",
+    "spectral.rulesetFile": "Specs.Ruleset/main.yml",
     "spectral.validateFiles": [
         "**/Specs.Generated/*.json"
     ],
