@@ -9,14 +9,14 @@ public static partial class ApiBuilder
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static async Task<IServiceCollection> AddMCPService(this IServiceCollection services)
+    public static async Task<IServiceCollection> AddMCPService(this IServiceCollection services, string? apiVersion)
     {
         // Create and configure a server
         var serverInfoBuilder = McpServerInfoBuilder.ForOpenApi()
-            .FromConfiguration("../Specs.Generated/openapi_v1.json") // make more dynamic later
-            .WithBaseUrl("https://localhost:5201/v1") // make more dynamic later
+            .FromConfiguration($"../Specs.Generated/openapi_{apiVersion}.json")
+            .WithBaseUrl($"https://localhost:5201/{apiVersion}")
             .AddDefaultHeader("User-Agent", "QuickMCP Client")
-            .AddAuthentication(new ApiKeyAuthenticator("your-api-key", "X-API-Key", ApiKeyAuthenticator.ApiKeyLocation.Header));
+            .AddAuthentication(new ApiKeyAuthenticator("your-api-key", "X-API-Key", ApiKeyAuthenticator.ApiKeyLocation.Header)); // modify this later
 
         // Build server info
         var serverInfo = await serverInfoBuilder.BuildAsync();
