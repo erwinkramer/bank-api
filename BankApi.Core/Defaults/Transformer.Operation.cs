@@ -62,7 +62,10 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         {
             securityRequirement.Add(new OpenApiSecuritySchemeReference(policyScheme, context.Document), []);
             if (policyScheme == JwtBearerDefaults.AuthenticationScheme)
+            {
                 securityRequirement.Add(new OpenApiSecuritySchemeReference("OpenIdConnect", context.Document), []);
+                securityRequirement.Add(new OpenApiSecuritySchemeReference("OAuth2", context.Document), []);
+            }
         }
         operation.Security ??= new List<OpenApiSecurityRequirement>();
         operation.Security.Add(securityRequirement);

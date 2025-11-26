@@ -1,3 +1,4 @@
+using System.Text.Json.Nodes;
 using AspNetCore.Authentication.ApiKey;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -37,6 +38,31 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
                             Description = "OpenID Connect scheme, please see: https://learn.openapis.org/specification/security.html#openid-connect.",
                             Type = SecuritySchemeType.OpenIdConnect,
                             OpenIdConnectUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/v2.0/.well-known/openid-configuration")
+                        }
+                    },
+                    {
+                        "OAuth2",
+                        new OpenApiSecurityScheme
+                        {
+                            Description = "OAuth2 scheme, supports RFC8725. Please see: https://learn.openapis.org/specification/security.html#oauth2-1.",
+                            Type = SecuritySchemeType.OAuth2,
+                            Flows = new OpenApiOAuthFlows
+                            {
+                                AuthorizationCode = new OpenApiOAuthFlow
+                                {
+                                    AuthorizationUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/authorize"),
+                                    TokenUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token"),
+                                    RefreshUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token"),
+                                    Scopes = new Dictionary<string, string>
+                                    {
+                                        { $"{GlobalConfiguration.ApiSettings!.EntraId.ClientId}/.default", "Access to Bank API" }
+                                    },
+                                    Extensions = new Dictionary<string, IOpenApiExtension>
+                                    {
+                                        { "x-client-id",  new JsonNodeExtension(JsonValue.Create( GlobalConfiguration.ApiSettings!.EntraId.ClientId)) }
+                                    }
+                                }
+                            }
                         }
                     }
                 },

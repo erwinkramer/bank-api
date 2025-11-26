@@ -30,6 +30,18 @@ public static partial class ApiBuilder
             {
                 options.Value = "Lifetime Subscription";
             });
+            options.AddAuthorizationCodeFlow("OAuth2", options =>
+            {
+                options.AuthorizationUrl = $"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/authorize";
+                options.TokenUrl = $"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token";
+                options.RefreshUrl = $"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token";
+                options.ClientId = GlobalConfiguration.ApiSettings!.EntraId.ClientId;
+                options.SelectedScopes = new List<string>
+                {
+                    $"{GlobalConfiguration.ApiSettings!.EntraId.ClientId}/.default"
+                };
+                options.Pkce = Pkce.Sha256;
+            });
             options.Title = $"{GlobalConfiguration.ApiDocument!.Info.Title} docs | {GlobalConfiguration.ApiDocument.Info.Version}";
         });
     }
