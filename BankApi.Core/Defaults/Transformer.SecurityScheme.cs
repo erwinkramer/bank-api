@@ -61,6 +61,18 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
                                     {
                                         { "x-client-id",  new JsonNodeExtension(JsonValue.Create( GlobalConfiguration.ApiSettings!.EntraId.ClientId)) }
                                     }
+                                },
+                                ClientCredentials = new OpenApiOAuthFlow{
+                                    TokenUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token"),
+                                    RefreshUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token"),
+                                    Scopes = new Dictionary<string, string>
+                                    {
+                                        { $"{GlobalConfiguration.ApiSettings!.EntraId.ClientId}/.default", "Access to Bank API" }
+                                    },
+                                    Extensions = new Dictionary<string, IOpenApiExtension>
+                                    {
+                                        { "x-client-id",  new JsonNodeExtension(JsonValue.Create( GlobalConfiguration.ApiSettings!.EntraId.ClientId)) }
+                                    }
                                 }
                             }
                         }

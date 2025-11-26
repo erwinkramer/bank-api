@@ -1003,6 +1003,14 @@
         "type": "oauth2",
         "description": "OAuth2 scheme, supports RFC8725. Please see: https://learn.openapis.org/specification/security.html#oauth2-1.",
         "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/oauth2/v2.0/token",
+            "refreshUrl": "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/oauth2/v2.0/token",
+            "scopes": {
+              "b6997777-3799-4c55-b78a-4ce96e3d959c/.default": "Access to Bank API"
+            },
+            "x-client-id": "b6997777-3799-4c55-b78a-4ce96e3d959c"
+          },
           "authorizationCode": {
             "authorizationUrl": "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/oauth2/v2.0/authorize",
             "tokenUrl": "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/oauth2/v2.0/token",
