@@ -29,6 +29,7 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.14.*" />
     <PackageReference Include="Scalar.AspNetCore" Version="2.*" />
     <PackageReference Include="jose-jwt" Version="5.*" />
+    <PackageReference Include="QuickMCP" Version="*" />
   </ItemGroup>
 
 </Project>
