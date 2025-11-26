@@ -5,7 +5,7 @@ using QuickMCP.Extensions;
 public static partial class ApiBuilder
 {
     /// <summary>
-    /// Add MCP Service to the IServiceCollection. Note: This does not work yet.
+    /// Add MCP Service to the IServiceCollection. Note: This does not work yet, see https://github.com/gunpal5/QuickMCP/issues/7
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
