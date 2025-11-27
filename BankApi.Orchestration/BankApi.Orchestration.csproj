@@ -19,6 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BankApi.Mcp\BankApi.Mcp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="13.0.1" />
     <PackageReference Include="Aspire.Hosting.Azure.Storage" Version="13.*" />
   </ItemGroup>

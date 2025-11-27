@@ -1,0 +1,9 @@
+{
+	"servers": {
+		"bankapi-v1": {
+			"url": "http://localhost:5200/mcp/v1",
+			"type": "http"
+		}
+	},
+	"inputs": []
+}

@@ -11,19 +11,21 @@ public static partial class ApiBuilder
     /// <returns></returns>
     public static async Task<IServiceCollection> AddMCPService(this IServiceCollection services, string? apiVersion)
     {
+        var openApiPath = Path.Combine(AppContext.BaseDirectory, $"openapi_{apiVersion}.json");
+        
         // Create and configure a server
-        var serverInfoBuilder = McpServerInfoBuilder.ForOpenApi()
-            .FromConfiguration($"../Specs.Generated/openapi_{apiVersion}.json")
-            .WithBaseUrl($"https://localhost:5201/{apiVersion}")
+        var serverInfoBuilder = McpServerInfoBuilder.ForOpenApi("bankapi")
+            .FromFile(openApiPath)
             .AddDefaultHeader("User-Agent", "QuickMCP Client")
-            .AddAuthentication(new ApiKeyAuthenticator("your-api-key", "X-API-Key", ApiKeyAuthenticator.ApiKeyLocation.Header)); // modify this later
+            .AddAuthentication(new ApiKeyAuthenticator("Lifetime Subscription", "Ocp-Apim-Subscription-Key", ApiKeyAuthenticator.ApiKeyLocation.Header));
 
         // Build server info
         var serverInfo = await serverInfoBuilder.BuildAsync();
+        Console.WriteLine($"QuickMCP built {serverInfo.ToolCount} tools for {apiVersion}");
 
         services.AddMcpServer()
               .WithQuickMCP(serverInfo)
-              .WithStdioServerTransport();
+              .WithHttpTransport();
 
         return services;
     }
