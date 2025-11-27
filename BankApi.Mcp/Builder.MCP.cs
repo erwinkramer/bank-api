@@ -5,15 +5,17 @@ using QuickMCP.Extensions;
 public static partial class ApiBuilder
 {
     /// <summary>
-    /// Add MCP Service to the IServiceCollection. Note: This does not work yet, see https://github.com/gunpal5/QuickMCP/issues/7
+    /// Add MCP Service to the IServiceCollection.
     /// </summary>
     /// <param name="services"></param>
+    /// <param name="apiVersion"></param>
     /// <returns></returns>
     public static async Task<IServiceCollection> AddMCPService(this IServiceCollection services, string? apiVersion)
     {
         var openApiPath = Path.Combine(AppContext.BaseDirectory, $"openapi_{apiVersion}.json");
         
         // Create and configure a server
+        // Doesn't work yet, see https://github.com/gunpal5/QuickMCP/issues/8
         var serverInfoBuilder = McpServerInfoBuilder.ForOpenApi("bankapi")
             .FromFile(openApiPath)
             .AddDefaultHeader("User-Agent", "QuickMCP Client")
