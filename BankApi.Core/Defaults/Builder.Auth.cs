@@ -31,10 +31,17 @@ public static partial class ApiBuilder
             })
             .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
             {
+                options.Authority = $"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/v2.0";
                 options.TokenValidationParameters = GlobalConfiguration.ApiSettings!.TokenValidation;
 
-                //SignatureValidator added because of issue in library: https://github.com/dotnet/aspnetcore/issues/52075#issuecomment-2037161895
-                options.TokenValidationParameters.SignatureValidator = (token, _) => new JsonWebToken(token);
+                if (string.Equals(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"),
+                    Environments.Development,
+                    StringComparison.OrdinalIgnoreCase))
+                {
+                    // In development, we accept any valid token without validating the signature (via the authority)
+                    // this is to simplify local development with self-signed tokens
+                    options.TokenValidationParameters.SignatureValidator = (token, _) => new JsonWebToken(token);
+                }
             });
 
         services.AddAuthorization(options =>

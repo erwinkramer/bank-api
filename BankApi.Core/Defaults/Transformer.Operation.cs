@@ -57,18 +57,24 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         var policy = await authorizationPolicyProvider.GetPolicyAsync(policyName);
         if (policy == null) return;
 
-        OpenApiSecurityRequirement securityRequirement = [];
-        foreach (var policyScheme in policy.AuthenticationSchemes)
-        {
-            securityRequirement.Add(new OpenApiSecuritySchemeReference(policyScheme, context.Document), []);
-            if (policyScheme == JwtBearerDefaults.AuthenticationScheme)
-            {
-                securityRequirement.Add(new OpenApiSecuritySchemeReference("OpenIdConnect", context.Document), []);
-                securityRequirement.Add(new OpenApiSecuritySchemeReference("OAuth2", context.Document), []);
-            }
-        }
         operation.Security ??= new List<OpenApiSecurityRequirement>();
-        operation.Security.Add(securityRequirement);
+
+        var schemeNames = new HashSet<string>(policy.AuthenticationSchemes, StringComparer.OrdinalIgnoreCase);
+        if (schemeNames.Contains(JwtBearerDefaults.AuthenticationScheme))
+        {
+            schemeNames.Add("OpenIdConnect");
+            schemeNames.Add("OAuth2");
+        }
+
+        foreach (var scheme in schemeNames)
+        {
+            var requirement = new OpenApiSecurityRequirement
+            {
+                [new OpenApiSecuritySchemeReference(scheme, context.Document)] = new List<string>()
+            };
+
+            operation.Security.Add(requirement);
+        }
     }
 
     private void AddMaxLengthToGuidParameters(OpenApiOperation operation)

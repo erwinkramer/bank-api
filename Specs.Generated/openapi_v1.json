@@ -536,8 +536,12 @@
         },
         "security": [
           {
-            "Bearer": [ ],
-            "OpenIdConnect": [ ],
+            "Bearer": [ ]
+          },
+          {
+            "OpenIdConnect": [ ]
+          },
+          {
             "OAuth2": [ ]
           }
         ]
@@ -617,8 +621,12 @@
         },
         "security": [
           {
-            "Bearer": [ ],
-            "OpenIdConnect": [ ],
+            "Bearer": [ ]
+          },
+          {
+            "OpenIdConnect": [ ]
+          },
+          {
             "OAuth2": [ ]
           }
         ]
