@@ -664,7 +664,6 @@
             "$ref": "#/components/schemas/BankTier"
           }
         },
-        "additionalProperties": false,
         "example": {
           "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
           "name": "Guanchen",
@@ -708,7 +707,6 @@
             }
           }
         },
-        "additionalProperties": false,
         "example": {
           "count": 2,
           "data": [
@@ -776,7 +774,6 @@
             "format": "uri"
           }
         },
-        "additionalProperties": false,
         "example": {
           "gitHubProfile": "https://github.com/rbhanda"
         }
@@ -793,8 +790,7 @@
             ],
             "description": "Name of the report."
           }
-        },
-        "additionalProperties": false
+        }
       },
       "TellerReportList": {
         "type": "object",
@@ -813,7 +809,6 @@
             "format": "int32"
           }
         },
-        "additionalProperties": false,
         "example": {
           "count": 2,
           "data": [

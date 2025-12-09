@@ -1,6 +1,6 @@
-using QuickMCP.Authentication;
-using QuickMCP.Builders;
-using QuickMCP.Extensions;
+using MCPify.Core;
+using MCPify.Core.Auth.OAuth;
+using MCPify.Hosting;
 
 public static partial class ApiBuilder
 {
@@ -14,20 +14,25 @@ public static partial class ApiBuilder
     {
         var openApiPath = Path.Combine(AppContext.BaseDirectory, $"openapi_{apiVersion}.json");
 
-        // Create and configure a server
-        // Doesn't work yet, see https://github.com/gunpal5/QuickMCP/issues/8
-        var serverInfoBuilder = McpServerInfoBuilder.ForOpenApi("bankapi")
-            .FromFile(openApiPath)
-            .AddDefaultHeader("User-Agent", "QuickMCP Client")
-            .AddAuthentication(new ApiKeyAuthenticator("Lifetime Subscription", "Ocp-Apim-Subscription-Key", ApiKeyAuthenticator.ApiKeyLocation.Header));
-
-        // Build server info
-        var serverInfo = await serverInfoBuilder.BuildAsync();
-        Console.WriteLine($"QuickMCP built {serverInfo.ToolCount} tools for {apiVersion}");
-
-        services.AddMcpServer()
-              .WithQuickMCP(serverInfo)
-              .WithHttpTransport();
+        services.AddMcpify(options =>
+        {
+            options.Transport = McpTransportType.Http;
+            
+            options.ExternalApis.Add(new()
+            {
+                SwaggerFilePath = openApiPath,
+               
+                ApiBaseUrl = $"https://localhost:5201/{apiVersion}",
+                ToolPrefix = "bankapi",
+                Authentication = new OAuthAuthorizationCodeAuthentication(
+                    clientId: "b6997777-3799-4c55-b78a-4ce96e3d959c",
+                    authorizationEndpoint: "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/oauth2/v2.0/authorize",
+                    tokenEndpoint: "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/oauth2/v2.0/token",
+                    scope: "b6997777-3799-4c55-b78a-4ce96e3d959c/.default",
+                    tokenStore: new FileTokenStore("token.json") // Persist token to disk
+                )
+            });
+        });
 
         return services;
     }
