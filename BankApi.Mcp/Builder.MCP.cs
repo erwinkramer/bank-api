@@ -18,19 +18,20 @@ public static partial class ApiBuilder
         services.AddMcpify(options =>
         {
             options.Transport = McpTransportType.Http;
-            
             options.ExternalApis.Add(new()
             {
                 SwaggerFilePath = openApiPath,
                 ApiBaseUrl = $"https://localhost:5201/{apiVersion}",
-                ToolPrefix = "bankapi",
+                ToolPrefix = "bankApi",
                 AuthenticationFactory = sp => new OAuthAuthorizationCodeAuthentication(
                     clientId: "b6997777-3799-4c55-b78a-4ce96e3d959c",
                     authorizationEndpoint: "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/oauth2/v2.0/authorize",
                     tokenEndpoint: "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/oauth2/v2.0/token",
                     scope: "b6997777-3799-4c55-b78a-4ce96e3d959c/.default",
                     secureTokenStore: sp.GetRequiredService<ISecureTokenStore>(),
-                    mcpContextAccessor: sp.GetRequiredService<IMcpContextAccessor>()
+                    mcpContextAccessor: sp.GetRequiredService<IMcpContextAccessor>(),
+                    redirectUri: "http://localhost:5200/auth/callback",
+                    usePkce: true
                 )
             });
         });
