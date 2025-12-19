@@ -6,11 +6,14 @@ await builder.Services.AddMCPService("v1");
 
 var app = builder.Build();
 
-// 3. Register MCP Tools (Must be called after endpoints are mapped but before Run)
+// Enable MCPify's context accessor middleware
+app.UseMcpifyContext();
+
+// Register MCP Tools (Must be called after endpoints are mapped but before Run)
 var registrar = app.Services.GetRequiredService<McpifyServiceRegistrar>();
 await registrar.RegisterToolsAsync(((IEndpointRouteBuilder)app).DataSources);
 
-// 4. Map the MCP Endpoint
+// Map the MCP Endpoint (for HTTP transport) and OAuth metadata endpoint
 app.MapMcpifyEndpoint(); 
 
 app.Run();
