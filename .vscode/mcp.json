@@ -1,7 +1,7 @@
 {
 	"servers": {
 		"bankapi-v1": {
-			"url": "http://localhost:5200/sse",
+			"url": "http://localhost:5200",
 			"type": "http"
 		}
 	},
