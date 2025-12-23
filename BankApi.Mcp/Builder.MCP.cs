@@ -21,6 +21,7 @@ public static partial class ApiBuilder
         {
             return new OAuthAuthorizationCodeAuthentication(
                 clientId: "b6997777-3799-4c55-b78a-4ce96e3d959c",
+                clientSecret: "fQB8Q~GkKsBaQFKnrTLEGXpRHWejyASJB6ZMGba~", // we need this because when running in Claude and authenticating via our MCP server, it's not a SPA.
                 authorizationEndpoint: "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/oauth2/v2.0/authorize",
                 tokenEndpoint: "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/oauth2/v2.0/token",
                 scope: "b6997777-3799-4c55-b78a-4ce96e3d959c/.default",
@@ -53,7 +54,7 @@ public static partial class ApiBuilder
         services.AddSingleton<McpServerTool>(sp => factory(sp));
         return services;
     }
-    
+
     public static void MapAuthCallback(this WebApplication app, string callbackPath, params string[] alternatePaths)
     {
         var paths = new List<string> { callbackPath };
@@ -86,7 +87,7 @@ public static partial class ApiBuilder
                 {
                     // The HandleAuthorizationCallbackAsync now takes the signed state and extracts sessionId
                     await auth.HandleAuthorizationCallbackAsync(code, state, context.RequestAborted);
-                    
+
                     context.Response.ContentType = "text/html";
                     await context.Response.WriteAsync("""
                         <html>
