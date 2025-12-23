@@ -135,3 +135,6 @@ $RECYCLE.BIN/
 
 _NCrunch*
 .azure
+
+# MCPify files
+AuthTokens/

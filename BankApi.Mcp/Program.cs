@@ -8,6 +8,9 @@ var app = builder.Build();
 
 // Enable MCPify's context accessor middleware
 app.UseMcpifyContext();
+//app.UseMcpifyOAuth();
+
+app.MapAuthCallback("/auth/callback");
 
 // Register MCP Tools (Must be called after endpoints are mapped but before Run)
 var registrar = app.Services.GetRequiredService<McpifyServiceRegistrar>();
