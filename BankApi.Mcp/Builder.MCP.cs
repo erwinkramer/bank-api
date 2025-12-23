@@ -32,6 +32,14 @@ public static partial class ApiBuilder
             );
         });
 
+        services.AddScoped(sp =>
+        {
+            return new ApiKeyAuthentication(
+                keyName: "Ocp-Apim-Subscription-Key",
+                keyValue: "Lifetime Subscription"
+            );
+        });
+
         services.AddMcpify(options =>
         {
             options.Transport = McpTransportType.Http;
@@ -39,8 +47,15 @@ public static partial class ApiBuilder
             {
                 SwaggerFilePath = openApiPath,
                 ApiBaseUrl = $"https://localhost:5201/{apiVersion}",
-                ToolPrefix = "bankApi",
+                ToolPrefix = "bankApiViaOAuth",
                 AuthenticationFactory = sp => sp.GetRequiredService<OAuthAuthorizationCodeAuthentication>()
+            });
+            options.ExternalApis.Add(new()
+            {
+                SwaggerFilePath = openApiPath,
+                ApiBaseUrl = $"https://localhost:5201/{apiVersion}",
+                ToolPrefix = "bankApiViaApiKey",
+                AuthenticationFactory = sp => sp.GetRequiredService<ApiKeyAuthentication>()
             });
         });
 
