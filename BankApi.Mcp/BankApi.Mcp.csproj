@@ -11,6 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="LoginSuccessful.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="../Specs.Generated/openapi_v1.json" Link="openapi_v1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

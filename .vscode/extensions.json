@@ -10,7 +10,8 @@
 		"ms-graph.kiota",
 		"stoplight.spectral",
 		"streetsidesoftware.code-spell-checker",
-		"github.copilot"
+		"github.copilot",
+		"ms-vscode.live-server"
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
 	"unwantedRecommendations": []

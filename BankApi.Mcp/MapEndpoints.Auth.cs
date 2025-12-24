@@ -2,6 +2,9 @@ using MCPify.Core.Auth.OAuth;
 
 public static partial class ApiMapper
 {
+    private static readonly Lazy<Task<string>> LoginSuccessfulHtml = new(() =>
+        File.ReadAllTextAsync(Path.Combine(AppContext.BaseDirectory, "LoginSuccessful.html")));
+
     public static void MapAuthCallback(this WebApplication app, string callbackPath, params string[] alternatePaths)
     {
         var paths = new List<string> { callbackPath };
@@ -36,19 +39,7 @@ public static partial class ApiMapper
                     await auth.HandleAuthorizationCallbackAsync(code, state, context.RequestAborted);
 
                     context.Response.ContentType = "text/html";
-                    await context.Response.WriteAsync("""
-                        <html>
-                        <head><title>Login Successful</title></head>
-                        <body style="font-family: sans-serif; text-align: center; padding-top: 50px;">
-                            <h1 style="color: green;">Login Successful!</h1>
-                            <p>You have successfully authenticated with MCPify.</p>
-                            <p>You can now close this window and return to your application.</p>
-                            <script>
-                                setTimeout(function() { window.close(); }, 3000);
-                            </script>
-                        </body>
-                        </html>
-                        """);
+                    await context.Response.WriteAsync(await LoginSuccessfulHtml.Value);
                 }
                 catch (Exception ex)
                 {
