@@ -45,14 +45,14 @@ public static partial class ApiBuilder
             options.Transport = McpTransportType.Http;
             options.ExternalApis.Add(new()
             {
-                SwaggerFilePath = openApiPath,
+                OpenApiFilePath = openApiPath,
                 ApiBaseUrl = $"https://localhost:5201/{apiVersion}",
                 ToolPrefix = "bankApiViaOAuth",
                 AuthenticationFactory = sp => sp.GetRequiredService<OAuthAuthorizationCodeAuthentication>()
             });
             options.ExternalApis.Add(new()
             {
-                SwaggerFilePath = openApiPath,
+                OpenApiFilePath = openApiPath,
                 ApiBaseUrl = $"https://localhost:5201/{apiVersion}",
                 ToolPrefix = "bankApiViaApiKey",
                 AuthenticationFactory = sp => sp.GetRequiredService<ApiKeyAuthentication>()
