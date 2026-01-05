@@ -1,5 +1,5 @@
 {
-  "openapi": "3.1.1",
+  "openapi": "3.0.4",
   "info": {
     "title": "Bank API",
     "description": "The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.",
@@ -647,12 +647,10 @@
           "name": {
             "maxLength": 70707070,
             "pattern": ".*",
-            "type": [
-              "null",
-              "string"
-            ],
+            "type": "string",
             "description": "Name of the bank.",
-            "default": "Guanchen"
+            "default": "Guanchen",
+            "nullable": true
           },
           "isCompliant": {
             "type": "boolean",
@@ -660,7 +658,6 @@
             "default": true
           },
           "bankTier": {
-            "description": "Tier of the bank.",
             "$ref": "#/components/schemas/BankTier"
           }
         },
@@ -768,12 +765,10 @@
         "properties": {
           "gitHubProfile": {
             "maxLength": 70707070,
-            "type": [
-              "null",
-              "string"
-            ],
+            "type": "string",
             "description": "GitHub profile of the teller.",
-            "format": "uri"
+            "format": "uri",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -787,11 +782,9 @@
           "name": {
             "maxLength": 70707070,
             "pattern": ".*",
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "Name of the report."
+            "type": "string",
+            "description": "Name of the report.",
+            "nullable": true
           }
         },
         "additionalProperties": false
