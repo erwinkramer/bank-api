@@ -9,6 +9,9 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  PROJECT_NAME: BankApi.Service.Stable
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,16 +27,16 @@ jobs:
           dotnet-version: '10.x'
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build ${{env.PROJECT_NAME}} --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/BankApi.Service.Stable
+        run: dotnet publish ${{env.PROJECT_NAME}} -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/BankApi.Service.Stable
+          path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
     runs-on: ubuntu-latest
