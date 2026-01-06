@@ -27,7 +27,7 @@ public static partial class ApiBuilder
                 scope: "b6997777-3799-4c55-b78a-4ce96e3d959c/.default",
                 secureTokenStore: sp.GetRequiredService<ISecureTokenStore>(),
                 mcpContextAccessor: sp.GetRequiredService<IMcpContextAccessor>(),
-                redirectUri: "http://localhost:5200/auth/callback",
+                redirectUri: "https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net/auth/callback",
                 usePkce: true
             );
         });
@@ -46,14 +46,14 @@ public static partial class ApiBuilder
             options.ExternalApis.Add(new()
             {
                 OpenApiFilePath = openApiPath,
-                ApiBaseUrl = $"https://localhost:5201/{apiVersion}",
+                ApiBaseUrl = $"https://bankapi-001-ffamb7fcbkcgdsg7.westeurope-01.azurewebsites.net/{apiVersion}",
                 ToolPrefix = "bankApiViaOAuth",
                 AuthenticationFactory = sp => sp.GetRequiredService<OAuthAuthorizationCodeAuthentication>()
             });
             options.ExternalApis.Add(new()
             {
                 OpenApiFilePath = openApiPath,
-                ApiBaseUrl = $"https://localhost:5201/{apiVersion}",
+                ApiBaseUrl = $"https://bankapi-001-ffamb7fcbkcgdsg7.westeurope-01.azurewebsites.net/{apiVersion}",
                 ToolPrefix = "bankApiViaApiKey",
                 AuthenticationFactory = sp => sp.GetRequiredService<ApiKeyAuthentication>()
             });
