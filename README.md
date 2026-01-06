@@ -9,7 +9,7 @@
 
 ![MCP via Claude](.images/mcp-claude.png)
 
-The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API. [Stable version @ Azure F1 Api App 🌐](https://bankapi-001-ffamb7fcbkcgdsg7.westeurope-01.azurewebsites.net/scalar/v1).
+The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API. [🌐 Stable API version](https://bankapi-001-ffamb7fcbkcgdsg7.westeurope-01.azurewebsites.net/scalar) and [🌐 MCP server](https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net) @ Azure F1 Api App.
 
 ## Compliance
 
