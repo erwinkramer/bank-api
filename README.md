@@ -198,7 +198,7 @@ Configure your `claude_desktop_config.json` with the following `mcpServers` entr
       "command": "npx",
       "args": [
         "mcp-remote",
-        "http://localhost:5200",
+        "https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net",
         "--allow-http",
         "--debug"
       ]
@@ -206,6 +206,8 @@ Configure your `claude_desktop_config.json` with the following `mcpServers` entr
   }
 }
 ```
+
+ > Replace the URL with `http://localhost:5200` when using the local MCP server.
 
 ## Considerations
 
