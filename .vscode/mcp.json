@@ -1,7 +1,11 @@
 {
 	"servers": {
-		"bankapi-v1": {
+		"bankapi-v1-local": {
 			"url": "http://localhost:5200",
+			"type": "http"
+		},
+		"bankapi-v1-web": {
+			"url": "https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net/",
 			"type": "http"
 		}
 	},
