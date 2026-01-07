@@ -9,7 +9,7 @@
   <PropertyGroup>
     <OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
     <OpenApiDocumentsDirectory>../Specs.Generated</OpenApiDocumentsDirectory>
-    <OpenApiGenerateDocumentsOptions>--file-name openapi_v1 --openapi-version OpenApi3_0</OpenApiGenerateDocumentsOptions>
+    <OpenApiGenerateDocumentsOptions>--file-name openapi_v1 --openapi-version OpenApi3_1</OpenApiGenerateDocumentsOptions>
   </PropertyGroup>
 
   <ItemGroup>
