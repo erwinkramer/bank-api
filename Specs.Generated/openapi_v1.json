@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "https://localhost:5201/v1",
+      "url": "https://bankapi-001-ffamb7fcbkcgdsg7.westeurope-01.azurewebsites.net/v1",
       "x-internal": false
     }
   ],
