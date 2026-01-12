@@ -6,7 +6,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "applicationUrl": "http://localhost:5200",
-      "launchUrl": "",
+      "launchUrl": ".well-known/oauth-protected-resource",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
