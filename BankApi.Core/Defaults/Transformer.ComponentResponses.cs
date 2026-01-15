@@ -43,7 +43,7 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             Description = "Unauthorized request.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "application/problem+json", new () }
+                { "application/problem+plain", new () }
             },
             Headers = new Dictionary<string, IOpenApiHeader>
             {
@@ -56,7 +56,7 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             Description = "Too many requests.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "TooManyRequests", new () { Schema = new OpenApiSchemaReference("GenericString", document) } }
+                { "application/problem+plain", new () { Schema = new OpenApiSchemaReference("GenericString", document) } }
             },
             Headers = new Dictionary<string, IOpenApiHeader>
             {

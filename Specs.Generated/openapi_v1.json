@@ -929,7 +929,7 @@
           }
         },
         "content": {
-          "application/problem+json": { }
+          "application/problem+plain": { }
         }
       },
       "429": {
@@ -958,7 +958,7 @@
           }
         },
         "content": {
-          "TooManyRequests": {
+          "application/problem+plain": {
             "schema": {
               "$ref": "#/components/schemas/GenericString"
             }
