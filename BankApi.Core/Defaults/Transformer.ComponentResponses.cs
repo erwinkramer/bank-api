@@ -43,7 +43,7 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             Description = "Unauthorized request.",
             Content = new Dictionary<string, OpenApiMediaType>
             {
-                { "NoContent" , new () }
+                { "application/problem+json", new () }
             },
             Headers = new Dictionary<string, IOpenApiHeader>
             {

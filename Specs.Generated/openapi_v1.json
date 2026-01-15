@@ -661,6 +661,7 @@
           },
           "bankTier": {
             "description": "Tier of the bank.",
+            "default": "A",
             "$ref": "#/components/schemas/BankTier"
           }
         },
@@ -677,8 +678,7 @@
           "A",
           "B",
           "C"
-        ],
-        "default": "A"
+        ]
       },
       "GenericInt": {
         "maximum": 70707070,
@@ -929,7 +929,7 @@
           }
         },
         "content": {
-          "NoContent": { }
+          "application/problem+json": { }
         }
       },
       "429": {
