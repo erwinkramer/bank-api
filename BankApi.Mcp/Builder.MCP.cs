@@ -42,6 +42,7 @@ public static partial class ApiBuilder
 
         services.AddMcpify(options =>
         {
+            options.ResourceUrlOverride = "https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net";
             options.Transport = McpTransportType.Http;
             options.ExternalApis.Add(new()
             {
