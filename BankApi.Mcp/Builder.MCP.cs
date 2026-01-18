@@ -44,10 +44,10 @@ public static partial class ApiBuilder
         {
             options.ResourceUrlOverride = "https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net";
             options.Transport = McpTransportType.Http;
-            //options.OAuthConfigurations.Add(new()
-            //{
-            //    AuthorizationServers = ["https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/v2.0"]
-            //});
+            options.OAuthConfigurations.Add(new()
+            {
+                AuthorizationServers = ["https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/v2.0"]
+            });
             options.ExternalApis.Add(new()
             {
                 OpenApiFilePath = openApiPath,
