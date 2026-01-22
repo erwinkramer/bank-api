@@ -4,7 +4,7 @@ using Microsoft.IdentityModel.JsonWebTokens;
 
 public static partial class ApiBuilder
 {
-    public static IServiceCollection AddAuthServices(this IServiceCollection services)
+    public static IServiceCollection AddAuthServices(this IServiceCollection services, IHostEnvironment environment)
     {
         ApiKeyEvents apiKeyEvents = new()
         {
@@ -34,9 +34,7 @@ public static partial class ApiBuilder
                 options.Authority = $"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/v2.0";
                 options.TokenValidationParameters = GlobalConfiguration.ApiSettings!.TokenValidation;
 
-                if (string.Equals(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"),
-                    Environments.Development,
-                    StringComparison.OrdinalIgnoreCase))
+                if (environment.IsDevelopment())
                 {
                     // In development, we accept any valid token without validating the signature (via the authority)
                     // this is to simplify local development with self-signed tokens

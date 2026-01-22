@@ -67,7 +67,7 @@ jobs:
             [
                 {
                     "name": "ASPNETCORE_ENVIRONMENT",
-                    "value": "Development",
+                    "value": "Staging",
                     "slotSetting": false
                 }
             ]

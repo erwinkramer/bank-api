@@ -59,6 +59,19 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9A0A0A5C6E64417580DEC3D99E13DC85 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7BF3B0C8CAA84293B605EAF4047E6280 }}
 
+      - name: Set Web App settings
+        uses: azure/appservice-settings@v1
+        with:
+          app-name: ${{ env.APP_NAME }}
+          app-settings-json: |
+            [
+                {
+                    "name": "ASPNETCORE_ENVIRONMENT",
+                    "value": "Staging",
+                    "slotSetting": false
+                }
+            ]
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3

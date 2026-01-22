@@ -13,21 +13,22 @@ public static partial class ApiBuilder
     /// <param name="services"></param>
     /// <param name="apiVersion"></param>
     /// <returns></returns>
-    public static async Task<IServiceCollection> AddMCPService(this IServiceCollection services, string? apiVersion)
+    public static async Task<IServiceCollection> AddMCPService(this IServiceCollection services, string apiBaseUrl, string? apiVersion, string mcpServerBaseUrl)
     {
         var openApiPath = Path.Combine(AppContext.BaseDirectory, $"openapi_{apiVersion}.json");
+        var tenantId = "b81eb003-1c5c-45fd-848f-90d9d3f8d016";
 
         services.AddScoped(sp =>
             {
                 return new OAuthAuthorizationCodeAuthentication(
                     clientId: "b6997777-3799-4c55-b78a-4ce96e3d959c",
                     clientSecret: "fQB8Q~GkKsBaQFKnrTLEGXpRHWejyASJB6ZMGba~", // we need this because when running in Claude and authenticating via our MCP server, it's not a SPA.
-                    authorizationEndpoint: "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/oauth2/v2.0/authorize",
-                    tokenEndpoint: "https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/oauth2/v2.0/token",
+                    authorizationEndpoint: $"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize",
+                    tokenEndpoint: $"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
                     scope: "b6997777-3799-4c55-b78a-4ce96e3d959c/.default",
                     secureTokenStore: sp.GetRequiredService<ISecureTokenStore>(),
                     mcpContextAccessor: sp.GetRequiredService<IMcpContextAccessor>(),
-                    redirectUri: "https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net/auth/callback",
+                    redirectUri: $"{mcpServerBaseUrl}/auth/callback",
                     usePkce: true
                 );
             });
@@ -42,23 +43,23 @@ public static partial class ApiBuilder
 
         services.AddMcpify(options =>
         {
-            options.ResourceUrlOverride = "https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net";
+            options.ResourceUrlOverride = mcpServerBaseUrl;
             options.Transport = McpTransportType.Http;
             options.OAuthConfigurations.Add(new()
             {
-                AuthorizationServers = ["https://login.microsoftonline.com/b81eb003-1c5c-45fd-848f-90d9d3f8d016/v2.0"]
+                AuthorizationServers = [$"https://login.microsoftonline.com/{tenantId}/v2.0"]
             });
             options.ExternalApis.Add(new()
             {
                 OpenApiFilePath = openApiPath,
-                ApiBaseUrl = $"https://bankapi-001-ffamb7fcbkcgdsg7.westeurope-01.azurewebsites.net/{apiVersion}",
+                ApiBaseUrl = $"{apiBaseUrl}/{apiVersion}",
                 ToolPrefix = "bankApiViaOAuth",
                 AuthenticationFactory = sp => sp.GetRequiredService<OAuthAuthorizationCodeAuthentication>()
             });
             options.ExternalApis.Add(new()
             {
                 OpenApiFilePath = openApiPath,
-                ApiBaseUrl = $"https://bankapi-001-ffamb7fcbkcgdsg7.westeurope-01.azurewebsites.net/{apiVersion}",
+                ApiBaseUrl = $"{apiBaseUrl}/{apiVersion}",
                 ToolPrefix = "bankApiViaApiKey",
                 AuthenticationFactory = sp => sp.GetRequiredService<ApiKeyAuthentication>()
             });

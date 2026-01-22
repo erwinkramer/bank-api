@@ -17,7 +17,7 @@ builder.AddComplianceServices();
 builder.AddAzureClients();
 builder.Services.ConfigureJson();
 builder.Services.AddHealthChecks();
-builder.Services.AddAuthServices();
+builder.Services.AddAuthServices(builder.Environment);
 builder.Services.AddDataServices();
 builder.Services.AddDownstreamApiServices();
 builder.Services.AddOpenApiServices();
@@ -40,7 +40,7 @@ app.UseCors();
 
 app.MapOpenApi("/openapi/{documentName}.json");
 
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 {
     app.AddOpenApiScalarReference();
     await app.Services.ProvisionAzureStorage();
