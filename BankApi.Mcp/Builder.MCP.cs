@@ -45,6 +45,11 @@ public static partial class ApiBuilder
         {
             options.ResourceUrlOverride = mcpServerBaseUrl;
             options.Transport = McpTransportType.Http;
+            //options.TokenValidation = new TokenValidationOptions
+            //{
+            //    EnableJwtValidation = true,
+            //    ValidateAudience = true
+            //};
             options.OAuthConfigurations.Add(new()
             {
                 AuthorizationServers = [$"https://login.microsoftonline.com/{tenantId}/v2.0"]

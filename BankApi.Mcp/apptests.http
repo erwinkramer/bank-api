@@ -1,0 +1,14 @@
+@hostname = localhost
+@port = 5200
+@host = {{hostname}}:{{port}}
+
+###
+
+http://{{host}}/.well-known/oauth-protected-resource
+
+###
+
+http://{{host}}
+Accept: text/event-stream
+
+###
