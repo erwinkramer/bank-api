@@ -10,9 +10,6 @@ public static partial class ApiBuilder
     /// <summary>
     /// Add MCP Service to the IServiceCollection.
     /// </summary>
-    /// <param name="services"></param>
-    /// <param name="apiVersion"></param>
-    /// <returns></returns>
     public static async Task<IServiceCollection> AddMCPService(this IServiceCollection services, string apiBaseUrl, string? apiVersion, string mcpServerBaseUrl)
     {
         var openApiPath = Path.Combine(AppContext.BaseDirectory, $"openapi_{apiVersion}.json");

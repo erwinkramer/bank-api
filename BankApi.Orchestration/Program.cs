@@ -10,7 +10,6 @@ builder.AddProject<Projects.BankApi_Service_Stable>("BankApiService-Stable")
 builder.AddProject<Projects.BankApi_Service_Beta>("BankApiService-Beta")
        .WithReference(blobs);
 
-builder.AddProject<Projects.BankApi_Mcp>("BankApi-Mcp")
-       .WithReference(blobs);
+builder.AddProject<Projects.BankApi_Mcp>("BankApi-Mcp");
 
 builder.Build().Run();
