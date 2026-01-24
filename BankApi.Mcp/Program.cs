@@ -2,7 +2,7 @@
 
 var builder = WebApplication.CreateBuilder(args);
 
-await builder.Services.AddMCPService(builder.Configuration["ApiBaseUrl"]!, "v1", builder.Configuration["McpServerBaseUrl"]);
+await builder.Services.AddMCPService(builder.Configuration["ApiBaseUrl"]!, "v1", builder.Configuration["McpServerBaseUrl"]!);
 
 var app = builder.Build();
 
