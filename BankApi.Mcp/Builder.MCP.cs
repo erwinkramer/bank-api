@@ -17,6 +17,8 @@ public static partial class ApiBuilder
 
         services.AddScoped(sp =>
         {
+            // This shouldn't be needed, since proper MCP clients handle this via the "/.well-known/oauth-protected-resource" endpoint
+            // Keep this in until following issue is solved: https://github.com/abdebek/MCPify/issues/20
             return new OAuthAuthorizationCodeAuthentication(
                 clientId: "b6997777-3799-4c55-b78a-4ce96e3d959c",
                 authorizationEndpoint: $"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize",
