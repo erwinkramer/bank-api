@@ -56,16 +56,8 @@ public static partial class ApiBuilder
             {
                 OpenApiFilePath = openApiPath,
                 ApiBaseUrl = $"{apiBaseUrl}/{apiVersion}",
-                Filter = op => op.Route.StartsWith("/teller"),
-                ToolPrefix = "bankApiViaOAuth"
-                //AuthenticationFactory = sp => sp.GetRequiredService<OAuthAuthorizationCodeAuthentication>()
-            });
-            options.ExternalApis.Add(new()
-            {
-                OpenApiFilePath = openApiPath,
-                ApiBaseUrl = $"{apiBaseUrl}/{apiVersion}",
-                Filter = op => op.Route.StartsWith("/banks"),
-                ToolPrefix = "bankApiViaApiKey",
+                //Filter = op => op.Route.StartsWith("/banks"),
+                ToolPrefix = "bankApi",
                 AuthenticationFactory = sp => sp.GetRequiredService<ApiKeyAuthentication>()
             });
         });
