@@ -10,7 +10,7 @@ app.UseMcpifyContext(); // Enable MCPify's context accessor middleware
 app.UseMcpifyOAuth(); // Enable MCPify's OAuth middleware
 
 app.MapMcpifyEndpoint(); // Map the MCP Endpoint (for HTTP transport) and OAuth metadata endpoint
-app.MapAuthCallback("/auth/callback");
+//app.MapAuthCallback("/auth/callback"); // only required when not using the official MCP server authorization flow
 
 // Register MCP Tools (Must be called after endpoints are mapped but before Run)
 var registrar = app.Services.GetRequiredService<McpifyServiceRegistrar>();
