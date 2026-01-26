@@ -2,8 +2,6 @@ using MCPify.Core;
 using MCPify.Core.Auth;
 using MCPify.Core.Auth.OAuth;
 using MCPify.Hosting;
-using ModelContextProtocol.Server;
-using MCPify.Tools;
 
 public static partial class ApiBuilder
 {
@@ -69,8 +67,6 @@ public static partial class ApiBuilder
                 AuthenticationFactory = sp => sp.GetRequiredService<ApiKeyAuthentication>()
             });
         });
-
-        //services.AddSingleton<McpServerTool>(_ => new LoginTool());
 
         return services;
     }
