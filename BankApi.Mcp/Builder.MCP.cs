@@ -17,6 +17,18 @@ public static partial class ApiBuilder
 
         services.AddScoped(sp =>
         {
+            return new OAuthAuthorizationCodeAuthentication(
+                clientId: "",
+                authorizationEndpoint: "",
+                tokenEndpoint: "",
+                scope: "",
+                secureTokenStore: null,
+                mcpContextAccessor: null
+            );
+        });
+
+        services.AddScoped(sp =>
+        {
             return new ApiKeyAuthentication(
                 keyName: "Ocp-Apim-Subscription-Key",
                 keyValue: "Lifetime Subscription"
