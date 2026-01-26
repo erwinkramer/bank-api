@@ -18,12 +18,14 @@ public static partial class ApiBuilder
         services.AddScoped(sp =>
         {
             return new OAuthAuthorizationCodeAuthentication(
-                clientId: "",
-                authorizationEndpoint: "",
-                tokenEndpoint: "",
-                scope: "",
-                secureTokenStore: null,
-                mcpContextAccessor: null
+                clientId: "b6997777-3799-4c55-b78a-4ce96e3d959c",
+                authorizationEndpoint: $"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize",
+                tokenEndpoint: $"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
+                scope: "b6997777-3799-4c55-b78a-4ce96e3d959c/.default",
+                secureTokenStore: sp.GetRequiredService<ISecureTokenStore>(),
+                mcpContextAccessor: sp.GetRequiredService<IMcpContextAccessor>(),
+                redirectUri: $"{mcpServerBaseUrl}/auth/callback",
+                usePkce: true
             );
         });
 
