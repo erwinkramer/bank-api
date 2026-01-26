@@ -62,7 +62,7 @@ public static partial class ApiBuilder
             });
         });
 
-        services.AddSingleton<McpServerTool>(_ => new LoginTool());
+        //services.AddSingleton<McpServerTool>(_ => new LoginTool());
 
         return services;
     }
