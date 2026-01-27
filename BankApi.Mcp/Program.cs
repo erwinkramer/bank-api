@@ -6,8 +6,8 @@ await builder.Services.AddMCPService(builder.Configuration["ApiBaseUrl"]!, "v1",
 
 var app = builder.Build();
 
-app.UseMcpifyContext(); // Enable MCPify's context accessor middleware
-app.UseMcpifyOAuth(); // Enable MCPify's OAuth middleware
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapMcpifyEndpoint(); // Map the MCP Endpoint (for HTTP transport) and OAuth metadata endpoint
 app.MapAuthCallback("/auth/callback"); // only required when not using the official MCP server authorization flow

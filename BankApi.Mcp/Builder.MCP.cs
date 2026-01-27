@@ -15,22 +15,6 @@ public static partial class ApiBuilder
 
         services.AddScoped(sp =>
         {
-            // This shouldn't be needed, since proper MCP clients handle this via the "/.well-known/oauth-protected-resource" endpoint
-            // Keep this in until following issue is solved: https://github.com/abdebek/MCPify/issues/20
-            return new OAuthAuthorizationCodeAuthentication(
-                clientId: "b6997777-3799-4c55-b78a-4ce96e3d959c",
-                authorizationEndpoint: $"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize",
-                tokenEndpoint: $"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
-                scope: "b6997777-3799-4c55-b78a-4ce96e3d959c/.default",
-                secureTokenStore: sp.GetRequiredService<ISecureTokenStore>(),
-                mcpContextAccessor: sp.GetRequiredService<IMcpContextAccessor>(),
-                redirectUri: $"{mcpServerBaseUrl}/auth/callback",
-                usePkce: true
-            );
-        });
-
-        services.AddScoped(sp =>
-        {
             return new ApiKeyAuthentication(
                 keyName: "Ocp-Apim-Subscription-Key",
                 keyValue: "Lifetime Subscription"
@@ -55,8 +39,8 @@ public static partial class ApiBuilder
                 OpenApiFilePath = openApiPath,
                 ApiBaseUrl = $"{apiBaseUrl}/{apiVersion}",
                 Filter = op => op.Route.StartsWith("/teller"),
-                ToolPrefix = "bankApiViaOAuth",
-                AuthenticationFactory = sp => sp.GetRequiredService<OAuthAuthorizationCodeAuthentication>()
+                TokenSource = TokenSource.Client,
+                ToolPrefix = "bankApiViaOAuth"
             });
             options.ExternalApis.Add(new()
             {
