@@ -1,16 +1,18 @@
 ﻿using MCPify.Hosting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.JsonWebTokens;
+using ModelContextProtocol.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
 await builder.Services.AddMCPService(builder.Configuration["ApiBaseUrl"]!, "v1", builder.Configuration["McpServerBaseUrl"]!);
 
-builder.Services.AddAuthorization(options =>
-    options.DefaultPolicy = new Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder()
-        .RequireAuthenticatedUser()
-        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
-        .Build());
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultChallengeScheme = McpAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+});
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
