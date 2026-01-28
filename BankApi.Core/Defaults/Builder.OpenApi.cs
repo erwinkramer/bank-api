@@ -39,6 +39,7 @@ public static partial class ApiBuilder
                 options.TokenUrl = $"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token";
                 options.ClientId = GlobalConfiguration.ApiSettings!.EntraId.ClientId;
                 options.ClientSecret = "fQB8Q~GkKsBaQFKnrTLEGXpRHWejyASJB6ZMGba~";
+                options.CredentialsLocation = CredentialsLocation.Body;
                 options.SelectedScopes = new List<string>
                 {
                     $"{GlobalConfiguration.ApiSettings!.EntraId.ClientId}/.default"
@@ -50,6 +51,7 @@ public static partial class ApiBuilder
                 options.TokenUrl = $"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token";
                 options.RefreshUrl = $"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token";
                 options.ClientId = GlobalConfiguration.ApiSettings!.EntraId.ClientId;
+                options.CredentialsLocation = CredentialsLocation.Body;
                 options.SelectedScopes = new List<string>
                 {
                     $"{GlobalConfiguration.ApiSettings!.EntraId.ClientId}/.default"
