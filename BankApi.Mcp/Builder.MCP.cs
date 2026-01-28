@@ -8,10 +8,9 @@ public static partial class ApiBuilder
     /// <summary>
     /// Add MCP Service to the IServiceCollection.
     /// </summary>
-    public static async Task<IServiceCollection> AddMCPService(this IServiceCollection services, string apiBaseUrl, string? apiVersion, string mcpServerBaseUrl)
+    public static async Task<IServiceCollection> AddMCPService(this IServiceCollection services, string tenantId, string apiBaseUrl, string? apiVersion, string mcpServerBaseUrl)
     {
         var openApiPath = Path.Combine(AppContext.BaseDirectory, $"openapi_{apiVersion}.json");
-        var tenantId = "b81eb003-1c5c-45fd-848f-90d9d3f8d016";
 
         services.AddScoped(sp =>
         {

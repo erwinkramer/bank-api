@@ -1,15 +1,51 @@
-﻿using MCPify.Hosting;
+﻿using System.Security.Claims;
+using MCPify.Hosting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using ModelContextProtocol.AspNetCore.Authentication;
+using Microsoft.IdentityModel.Tokens;
 
+var tenantId = "b81eb003-1c5c-45fd-848f-90d9d3f8d016";
 var builder = WebApplication.CreateBuilder(args);
 
-await builder.Services.AddMCPService(builder.Configuration["ApiBaseUrl"]!, "v1", builder.Configuration["McpServerBaseUrl"]!);
+await builder.Services.AddMCPService(tenantId, builder.Configuration["ApiBaseUrl"]!, "v1", builder.Configuration["McpServerBaseUrl"]!);
 
-builder.Services.AddAuthentication(options =>
+builder.Services.PostConfigure<JwtBearerOptions>(
+    JwtBearerDefaults.AuthenticationScheme, options =>
 {
-    options.DefaultChallengeScheme = McpAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    // Configure to validate tokens from Microsoft Entra ID
+    options.Authority = $"https://login.microsoftonline.com/{tenantId}/v2.0";
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidIssuers = new[] { 
+            $"https://login.microsoftonline.com/{tenantId}/v2.0",
+            $"https://sts.windows.net/{tenantId}/"
+        }
+    };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnTokenValidated = context =>
+        {
+            var name = context.Principal?.FindFirstValue("name") ?? 
+                      context.Principal?.FindFirstValue("preferred_username") ?? "unknown";
+            var upn = context.Principal?.FindFirstValue("upn") ??
+                       context.Principal?.FindFirstValue("email") ?? 
+                       context.Principal?.FindFirstValue("preferred_username") ?? "unknown";
+            var tenantId = context.Principal?.FindFirstValue("tid");
+            Console.WriteLine($"Token validated for: {name} ({upn}) from tenant: {tenantId}");
+            return Task.CompletedTask;
+        },
+        OnAuthenticationFailed = context =>
+        {
+            Console.WriteLine($"Authentication failed: {context.Exception.Message}");
+            return Task.CompletedTask;
+        },
+        OnChallenge = context =>
+        {
+            Console.WriteLine($"Challenging client to authenticate with Entra ID");
+            return Task.CompletedTask;
+        }
+    };
 });
 
 builder.Services.AddAuthorization();
