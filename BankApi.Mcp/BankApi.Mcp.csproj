@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.*" />
-    <PackageReference Include="MCPify" Version="0.0.13-preview" />
+    <PackageReference Include="MCPify" Version="0.0.14-preview" />
   </ItemGroup>
 
   <ItemGroup>
