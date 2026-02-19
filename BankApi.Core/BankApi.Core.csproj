@@ -27,7 +27,7 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.15.*-*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.15.*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.15.*" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.12.39" /> <!-- https://github.com/scalar/scalar/issues/8165 -->
+    <PackageReference Include="Scalar.AspNetCore" Version="2.12.41" /> <!-- https://github.com/scalar/scalar/issues/8165 -->
     <PackageReference Include="jose-jwt" Version="5.*" />
   </ItemGroup>
 
