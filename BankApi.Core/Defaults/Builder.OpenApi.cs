@@ -58,6 +58,7 @@ public static partial class ApiBuilder
                 ];
                 options.Pkce = Pkce.Sha256;
             });
+            //options.AddPreferredSecuritySchemes("OAuth2"); // https://github.com/scalar/scalar/issues/8082
             options.AddDefaultScopes("OAuth2", [$"{GlobalConfiguration.ApiSettings!.EntraId.ClientId}/.default"]);
             options.Title = $"{GlobalConfiguration.ApiDocument!.Info.Title} docs | {GlobalConfiguration.ApiDocument.Info.Version}";
         });
