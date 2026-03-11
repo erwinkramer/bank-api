@@ -31,11 +31,11 @@ The API complies to:
 
 ✅ [RFC 7517 - JSON Web Key Set (JWKs)](https://datatracker.ietf.org/doc/html/rfc7517#appendix-A.1) for validating JWS responses, via `/.well-known/jwks.json` endpoint
 
-The event delivery complies to:
+The [event-driven architecture](https://en.wikipedia.org/wiki/Event-driven_architecture) complies to:
 
 ✅ [OpenAPI Specification v3.1.1 - webhook field](https://spec.openapis.org/oas/v3.1.1.html#oas-webhooks)
 
-✅ [CloudEvents - Version 1.0.2](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md) for defining event data
+✅ [CloudEvents - Version 1.0.2](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md) for defining the format of event data
 
 ✅ [CloudEvents - Version 1.0.2 - HTTP Protocol Binding](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md) for HTTP transport
 
