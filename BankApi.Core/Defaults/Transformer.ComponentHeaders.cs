@@ -3,7 +3,7 @@ using Microsoft.OpenApi;
 
 class TransformerComponentHeaders() : IOpenApiDocumentTransformer
 {
-    public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
+    public async Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
         document.Components ??= new();
         document.Components.Headers ??= new Dictionary<string, IOpenApiHeader>();
@@ -18,7 +18,5 @@ class TransformerComponentHeaders() : IOpenApiDocumentTransformer
         document.Components.Headers["API-Version"] = OpenApiFactory.CreateHeaderString(document);
 
         document.Components.Headers["X-Rate-Limit-Limit"] = OpenApiFactory.CreateHeaderInt(document, $"The maximum number of requests you're permitted to make in a window of {GlobalConfiguration.ApiSettings!.FixedWindowRateLimit.Window.Minutes} minutes.");
-
-        return Task.CompletedTask;
     }
 }

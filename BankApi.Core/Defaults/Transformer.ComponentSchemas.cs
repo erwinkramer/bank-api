@@ -3,7 +3,7 @@ using Microsoft.OpenApi;
 
 class TransformerComponentSchemas() : IOpenApiDocumentTransformer
 {
-    public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
+    public async Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
         document.Components ??= new();
         document.Components.Schemas ??= new Dictionary<string, IOpenApiSchema>();
@@ -22,6 +22,9 @@ class TransformerComponentSchemas() : IOpenApiDocumentTransformer
             Minimum = GlobalConfiguration.ApiSettings!.GenericBoundaries.Minimum.ToString(),
             Maximum = GlobalConfiguration.ApiSettings!.GenericBoundaries.Maximum.ToString(),
         };
+
+        var cloudEventSchema = await context.GetOrCreateSchemaAsync(typeof(BankEvent), null, cancellationToken);
+        document.AddComponent("BankEvent", cloudEventSchema);
 
         document.Components.Schemas["Problem"] = new OpenApiSchema
         {
@@ -47,7 +50,5 @@ class TransformerComponentSchemas() : IOpenApiDocumentTransformer
                 }
             }
         };
-
-        return Task.CompletedTask;
     }
 }

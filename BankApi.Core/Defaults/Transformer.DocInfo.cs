@@ -4,7 +4,7 @@ using Microsoft.OpenApi;
 
 class TransformerDocInfo() : IOpenApiDocumentTransformer
 {
-    public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
+    public async Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
         foreach (var server in GlobalConfiguration.ApiDocument!.Servers!)
         {
@@ -14,7 +14,5 @@ class TransformerDocInfo() : IOpenApiDocumentTransformer
 
         document.Info = GlobalConfiguration.ApiDocument!.Info;
         document.Servers = GlobalConfiguration.ApiDocument!.Servers;
-
-        return Task.CompletedTask;
     }
 }

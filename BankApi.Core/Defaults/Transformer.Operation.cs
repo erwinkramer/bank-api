@@ -28,7 +28,7 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
     private void AddHeadersToResponses(OpenApiOperation operation, OpenApiDocument document)
     {
         if (operation.Responses == null) return;
-
+        
         foreach (var response in operation.Responses)
         {
             if (response.Value is OpenApiResponse concrete)

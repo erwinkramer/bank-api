@@ -4,10 +4,10 @@ using Microsoft.OpenApi;
 
 class TransformerExampleSchema : IOpenApiSchemaTransformer
 {
-    public Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken cancellationToken)
+    public async Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken cancellationToken)
     {
         if (GlobalConfiguration.ApiExamples is not JsonObject apiExamples)
-            return Task.CompletedTask;
+            return;
 
         schema.Example = context.JsonTypeInfo.Type switch
         {
@@ -25,7 +25,5 @@ class TransformerExampleSchema : IOpenApiSchemaTransformer
 
             _ => schema.Example
         };
-
-        return Task.CompletedTask;
     }
 }

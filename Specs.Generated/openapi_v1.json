@@ -635,6 +635,92 @@
   },
   "components": {
     "schemas": {
+      "BankEvent": {
+        "required": [
+          "specversion",
+          "id",
+          "source",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "specversion": {
+            "maxLength": 70707070,
+            "pattern": ".*",
+            "type": "string"
+          },
+          "id": {
+            "maxLength": 70707070,
+            "pattern": ".*",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "source": {
+            "maxLength": 70707070,
+            "pattern": ".*",
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uri"
+          },
+          "type": {
+            "maxLength": 70707070,
+            "pattern": ".*",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "subject": {
+            "maxLength": 70707070,
+            "pattern": ".*",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "time": {
+            "maxLength": 70707070,
+            "pattern": ".*",
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "datacontenttype": {
+            "maxLength": 70707070,
+            "pattern": ".*",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "dataschema": {
+            "maxLength": 70707070,
+            "pattern": ".*",
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uri"
+          },
+          "data": { },
+          "data_base64": {
+            "maxLength": 70707070,
+            "pattern": ".*",
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "byte"
+          }
+        },
+        "additionalProperties": false
+      },
       "BankModel": {
         "type": "object",
         "properties": {
@@ -828,32 +914,8 @@
       }
     },
     "responses": {
-      "500": {
-        "description": "Internal server error.",
-        "headers": {
-          "API-Version": {
-            "$ref": "#/components/headers/API-Version"
-          },
-          "Access-Control-Allow-Origin": {
-            "$ref": "#/components/headers/Access-Control-Allow-Origin"
-          },
-          "Access-Control-Expose-Headers": {
-            "$ref": "#/components/headers/GenericStringHeader"
-          },
-          "X-JWS-Signature": {
-            "$ref": "#/components/headers/GenericStringHeader"
-          }
-        },
-        "content": {
-          "application/problem+json": {
-            "schema": {
-              "$ref": "#/components/schemas/Problem"
-            }
-          }
-        }
-      },
-      "400": {
-        "description": "Bad request.",
+      "201": {
+        "description": "Created.",
         "headers": {
           "API-Version": {
             "$ref": "#/components/headers/API-Version"
@@ -870,17 +932,10 @@
           "X-Rate-Limit-Limit": {
             "$ref": "#/components/headers/X-Rate-Limit-Limit"
           }
-        },
-        "content": {
-          "application/problem+json": {
-            "schema": {
-              "$ref": "#/components/schemas/Problem"
-            }
-          }
         }
       },
-      "422": {
-        "description": "Unprocessable Entity.",
+      "400": {
+        "description": "Bad request.",
         "headers": {
           "API-Version": {
             "$ref": "#/components/headers/API-Version"
@@ -932,6 +987,73 @@
           "application/problem+plain": { }
         }
       },
+      "410": {
+        "description": "Gone.",
+        "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          },
+          "Access-Control-Allow-Origin": {
+            "$ref": "#/components/headers/Access-Control-Allow-Origin"
+          },
+          "Access-Control-Expose-Headers": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-JWS-Signature": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
+          }
+        }
+      },
+      "415": {
+        "description": "Unsupported Media Type.",
+        "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          },
+          "Access-Control-Allow-Origin": {
+            "$ref": "#/components/headers/Access-Control-Allow-Origin"
+          },
+          "Access-Control-Expose-Headers": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-JWS-Signature": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
+          }
+        }
+      },
+      "422": {
+        "description": "Unprocessable Entity.",
+        "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          },
+          "Access-Control-Allow-Origin": {
+            "$ref": "#/components/headers/Access-Control-Allow-Origin"
+          },
+          "Access-Control-Expose-Headers": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-JWS-Signature": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
+          }
+        },
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Problem"
+            }
+          }
+        }
+      },
       "429": {
         "description": "Too many requests.",
         "headers": {
@@ -961,6 +1083,30 @@
           "application/problem+plain": {
             "schema": {
               "$ref": "#/components/schemas/GenericString"
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Internal server error.",
+        "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          },
+          "Access-Control-Allow-Origin": {
+            "$ref": "#/components/headers/Access-Control-Allow-Origin"
+          },
+          "Access-Control-Expose-Headers": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-JWS-Signature": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          }
+        },
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Problem"
             }
           }
         }
@@ -1053,5 +1199,38 @@
     {
       "name": "Administrative"
     }
-  ]
+  ],
+  "webhooks": {
+    "CreateBank": {
+      "post": {
+        "summary": "Create bank event",
+        "description": "Notifies consumers when a bank is created.",
+        "operationId": "CreateBankWebhook",
+        "requestBody": {
+          "content": {
+            "application/cloudevents+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BankEvent"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/201"
+          },
+          "410": {
+            "$ref": "#/components/responses/410"
+          },
+          "415": {
+            "$ref": "#/components/responses/415"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          }
+        }
+      }
+    }
+  }
 }

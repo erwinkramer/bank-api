@@ -3,18 +3,14 @@ using Microsoft.OpenApi;
 
 class TransformerComponentResponses() : IOpenApiDocumentTransformer
 {
-    public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
+    public async Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
         document.Components ??= new();
         document.Components.Responses ??= new Dictionary<string, IOpenApiResponse>();
 
-        document.Components.Responses["500"] = new OpenApiResponse
+        document.Components.Responses["201"] = new OpenApiResponse
         {
-            Description = "Internal server error.",
-            Content = new Dictionary<string, OpenApiMediaType>
-            {
-                { "application/problem+json", new () { Schema = new OpenApiSchemaReference("Problem", document) } }
-            },
+            Description = "Created.",
             Headers = new Dictionary<string, IOpenApiHeader>()
         };
 
@@ -22,16 +18,6 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
         {
             Description = "Bad request.",
             Content = new Dictionary<string, OpenApiMediaType>
-            {
-                { "application/problem+json", new () { Schema = new OpenApiSchemaReference("Problem", document) } }
-            },
-            Headers = new Dictionary<string, IOpenApiHeader>()
-        };
-
-        document.Components.Responses["422"] = new OpenApiResponse
-        {
-            Description = "Unprocessable Entity.",
-            Content = new Dictionary<string, OpenApiMediaType>()
             {
                 { "application/problem+json", new () { Schema = new OpenApiSchemaReference("Problem", document) } }
             },
@@ -51,6 +37,28 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             }
         };
 
+        document.Components.Responses["410"] = new OpenApiResponse // https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/http-webhook.md#22-delivery-response
+        {
+            Description = "Gone.",
+            Headers = new Dictionary<string, IOpenApiHeader>()
+        };
+        
+        document.Components.Responses["415"] = new OpenApiResponse // https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/http-webhook.md#22-delivery-response
+        {
+            Description = "Unsupported Media Type.",
+            Headers = new Dictionary<string, IOpenApiHeader>()
+        };
+
+        document.Components.Responses["422"] = new OpenApiResponse
+        {
+            Description = "Unprocessable Entity.",
+            Content = new Dictionary<string, OpenApiMediaType>()
+            {
+                { "application/problem+json", new () { Schema = new OpenApiSchemaReference("Problem", document) } }
+            },
+            Headers = new Dictionary<string, IOpenApiHeader>()
+        };
+
         document.Components.Responses["429"] = new OpenApiResponse
         {
             Description = "Too many requests.",
@@ -64,9 +72,17 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             }
         };
 
-        AddHeadersToResponses(document);
+        document.Components.Responses["500"] = new OpenApiResponse
+        {
+            Description = "Internal server error.",
+            Content = new Dictionary<string, OpenApiMediaType>
+            {
+                { "application/problem+json", new () { Schema = new OpenApiSchemaReference("Problem", document) } }
+            },
+            Headers = new Dictionary<string, IOpenApiHeader>()
+        };
 
-        return Task.CompletedTask;
+        AddHeadersToResponses(document);
     }
 
     private void AddHeadersToResponses(OpenApiDocument doc)

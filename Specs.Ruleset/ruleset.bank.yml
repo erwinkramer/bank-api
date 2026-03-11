@@ -49,7 +49,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: ^[a-z][a-z0-9]*(([A-Z]{2}|[A-Z])[a-z0-9]+)*$
+        match: ^(data_base64|[a-z][a-z0-9]*(([A-Z]{2}|[A-Z])[a-z0-9]+)*)$
 
   bank:parameter-description-required:
     description: Parameters must have a description.
