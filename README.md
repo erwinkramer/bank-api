@@ -31,6 +31,16 @@ The API complies to:
 
 ✅ [RFC 7517 - JSON Web Key Set (JWKs)](https://datatracker.ietf.org/doc/html/rfc7517#appendix-A.1) for validating JWS responses, via `/.well-known/jwks.json` endpoint
 
+The event delivery complies to:
+
+✅ [OpenAPI Specification v3.1.1 - webhook field](https://spec.openapis.org/oas/v3.1.1.html#oas-webhooks)
+
+✅ [CloudEvents - Version 1.0.2](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md) for defining event data
+
+✅ [CloudEvents - Version 1.0.2 - HTTP Protocol Binding](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md) for HTTP transport
+
+✅ [CloudEvents - Version 1.0.2 - HTTP 1.1 Web Hooks for Event Delivery](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/http-webhook.md) for delivering events via the webhook pattern
+
 The MCP server complies to:
 
 ✅ [Model Context Protocol, version 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25)
@@ -78,6 +88,8 @@ The MCP server complies to:
 - [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) in Visual Studio Code for quick local tests via `.http` files
 
 - [MCPify](https://github.com/abdebek/MCPify) for exposure via Model Context Protocol
+
+- [CloudEvents](https://cloudevents.io/) for event delivery
 
 ## Design
 
