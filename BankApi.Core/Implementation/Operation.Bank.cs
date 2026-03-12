@@ -1,3 +1,4 @@
+using System.Text.Json;
 using CloudNative.CloudEvents;
 using CloudNative.CloudEvents.Http;
 using CloudNative.CloudEvents.SystemTextJson;
@@ -63,7 +64,11 @@ public class BankOperation
         };
 
         using var httpClient = new HttpClient();
-        var content = bankEvent.CloudEvent.ToHttpContent(ContentMode.Structured, new JsonEventFormatter());
+        JsonSerializerOptions jsonOptions = new()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        };
+        var content = bankEvent.CloudEvent.ToHttpContent(ContentMode.Structured, new JsonEventFormatter(jsonOptions, new JsonDocumentOptions()));
         var result = await httpClient.PostAsync("https://webhook.site/cf839315-925e-4af1-b903-1a09da5a0d70", content);
     }
 
