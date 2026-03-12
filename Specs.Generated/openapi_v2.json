@@ -1222,7 +1222,7 @@
         "operationId": "CreateBankWebhook",
         "requestBody": {
           "content": {
-            "application/cloudevents+json": {
+            "application/cloudevents+json; charset=utf-8": {
               "schema": {
                 "$ref": "#/components/schemas/BankEvent"
               }
