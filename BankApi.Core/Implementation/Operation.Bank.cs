@@ -53,9 +53,9 @@ public class BankOperation
     {
         var bankEvent = new BankEvent("created")
         {
-            Data = new
+            Data = new()
             {
-                bankId = bank.Id
+                BankId = bank.Id
             }
         };
 

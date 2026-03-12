@@ -708,7 +708,21 @@
             ],
             "format": "uri"
           },
-          "data": { },
+          "data": {
+            "type": "object",
+            "properties": {
+              "bankId": {
+                "maxLength": 70707070,
+                "pattern": ".*",
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "format": "uuid"
+              }
+            },
+            "additionalProperties": false
+          },
           "data_base64": {
             "maxLength": 70707070,
             "pattern": ".*",

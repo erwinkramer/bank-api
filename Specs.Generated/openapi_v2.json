@@ -635,7 +635,7 @@
   },
   "components": {
     "schemas": {
-      "BankCloudEvent": {
+      "BankEvent": {
         "required": [
           "specversion",
           "id",
@@ -708,7 +708,21 @@
             ],
             "format": "uri"
           },
-          "data": { },
+          "data": {
+            "type": "object",
+            "properties": {
+              "bankId": {
+                "maxLength": 70707070,
+                "pattern": ".*",
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "format": "uuid"
+              }
+            },
+            "additionalProperties": false
+          },
           "data_base64": {
             "maxLength": 70707070,
             "pattern": ".*",
@@ -1210,7 +1224,7 @@
           "content": {
             "application/cloudevents+json": {
               "schema": {
-                "$ref": "#/components/schemas/BankCloudEvent"
+                "$ref": "#/components/schemas/BankEvent"
               }
             }
           },
@@ -1220,14 +1234,14 @@
           "201": {
             "$ref": "#/components/responses/201"
           },
-          "429": {
-            "$ref": "#/components/responses/429"
-          },
           "410": {
             "$ref": "#/components/responses/410"
           },
           "415": {
             "$ref": "#/components/responses/415"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
           }
         }
       }
