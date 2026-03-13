@@ -2,6 +2,13 @@ using CloudNative.CloudEvents;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
+public record BankEventData
+{
+    [GenericRegularExpression]
+    [GenericMaxLength]
+    public Guid? BankId { get; init; }
+}
+
 public class BankEvent
 {
     [JsonIgnore]
@@ -94,9 +101,9 @@ public class BankEvent
     }
 
     [JsonPropertyName("data")]
-    public object? Data
+    public BankEventData? Data
     {
-        get => CloudEvent.Data;
+        get => CloudEvent.Data as BankEventData;
         set => CloudEvent.Data = value;
     }
 

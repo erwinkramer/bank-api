@@ -21,7 +21,7 @@ class TransformerWebhooks() : IOpenApiDocumentTransformer
                         Required = true,
                         Content = new Dictionary<string, OpenApiMediaType>
                         {
-                            ["application/cloudevents+json"] = new OpenApiMediaType
+                            ["application/cloudevents+json; charset=utf-8"] = new OpenApiMediaType
                             {
                                 Schema = new OpenApiSchemaReference("BankEvent", document)
                             }
