@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
+using CloudNative.CloudEvents.SystemTextJson;
 using System.Text.Json.Nodes;
 using System.Threading.RateLimiting;
 
@@ -11,6 +12,8 @@ public static class GlobalConfiguration
    public static JsonObject? ApiExamples { get; set; }
 
    public static SettingsModel? ApiSettings { get; set; }
+
+   public static JsonEventFormatter? JsonEventFormatter { get; set; }
 
    public class SettingsModel
    {
