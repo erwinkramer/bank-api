@@ -17,6 +17,9 @@ class TransformerExampleSchema : IOpenApiSchemaTransformer
             Type t when t == typeof(Paging<BankModel>) =>
                 (apiExamples["PagingOfBankModel"] as JsonArray)?[0],
 
+            Type t when t == typeof(BankEvent) =>
+                (apiExamples["BankEvent"] as JsonArray)?[0],
+
             Type t when t == typeof(TellerReportList) =>
                 (apiExamples["TellerReportList"] as JsonArray)?[0],
 

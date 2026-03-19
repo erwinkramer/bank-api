@@ -13,6 +13,19 @@
       "bankTier": "C"
     }
   ],
+  "BankEvent": [
+    {
+      "specversion": "1.0",
+      "id": "e7b9dd92-81e1-4af0-bb44-612089957976",
+      "time": "2026-03-17T16:00:42.7008905Z",
+      "source": "https://github.com/erwinkramer/bank-api",
+      "type": "nl.banks.created",
+      "datacontenttype": "application/json",
+      "data": {
+        "bankId": "493939b6-c651-441c-a094-ea37de5a73e5"
+      }
+    }
+  ],
   "PagingOfBankModel": [
     {
       "count": 2,
