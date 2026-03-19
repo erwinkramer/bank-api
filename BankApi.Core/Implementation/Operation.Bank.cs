@@ -48,7 +48,7 @@ public class BankOperation
     /// and a background service would be responsible for dispatching them, 
     /// including retry logic and dead letter handling. 
     /// For simplicity, this example directly sends the event after the bank is created.
-    /// Example: https://mbarkt3sto.hashnode.dev/microservices-architecture-the-outbox-pattern
+    /// Example: https://github.com/GabrieleTronchin/EFTransactionalOutbox
     /// </summary>
     /// <param name="bank">The bank model that was created.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
