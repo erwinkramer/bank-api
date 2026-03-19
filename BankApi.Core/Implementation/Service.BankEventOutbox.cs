@@ -65,18 +65,18 @@ public class BankEventOutboxBackgroundService(
                 };
 
                 var content = bankEvent.CloudEvent.ToHttpContent(ContentMode.Structured, eventFormatter);
-                var response = await httpClient.PostAsync("https://webhook.site/7a591ee4-4e65-4b84-94a8-f7883c788dd2", content, cancellationToken);
+                var response = await httpClient.PostAsync("https://webhook.site/5d80de13-6371-4579-9609-e7b39a49e0f6", content, cancellationToken);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    outboxEntry.TimeDelivered = DateTimeOffset.UtcNow;
                     outboxEntry.Status = "delivered";
-                    outboxEntry.LastErrorMessage = null;
+                    outboxEntry.TimeDelivered = DateTimeOffset.UtcNow;
                 }
                 else
                 {
                     outboxEntry.Status = "pending";
                     outboxEntry.LastErrorMessage = $"HTTP {(int)response.StatusCode} ({response.ReasonPhrase})";
+                    outboxEntry.TimeUntilAttempt = DateTimeOffset.UtcNow.AddSeconds(Math.Pow(2, outboxEntry.AttemptCount)); // simple exponential backoff strategy
                 }
             }
             catch (Exception ex)
@@ -87,7 +87,7 @@ public class BankEventOutboxBackgroundService(
             finally
             {
                 outboxEntry.LockedBy = null;
-                outboxEntry.LockedUntil = null;
+                outboxEntry.LockedUntil = DateTimeOffset.UtcNow;
                 outboxEntry.ClaimVersion = Guid.NewGuid();
 
                 try
@@ -107,7 +107,9 @@ public class BankEventOutboxBackgroundService(
         var now = DateTimeOffset.UtcNow;
 
         var candidates = await dbContext.Outbox
-            .Where(x => x.Status == "pending" || (x.Status == "processing" && x.LockedUntil < now))
+            .Where(x => 
+                (x.Status == "pending" && x.TimeUntilAttempt < now) || 
+                (x.Status == "processing" && x.LockedUntil < now))
             .OrderBy(x => x.TimeCreated)
             .Take(BatchSize)
             .ToListAsync(cancellationToken);

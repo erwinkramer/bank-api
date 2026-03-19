@@ -32,8 +32,7 @@ public class BankEventInterceptor : SaveChangesInterceptor
             var outboxEntry = new BankEventOutboxModel
             {
                 BankId = entry.Entity.Id,
-                EventSubtype = entry.State.ToString().ToLower(),
-                TimeCreated = DateTimeOffset.UtcNow
+                EventSubtype = entry.State.ToString().ToLower()
             };
 
             await dbContext.AddAsync(outboxEntry);
