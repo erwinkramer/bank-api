@@ -72,11 +72,16 @@ public class BankEventOutboxBackgroundService(
                     outboxEntry.Status = "delivered";
                     outboxEntry.TimeDelivered = DateTimeOffset.UtcNow;
                 }
+                else if( response.StatusCode == System.Net.HttpStatusCode.Gone) // treat 410 Gone as a signal that the message should be discarded without further retries, as per CloudEvents spec for webhooks
+                {
+                    outboxEntry.Status = "gone";
+                    outboxEntry.LastErrorMessage = $"HTTP 410 Gone - the message will be discarded without further retries.";
+                }
                 else
                 {
                     outboxEntry.Status = "pending";
                     outboxEntry.LastErrorMessage = $"HTTP {(int)response.StatusCode} ({response.ReasonPhrase})";
-                    outboxEntry.TimeUntilAttempt = DateTimeOffset.UtcNow.AddSeconds(Math.Pow(2, outboxEntry.AttemptCount)); // simple exponential backoff strategy
+                    outboxEntry.TimeUntilAttempt = response.Headers.RetryAfter?.Date ?? DateTimeOffset.UtcNow.AddSeconds(Math.Pow(2, outboxEntry.AttemptCount)); // simple exponential backoff strategy
                 }
             }
             catch (Exception ex)
