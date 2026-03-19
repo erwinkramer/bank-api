@@ -64,8 +64,13 @@ public class BankEventOutboxBackgroundService(
                     }
                 };
 
+                string requestUri = outboxEntry.Destination switch
+                {
+                    "prod-subscriber-67" => "https://webhook.site/5d80de13-6371-4579-9609-e7b39a49e0f6",
+                    _ => throw new InvalidOperationException($"Unknown destination '{outboxEntry.Destination}' for outbox entry id {outboxEntry.Id}")
+                };
                 var content = bankEvent.CloudEvent.ToHttpContent(ContentMode.Structured, eventFormatter);
-                var response = await httpClient.PostAsync("https://webhook.site/5d80de13-6371-4579-9609-e7b39a49e0f6", content, cancellationToken);
+                var response = await httpClient.PostAsync(requestUri, content, cancellationToken);
 
                 if (response.IsSuccessStatusCode)
                 {

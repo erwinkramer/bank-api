@@ -1,10 +1,17 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 public class BankEventOutboxModel
 {
-    public BankEventOutboxModel()
+    private BankEventOutboxModel() { }
+
+    public BankEventOutboxModel(Guid bankId, EntityState eventSubtype, string destination)
     {
         var now = DateTimeOffset.UtcNow;
+
+        BankId = bankId;
+        EventSubtype = eventSubtype.ToString().ToLower();
+        Destination = destination;
         TimeCreated = now;
         TimeUntilAttempt = now;
         LockedUntil = now;
@@ -39,6 +46,13 @@ public class BankEventOutboxModel
     /// Last error message if the event failed to be delivered.
     /// </summary>
     public string? LastErrorMessage { get; set; }
+
+    /// <summary>
+    /// Delivery destination for this outbox entry.
+    /// Should be a logical destination that the outbox processor can use to determine where to send the event (e.g. a topic name, an endpoint name, etc.)
+    /// Do not use a full URL or other transport-specific address here to avoid coupling the outbox to a specific transport or delivery mechanism.
+    /// </summary>
+    public string? Destination { get; set; }
 
     /// <summary>
     /// Delivery status for this outbox entry.

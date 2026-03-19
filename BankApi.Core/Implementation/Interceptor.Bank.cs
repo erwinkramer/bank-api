@@ -29,13 +29,7 @@ public class BankEventInterceptor : SaveChangesInterceptor
                 continue; // skip unchanged or detached entities
             }
 
-            var outboxEntry = new BankEventOutboxModel
-            {
-                BankId = entry.Entity.Id,
-                EventSubtype = entry.State.ToString().ToLower()
-            };
-
-            await dbContext.AddAsync(outboxEntry);
+            await dbContext.AddAsync(new BankEventOutboxModel(entry.Entity.Id, entry.State, "prod-subscriber-67"));
         }
     }
 }
