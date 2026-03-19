@@ -640,7 +640,8 @@
           "specversion",
           "id",
           "source",
-          "type"
+          "type",
+          "time"
         ],
         "type": "object",
         "properties": {

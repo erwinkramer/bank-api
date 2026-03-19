@@ -7,8 +7,11 @@ public class BankDb : DbContext
 
     public DbSet<BankModel> Banks => Set<BankModel>();
 
+    public DbSet<BankEventOutboxModel> Outbox => Set<BankEventOutboxModel>();
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder
+            .AddInterceptors(new BankEventInterceptor())
             .UseSeeding((context, _) =>
             {
                 BankModel[] data = [

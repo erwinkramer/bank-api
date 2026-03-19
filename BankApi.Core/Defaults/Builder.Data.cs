@@ -8,6 +8,11 @@ public static partial class ApiBuilder
         {
             options.UseInMemoryDatabase(GlobalConfiguration.ApiSettings!.DatabaseName);
         });
+        services.AddHttpClient("bank-outbox-publisher", client =>
+        {
+            client.Timeout = TimeSpan.FromSeconds(30);
+        });
+        services.AddHostedService<BankEventOutboxBackgroundService>();
         services.AddHybridCache(options =>
         {
             options.DefaultEntryOptions = GlobalConfiguration.ApiSettings!.Cache;

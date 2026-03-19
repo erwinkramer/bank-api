@@ -14,11 +14,11 @@ public class BankEvent
     [JsonIgnore]
     public CloudEvent CloudEvent { get; }
 
-    public BankEvent(string subtype)
+    public BankEvent(string subtype, DateTimeOffset? time)
     {
         CloudEvent = new CloudEvent();
         Id = Guid.NewGuid().ToString();
-        Time = DateTimeOffset.UtcNow;
+        Time = time;
         Source = new Uri("https://github.com/erwinkramer/bank-api");
         Type = "nl.banks." + subtype;
     }
@@ -51,7 +51,6 @@ public class BankEvent
 
     /// <summary>
     /// MUST be Reverse domain name notation
-    /// 
     /// https://logius-standaarden.github.io/NL-GOV-profile-for-CloudEvents/#type
     /// </summary>
     [JsonPropertyName("type")]

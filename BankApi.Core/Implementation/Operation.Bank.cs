@@ -1,5 +1,3 @@
-using CloudNative.CloudEvents;
-using CloudNative.CloudEvents.Http;
 using Gridify.EntityFramework;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Caching.Hybrid;
@@ -39,32 +37,7 @@ public class BankOperation
         if (cache != null)
             await cache.RemoveByTagAsync("banks");
 
-        await CreateBankEvent(bank);
         return TypedResults.Created($"/bankitems/{bank.Id}", bank);
-    }
-
-    /// <summary>
-    /// Typically events would be stored in an outbox table 
-    /// and a background service would be responsible for dispatching them, 
-    /// including retry logic and dead letter handling. 
-    /// For simplicity, this example directly sends the event after the bank is created.
-    /// Example: https://github.com/GabrieleTronchin/EFTransactionalOutbox
-    /// </summary>
-    /// <param name="bank">The bank model that was created.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    private static async Task CreateBankEvent(BankModel bank)
-    {
-        var bankEvent = new BankEvent("created")
-        {
-            Data = new()
-            {
-                BankId = bank.Id
-            }
-        };
-
-        using var httpClient = new HttpClient();
-        var content = bankEvent.CloudEvent.ToHttpContent(ContentMode.Structured, GlobalConfiguration.JsonEventFormatter!);
-        var result = await httpClient.PostAsync("https://webhook.site/cf839315-925e-4af1-b903-1a09da5a0d70", content);
     }
 
     public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> UpdateBank([Bank] Guid id, BankModel inputBank, BankDb db, HybridCache? cache)
@@ -74,6 +47,7 @@ public class BankOperation
 
         bank.Name = inputBank.Name;
         bank.IsCompliant = inputBank.IsCompliant;
+        bank.BankTier = inputBank.BankTier;
 
         await db.SaveChangesAsync();
         if (cache != null)

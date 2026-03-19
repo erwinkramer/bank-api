@@ -58,6 +58,7 @@ Ocp-Apim-Subscription-Key: Lifetime Subscription
 
 ###
 
+# @name createBank
 POST https://{{host}}/{{apiVersion}}/banks
 Origin: https://{{host}} 
 Ocp-Apim-Subscription-Key: Lifetime Subscription
@@ -68,4 +69,18 @@ Content-Type: application/json
   "name": "Canary",
   "isCompliant": false,
   "bankTier": "C"
+}
+
+###
+
+@bankId = {{createBank.response.body.$.id}}
+
+PUT https://{{host}}/{{apiVersion}}/banks/{{bankId}}
+Origin: https://{{host}} 
+Ocp-Apim-Subscription-Key: Lifetime Subscription
+Content-Type: application/json
+  
+{
+  "isCompliant": true,
+  "bankTier": "B"
 }

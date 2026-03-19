@@ -15,7 +15,7 @@ Explore the live [🌐 API](https://bankapi-001-ffamb7fcbkcgdsg7.westeurope-01.a
 
 ## Compliance
 
-The API complies to:
+### API
 
 ✅ [OWASP API Security Top 10 - v2023](https://owasp.org/API-Security/editions/2023/en/0x11-t10/) via [Spectral OWASP API Security ruleset](https://github.com/stoplightio/spectral-owasp-ruleset?tab=readme-ov-file#spectral-owasp-api-security)
 
@@ -31,7 +31,7 @@ The API complies to:
 
 ✅ [RFC 7517 - JSON Web Key Set (JWKs)](https://datatracker.ietf.org/doc/html/rfc7517#appendix-A.1) for validating JWS responses, via `/.well-known/jwks.json` endpoint
 
-The [event-driven architecture](https://en.wikipedia.org/wiki/Event-driven_architecture) complies to:
+### EDA ([Event-driven architecture](https://en.wikipedia.org/wiki/Event-driven_architecture)) with [outbox-pattern](https://en.wikipedia.org/wiki/Inbox_and_outbox_pattern#The_outbox_pattern)
 
 ✅ [OpenAPI Specification v3.1.1 - webhook field](https://spec.openapis.org/oas/v3.1.1.html#oas-webhooks)
 
@@ -41,7 +41,7 @@ The [event-driven architecture](https://en.wikipedia.org/wiki/Event-driven_archi
 
 ✅ [CloudEvents - Version 1.0.2 - HTTP 1.1 Web Hooks for Event Delivery](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/http-webhook.md) for delivering events via the webhook pattern
 
-The MCP server complies to:
+### MCP Server
 
 ✅ [Model Context Protocol, version 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25)
 
