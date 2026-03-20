@@ -12,14 +12,17 @@ public class BankEventInterceptor : SaveChangesInterceptor
 
         if (dbContext is not null)
         {
-            await AddToOutbox(dbContext);
+            await AddToOutbox(dbContext, cancellationToken);
         }
 
         return await base.SavingChangesAsync(eventData, result, cancellationToken);
     }
 
-    private async static Task AddToOutbox(DbContext dbContext)
+    private static async Task AddToOutbox(DbContext dbContext, CancellationToken cancellationToken)
     {
+        var destination = await dbContext.Set<OutboxDestinationModel>()
+            .SingleAsync(x => x.Destination == "prod-67", cancellationToken);
+
         var bankEntries = dbContext.ChangeTracker.Entries<BankModel>().ToList();
 
         foreach (var entry in bankEntries)
@@ -29,7 +32,10 @@ public class BankEventInterceptor : SaveChangesInterceptor
                 continue; // skip unchanged or detached entities
             }
 
-            await dbContext.AddAsync(new BankEventOutboxModel(entry.Entity.Id, entry.State, "prod-subscriber-67"));
+            await dbContext.AddAsync(new BankEventOutboxModel(entry.Entity.Id, entry.State)
+            {
+                Destination = destination
+            }, cancellationToken);
         }
     }
 }

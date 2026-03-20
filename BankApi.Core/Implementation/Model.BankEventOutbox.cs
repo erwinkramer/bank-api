@@ -5,13 +5,12 @@ public class BankEventOutboxModel
 {
     private BankEventOutboxModel() { }
 
-    public BankEventOutboxModel(Guid bankId, EntityState eventSubtype, string destination)
+    public BankEventOutboxModel(Guid bankId, EntityState eventSubtype)
     {
         var now = DateTimeOffset.UtcNow;
 
         BankId = bankId;
         EventSubtype = eventSubtype.ToString().ToLower();
-        Destination = destination;
         TimeCreated = now;
         TimeUntilAttempt = now;
         LockedUntil = now;
@@ -49,10 +48,8 @@ public class BankEventOutboxModel
 
     /// <summary>
     /// Delivery destination for this outbox entry.
-    /// Should be a logical destination that the outbox processor can use to determine where to send the event (e.g. a topic name, an endpoint name, etc.)
-    /// Do not use a full URL or other transport-specific address here to avoid coupling the outbox to a specific transport or delivery mechanism.
     /// </summary>
-    public string? Destination { get; set; }
+    public required OutboxDestinationModel Destination { get; set; }
 
     /// <summary>
     /// Delivery status for this outbox entry.
@@ -60,7 +57,7 @@ public class BankEventOutboxModel
     public string Status { get; set; } = "pending";
 
     /// <summary>
-    /// Number of delivery attempts.
+    /// Number of delivery attempts for this outbox entry.
     /// </summary>
     public int AttemptCount { get; set; }
 
@@ -80,8 +77,7 @@ public class BankEventOutboxModel
     public DateTimeOffset? TimeLastAttempted { get; set; }
 
     /// <summary>
-    /// The time until the delivery attempt is allowed.
-    /// Used to implement a backoff strategy for retrying failed deliveries.
+    /// The time until the next delivery attempt is allowed for this outbox entry.
     /// </summary>
     public DateTimeOffset TimeUntilAttempt { get; set; }
 

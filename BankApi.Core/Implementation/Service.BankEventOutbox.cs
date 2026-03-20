@@ -64,13 +64,8 @@ public class BankEventOutboxBackgroundService(
                     }
                 };
 
-                string requestUri = outboxEntry.Destination switch
-                {
-                    "prod-subscriber-67" => "https://webhook.site/5d80de13-6371-4579-9609-e7b39a49e0f6",
-                    _ => throw new InvalidOperationException($"Unknown destination '{outboxEntry.Destination}' for outbox entry id {outboxEntry.Id}")
-                };
                 var content = bankEvent.CloudEvent.ToHttpContent(ContentMode.Structured, eventFormatter);
-                var response = await httpClient.PostAsync(requestUri, content, cancellationToken);
+                var response = await httpClient.PostAsync(outboxEntry.Destination?.Url, content, cancellationToken);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -117,6 +112,7 @@ public class BankEventOutboxBackgroundService(
         var now = DateTimeOffset.UtcNow;
 
         var candidates = await dbContext.Outbox
+            .Include(x => x.Destination)
             .Where(x => 
                 (x.Status == "pending" && x.TimeUntilAttempt < now) || 
                 (x.Status == "processing" && x.LockedUntil < now))
