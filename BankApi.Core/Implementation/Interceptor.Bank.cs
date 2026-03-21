@@ -31,7 +31,7 @@ public class BankEventInterceptor : SaveChangesInterceptor
 
             await dbContext.AddAsync(new BankEventOutboxModel(entry.Entity.Id, entry.State)
             {
-                Destination = "https://prod-67"
+                Destination = "https://city"
             }, cancellationToken);
         }
     }
