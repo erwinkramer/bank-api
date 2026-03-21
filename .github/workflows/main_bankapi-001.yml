@@ -30,6 +30,9 @@ jobs:
       - name: Build with dotnet
         run: dotnet build ${{env.PROJECT_NAME}} --configuration Release
 
+      - name: Run unit tests
+        run: dotnet run --project BankApi.Tests/BankApi.Tests.csproj -c Release
+
       - name: dotnet publish
         run: dotnet publish ${{env.PROJECT_NAME}} -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
