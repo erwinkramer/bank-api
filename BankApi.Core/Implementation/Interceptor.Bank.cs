@@ -20,9 +20,6 @@ public class BankEventInterceptor : SaveChangesInterceptor
 
     private static async Task AddToOutbox(DbContext dbContext, CancellationToken cancellationToken)
     {
-        var destination = await dbContext.Set<OutboxDestinationModel>()
-            .SingleAsync(x => x.Destination == "prod-67", cancellationToken);
-
         var bankEntries = dbContext.ChangeTracker.Entries<BankModel>().ToList();
 
         foreach (var entry in bankEntries)
@@ -34,7 +31,7 @@ public class BankEventInterceptor : SaveChangesInterceptor
 
             await dbContext.AddAsync(new BankEventOutboxModel(entry.Entity.Id, entry.State)
             {
-                Destination = destination
+                Destination = "https://prod-67"
             }, cancellationToken);
         }
     }

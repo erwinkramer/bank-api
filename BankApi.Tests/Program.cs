@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 public class Test
 {
     private static BankDb? databaseContext;
-    private static string bankId = "29e26195-cf57-417d-ac1b-998398e2dc88";
+    private static string bankId = "1cfd33e8-0ec0-45f5-8ed9-53750d1e1d81";
 
     [Before(Class)]
     public static Task CreateContext()

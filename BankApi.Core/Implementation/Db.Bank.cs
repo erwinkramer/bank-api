@@ -7,8 +7,6 @@ public class BankDb : DbContext
 
     public DbSet<BankModel> Banks => Set<BankModel>();
 
-    public DbSet<OutboxDestinationModel> OutboxDestinations => Set<OutboxDestinationModel>();
-
     public DbSet<BankEventOutboxModel> Outbox => Set<BankEventOutboxModel>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -32,12 +30,8 @@ public class BankDb : DbContext
                         Name = "Bar"
                     }
                 ];
-                OutboxDestinationModel[] destinations = [
-                    new ("prod-67", "https://webhook.site/1fe6986c-c339-4f57-ade0-679d719861c3")
-                ];
 
                 context.Set<BankModel>().AddRange(data);
-                context.Set<OutboxDestinationModel>().AddRange(destinations);
                 context.SaveChanges();
             });
 }

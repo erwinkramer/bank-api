@@ -48,8 +48,9 @@ public class BankEventOutboxModel
 
     /// <summary>
     /// Delivery destination for this outbox entry.
+    /// Resolved by service discovery in .NET.
     /// </summary>
-    public required OutboxDestinationModel Destination { get; set; }
+    public required string Destination { get; set; }
 
     /// <summary>
     /// Delivery status for this outbox entry.

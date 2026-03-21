@@ -65,7 +65,7 @@ public class BankEventOutboxBackgroundService(
                 };
 
                 var content = bankEvent.CloudEvent.ToHttpContent(ContentMode.Structured, eventFormatter);
-                var response = await httpClient.PostAsync(outboxEntry.Destination?.Url, content, cancellationToken);
+                var response = await httpClient.PostAsync(outboxEntry.Destination, content, cancellationToken);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -112,7 +112,6 @@ public class BankEventOutboxBackgroundService(
         var now = DateTimeOffset.UtcNow;
 
         var candidates = await dbContext.Outbox
-            .Include(x => x.Destination)
             .Where(x => 
                 (x.Status == "pending" && x.TimeUntilAttempt < now) || 
                 (x.Status == "processing" && x.LockedUntil < now))
