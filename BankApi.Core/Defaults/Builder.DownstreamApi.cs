@@ -9,7 +9,6 @@ public static partial class ApiBuilder
         services.AddServiceDiscovery();
         services.ConfigureHttpClientDefaults(http =>
         {
-            http.AddStandardResilienceHandler();  // Turn on resilience by default
             http.AddServiceDiscovery(); // Turn on service discovery by default
         });
         services.AddKiotaHandlers();
@@ -21,7 +20,8 @@ public static partial class ApiBuilder
             };
 
             return new GitHubClient(requestAdapter);
-        }).AttachKiotaHandlers();
+        }).AttachKiotaHandlers()
+          .AddStandardResilienceHandler();
 
         return services;
     }
