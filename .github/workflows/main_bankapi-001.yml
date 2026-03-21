@@ -30,6 +30,13 @@ jobs:
       - name: Build with dotnet
         run: dotnet build ${{env.PROJECT_NAME}} --configuration Release
 
+      - name: Expose GitHub Actions Runtime #https://tunit.dev/docs/guides/html-report/#option-a-actionsgithub-script-recommended-first-party
+        uses: actions/github-script@v8
+        with:
+          script: |
+            core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env['ACTIONS_RUNTIME_TOKEN']);
+            core.exportVariable('ACTIONS_RESULTS_URL', process.env['ACTIONS_RESULTS_URL']);
+
       - name: Run unit tests
         run: dotnet run --project BankApi.Tests/BankApi.Tests.csproj -c Release
 
