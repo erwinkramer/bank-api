@@ -1,5 +1,5 @@
 {
-    "dotnet.testWindow.useTestingPlatformProtocol": true,
+    "git.alwaysSignOff": true,
     "spectral.rulesetFile": "Specs.Ruleset/main.yml",
     "spectral.validateFiles": [
         "**/Specs.Generated/*.json"
