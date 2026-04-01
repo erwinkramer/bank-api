@@ -1,0 +1,73 @@
+resources:
+  - "@type": type.googleapis.com/envoy.config.listener.v3.Listener
+    name: listener_0
+    address:
+      socket_address:
+        address: 0.0.0.0
+        port_value: 10000
+    filter_chains:
+      - filters:
+          - name: envoy.filters.network.http_connection_manager
+            typed_config:
+              "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+              common_http_protocol_options:
+                # Only set max requests to 1 in dev, so we're sure every request hits the latest config
+                max_requests_per_connection: 1
+              # Trust the upstream LB proxy (1 means 1 more proxy) so remote_ip resolves to the true client
+              xff_num_trusted_hops: 0
+              stat_prefix: ingress_http
+              access_log:
+                - name: envoy.access_loggers.stdout
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.access_loggers.stream.v3.StdoutAccessLog
+              http_filters:
+                - name: envoy.filters.http.golang
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.golang.v3alpha.Config
+                    library_id: coraza-waf
+                    library_path: /tool/coraza-waf.so # via https://github.com/united-security-providers/coraza-envoy-go-filter/releases/tag/v1.3.0
+                    # Memory for plugins will not be freed after each config hot reload because of inherent Go plugin limitations
+                    # https://www.reddit.com/r/golang/comments/1kos107/how_to_hotreload_in_go
+                    plugin_name: coraza-waf
+                    plugin_config:
+                      "@type": type.googleapis.com/xds.type.v3.TypedStruct
+                      value:
+                        use_re2: true #improves throughput
+                        use_libinjection: true #improves throughput
+                        directives: |
+                          {
+                            "waf1": {
+                              "simple_directives": [
+                                "SecDebugLogLevel 3",
+                                "SecRuleEngine On",
+                                "SecRequestBodyAccess On",
+                                "Include @crs-setup-conf",
+                                "Include @owasp_crs/*.conf",
+                                "SecRuleRemoveById 920320"                                       
+                              ]
+                            }
+                          }
+                        default_directive: "waf1"
+                - name: envoy.filters.http.router
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+              route_config:
+                name: local_route
+                virtual_hosts:
+                - name: local_service
+                  domains: ["*"]
+                  routes:
+                  - match:
+                      prefix: "/"
+                    route:
+                      cluster: service_local
+                    request_headers_to_add:
+                    - header:
+                        key: x-jala
+                        value: jaba
+                      append: false
+                    response_headers_to_add:
+                    - header:
+                        key: x-petro
+                        value: yen
+                      append: false
