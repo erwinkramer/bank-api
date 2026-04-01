@@ -181,12 +181,12 @@ Then navigate to the [OpenAPI Spec](http://localhost:5201/openapi/v1.json) or [S
 
 This mode just runs the ASP.NET Core API.
 
-1. Make sure the docker runtime is started.
+1. Make sure a container runtime is started.
 
 1. Start the standalone Aspire Dashboard for developer visualization:
 
     ```powershell
-    docker run --rm -it `
+    podman run --rm -it `
       -p 18888:18888 `
       -p 4317:18889 `
       --name aspire-dashboard `
@@ -202,7 +202,7 @@ This mode just runs the ASP.NET Core API.
 
 This mode starts the [Stable](/BankApi.Service.Stable/) and [Beta](/BankApi.Service.Beta/) versions of the API, including an [MCP server](/BankApi.Mcp/) for the Stable version, in context of Aspire.
 
-1. Make sure the docker runtime is started.
+1. Make sure a container runtime is started.
 
 1. Run the [launch config](.vscode/launch.json) `Aspire Orchestration`.
 
