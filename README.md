@@ -166,7 +166,7 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 - Validate the OpenAPI definition by going to the [openapi_v1.json](/Specs.Generated/openapi_v1.json) definition and check for problems via the Spectral extension.
 
-## Container image
+### Container image
 
 Rename the [env sample file](./.env.sample) to `.env` and replace the values, then run the following to build and start an [Alpine with Composite ready-to-run image](https://github.com/dotnet/dotnet-docker/tree/main/samples/aspnetapp#supported-linux-distros:~:text=Alpine%20with%20Composite%20ready%2Dto%2Drun%20image):
 
