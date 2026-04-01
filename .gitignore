@@ -138,3 +138,6 @@ _NCrunch*
 
 # MCPify files
 AuthTokens/
+
+# Local environment secrets
+.env

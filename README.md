@@ -166,6 +166,17 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 - Validate the OpenAPI definition by going to the [openapi_v1.json](/Specs.Generated/openapi_v1.json) definition and check for problems via the Spectral extension.
 
+## Container image
+
+Rename the [env sample file](./.env.sample) to `.env` and replace the values, then run the following to build and start an [Alpine with Composite ready-to-run image](https://github.com/dotnet/dotnet-docker/tree/main/samples/aspnetapp#supported-linux-distros:~:text=Alpine%20with%20Composite%20ready%2Dto%2Drun%20image):
+
+```bash
+podman build -t bankapi:v1 .
+podman run -p 5201:8080 --env-file .env bankapi:v1
+```
+
+Then navigate to the [OpenAPI Spec](http://localhost:5201/openapi/v1.json) or [Scalar UI](http://localhost:5201/scalar/).
+
 ### Run in Aspire minimal mode
 
 This mode just runs the ASP.NET Core API.

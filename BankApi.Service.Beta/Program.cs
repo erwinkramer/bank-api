@@ -39,10 +39,10 @@ app.UseRateLimiter();
 app.UseCors();
 
 app.MapOpenApi("/openapi/{documentName}.json");
+app.AddOpenApiScalarReference();
 
 if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 {
-    app.AddOpenApiScalarReference();
     await app.Services.ProvisionAzureStorage();
 }
 
