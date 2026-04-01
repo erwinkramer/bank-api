@@ -1,7 +1,7 @@
 FROM envoyproxy/envoy:contrib-distroless-v1.37-latest
 
-WORKDIR /tool
+WORKDIR /envoy-config
 
-COPY . /tool/
+COPY . /envoy-config
 
-CMD ["-c", "/tool/envoy-config.yaml"]
+CMD ["-c", "/envoy-config/bootstrap.yaml"]

@@ -5,10 +5,10 @@ node:
 dynamic_resources:
   lds_config:
     path_config_source:
-      path: /tool/lds.yaml
+      path: /envoy-config/lds.yaml
   cds_config:
     path_config_source:
-      path: /tool/cds.yaml
+      path: /envoy-config/cds.yaml
 
 admin:
   address:

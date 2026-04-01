@@ -25,7 +25,7 @@ resources:
                   typed_config:
                     "@type": type.googleapis.com/envoy.extensions.filters.http.golang.v3alpha.Config
                     library_id: coraza-waf
-                    library_path: /tool/coraza-waf.so # via https://github.com/united-security-providers/coraza-envoy-go-filter/releases/tag/v1.3.0
+                    library_path: /envoy-config/coraza-waf.so # via https://github.com/united-security-providers/coraza-envoy-go-filter/releases/tag/v1.3.0
                     # Memory for plugins will not be freed after each config hot reload because of inherent Go plugin limitations
                     # https://www.reddit.com/r/golang/comments/1kos107/how_to_hotreload_in_go
                     plugin_name: coraza-waf
@@ -69,5 +69,5 @@ resources:
                     response_headers_to_add:
                     - header:
                         key: x-petro
-                        value: yen
+                        value: euro
                       append: false
