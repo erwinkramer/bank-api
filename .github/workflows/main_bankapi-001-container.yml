@@ -23,3 +23,5 @@ jobs:
               --password-stdin
           podman build -t ghcr.io/${{ github.repository }}:latest .
           podman push ghcr.io/${{ github.repository }}:latest
+          podman build -t ghcr.io/${{ github.repository }}-proxy:latest ./Proxy
+          podman push ghcr.io/${{ github.repository }}-proxy:latest
