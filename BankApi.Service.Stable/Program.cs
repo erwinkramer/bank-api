@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using Gridify;
@@ -41,7 +42,8 @@ app.UseCors();
 app.MapOpenApi("/openapi/{documentName}.json");
 app.AddOpenApiScalarReference();
 
-if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
+if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider" && // see https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-10.0&tabs=visual-studio%2Cvisual-studio-code#customize-runtime-behavior-during-build-time-document-generation
+    (app.Environment.IsDevelopment() || app.Environment.IsStaging()))
 {
     await app.Services.ProvisionAzureStorage();
 }

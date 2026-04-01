@@ -162,7 +162,11 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
   dotnet user-jwts create --scope "bank_api" --role "banker" --valid-for 3650d --project BankApi.Service.Stable
   ```
 
-- Run `dotnet build` to output the OpenAPI definition
+- Run `dotnet build` to output the OpenAPI definition. Make sure the local environment for ASP.NET Core points to development:
+
+  ```bash
+  setx ASPNETCORE_ENVIRONMENT "Development"
+  ```
 
 - Validate the OpenAPI definition by going to the [openapi_v1.json](/Specs.Generated/openapi_v1.json) definition and check for problems via the Spectral extension.
 
@@ -274,8 +278,8 @@ Please see the Reddit r/dotnet [post 1](https://www.reddit.com/r/dotnet/comments
 
 - If getting the error [`unable to get local issuer certificate` with Spectral](https://github.com/stoplightio/vscode-spectral/issues/131#issuecomment-2543187287), make sure to add the CA of the proxy to `NODE_EXTRA_CA_CERTS` and restart VSCode, for example:
 
-```powershell
-[Environment]::SetEnvironmentVariable('NODE_EXTRA_CA_CERTS', 'C:\ZscalerRootCA.crt', 'User')
+```bash
+setx NODE_EXTRA_CA_CERTS "C:\ZscalerRootCA.crt"
 ```
 
 - [Extending Rulesets with local filepath not refreshing](https://github.com/stoplightio/vscode-spectral/issues/266) when working on Spectral rulesets in VSCode. Force an update in [Specs.Ruleset/main.yml](Specs.Ruleset/main.yml) when changing a file that is used as an extend.
