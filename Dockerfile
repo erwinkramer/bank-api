@@ -4,7 +4,7 @@ FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
 ARG TARGETARCH
 WORKDIR /source
 
-COPY --link . .
+COPY . .
 
 # Copy the Zscaler certificates to the build image (the following only works on some distro's)
 # Also see https://github.com/millermatt/osca?tab=readme-ov-file#operating-system-cert-management
@@ -22,8 +22,8 @@ RUN dotnet publish -a $TARGETARCH --no-restore -o /app
 FROM mcr.microsoft.com/dotnet/nightly/aspnet:10.0-alpine-composite
 EXPOSE 8080
 WORKDIR /app
-COPY --link --from=build /source/.certs/*.crt /usr/local/share/ca-certificates/
+COPY --from=build /source/.certs/*.crt /usr/local/share/ca-certificates/
 RUN cat /usr/local/share/ca-certificates/*.crt >> /etc/ssl/certs/ca-certificates.crt
-COPY --link --from=build /app .
+COPY --from=build /app .
 USER $APP_UID
 ENTRYPOINT ["./BankApi.Service.Stable"]
