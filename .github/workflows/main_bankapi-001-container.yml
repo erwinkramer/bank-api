@@ -1,0 +1,21 @@
+name: Build and push API as container
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Login and push with Podman
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | \
+            podman login ghcr.io \
+              --username ${{ github.actor }} \
+              --password-stdin
+          podman build -t ghcr.io/${{ github.repository }}:${{ github.sha }} .
+          podman push ghcr.io/${{ github.repository }}:${{ github.sha }}
