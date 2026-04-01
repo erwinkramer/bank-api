@@ -17,7 +17,7 @@ Ocp-Apim-Subscription-Key: Lifetime Subscription
 ### This tests the health endpoint via the proxy (please see the 'Proxy' folder in the root of this repo)
 ### Coraza WAF SQL injection test hits OWASP CRS rule 942100
 ### Should return 403 Forbidden
-POST https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io//{{apiVersion}}/health
+POST https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/{{apiVersion}}/health
 Ocp-Apim-Subscription-Key: Lifetime Subscription
 Content-Type: application/x-www-form-urlencoded
 
