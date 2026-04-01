@@ -17,5 +17,5 @@ jobs:
             podman login ghcr.io \
               --username ${{ github.actor }} \
               --password-stdin
-          podman build -t ghcr.io/${{ github.repository }}:${{ github.sha }} .
+          podman build -t ghcr.io/${{ github.repository }}:latest .
           podman push ghcr.io/${{ github.repository }}:latest
