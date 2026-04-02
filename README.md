@@ -146,19 +146,19 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 - (Optionally) regenerate the ASP.NET Core HTTPS development certificate:
 
-  ```powershell
+  ```bash
   dotnet dev-certs https --clean && dotnet dev-certs https -ep ./.certs/AspNetDev.pfx -p '' --trust
   ```
 
 - (Optionally) regenerate the Aspire [manifest](https://learn.microsoft.com/en-us/dotnet/aspire/deployment/manifest-format#generate-a-manifest):
 
-  ```powershell
+  ```bash
   dotnet run --project BankApi.Orchestration --publisher manifest --output-path ../Infra.Generated/aspire-manifest.json
   ```
 
 - Generate a new JWT-token for secured endpoints:
 
-  ```powershell
+  ```bash
   dotnet user-jwts create --scope "bank_api" --role "banker" --valid-for 3650d --project BankApi.Service.Stable
   ```
 
@@ -170,16 +170,24 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 - Validate the OpenAPI definition by going to the [openapi_v1.json](/Specs.Generated/openapi_v1.json) definition and check for problems via the Spectral extension.
 
-### Container image
+### Container images
 
 Rename the [env sample file](./.env.sample) to `.env` and replace the values, then run the following to build and start an [Alpine with Composite ready-to-run image](https://github.com/dotnet/dotnet-docker/tree/main/samples/aspnetapp#supported-linux-distros:~:text=Alpine%20with%20Composite%20ready%2Dto%2Drun%20image):
 
 ```bash
-podman build -t bankapi:v1 .
-podman run -p 5201:8080 --env-file .env bankapi:v1
+podman pod create --name bank-api-pod -p 8080:8080 -p 5201:10000
+podman build -t bank-api:v1 .
+podman run --pod bank-api-pod --env-file .env bank-api:v1
 ```
 
-Then navigate to the [OpenAPI Spec](http://localhost:5201/openapi/v1.json) or [Scalar UI](http://localhost:5201/scalar/).
+To facade the API as well, also start the [Proxy](./Proxy/):
+
+```bash
+podman build -t bank-api-proxy:v1 ./Proxy --tls-verify=false
+podman run --pod bank-api-pod bank-api-proxy:v1
+```
+
+Then navigate to the proxied [OpenAPI Spec](http://localhost:5201/openapi/v1.json) or [Scalar UI](http://localhost:5201/scalar/), or use `:8080` to directly call the API.
 
 ### Run in Aspire minimal mode
 
@@ -189,7 +197,7 @@ This mode just runs the ASP.NET Core API.
 
 1. Start the standalone Aspire Dashboard for developer visualization:
 
-    ```powershell
+    ```bash
     podman run --rm -it `
       -p 18888:18888 `
       -p 4317:18889 `
