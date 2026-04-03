@@ -1,6 +1,5 @@
 using System.Net;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.RateLimiting;
 
 public static partial class ApiBuilder
@@ -16,7 +15,8 @@ public static partial class ApiBuilder
 
                 return RateLimitPartition.GetFixedWindowLimiter(
                     partitionKey:
-                        httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier) ?? httpContext.Request.Headers.Host.ToString(),
+                        httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier)
+                        ?? httpContext.Request.Headers["Ocp-Apim-Subscription-Key"].ToString(),
                     factory:
                         partition => GlobalConfiguration.ApiSettings!.FixedWindowRateLimit
                 );
@@ -24,9 +24,9 @@ public static partial class ApiBuilder
             {
                 if (context.Lease.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter))
                 {
-                    context.HttpContext.Response.Headers.RetryAfter =
-                        ((int)retryAfter.TotalSeconds).ToString();
-                    await context.HttpContext.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("Rate limit reached. Please try again later."));
+                    context.HttpContext.Response.Headers.RetryAfter = ((int)retryAfter.TotalSeconds).ToString();
+                    context.HttpContext.Response.ContentType = "text/plain";
+                    await context.HttpContext.Response.WriteAsync("Rate limit reached. Please try again later.", cancellationToken: _);
                 }
                 return;
             };
