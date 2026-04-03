@@ -73,7 +73,6 @@ publish/
 
 # Publish Web Output
 *.Publish.xml
-*.pubxml
 *.azurePubxml
 
 # NuGet Packages Directory
