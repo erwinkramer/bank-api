@@ -48,6 +48,22 @@ resources:
                             }
                           }
                         default_directive: "waf1"
+                - name: envoy.filters.http.header_mutation
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.header_mutation.v3.HeaderMutation
+                    mutations:
+                      request_mutations:
+                        - append:
+                            header:
+                              key: x-jala
+                              value: jabba
+                            append_action: OVERWRITE_IF_EXISTS_OR_ADD
+                      response_mutations:
+                        - append:
+                            header:
+                              key: x-petro
+                              value: lira
+                            append_action: OVERWRITE_IF_EXISTS_OR_ADD
                 - name: envoy.filters.http.router
                   typed_config:
                     "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
@@ -61,13 +77,3 @@ resources:
                       prefix: "/"
                     route:
                       cluster: service_local
-                    request_headers_to_add:
-                    - header:
-                        key: x-jala
-                        value: jaba
-                      append: false
-                    response_headers_to_add:
-                    - header:
-                        key: x-petro
-                        value: euro
-                      append: false
