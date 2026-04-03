@@ -256,15 +256,13 @@ To host the MCP server, make sure to [Authorize Visual Studio Code in the app re
 
 ### General
 
-1. [OpenID Connect isn't fully supported in Scalar](https://github.com/scalar/scalar/issues/3656).
+1. To receive CloudEvents that are emitted via this API, see [cloudevents/sdk-csharp - CloudEventBinding](https://github.com/search?q=repo%3Acloudevents%2Fsdk-csharp%20CloudEventBinding%20&type=code) for an ASP.NET Core sample.
 
 1. To extend OpenTelemetry logging to Application Insights, [expand the OpenTelemetry exporter](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-applicationinsights).
 
 1. [The compliance NullRedactor doesn't seem to work](https://github.com/dotnet/extensions/issues/5691), the redactor is already defined at [Builder.Compliance.cs](/BankApi.Core/Defaults/Builder.Compliance.cs) but not used because of the issue.
 
-1. Dependabot is enabled for `nuget` packages but [wildcard version notation isn't supported yet](https://github.com/dependabot/dependabot-core/issues/9442#issuecomment-2433046972), which is used extensively in this project.
-
-1. [The OpenAPI document generator shipped with .NET 10 does not fully support API versioning](https://github.com/scalar/scalar/issues/3898#issuecomment-2479087233), a simpler approach with [PathBase](https://andrewlock.net/understanding-pathbase-in-aspnetcore/) is used for now, which is also more convenient for Azure API Management usage.
+1. API versioning is handled via a simple approach with [PathBase](https://andrewlock.net/understanding-pathbase-in-aspnetcore/), which is also more convenient for Azure API Management usage. Using the native way might look [like this](https://github.com/dotnet/aspnetcore/issues/56314#issuecomment-3012504591).
 
 1. Extending Spectral rulesets from an NPM package [can be problematic](https://github.com/stoplightio/vscode-spectral/issues/214#issuecomment-2543132932).
 
