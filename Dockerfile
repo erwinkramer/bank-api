@@ -22,7 +22,7 @@ RUN dotnet publish -c Release -a $TARGETARCH --no-restore \
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/enable-globalization.md
 
 # Runtime stage
-FROM mcr.microsoft.com/dotnet/nightly/aspnet:10.0-alpine-composite
+FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine-composite
 EXPOSE 8080
 WORKDIR /app
 COPY --from=build /source/.certs/*.crt /usr/local/share/ca-certificates/
