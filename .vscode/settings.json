@@ -10,8 +10,11 @@
         "appexamples",
         "arazzo",
         "bankitems",
+        "cloudevents",
         "Commitish",
         "csdevkit",
+        "datacontenttype",
+        "dataschema",
         "devcontainers",
         "dotnettools",
         "Gridify",
@@ -20,6 +23,7 @@
         "kiota",
         "LOCALAPPDATA",
         "ruleset",
+        "specversion",
         "usersecrets",
         "zipball"
     ]
