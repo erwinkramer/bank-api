@@ -12,7 +12,7 @@ RUN cat .certs/*.crt >> /etc/ssl/certs/ca-certificates.crt
 
 # Restore and publish from the service project
 RUN dotnet restore BankApi.Service.Stable/BankApi.Service.Stable.csproj -a $TARGETARCH \
-	-p:PublishProfile=AlpineContainer
+	-p:PublishProfile=AlpineContaine
 WORKDIR /source/BankApi.Service.Stable
 RUN dotnet publish -c Release -a $TARGETARCH --no-restore \
 	-p:PublishProfile=AlpineContainer \
