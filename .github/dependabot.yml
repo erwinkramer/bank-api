@@ -9,6 +9,15 @@ updates:
     schedule:
       interval: weekly
       day: thursday
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: thursday
+    groups:
+      github-actions:
+        patterns:
+          - "*"
   - package-ecosystem: nuget
     directory: /
     schedule:
