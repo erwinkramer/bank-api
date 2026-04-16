@@ -31,7 +31,7 @@ jobs:
         run: dotnet build ${{env.PROJECT_NAME}} --configuration Release
 
       - name: Expose GitHub Actions Runtime #https://tunit.dev/docs/guides/html-report/#option-a-actionsgithub-script-recommended-first-party
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env['ACTIONS_RUNTIME_TOKEN']);
