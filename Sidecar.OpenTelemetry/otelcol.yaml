@@ -6,18 +6,41 @@ receivers:
       http:
         endpoint: localhost:4318
 
+processors:
+  batch:
+
+extensions:
+  # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/azureauthextension#examples
+  azureauth/monitor:
+    scopes:
+      - https://monitor.azure.com/.default
+    service_principal:
+      tenant_id: "${env:AZURE_TENANT_ID}"
+      client_id: "${env:AZURE_CLIENT_ID}"
+      client_secret: "${env:AZURE_CLIENT_SECRET}"
+
 exporters:
-  debug:
-    verbosity: detailed
+  otlphttp/azuremonitor:
+    # https://learn.microsoft.com/en-us/azure/azure-monitor/containers/opentelemetry-protocol-ingestion#option-1-create-an-application-insights-resource-with-otlp-support-recommended
+    traces_endpoint: "https://managed-appi-bank-api-001-dce-1mff.germanywestcentral-1.ingest.monitor.azure.com/dataCollectionRules/dcr-7e52f39700ef461cb0ba044c7b053b0b/streams/Microsoft-OTLP-Traces/otlp/v1/traces"
+    logs_endpoint: "https://managed-appi-bank-api-001-dce-1mff.germanywestcentral-1.ingest.monitor.azure.com/dataCollectionRules/dcr-7e52f39700ef461cb0ba044c7b053b0b/streams/Microsoft-OTLP-Logs/otlp/v1/logs"
+    metrics_endpoint: "https://managed-appi-bank-api-001-dce-1mff.germanywestcentral-1.metrics.ingest.monitor.azure.com/dataCollectionRules/dcr-7e52f39700ef461cb0ba044c7b053b0b/streams/Microsoft-OtelMetrics/otlp/v1/metrics"
+    auth:
+      authenticator: azureauth/monitor
 
 service:
+  extensions:
+    - azureauth/monitor
   pipelines:
     traces:
       receivers: [otlp]
-      exporters: [debug]
+      processors: [batch]
+      exporters: [otlphttp/azuremonitor]
     metrics:
       receivers: [otlp]
-      exporters: [debug]
+      processors: [batch]
+      exporters: [otlphttp/azuremonitor]
     logs:
       receivers: [otlp]
-      exporters: [debug]
+      processors: [batch]
+      exporters: [otlphttp/azuremonitor]

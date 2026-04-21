@@ -182,7 +182,7 @@ Start the [OpenTelemetry Collector](./Sidecar.OpenTelemetry/) to process and exp
 
 ```bash
 podman build -t bank-api-otelcol:v1 ./Sidecar.OpenTelemetry --tls-verify=false
-podman run --pod bank-api-pod bank-api-otelcol:v1
+podman run --pod bank-api-pod --env-file .env bank-api-otelcol:v1
 ```
 
 Rename the [env sample file](./.env.sample) to `.env` and replace the values, then run the following to build and start an [Alpine with Composite ready-to-run image](https://github.com/dotnet/dotnet-docker/tree/main/samples/aspnetapp#supported-linux-distros:~:text=Alpine%20with%20Composite%20ready%2Dto%2Drun%20image) with [ready-to-run API](./BankApi.Service.Stable/Properties/PublishProfiles/AlpineContainer.pubxml):
