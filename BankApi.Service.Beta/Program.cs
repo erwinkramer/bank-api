@@ -33,7 +33,7 @@ app.MapJwk(out var jwk); // register JWKS endpoint
 app.UseMiddleware<JwsResponseSigningMiddleware>(jwk);
 app.UseMiddleware<ApiVersionHeaderMiddleware>();
 app.UseExceptionHandler();
-app.UsePathBase(new($"/{GlobalConfiguration.ApiDocument.Info.Version}")); // Useful when versioning routing happens in an API Management system
+app.UsePathBase(new($"/v{GlobalConfiguration.ApiDocument.Info.Version!.Split('.')[0]}")); // Useful when versioning routing happens in an API Management system
 app.UseAuthorization(); // explicitly register because we use path base
 app.UseMiddleware<EntraIdTokenReuseMiddleware>(); // needs to be at least after authorization
 app.UseRateLimiter();

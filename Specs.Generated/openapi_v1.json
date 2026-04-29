@@ -5,13 +5,15 @@
     "description": "The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.",
     "termsOfService": "https://en.wikipedia.org/wiki/Terms_of_service#Content",
     "contact": {
-      "url": "https://guanchen.nl"
+      "name": "Erwin",
+      "url": "https://guanchen.nl",
+      "email": "info@guanchen.nl"
     },
     "license": {
       "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License",
       "url": "https://creativecommons.org/licenses/by-nc-sa/4.0"
     },
-    "version": "v1"
+    "version": "1.0.0"
   },
   "servers": [
     {

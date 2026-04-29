@@ -5,7 +5,7 @@ public static partial class ApiBuilder
 {
     public static IServiceCollection AddOpenApiServices(this IServiceCollection services)
     {
-        services.AddOpenApi(GlobalConfiguration.ApiDocument!.Info.Version!, options =>
+        services.AddOpenApi("v" + GlobalConfiguration.ApiDocument!.Info.Version!.Split('.')[0], options =>
         {
             // Purposely set the spec to a version that is supported by Azure APIM, 
             // the 'Specs.Generated' output files still use the latest spec versions.
@@ -61,7 +61,7 @@ public static partial class ApiBuilder
             });
             //options.AddPreferredSecuritySchemes("OAuth2"); // https://github.com/scalar/scalar/issues/8082
             options.AddDefaultScopes("OAuth2", [$"{GlobalConfiguration.ApiSettings!.EntraId.ClientId}/.default"]);
-            options.Title = $"{GlobalConfiguration.ApiDocument!.Info.Title} docs | {GlobalConfiguration.ApiDocument.Info.Version}";
+            options.Title = $"{GlobalConfiguration.ApiDocument!.Info.Title} docs | v{GlobalConfiguration.ApiDocument.Info.Version}";
         });
     }
 }
