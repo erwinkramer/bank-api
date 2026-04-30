@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 GlobalConfiguration.ApiDocument = builder.Configuration.GetRequiredSection("ApiDocument").Get<OpenApiDocument>()!;
 GlobalConfiguration.ApiSettings = builder.Configuration.GetRequiredSection("ApiSettings").Get<GlobalConfiguration.SettingsModel>()!;
 GlobalConfiguration.ApiExamples = JsonSerializer.Deserialize<JsonObject>(File.ReadAllText("./appexamples.json"))!;
+GlobalConfiguration.ApiVersion = Version.Parse(GlobalConfiguration.ApiDocument.Info.Version!);
 
 GridifyGlobalConfiguration.EnableEntityFrameworkCompatibilityLayer();
 GridifyGlobalConfiguration.DefaultPageSize = GlobalConfiguration.ApiSettings.PageSize.Default;
@@ -33,7 +34,7 @@ app.MapJwk(out var jwk); // register JWKS endpoint
 app.UseMiddleware<JwsResponseSigningMiddleware>(jwk);
 app.UseMiddleware<ApiVersionHeaderMiddleware>();
 app.UseExceptionHandler();
-app.UsePathBase(new($"/v{GlobalConfiguration.ApiDocument.Info.Version!.Split('.')[0]}")); // Useful when versioning routing happens in an API Management system
+app.UsePathBase(new($"/v{GlobalConfiguration.ApiVersion!.Major}")); // Useful when versioning routing happens in an API Management system
 app.UseAuthorization(); // explicitly register because we use path base
 //app.UseMiddleware<EntraIdTokenReuseMiddleware>(); // Needs to be at least after authorization (only enable on the beta API)
 app.UseRateLimiter();

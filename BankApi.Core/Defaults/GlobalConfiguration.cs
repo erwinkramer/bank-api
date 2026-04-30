@@ -13,6 +13,8 @@ public static class GlobalConfiguration
 
    public static SettingsModel? ApiSettings { get; set; }
 
+   public static Version? ApiVersion { get; set; }
+
    public static JsonEventFormatter? JsonEventFormatter { get; set; }
 
    public class SettingsModel
