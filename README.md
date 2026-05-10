@@ -11,7 +11,7 @@
 
 The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.
 
-Explore the live [🌐 API](https://bankapi-001-ffamb7fcbkcgdsg7.westeurope-01.azurewebsites.net/scalar) and [🌐 MCP server](https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net/.well-known/oauth-protected-resource). Hosted on F1 tier Azure App Service, so mileage may vary.
+Explore the live [🌐 API with sidecars](https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/scalar) (hosted on Azure Container Apps) and [🌐 MCP server](https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net/.well-known/oauth-protected-resource) (hosted on F1 tier Azure App Service).
 
 ## Compliance
 

@@ -1,67 +1,26 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy API
+name: Create ACA revision
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Build and push API as container
+    types:
+      - completed
 
 env:
-  PROJECT_NAME: BankApi.Service.Stable
-  APP_NAME: bankapi-001
+  AZURE_CORE_OUTPUT: none
+  RESOURCE_GROUP: containering
+  APP_NAME: app
 
 jobs:
-  build:
+  create-revision:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
 
     steps:
-      - uses: actions/checkout@v6
-
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v5
-        with:
-          dotnet-version: "10.0.104"
-
-      - name: Build with dotnet
-        run: dotnet build ${{env.PROJECT_NAME}} --configuration Release
-
-      - name: Expose GitHub Actions Runtime #https://tunit.dev/docs/guides/html-report/#option-a-actionsgithub-script-recommended-first-party
-        uses: actions/github-script@v9
-        with:
-          script: |
-            core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env['ACTIONS_RUNTIME_TOKEN']);
-            core.exportVariable('ACTIONS_RESULTS_URL', process.env['ACTIONS_RESULTS_URL']);
-
-      - name: Run unit tests
-        run: dotnet run --project BankApi.Tests/BankApi.Tests.csproj -c Release
-
-      - name: dotnet publish
-        run: dotnet publish ${{env.PROJECT_NAME}} -c Release -o ${{env.DOTNET_ROOT}}/myapp
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v7
-        with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v8
-        with:
-          name: .net-app
-
       - name: Login to Azure
         uses: azure/login@v3
         with:
@@ -69,22 +28,11 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D81009FFC4CE496AA7E4E814522B98BE }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_878C3EB021014E2EA7909DDF503EB8D4 }}
 
-      - name: Set Web App settings
-        uses: azure/appservice-settings@v1
+      - name: Create Container App revision
+        uses: azure/cli@v3
         with:
-          app-name: ${{ env.APP_NAME }}
-          app-settings-json: |
-            [
-                {
-                    "name": "ASPNETCORE_ENVIRONMENT",
-                    "value": "Staging",
-                    "slotSetting": false
-                }
-            ]
-
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: ${{ env.APP_NAME }}
-          slot-name: "Production"
-          package: .
+          inlineScript: |
+            az containerapp revision copy \
+              --resource-group "${{ env.RESOURCE_GROUP }}" \
+              --name "${{ env.APP_NAME }}" \
+              --revision-suffix "gha-${{ github.run_id }}-${{ github.run_attempt }}"
