@@ -16,6 +16,7 @@ jobs:
   create-revision:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+    environment: prod
     permissions:
       id-token: write
       contents: read
@@ -24,16 +25,16 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v3
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_84A42EE1996547A7A0A282482CA49AB4 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D81009FFC4CE496AA7E4E814522B98BE }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_878C3EB021014E2EA7909DDF503EB8D4 }}
+          client-id: ${{ vars.APP_AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.APP_AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.APP_AZURE_SUBSCRIPTION_ID }}
 
       - name: Create Container App revision
         uses: azure/cli@v3
         with:
           inlineScript: |
             az containerapp revision copy \
-              --subscription "${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_878C3EB021014E2EA7909DDF503EB8D4 }}" \
+              --subscription "${{ vars.APP_AZURE_SUBSCRIPTION_ID }}" \
               --resource-group "${{ env.RESOURCE_GROUP }}" \
               --name "${{ env.APP_NAME }}" \
               --revision-suffix "gha-${{ github.run_id }}-${{ github.run_attempt }}"
