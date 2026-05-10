@@ -172,10 +172,12 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 ### Container images
 
+Rename the [env sample file](./.env.sample) to `.env` and replace the values.
+
 Create a pod:
 
 ```bash
-podman pod create --name bank-api-pod -p 8080:8080 -p 5201:10000
+podman pod create --name bank-api-pod -p 127.0.0.1:8080:8080 -p 127.0.0.1:5201:10000 -p 127.0.0.1:9000:9000
 ```
 
 Start the [OpenTelemetry Collector](./Sidecar.OpenTelemetry/) to process and export telemetry data:
@@ -185,7 +187,14 @@ podman build -t bank-api-otelcol:v1 ./Sidecar.OpenTelemetry --tls-verify=false
 podman run --pod bank-api-pod --env-file .env bank-api-otelcol:v1
 ```
 
-Rename the [env sample file](./.env.sample) to `.env` and replace the values, then run the following to build and start an [Alpine with Composite ready-to-run image](https://github.com/dotnet/dotnet-docker/tree/main/samples/aspnetapp#supported-linux-distros:~:text=Alpine%20with%20Composite%20ready%2Dto%2Drun%20image) with [ready-to-run API](./BankApi.Service.Stable/Properties/PublishProfiles/AlpineContainer.pubxml):
+Start the [S3Proxy sidecar](./Sidecar.S3Proxy/) to expose Azure Blob Storage as an S3-compatible endpoint on `http://localhost:9000`:
+
+```bash
+podman build -t bank-api-s3proxy:v1 ./Sidecar.S3Proxy --tls-verify=false
+podman run --pod bank-api-pod --env-file .env bank-api-s3proxy:v1
+```
+
+Run the following to build and start an [Alpine with Composite ready-to-run image](https://github.com/dotnet/dotnet-docker/tree/main/samples/aspnetapp#supported-linux-distros:~:text=Alpine%20with%20Composite%20ready%2Dto%2Drun%20image) with [ready-to-run API](./BankApi.Service.Stable/Properties/PublishProfiles/AlpineContainer.pubxml):
 
 ```bash
 podman build -t bank-api:v1 .

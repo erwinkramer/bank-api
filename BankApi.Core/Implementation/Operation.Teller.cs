@@ -1,11 +1,13 @@
-using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
+using Amazon.S3;
+using Amazon.S3.Model;
 using DownstreamClients.GitHub;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System.Security.Claims;
 
 public class TellerOperation
 {
+    private const string ReportsBucketName = "reports";
+
     public static async Task<Results<Ok<Teller>, NotFound, UnprocessableEntity>> GetBankTeller(GitHubClient client, ClaimsPrincipal user, ILogger logger, CancellationToken token = default)
     {
         LogMessage.LogAccessMessage(logger, "teller", new()
@@ -21,14 +23,17 @@ public class TellerOperation
             : TypedResults.NotFound();
     }
 
-    public static async Task<Results<Ok<TellerReportList>, NotFound, UnprocessableEntity>> GetBankTellerReports(BlobServiceClient blobServiceClient, CancellationToken token = default)
+    public static async Task<Results<Ok<TellerReportList>, NotFound, UnprocessableEntity>> GetBankTellerReports(IAmazonS3 s3Client, CancellationToken token = default)
     {
-        BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("reports");
+        var response = await s3Client.ListObjectsV2Async(new ListObjectsV2Request
+        {
+            BucketName = ReportsBucketName
+        }, token);
 
         TellerReportList reports = new();
-        await foreach (BlobItem blobItem in containerClient.GetBlobsAsync(cancellationToken: token))
+        foreach (S3Object s3Object in response.S3Objects)
         {
-            reports.data.Add(new() { Name = blobItem.Name });
+            reports.data.Add(new() { Name = s3Object.Key });
             reports.count++;
         }
 

@@ -16,7 +16,7 @@ GridifyGlobalConfiguration.DefaultPageSize = GlobalConfiguration.ApiSettings.Pag
 
 builder.AddLoggingServices();
 builder.AddComplianceServices();
-builder.AddAzureClients();
+builder.AddStorageClients();
 builder.Services.ConfigureJson();
 builder.Services.AddHealthChecks();
 builder.Services.AddAuthServices(builder.Environment);
@@ -46,7 +46,7 @@ app.AddOpenApiScalarReference();
 if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider" && // see https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-10.0&tabs=visual-studio%2Cvisual-studio-code#customize-runtime-behavior-during-build-time-document-generation
     (app.Environment.IsDevelopment() || app.Environment.IsStaging()))
 {
-    await app.Services.ProvisionAzureStorage();
+    await app.Services.ProvisionStorage();
 }
 
 app.Services.EnsureDataServicesCreated();
