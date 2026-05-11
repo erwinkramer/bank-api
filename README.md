@@ -237,7 +237,7 @@ This mode just runs the ASP.NET Core API.
 
 This mode starts the [Stable](/BankApi.Service.Stable/) and [Beta](/BankApi.Service.Beta/) versions of the API, including an [MCP server](/BankApi.Mcp/) for the Stable version, in context of Aspire.
 
-1. Make sure a container runtime is started and (if using anything other than docker), Aspire is set to use that runtime:
+1. Make sure a container runtime is started and Aspire is set to use that runtime (if using anything other than docker):
 
     ```bash
     podman machine start
