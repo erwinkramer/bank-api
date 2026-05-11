@@ -210,6 +210,8 @@ podman run --pod bank-api-pod bank-api-proxy:v1
 
 Then navigate to the proxied [OpenAPI Spec](http://localhost:5201/openapi/v1.json) or [Scalar UI](http://localhost:5201/scalar/), or use `:8080` to directly call the API.
 
+Run `podman pod rm -f bank-api-pod` to teardown.
+
 ### Run in Aspire minimal mode
 
 This mode just runs the ASP.NET Core API.
@@ -235,7 +237,12 @@ This mode just runs the ASP.NET Core API.
 
 This mode starts the [Stable](/BankApi.Service.Stable/) and [Beta](/BankApi.Service.Beta/) versions of the API, including an [MCP server](/BankApi.Mcp/) for the Stable version, in context of Aspire.
 
-1. Make sure a container runtime is started.
+1. Make sure a container runtime is started and (if using anything other than docker), Aspire is set to use that runtime:
+
+  ```bash
+  podman machine start
+  setx ASPIRE_CONTAINER_RUNTIME "podman"
+  ```
 
 1. Run the [launch config](.vscode/launch.json) `Aspire Orchestration`.
 
