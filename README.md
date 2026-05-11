@@ -239,10 +239,10 @@ This mode starts the [Stable](/BankApi.Service.Stable/) and [Beta](/BankApi.Serv
 
 1. Make sure a container runtime is started and (if using anything other than docker), Aspire is set to use that runtime:
 
-  ```bash
-  podman machine start
-  setx ASPIRE_CONTAINER_RUNTIME "podman"
-  ```
+    ```bash
+    podman machine start
+    setx ASPIRE_CONTAINER_RUNTIME "podman"
+    ```
 
 1. Run the [launch config](.vscode/launch.json) `Aspire Orchestration`.
 
