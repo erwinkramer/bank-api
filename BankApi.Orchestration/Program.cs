@@ -5,7 +5,7 @@ var env = File.ReadLines(Path.Combine(builder.Environment.ContentRootPath, "..",
             .Select(line => line.Split('=', 2))
             .ToDictionary(parts => parts[0], parts => parts[1], StringComparer.OrdinalIgnoreCase);
 
-var s3Proxy = builder.AddDockerfile("S3Proxy", "../Sidecar.S3Proxy").WithHttpEndpoint(port: 9000, targetPort: 9000);
+var s3Proxy = builder.AddDockerfile("S3Proxy", "../Sidecar.S3Proxy").WithHttpEndpoint(port: 6070, targetPort: 6070);
 foreach (var entry in env)
     s3Proxy.WithEnvironment(entry.Key, entry.Value);
 
