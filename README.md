@@ -312,9 +312,15 @@ Please see the Reddit r/dotnet [post 1](https://www.reddit.com/r/dotnet/comments
 
 - If getting the error [`unable to get local issuer certificate` with Spectral](https://github.com/stoplightio/vscode-spectral/issues/131#issuecomment-2543187287), make sure to add the CA of the proxy to `NODE_EXTRA_CA_CERTS` and restart VSCode, for example:
 
-```bash
-setx NODE_EXTRA_CA_CERTS "C:\ZscalerRootCA.crt"
-```
+  ```bash
+  setx NODE_EXTRA_CA_CERTS "C:\ZscalerRootCA.crt"
+  ```
+
+- If getting the error `tls: failed to verify certificate: x509: certificate signed by unknown authority` when building a container image, make sure to add the CA of the proxy to `podman`, for example:
+
+  ```powershell
+  Get-Content .\.certs\ZscalerRootCA.crt -Raw | podman machine ssh "sudo mkdir -p /etc/pki/ca-trust/source/anchors && cat | sudo tee /etc/pki/ca-trust/source/anchors/ZscalerRootCA.crt > /dev/null && sudo update-ca-trust"
+  ```
 
 - [Extending Rulesets with local filepath not refreshing](https://github.com/stoplightio/vscode-spectral/issues/266) when working on Spectral rulesets in VSCode. Force an update in [Specs.Ruleset/main.yml](Specs.Ruleset/main.yml) when changing a file that is used as an extend.
 
