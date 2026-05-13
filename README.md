@@ -180,7 +180,7 @@ Create a pod:
 podman pod create --name bank-api-pod -p 127.0.0.1:8080:8080 -p 127.0.0.1:5201:10000 -p 127.0.0.1:6070:6070 -p 127.0.0.1:3500:3500
 ```
 
-Start the [Dapr sidecar](./Sidecar.Dapr/) to expose secret stores, explore via [metadata endpoint](http://localhost:3500/v1.0/metadata) or check [a secret](http://localhost:3500/v1.0/secrets/secretstore-envvars/AZURE_CLIENT_ID):
+Start the [Dapr sidecar](./Sidecar.Dapr/) to expose secret stores, explore via the [metadata endpoint](http://localhost:3500/v1.0/metadata) or check [a secret](http://localhost:3500/v1.0/secrets/secretstore-envvars/AZURE_CLIENT_ID):
 
 ```bash
 podman build -t bank-api-daprd:v1 ./Sidecar.Dapr
@@ -194,7 +194,7 @@ podman build -t bank-api-otelcol:v1 ./Sidecar.OpenTelemetry
 podman run --pod bank-api-pod --env-file .env bank-api-otelcol:v1
 ```
 
-Start the [S3Proxy sidecar](./Sidecar.S3Proxy/) to expose Azure Blob Storage as an S3-compatible endpoint on `http://localhost:6070`:
+Start the [S3Proxy sidecar](./Sidecar.S3Proxy/) to expose Azure Blob Storage as an [S3-compatible endpoint](http://localhost:6070):
 
 ```bash
 podman build -t bank-api-s3proxy:v1 ./Sidecar.S3Proxy
