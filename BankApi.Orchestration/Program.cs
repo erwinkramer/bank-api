@@ -21,9 +21,7 @@ var apiBeta = builder.AddProject<Projects.BankApi_Service_Beta>("bank-api-beta")
     .WaitFor(s3Proxy)
     .WaitFor(dapr);
 
-var mcpStable = builder.AddProject<Projects.BankApi_Mcp>("bank-api-mcp")
-    .WaitFor(s3Proxy)
-    .WaitFor(dapr);
+var mcpStable = builder.AddProject<Projects.BankApi_Mcp>("bank-api-mcp");
 
 k8s.AddGateway("bank-gateway")
     .WithGatewayClass("bank-gateway-class")
