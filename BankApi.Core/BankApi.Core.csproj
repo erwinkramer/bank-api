@@ -13,6 +13,7 @@
     <PackageReference Include="AspNetCore.Authentication.ApiKey" Version="9.*" />
     <PackageReference Include="CloudNative.CloudEvents.AspNetCore" Version="2.*" />
     <PackageReference Include="CloudNative.CloudEvents.SystemTextJson" Version="2.*" />
+    <PackageReference Include="Dapr.AspNetCore" Version="1.17.*" />
     <PackageReference Include="Gridify" Version="2.*" />
     <PackageReference Include="Gridify.EntityFramework" Version="2.*" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.*" />

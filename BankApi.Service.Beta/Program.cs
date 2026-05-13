@@ -21,6 +21,7 @@ builder.Services.ConfigureJson();
 builder.Services.AddHealthChecks();
 builder.Services.AddAuthServices(builder.Environment);
 builder.Services.AddDataServices();
+builder.Services.AddDapr();
 builder.Services.AddDownstreamApiServices();
 builder.Services.AddOpenApiServices();
 builder.Services.AddRateLimitServices();

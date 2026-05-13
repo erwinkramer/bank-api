@@ -177,7 +177,14 @@ Rename the [env sample file](./.env.sample) to `.env` and replace the values.
 Create a pod:
 
 ```bash
-podman pod create --name bank-api-pod -p 127.0.0.1:8080:8080 -p 127.0.0.1:5201:10000 -p 127.0.0.1:6070:6070
+podman pod create --name bank-api-pod -p 127.0.0.1:8080:8080 -p 127.0.0.1:5201:10000 -p 127.0.0.1:6070:6070 -p 127.0.0.1:50001:50001
+```
+
+Start the [Dapr sidecar](./Sidecar.Dapr/) to expose secret stores:
+
+```bash
+podman build -t bank-api-daprd:v1 ./Sidecar.Dapr --tls-verify=false
+podman run --pod bank-api-pod --env-file .env bank-api-daprd:v1
 ```
 
 Start the [OpenTelemetry Collector](./Sidecar.OpenTelemetry/) to process and export telemetry data:
