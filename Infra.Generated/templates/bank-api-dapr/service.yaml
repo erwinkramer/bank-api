@@ -1,0 +1,20 @@
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "bank-api-dapr-service"
+  labels:
+    app.kubernetes.io/name: "{{ .Chart.Name }}"
+    app.kubernetes.io/component: "bank-api-dapr"
+    app.kubernetes.io/instance: "{{ .Release.Name }}"
+spec:
+  type: "ClusterIP"
+  selector:
+    app.kubernetes.io/name: "{{ .Chart.Name }}"
+    app.kubernetes.io/component: "bank-api-dapr"
+    app.kubernetes.io/instance: "{{ .Release.Name }}"
+  ports:
+    - name: "tcp"
+      protocol: "TCP"
+      port: 50002
+      targetPort: 50002

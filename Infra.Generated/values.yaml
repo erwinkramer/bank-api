@@ -1,0 +1,47 @@
+parameters:
+  bank_api_s3proxy:
+    bank_api_s3proxy_image: "bank-api-s3proxy:latest"
+  bank_api_dapr:
+    bank_api_dapr_image: "bank-api-dapr:latest"
+  bank_api:
+    port_http: 8080
+    bank_api_image: "bank-api:latest"
+  bank_api_beta:
+    port_http: 8080
+    bank_api_beta_image: "bank-api-beta:latest"
+  bank_api_mcp:
+    port_http: 8080
+    bank_api_mcp_image: "bank-api-mcp:latest"
+secrets:
+  bank_api_s3proxy:
+    ASPNETCORE_ENVIRONMENT: ""
+    AZURE_TENANT_ID: ""
+    AZURE_CLIENT_ID: ""
+    AZURE_CLIENT_SECRET: ""
+  bank_api_dapr:
+    ASPNETCORE_ENVIRONMENT: ""
+    AZURE_TENANT_ID: ""
+    AZURE_CLIENT_ID: ""
+    AZURE_CLIENT_SECRET: ""
+config:
+  bank_api:
+    OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY: "in_memory"
+    ASPNETCORE_FORWARDEDHEADERS_ENABLED: "true"
+    HTTP_PORTS: ""
+    OTEL_EXPORTER_OTLP_ENDPOINT: "http://k8s-dashboard-service:18889"
+    OTEL_EXPORTER_OTLP_PROTOCOL: "grpc"
+    OTEL_SERVICE_NAME: "bank-api"
+  bank_api_beta:
+    OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY: "in_memory"
+    ASPNETCORE_FORWARDEDHEADERS_ENABLED: "true"
+    HTTP_PORTS: ""
+    OTEL_EXPORTER_OTLP_ENDPOINT: "http://k8s-dashboard-service:18889"
+    OTEL_EXPORTER_OTLP_PROTOCOL: "grpc"
+    OTEL_SERVICE_NAME: "bank-api-beta"
+  bank_api_mcp:
+    OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY: "in_memory"
+    ASPNETCORE_FORWARDEDHEADERS_ENABLED: "true"
+    HTTP_PORTS: ""
+    OTEL_EXPORTER_OTLP_ENDPOINT: "http://k8s-dashboard-service:18889"
+    OTEL_EXPORTER_OTLP_PROTOCOL: "grpc"
+    OTEL_SERVICE_NAME: "bank-api-mcp"

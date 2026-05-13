@@ -1,26 +1,36 @@
+#pragma warning disable ASPIRECOMPUTE003
+
 var builder = DistributedApplication.CreateBuilder(args);
 
-// should be replaced in the future when following is implemented: https://github.com/microsoft/aspire/issues/10743
-var env = File.ReadLines(Path.Combine(builder.Environment.ContentRootPath, "..", ".env"))
-            .Select(line => line.Split('=', 2))
-            .ToDictionary(parts => parts[0], parts => parts[1], StringComparer.OrdinalIgnoreCase);
+var registry = builder.AddContainerRegistry("ghcr", "ghcr.io:443", "erwinkramer");
+var k8s = builder.AddKubernetesEnvironment("k8s").WithContainerRegistry(registry);
 
-var s3Proxy = builder.AddDockerfile("S3Proxy", "../Sidecar.S3Proxy").WithHttpEndpoint(port: 6070, targetPort: 6070);
-foreach (var entry in env)
-    s3Proxy.WithEnvironment(entry.Key, entry.Value);
+var dotEnvParams = builder.AddParametersFromDotEnv();
 
-var dapr = builder.AddDockerfile("Dapr", "../Sidecar.Dapr").WithEndpoint(port: 50002, targetPort: 50002);
-foreach (var entry in env)
-    dapr.WithEnvironment(entry.Key, entry.Value);
+var s3Proxy = builder.AddDockerfile("bank-api-s3proxy", "../Sidecar.S3Proxy").WithHttpEndpoint(port: 6070, targetPort: 6070);
+s3Proxy.WithEnvironmentParameters(dotEnvParams);
 
-builder.AddProject<Projects.BankApi_Service_Stable>("BankApiService-Stable")
+var dapr = builder.AddDockerfile("bank-api-dapr", "../Sidecar.Dapr").WithEndpoint(port: 50002, targetPort: 50002);
+dapr.WithEnvironmentParameters(dotEnvParams);
+
+var apiStable = builder.AddProject<Projects.BankApi_Service_Stable>("bank-api")
     .WaitFor(s3Proxy)
     .WaitFor(dapr);
 
-builder.AddProject<Projects.BankApi_Service_Beta>("BankApiService-Beta")
+var apiBeta = builder.AddProject<Projects.BankApi_Service_Beta>("bank-api-beta")
     .WaitFor(s3Proxy)
     .WaitFor(dapr);
 
-builder.AddProject<Projects.BankApi_Mcp>("BankApi-Mcp");
+var mcpStable = builder.AddProject<Projects.BankApi_Mcp>("bank-api-mcp")
+    .WaitFor(s3Proxy)
+    .WaitFor(dapr);
+
+k8s.AddGateway("bank-gateway")
+    .WithGatewayClass("bank-gateway-class")
+    .WithGatewayAnnotation("metallb.io/loadBalancerIPs", "192.168.6.7")
+    .WithHostname("guanchen.nl").WithTls()
+    .WithRoute("/v1", apiStable.GetEndpoint("http"))
+    .WithRoute("/v2", apiBeta.GetEndpoint("http"))
+    .WithRoute("/mcp", mcpStable.GetEndpoint("http"));
 
 builder.Build().Run();

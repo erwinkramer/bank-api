@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="13.3.1" />
+    <PackageReference Include="Aspire.Hosting.Kubernetes" Version="13.3.1-*" />
   </ItemGroup>
 
 </Project>
