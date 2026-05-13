@@ -38,7 +38,7 @@
           "scheme": "tcp",
           "protocol": "tcp",
           "transport": "tcp",
-          "targetPort": 50001
+          "targetPort": 50002
         }
       }
     },

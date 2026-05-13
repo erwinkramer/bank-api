@@ -10,6 +10,7 @@ public static partial class ApiBuilder
                 WriteIndented = true,
                 MaxDepth = 8
             });
+            daprBuilder.UseGrpcEndpoint("http://localhost:50002"); //The gRPC endpoint must use http or https
             daprBuilder.UseTimeout(TimeSpan.FromSeconds(30));
         });
 

@@ -9,7 +9,7 @@ var s3Proxy = builder.AddDockerfile("S3Proxy", "../Sidecar.S3Proxy").WithHttpEnd
 foreach (var entry in env)
     s3Proxy.WithEnvironment(entry.Key, entry.Value);
 
-var dapr = builder.AddDockerfile("Dapr", "../Sidecar.Dapr").WithEndpoint(port: 50001, targetPort: 50001);
+var dapr = builder.AddDockerfile("Dapr", "../Sidecar.Dapr").WithEndpoint(port: 50002, targetPort: 50002);
 foreach (var entry in env)
     dapr.WithEnvironment(entry.Key, entry.Value);
 
