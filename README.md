@@ -177,27 +177,27 @@ Rename the [env sample file](./.env.sample) to `.env` and replace the values.
 Create a pod:
 
 ```bash
-podman pod create --name bank-api-pod -p 127.0.0.1:8080:8080 -p 127.0.0.1:5201:10000 -p 127.0.0.1:6070:6070 -p 127.0.0.1:50001:50001
+podman pod create --name bank-api-pod -p 127.0.0.1:8080:8080 -p 127.0.0.1:5201:10000 -p 127.0.0.1:6070:6070
 ```
 
 Start the [Dapr sidecar](./Sidecar.Dapr/) to expose secret stores:
 
 ```bash
-podman build -t bank-api-daprd:v1 ./Sidecar.Dapr --tls-verify=false
+podman build -t bank-api-daprd:v1 ./Sidecar.Dapr
 podman run --pod bank-api-pod --env-file .env bank-api-daprd:v1
 ```
 
 Start the [OpenTelemetry Collector](./Sidecar.OpenTelemetry/) to process and export telemetry data:
 
 ```bash
-podman build -t bank-api-otelcol:v1 ./Sidecar.OpenTelemetry --tls-verify=false
+podman build -t bank-api-otelcol:v1 ./Sidecar.OpenTelemetry
 podman run --pod bank-api-pod --env-file .env bank-api-otelcol:v1
 ```
 
 Start the [S3Proxy sidecar](./Sidecar.S3Proxy/) to expose Azure Blob Storage as an S3-compatible endpoint on `http://localhost:6070`:
 
 ```bash
-podman build -t bank-api-s3proxy:v1 ./Sidecar.S3Proxy --tls-verify=false
+podman build -t bank-api-s3proxy:v1 ./Sidecar.S3Proxy
 podman run --pod bank-api-pod --env-file .env bank-api-s3proxy:v1
 ```
 
@@ -211,7 +211,7 @@ podman run --pod bank-api-pod --env-file .env bank-api:v1
 To facade the API as well, start the [Proxy](./Sidecar.Proxy/):
 
 ```bash
-podman build -t bank-api-proxy:v1 ./Sidecar.Proxy --tls-verify=false
+podman build -t bank-api-proxy:v1 ./Sidecar.Proxy
 podman run --pod bank-api-pod bank-api-proxy:v1
 ```
 
@@ -242,7 +242,7 @@ This mode just runs the ASP.NET Core API.
 
 ### Run in Aspire mode
 
-This mode starts the [Stable](/BankApi.Service.Stable/) and [Beta](/BankApi.Service.Beta/) versions of the API, including an [MCP server](/BankApi.Mcp/) for the Stable version, in context of Aspire.
+This mode starts the [Stable](/BankApi.Service.Stable/) and [Beta](/BankApi.Service.Beta/) versions of the API with required sidecars, including an [MCP server](/BankApi.Mcp/) for the Stable version, in context of Aspire.
 
 1. Make sure a container runtime is started and Aspire is set to use that runtime (if using anything other than docker):
 
