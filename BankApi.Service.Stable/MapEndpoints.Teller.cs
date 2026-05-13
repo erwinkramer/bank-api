@@ -16,6 +16,10 @@ public static partial class ApiMapper
             .WithName("GetBankTellerReports").WithSummary("Get bank teller reports")
             .WithDescription("Get the teller reports.");
 
+        tellerItems.MapGet("/secret-reports", TellerOperation.GetBankTellerSecretReports)
+            .WithName("GetBankTellerSecretReports").WithSummary("Get bank teller secret")
+            .WithDescription("Get the teller secret reports.");
+
         return app;
     }
 }

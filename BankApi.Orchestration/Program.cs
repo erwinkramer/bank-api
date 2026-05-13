@@ -9,11 +9,17 @@ var s3Proxy = builder.AddDockerfile("S3Proxy", "../Sidecar.S3Proxy").WithHttpEnd
 foreach (var entry in env)
     s3Proxy.WithEnvironment(entry.Key, entry.Value);
 
+var dapr = builder.AddDockerfile("Dapr", "../Sidecar.Dapr").WithEndpoint(port: 50001, targetPort: 50001);
+foreach (var entry in env)
+    dapr.WithEnvironment(entry.Key, entry.Value);
+
 builder.AddProject<Projects.BankApi_Service_Stable>("BankApiService-Stable")
-    .WaitFor(s3Proxy);
+    .WaitFor(s3Proxy)
+    .WaitFor(dapr);
 
 builder.AddProject<Projects.BankApi_Service_Beta>("BankApiService-Beta")
-    .WaitFor(s3Proxy);
+    .WaitFor(s3Proxy)
+    .WaitFor(dapr);
 
 builder.AddProject<Projects.BankApi_Mcp>("BankApi-Mcp");
 

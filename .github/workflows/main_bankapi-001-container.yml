@@ -23,6 +23,8 @@ jobs:
               --password-stdin
           podman build -t ghcr.io/${{ github.repository }}:latest .
           podman push ghcr.io/${{ github.repository }}:latest
+          podman build -t ghcr.io/${{ github.repository }}-dapr:latest ./Sidecar.Dapr
+          podman push ghcr.io/${{ github.repository }}-dapr:latest
           podman build -t ghcr.io/${{ github.repository }}-proxy:latest ./Sidecar.Proxy
           podman push ghcr.io/${{ github.repository }}-proxy:latest
           podman build -t ghcr.io/${{ github.repository }}-s3proxy:latest ./Sidecar.S3Proxy
