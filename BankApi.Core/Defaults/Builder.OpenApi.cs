@@ -35,17 +35,7 @@ public static partial class ApiBuilder
             {
                 options.Value = "Lifetime Subscription";
             });
-            options.AddClientCredentialsFlow("OAuth2", options =>
-            {
-                options.TokenUrl = $"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token";
-                options.ClientId = GlobalConfiguration.ApiSettings!.EntraId.ClientId;
-                options.ClientSecret = "fQB8Q~GkKsBaQFKnrTLEGXpRHWejyASJB6ZMGba~";
-                options.CredentialsLocation = CredentialsLocation.Body;
-                options.SelectedScopes =
-                [
-                    $"{GlobalConfiguration.ApiSettings!.EntraId.ClientId}/.default"
-                ];
-            });
+            //options.AddClientCredentialsFlow("OAuth2", [..] - Discouraged to use, see https://github.com/scalar/scalar/issues/7424
             options.AddAuthorizationCodeFlow("OAuth2", options =>
             {
                 options.AuthorizationUrl = $"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/authorize";
