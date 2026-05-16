@@ -153,7 +153,7 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 - (Optionally) regenerate the [Helm chart artifacts](https://aspire.dev/deployment/kubernetes/kubernetes/#publish-helm-chart-artifacts) via the [Aspire CLI](https://aspire.dev/get-started/install-cli/#install-the-aspire-cli):
 
   ```bash
-  rm -r Infra.Generated/* | aspire publish -o Infra.Generated
+  rm -r Infra.Generated/* && aspire --version && aspire publish -o Infra.Generated
   ```
 
 - Generate a new JWT-token for secured endpoints:
