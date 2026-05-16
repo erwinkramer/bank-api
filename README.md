@@ -150,7 +150,7 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
   dotnet dev-certs https --clean && dotnet dev-certs https -ep ./.certs/AspNetDev.pfx -p '' --trust
   ```
 
-- (Optionally) regenerate the [Helm chart artifacts](https://aspire.dev/deployment/kubernetes/kubernetes/#publish-helm-chart-artifacts) via Aspire:
+- (Optionally) regenerate the [Helm chart artifacts](https://aspire.dev/deployment/kubernetes/kubernetes/#publish-helm-chart-artifacts) via the [Aspire CLI](https://aspire.dev/get-started/install-cli/#install-the-aspire-cli):
 
   ```bash
   rm -r Infra.Generated/* | aspire publish -o Infra.Generated
@@ -201,7 +201,7 @@ podman build -t bank-api-s3proxy:v1 ./Sidecar.S3Proxy
 podman run --pod bank-api-pod --env-file .env bank-api-s3proxy:v1
 ```
 
-Run the following to build and start an [Alpine with Composite ready-to-run image](https://github.com/dotnet/dotnet-docker/tree/main/samples/aspnetapp#supported-linux-distros:~:text=Alpine%20with%20Composite%20ready%2Dto%2Drun%20image) with [ready-to-run API](./BankApi.Service.Stable/Properties/PublishProfiles/AlpineContainer.pubxml):
+Start the [Stable](/BankApi.Service.Stable/) version of the API as an [Alpine with Composite ready-to-run image](https://github.com/dotnet/dotnet-docker/tree/main/samples/aspnetapp#supported-linux-distros:~:text=Alpine%20with%20Composite%20ready%2Dto%2Drun%20image) with [ready-to-run format](./BankApi.Service.Stable/Properties/PublishProfiles/AlpineContainer.pubxml):
 
 ```bash
 podman build -t bank-api:v1 .
