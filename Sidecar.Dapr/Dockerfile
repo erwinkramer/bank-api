@@ -1,4 +1,4 @@
-FROM docker.io/daprio/daprd:1.17.6-stablecomponents
+FROM docker.io/daprio/daprd:1.17.7-stablecomponents
 
 COPY components /components
 

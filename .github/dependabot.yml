@@ -9,6 +9,12 @@ updates:
     schedule:
       interval: weekly
       day: thursday
+  - package-ecosystem: docker
+    directories:
+      - "/**"
+    schedule:
+      interval: weekly
+      day: thursday
   - package-ecosystem: github-actions
     directory: /
     schedule:
