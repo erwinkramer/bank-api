@@ -25,7 +25,7 @@ resources:
                   typed_config:
                     "@type": type.googleapis.com/envoy.extensions.filters.http.golang.v3alpha.Config
                     library_id: coraza-waf
-                    library_path: /envoy-config/coraza-waf.so # via https://github.com/united-security-providers/coraza-envoy-go-filter/releases/tag/v1.3.0
+                    library_path: /envoy-config/coraza-waf.so # via https://github.com/united-security-providers/coraza-envoy-go-filter/releases/tag/v2.0.0
                     # Memory for plugins will not be freed after each config hot reload because of inherent Go plugin limitations
                     # https://www.reddit.com/r/golang/comments/1kos107/how_to_hotreload_in_go
                     plugin_name: coraza-waf
@@ -34,19 +34,16 @@ resources:
                       value:
                         use_re2: true #improves throughput
                         use_libinjection: true #improves throughput
-                        directives: |
-                          {
-                            "waf1": {
-                              "simple_directives": [
-                                "SecDebugLogLevel 3",
-                                "SecRuleEngine On",
-                                "SecRequestBodyAccess On",
-                                "Include @crs-setup-conf",
-                                "Include @owasp_crs/*.conf",
-                                "SecRuleRemoveById 920320"                                       
-                              ]
-                            }
-                          }
+                        directives:
+                          waf1:
+                            simple_directives:
+                              - "Include @coraza-setup"
+                              - "SecDebugLogLevel 3"
+                              - "SecRuleEngine On"
+                              - "SecRequestBodyAccess On"
+                              - "Include @crs-setup"
+                              - "Include @owasp_crs/*.conf"
+                              - "SecRuleRemoveById 920320"
                         default_directive: "waf1"
                 - name: envoy.filters.http.header_mutation
                   typed_config:
@@ -70,10 +67,10 @@ resources:
               route_config:
                 name: local_route
                 virtual_hosts:
-                - name: local_service
-                  domains: ["*"]
-                  routes:
-                  - match:
-                      prefix: "/"
-                    route:
-                      cluster: service_local
+                  - name: local_service
+                    domains: ["*"]
+                    routes:
+                      - match:
+                          prefix: "/"
+                        route:
+                          cluster: service_local
