@@ -35,3 +35,9 @@ This is without the http route:
 ```bash
 kubectl port-forward -n bank-api svc/bank-api 5201:80
 ```
+
+Renew pod:
+
+```bash
+kubectl delete pod -n bank-api -l app=bank-api
+```

@@ -13,13 +13,10 @@ spec:
 
       envSecretName: string | default="bank-api-env"
 
-      service:
-        type: string | default="ClusterIP"
-
       gateway:
         enabled: boolean | default=false
-        gatewayName: string | default="shared-gateway"
-        gatewayNamespace: string | default="gateway-system"
+        gatewayName: string
+        gatewayNamespace: string
         host: string
         path: string | default="/"
 
@@ -54,7 +51,6 @@ spec:
                 app: ${schema.spec.name}
             spec:
               containers:
-                # --- main API ---
                 - name: api
                   image: ghcr.io/erwinkramer/bank-api:latest
                   ports:
@@ -64,14 +60,12 @@ spec:
                     - secretRef:
                         name: ${schema.spec.envSecretName}
 
-                # --- proxy (envoy) ---
                 - name: proxy
                   image: ghcr.io/erwinkramer/bank-api-proxy:latest
                   ports:
                     - containerPort: 10000
                       name: http-proxy
 
-                # --- dapr ---
                 - name: dapr
                   image: ghcr.io/erwinkramer/bank-api-dapr:latest
                   ports:
@@ -81,14 +75,12 @@ spec:
                     - secretRef:
                         name: ${schema.spec.envSecretName}
 
-                # --- otel collector ---
                 - name: otelcol
                   image: ghcr.io/erwinkramer/bank-api-otelcol:latest
                   envFrom:
                     - secretRef:
                         name: ${schema.spec.envSecretName}
 
-                # --- s3 proxy ---
                 - name: s3proxy
                   image: ghcr.io/erwinkramer/bank-api-s3proxy:latest
                   ports:
@@ -106,16 +98,14 @@ spec:
           name: ${schema.spec.name}
           namespace: ${schema.spec.namespace}
         spec:
-          type: ${schema.spec.service.type}
+          type: ClusterIP
           selector:
             app: ${schema.spec.name}
           ports:
-            # proxy entrypoint
             - name: http
               port: 80
               targetPort: http-proxy
 
-            # direct access (optional/debug)
             - name: api
               port: 8080
               targetPort: http-api
@@ -141,10 +131,8 @@ spec:
           parentRefs:
             - name: ${schema.spec.gateway.gatewayName}
               namespace: ${schema.spec.gateway.gatewayNamespace}
-
           hostnames:
             - ${schema.spec.gateway.host}
-
           rules:
             - matches:
                 - path:
