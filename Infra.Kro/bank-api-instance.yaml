@@ -1,0 +1,15 @@
+apiVersion: kro.run/v1alpha1
+kind: BankApi
+metadata:
+  name: bank-api
+spec:
+  name: bank-api
+  namespace: bank-api
+  replicas: 1
+  envSecretName: bank-api-env
+  gateway:
+    enabled: true
+    gatewayName: eg
+    gatewayNamespace: argocd
+    host: bankapi.w.guanchen.nl
+    path: /

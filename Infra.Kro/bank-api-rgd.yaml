@@ -1,0 +1,155 @@
+apiVersion: kro.run/v1alpha1
+kind: ResourceGraphDefinition
+metadata:
+  name: bank-api
+spec:
+  schema:
+    apiVersion: v1alpha1
+    kind: BankApi
+    spec:
+      name: string | default="bank-api"
+      namespace: string | default="bank-api"
+      replicas: integer | default=1
+
+      envSecretName: string | default="bank-api-env"
+
+      service:
+        type: string | default="ClusterIP"
+
+      gateway:
+        enabled: boolean | default=false
+        gatewayName: string | default="shared-gateway"
+        gatewayNamespace: string | default="gateway-system"
+        host: string
+        path: string | default="/"
+
+    status:
+      availableReplicas: ${deployment.status.availableReplicas}
+
+  resources:
+    - id: targetNamespace
+      template:
+        apiVersion: v1
+        kind: Namespace
+        metadata:
+          name: ${schema.spec.namespace}
+
+    - id: deployment
+      template:
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: ${schema.spec.name}
+          namespace: ${schema.spec.namespace}
+          labels:
+            app: ${schema.spec.name}
+        spec:
+          replicas: ${schema.spec.replicas}
+          selector:
+            matchLabels:
+              app: ${schema.spec.name}
+          template:
+            metadata:
+              labels:
+                app: ${schema.spec.name}
+            spec:
+              containers:
+                # --- main API ---
+                - name: api
+                  image: ghcr.io/erwinkramer/bank-api:latest
+                  ports:
+                    - containerPort: 8080
+                      name: http-api
+                  envFrom:
+                    - secretRef:
+                        name: ${schema.spec.envSecretName}
+
+                # --- proxy (envoy) ---
+                - name: proxy
+                  image: ghcr.io/erwinkramer/bank-api-proxy:latest
+                  ports:
+                    - containerPort: 10000
+                      name: http-proxy
+
+                # --- dapr ---
+                - name: dapr
+                  image: ghcr.io/erwinkramer/bank-api-dapr:latest
+                  ports:
+                    - containerPort: 3500
+                      name: dapr-http
+                  envFrom:
+                    - secretRef:
+                        name: ${schema.spec.envSecretName}
+
+                # --- otel collector ---
+                - name: otelcol
+                  image: ghcr.io/erwinkramer/bank-api-otelcol:latest
+                  envFrom:
+                    - secretRef:
+                        name: ${schema.spec.envSecretName}
+
+                # --- s3 proxy ---
+                - name: s3proxy
+                  image: ghcr.io/erwinkramer/bank-api-s3proxy:latest
+                  ports:
+                    - containerPort: 6070
+                      name: s3proxy
+                  envFrom:
+                    - secretRef:
+                        name: ${schema.spec.envSecretName}
+
+    - id: service
+      template:
+        apiVersion: v1
+        kind: Service
+        metadata:
+          name: ${schema.spec.name}
+          namespace: ${schema.spec.namespace}
+        spec:
+          type: ${schema.spec.service.type}
+          selector:
+            app: ${schema.spec.name}
+          ports:
+            # proxy entrypoint
+            - name: http
+              port: 80
+              targetPort: http-proxy
+
+            # direct access (optional/debug)
+            - name: api
+              port: 8080
+              targetPort: http-api
+
+            - name: dapr
+              port: 3500
+              targetPort: dapr-http
+
+            - name: s3proxy
+              port: 6070
+              targetPort: s3proxy
+
+    - id: httproute
+      includeWhen:
+        - ${schema.spec.gateway.enabled}
+      template:
+        apiVersion: gateway.networking.k8s.io/v1
+        kind: HTTPRoute
+        metadata:
+          name: ${schema.spec.name}
+          namespace: ${schema.spec.namespace}
+        spec:
+          parentRefs:
+            - name: ${schema.spec.gateway.gatewayName}
+              namespace: ${schema.spec.gateway.gatewayNamespace}
+
+          hostnames:
+            - ${schema.spec.gateway.host}
+
+          rules:
+            - matches:
+                - path:
+                    type: PathPrefix
+                    value: ${schema.spec.gateway.path}
+              backendRefs:
+                - name: ${service.metadata.name}
+                  port: 80
