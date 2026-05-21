@@ -11,7 +11,8 @@
 				"ms-graph.kiota",
 				"stoplight.spectral",
 				"streetsidesoftware.code-spell-checker",
-				"github.copilot"
+				"github.copilot",
+				"microsoft-aspire.aspire-vscode"
 			],
 			"settings": {
 				"terminal.integrated.shell.linux": "/bin/bash",
@@ -21,19 +22,23 @@
 	},
 	"containerEnv": {
 		"ASPNETCORE_ENVIRONMENT": "Development",
+		"ASPIRE_DCP_USE_DEVELOPER_CERTIFICATE": "true",
+		"ASPIRE_VERSION_CHECK_DISABLED": "true",
 		"DOTNET_LAUNCH_PROFILE": "http",
 		// Zscaler proxy support when reading custom rulesets over https in Spectral
 		"NODE_EXTRA_CA_CERTS": "${containerWorkspaceFolder}/.certs/ZscalerRootCA.crt"
 	},
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
+		"ghcr.io/microsoft/aspire-devcontainer-feature/aspire:2": {}, // https://github.com/microsoft/aspire-devcontainer/blob/main/.devcontainer/devcontainer.json
 		"ghcr.io/devcontainers/features/dotnet:2": {
 			"version": "none", // already pre-installed with image
 			"aspNetCoreRuntimeVersions": "10.0"
 		},
 		"ghcr.io/devcontainers/features/azure-cli:1": {}, // for using the host az cli credentials
 		"ghcr.io/devcontainers/features/docker-in-docker:3": {
-			"moby": false
+			"version": "latest",
+			"moby": true
 		} // for .NET Aspire resource emulation
 	},
 	"mounts": [

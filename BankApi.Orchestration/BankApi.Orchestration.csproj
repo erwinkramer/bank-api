@@ -1,29 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <Sdk Name="Aspire.AppHost.Sdk" Version="13.3.5" />
+<Project Sdk="Aspire.AppHost.Sdk/13.3.5">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <IsAspireHost>true</IsAspireHost>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BankApi.Service.Stable\BankApi.Service.Stable.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BankApi.Service.Beta\BankApi.Service.Beta.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BankApi.Mcp\BankApi.Mcp.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="13.3.5" />
     <PackageReference Include="Aspire.Hosting.Kubernetes" Version="13.3.5-*" />
   </ItemGroup>
 

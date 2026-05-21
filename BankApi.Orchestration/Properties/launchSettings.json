@@ -20,17 +20,10 @@
       "applicationUrl": "http://localhost:15088",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true",
         "DOTNET_ENVIRONMENT": "Development",
         "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19099",
         "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20093"
       }
-    },
-    "generate-manifest": {
-      "commandName": "Project",
-      "launchBrowser": false,
-      "dotnetRunMessages": true,
-      "commandLineArgs": "--publisher manifest --output-path ../Infra.Generated/aspire-manifest.json",
     }
   }
 }

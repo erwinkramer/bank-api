@@ -11,7 +11,8 @@
 		"stoplight.spectral",
 		"streetsidesoftware.code-spell-checker",
 		"ms-vscode.live-server",
-		"github.copilot-chat"
+		"github.copilot-chat",
+		"microsoft-aspire.aspire-vscode"
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
 	"unwantedRecommendations": []

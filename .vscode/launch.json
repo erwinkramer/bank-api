@@ -1,29 +1,29 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Aspire Orchestration",
-            "type": "dotnet",
-            "request": "launch",
-            "projectPath": "${workspaceFolder}/BankApi.Orchestration/BankApi.Orchestration.csproj"
-        },
-        {
-            "name": "MCP Server",
-            "type": "dotnet",
-            "request": "launch",
-            "projectPath": "${workspaceFolder}/BankApi.Mcp/BankApi.Mcp.csproj"
-        },
-        {
-            "name": "API - Stable release channel",
-            "type": "dotnet",
-            "request": "launch",
-            "projectPath": "${workspaceFolder}/BankApi.Service.Stable/BankApi.Service.Stable.csproj"
-        },
-        {
-            "name": "API - Beta release channel",
-            "type": "dotnet",
-            "request": "launch",
-            "projectPath": "${workspaceFolder}/BankApi.Service.Beta/BankApi.Service.Beta.csproj"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "aspire",
+      "request": "launch",
+      "name": "Aspire Orchestration",
+      "program": "${workspaceFolder}"
+    },
+    {
+      "name": "MCP Server",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/BankApi.Mcp/BankApi.Mcp.csproj"
+    },
+    {
+      "name": "API - Stable release channel",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/BankApi.Service.Stable/BankApi.Service.Stable.csproj"
+    },
+    {
+      "name": "API - Beta release channel",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/BankApi.Service.Beta/BankApi.Service.Beta.csproj"
+    }
+  ]
 }
