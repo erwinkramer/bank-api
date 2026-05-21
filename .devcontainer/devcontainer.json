@@ -20,6 +20,7 @@
 		}
 	},
 	"containerEnv": {
+		"ASPNETCORE_ENVIRONMENT": "Development",
 		"DOTNET_LAUNCH_PROFILE": "http",
 		// Zscaler proxy support when reading custom rulesets over https in Spectral
 		"NODE_EXTRA_CA_CERTS": "${containerWorkspaceFolder}/.certs/ZscalerRootCA.crt"
@@ -28,10 +29,10 @@
 	"features": {
 		"ghcr.io/devcontainers/features/dotnet:2": {
 			"version": "none", // already pre-installed with image
-			"aspNetCoreRuntimeVersions": "9.0" // for: https://github.com/microsoft/vscode-dotnettools/issues/1094
+			"aspNetCoreRuntimeVersions": "10.0"
 		},
 		"ghcr.io/devcontainers/features/azure-cli:1": {}, // for using the host az cli credentials
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+		"ghcr.io/devcontainers/features/docker-in-docker:3": {
 			"moby": false
 		} // for .NET Aspire resource emulation
 	},
@@ -45,7 +46,7 @@
 		// Bind ASP.NET user secrets folder (please see https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets#how-the-secret-manager-tool-works)
 		"source=${localEnv:APPDATA}/Microsoft/UserSecrets,target=/home/vscode/.microsoft/usersecrets,type=bind"
 	],
-	// Remove absolutely every file on the .gitignore list, so we don't run into permission issues. 
+	// Remove absolutely every file on the .gitignore list (except .env file), so we don't run into permission issues. 
 	// Also see https://github.com/microsoft/vscode-remote-release/issues/9099#issuecomment-2541564211
-	"postStartCommand": "git clean -xdf && dotnet dev-certs https --clean --import ${containerWorkspaceFolder}/.certs/AspNetDev.pfx -p ''"
+	"postStartCommand": "git clean -xdf -e .env && dotnet dev-certs https --clean --import ${containerWorkspaceFolder}/.certs/AspNetDev.pfx -p ''"
 }
