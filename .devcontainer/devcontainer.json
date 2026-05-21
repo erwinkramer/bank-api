@@ -31,7 +31,7 @@
 			"aspNetCoreRuntimeVersions": "9.0" // for: https://github.com/microsoft/vscode-dotnettools/issues/1094
 		},
 		"ghcr.io/devcontainers/features/azure-cli:1": {}, // for using the host az cli credentials
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+		"ghcr.io/devcontainers/features/docker-in-docker:3": {
 			"moby": false
 		} // for .NET Aspire resource emulation
 	},
