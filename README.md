@@ -172,6 +172,8 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 ### Container images
 
+A complete orchestration of all containers with Kube Resource Orchestrator (kro) is available at [Infra.Kro](/Infra.Kro/). To setup all the containers step-by-step with `podman`, follow the below steps:
+
 Rename the [env sample file](./.env.sample) to `.env` and replace the values.
 
 Create a pod:

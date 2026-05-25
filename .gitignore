@@ -140,3 +140,4 @@ AuthTokens/
 
 # Local environment secrets
 .env
+Infra.Kro/bank-api-secret.yaml

@@ -8,18 +8,15 @@ spec:
     kind: BankApi
     spec:
       name: string | default="bank-api"
-      namespace: string | default="bank-api"
+      namespace: string | default="infra-services"
       replicas: integer | default=1
-
       envSecretName: string | default="bank-api-env"
-
       gateway:
         enabled: boolean | default=false
-        gatewayName: string
-        gatewayNamespace: string
-        host: string
+        gatewayName: string | default="eg"
+        gatewayNamespace: string | default="infra-services"
+        hosts: "[]string"
         path: string | default="/"
-
     status:
       availableReplicas: ${deployment.status.availableReplicas}
 
@@ -39,17 +36,56 @@ spec:
           name: ${schema.spec.name}
           namespace: ${schema.spec.namespace}
           labels:
-            app: ${schema.spec.name}
+            app.kubernetes.io/name: ${schema.spec.name}
+            app.kubernetes.io/instance: ${schema.spec.name}
         spec:
           replicas: ${schema.spec.replicas}
           selector:
             matchLabels:
-              app: ${schema.spec.name}
+              app.kubernetes.io/name: ${schema.spec.name}
           template:
             metadata:
               labels:
-                app: ${schema.spec.name}
+                app.kubernetes.io/name: ${schema.spec.name}
             spec:
+              # 'restartPolicy: Always' on initContainers makes it a sidecar, please see:
+              # https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/#sidecar-example
+              initContainers:
+                - name: otelcol
+                  image: ghcr.io/erwinkramer/bank-api-otelcol:latest
+                  restartPolicy: Always
+                  envFrom:
+                    - secretRef:
+                        name: ${schema.spec.envSecretName}
+
+                - name: proxy
+                  image: ghcr.io/erwinkramer/bank-api-proxy:latest
+                  restartPolicy: Always
+                  ports:
+                    - containerPort: 10000
+                      name: http-proxy
+
+                - name: dapr
+                  image: ghcr.io/erwinkramer/bank-api-dapr:latest
+                  restartPolicy: Always
+                  ports:
+                    - containerPort: 3500
+                      name: dapr-http
+                  envFrom:
+                    - secretRef:
+                        name: ${schema.spec.envSecretName}
+
+                - name: s3proxy
+                  image: ghcr.io/erwinkramer/bank-api-s3proxy:latest
+                  restartPolicy: Always
+                  ports:
+                    - containerPort: 6070
+                      name: s3proxy
+                  envFrom:
+                    - secretRef:
+                        name: ${schema.spec.envSecretName}
+
+              # The main application container
               containers:
                 - name: api
                   image: ghcr.io/erwinkramer/bank-api:latest
@@ -59,37 +95,6 @@ spec:
                   envFrom:
                     - secretRef:
                         name: ${schema.spec.envSecretName}
-
-                - name: proxy
-                  image: ghcr.io/erwinkramer/bank-api-proxy:latest
-                  ports:
-                    - containerPort: 10000
-                      name: http-proxy
-
-                - name: dapr
-                  image: ghcr.io/erwinkramer/bank-api-dapr:latest
-                  ports:
-                    - containerPort: 3500
-                      name: dapr-http
-                  envFrom:
-                    - secretRef:
-                        name: ${schema.spec.envSecretName}
-
-                - name: otelcol
-                  image: ghcr.io/erwinkramer/bank-api-otelcol:latest
-                  envFrom:
-                    - secretRef:
-                        name: ${schema.spec.envSecretName}
-
-                - name: s3proxy
-                  image: ghcr.io/erwinkramer/bank-api-s3proxy:latest
-                  ports:
-                    - containerPort: 6070
-                      name: s3proxy
-                  envFrom:
-                    - secretRef:
-                        name: ${schema.spec.envSecretName}
-
     - id: service
       template:
         apiVersion: v1
@@ -100,20 +105,17 @@ spec:
         spec:
           type: ClusterIP
           selector:
-            app: ${schema.spec.name}
+            app.kubernetes.io/name: ${schema.spec.name}
           ports:
             - name: http
               port: 80
               targetPort: http-proxy
-
             - name: api
               port: 8080
               targetPort: http-api
-
             - name: dapr
               port: 3500
               targetPort: dapr-http
-
             - name: s3proxy
               port: 6070
               targetPort: s3proxy
@@ -131,8 +133,7 @@ spec:
           parentRefs:
             - name: ${schema.spec.gateway.gatewayName}
               namespace: ${schema.spec.gateway.gatewayNamespace}
-          hostnames:
-            - ${schema.spec.gateway.host}
+          hostnames: ${schema.spec.gateway.hosts}
           rules:
             - matches:
                 - path:

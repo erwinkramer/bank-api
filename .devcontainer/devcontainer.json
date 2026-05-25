@@ -53,5 +53,5 @@
 	],
 	// Remove absolutely every file on the .gitignore list (except .env file), so we don't run into permission issues. 
 	// Also see https://github.com/microsoft/vscode-remote-release/issues/9099#issuecomment-2541564211
-	"postStartCommand": "git clean -xdf -e .env && dotnet dev-certs https --clean --import ${containerWorkspaceFolder}/.certs/AspNetDev.pfx -p ''"
+	"postStartCommand": "git clean -xdf -e .env -e 'Infra.Kro/' && dotnet dev-certs https --clean --import ${containerWorkspaceFolder}/.certs/AspNetDev.pfx -p ''"
 }
