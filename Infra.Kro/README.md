@@ -25,7 +25,7 @@ kubectl apply --dry-run=server -f bank-api-secret.yaml
 kubectl apply --dry-run=server -f bank-api-instance.yaml
 ```
 
-## Deploy later to cluster
+## Deploy to cluster
 
 ```bash
 kubectl apply -f bank-api-rgd.yaml
@@ -33,13 +33,21 @@ kubectl apply -f bank-api-secret.yaml
 kubectl apply -f bank-api-instance.yaml
 ```
 
+Check status:
+
+```bash
+kubectl get pods -n infra-services -l app.kubernetes.io/name=bank-api
+```
+
 ## Test
 
-This is without the http route:
+Without the `HTTPRoute`:
 
 ```bash
 kubectl port-forward -n infra-services svc/bank-api 5201:80
 ```
+
+With the `HTTPRoute`: <https://bankapi.w.guanchen.nl/scalar>
 
 Renew pod:
 

@@ -95,6 +95,12 @@ spec:
                   envFrom:
                     - secretRef:
                         name: ${schema.spec.envSecretName}
+                  readinessProbe:
+                    httpGet:
+                      path: /.well-known/jwks.json
+                      port: http-api
+                    initialDelaySeconds: 3
+                    periodSeconds: 5
     - id: service
       template:
         apiVersion: v1
