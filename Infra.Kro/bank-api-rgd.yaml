@@ -28,6 +28,14 @@ spec:
         metadata:
           name: ${schema.spec.namespace}
 
+    - id: serviceAccount
+      template:
+        apiVersion: v1
+        kind: ServiceAccount
+        metadata:
+          name: ${schema.spec.name}
+          namespace: ${schema.spec.namespace}
+
     - id: deployment
       template:
         apiVersion: apps/v1
@@ -48,6 +56,18 @@ spec:
               labels:
                 app.kubernetes.io/name: ${schema.spec.name}
             spec:
+              serviceAccountName: ${serviceAccount.metadata.name}
+              automountServiceAccountToken: false
+
+              volumes:
+                - name: serviceaccount-token
+                  projected:
+                    sources:
+                      - serviceAccountToken:
+                          path: token
+                          audience: ${schema.spec.name}-consumer
+                          expirationSeconds: 3600
+
               # 'restartPolicy: Always' on initContainers makes it a sidecar, please see:
               # https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/#sidecar-example
               initContainers:
@@ -95,6 +115,10 @@ spec:
                   envFrom:
                     - secretRef:
                         name: ${schema.spec.envSecretName}
+                  volumeMounts:
+                    - name: serviceaccount-token
+                      mountPath: /var/run/secrets/${schema.spec.name}
+                      readOnly: true
                   readinessProbe:
                     httpGet:
                       path: /.well-known/jwks.json
