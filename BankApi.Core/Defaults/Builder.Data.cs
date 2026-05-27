@@ -11,7 +11,8 @@ public static partial class ApiBuilder
         services.AddHttpClient("bank-outbox-publisher", client =>
         {
             client.Timeout = TimeSpan.FromSeconds(30);
-        });
+        }).AddKubernetesServiceAccountBearer();
+
         services.AddHostedService<BankEventOutboxBackgroundService>();
         services.AddHybridCache(options =>
         {
