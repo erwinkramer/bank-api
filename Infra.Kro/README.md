@@ -54,3 +54,16 @@ Renew pod:
 ```bash
 kubectl delete pod -n infra-services -l app.kubernetes.io/name=bank-api
 ```
+
+Get a token, via [Keycloak - Kubernetes identity provider](https://www.keycloak.org/docs/latest/server_admin/index.html#_identity_broker_kubernetes):
+
+```bash
+kubectl -n infra-services exec deploy/bank-api -c api -- sh -c '
+TOKEN="$(tr -d "\r\n" < /var/run/secrets/bank-api/token)"
+
+wget -O- \
+  --header="Content-Type: application/x-www-form-urlencoded" \
+  --post-data="grant_type=client_credentials&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=$TOKEN" \
+  http://keycloak-service.infra-keycloak.svc.cluster.local:8080/realms/master/protocol/openid-connect/token
+'
+```
