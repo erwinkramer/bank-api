@@ -37,9 +37,7 @@ static class KubernetesServiceAccountExtensions
             _hasToken = File.Exists(tokenPath);
         }
 
-        protected override async Task<HttpResponseMessage> SendAsync(
-            HttpRequestMessage request,
-            CancellationToken cancellationToken)
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             if (_hasToken && request.Headers.Authorization is null)
             {
