@@ -55,7 +55,15 @@ Renew pod:
 kubectl delete pod -n infra-services -l app.kubernetes.io/name=bank-api
 ```
 
-Get a token, via [Keycloak - Kubernetes identity provider](https://www.keycloak.org/docs/latest/server_admin/index.html#_identity_broker_kubernetes):
+## Keycloak configuration
+
+Configure a [Keycloak Kubernetes identity provider](https://www.keycloak.org/docs/latest/server_admin/index.html#_identity_broker_kubernetes), with issuer: `https://kubernetes.default.svc` and name `local-kubus`.
+
+Configure an OpenID Connect client called `sa-bank-api`. Enable capabilities `Client authentication` and `Service account roles`.
+
+Change in the `Credentials` tab of the client the `Client Authenticator` to `Signed JWT - Federated`, with provider `local-kubus` and subject `system:serviceaccount:infra-services:bank-api`.
+
+Get a token, via the `api` container:
 
 ```bash
 kubectl -n infra-services exec deploy/bank-api -c api -- sh -c '
