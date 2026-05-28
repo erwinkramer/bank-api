@@ -63,15 +63,9 @@ Configure an OpenID Connect client called `sa-bank-api`. Enable capabilities `Cl
 
 Change in the `Credentials` tab of the client the `Client Authenticator` to `Signed JWT - Federated`, with provider `local-kubus` and subject `system:serviceaccount:infra-services:bank-api`.
 
-Get a token, via the `api` container:
+As test, get a Keycloak token in exchange for the Kubernetes token, via the `api` container:
 
 ```bash
-kubectl -n infra-services exec deploy/bank-api -c api -- sh -c '
-TOKEN="$(tr -d "\r\n" < /var/run/secrets/bank-api/token)"
-
-wget -O- \
-  --header="Content-Type: application/x-www-form-urlencoded" \
-  --post-data="grant_type=client_credentials&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=$TOKEN" \
-  http://keycloak-service.infra-keycloak.svc:8080/realms/master/protocol/openid-connect/token
-'
+kubectl -n infra-services exec deploy/bank-api -c api -- sh -c \
+'wget -qO- --header="Content-Type: application/x-www-form-urlencoded" --post-data="grant_type=client_credentials&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=$(cat /var/run/secrets/bank-api/token)" http://keycloak-service.infra-keycloak.svc:8080/realms/master/protocol/openid-connect/token'
 ```
