@@ -64,6 +64,6 @@ TOKEN="$(tr -d "\r\n" < /var/run/secrets/bank-api/token)"
 wget -O- \
   --header="Content-Type: application/x-www-form-urlencoded" \
   --post-data="grant_type=client_credentials&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=$TOKEN" \
-  http://keycloak-service.infra-keycloak.svc.cluster.local:8080/realms/master/protocol/openid-connect/token
+  http://keycloak-service.infra-keycloak.svc:8080/realms/master/protocol/openid-connect/token
 '
 ```
