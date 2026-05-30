@@ -41,8 +41,11 @@ resources:
                               - "SecDebugLogLevel 3"
                               - "SecRuleEngine On"
                               - "SecRequestBodyAccess On"
+                              # by default the 900200 rule doesn't allow PUT and DELETE:
+                              - "SecAction \"id:900200,phase:1,nolog,pass,setvar:'tx.allowed_methods=GET HEAD POST PUT OPTIONS DELETE'\"" 
                               - "Include @crs-setup"
                               - "Include @owasp_crs/*.conf"
+                              # disable rule about missing User-Agent 
                               - "SecRuleRemoveById 920320"
                         default_directive: "waf1"
                 - name: envoy.filters.http.header_mutation

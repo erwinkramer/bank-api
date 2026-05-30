@@ -4,6 +4,9 @@
     "spectral.validateFiles": [
         "**/Specs.Generated/*.json"
     ],
+    "rest-client.defaultHeaders": {
+        "User-Agent": null
+    },
     "rest-client.rememberCookiesForSubsequentRequests": false,
     "cSpell.words": [
         "Apim",
