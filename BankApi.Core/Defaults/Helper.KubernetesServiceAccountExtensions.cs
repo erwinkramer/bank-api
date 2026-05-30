@@ -8,7 +8,7 @@ static class KubernetesServiceAccountExtensions
     public static IHttpClientBuilder AddKubernetesServiceAccountBearer(
         this IHttpClientBuilder builder,
         string tokenPath = "/var/run/secrets/bank-api/token",
-        string tokenEndpoint = "http://keycloak-service.infra-keycloak.svc:8080/realms/master/protocol/openid-connect/token")
+        string tokenEndpoint = "http://keycloak-service.infra-keycloak.svc:8080/realms/bank/protocol/openid-connect/token")
     {
         builder.Services.AddHttpClient(ClientNameTokenAssertion);
 

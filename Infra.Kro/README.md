@@ -67,5 +67,5 @@ As test, get a Keycloak token in exchange for the Kubernetes token, via the `api
 
 ```bash
 kubectl -n infra-services exec deploy/bank-api -c api -- sh -c \
-'wget -qO- --header="Content-Type: application/x-www-form-urlencoded" --post-data="grant_type=client_credentials&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=$(cat /var/run/secrets/bank-api/token)" http://keycloak-service.infra-keycloak.svc:8080/realms/master/protocol/openid-connect/token'
+'wget -qO- --header="Content-Type: application/x-www-form-urlencoded" --post-data="grant_type=client_credentials&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=$(cat /var/run/secrets/bank-api/token)" http://keycloak-service.infra-keycloak.svc:8080/realms/bank/protocol/openid-connect/token'
 ```

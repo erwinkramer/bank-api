@@ -65,7 +65,7 @@ spec:
                     sources:
                       - serviceAccountToken:
                           path: token
-                          audience: http://localhost:8080/realms/master # Keycloak audience
+                          audience: http://localhost:8080/realms/bank # Keycloak audience
                           expirationSeconds: 3600
 
               # 'restartPolicy: Always' on initContainers makes it a sidecar, please see:
