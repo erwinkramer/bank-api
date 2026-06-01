@@ -7,7 +7,7 @@ var k8s = builder.AddKubernetesEnvironment("k8s").WithContainerRegistry(registry
 
 var dotEnvParams = builder.AddParametersFromDotEnv();
 
-var postgres = builder.AddPostgres("bank-api-db").WithImage("postgres:18-alpine"); // default is 17.x at the moment, so force later version
+var postgres = builder.AddPostgres("bank-api-db").WithImageTag("18-alpine");
 
 var s3Proxy = builder.AddDockerfile("bank-api-s3proxy", "../Sidecar.S3Proxy").WithHttpEndpoint(port: 6070, targetPort: 6070);
 s3Proxy.WithEnvironmentParameters(dotEnvParams);
