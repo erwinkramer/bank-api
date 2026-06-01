@@ -2,14 +2,15 @@ using Microsoft.EntityFrameworkCore;
 
 public static partial class ApiBuilder
 {
-    public static IServiceCollection AddDataServices(this IServiceCollection services)
+    public static IServiceCollection AddDataServices(this IServiceCollection services, IConfiguration configuration)
     {
+        var postgresConnectionString = configuration.GetConnectionString("bank-api-db");
+        var useInMemoryDatabase = string.IsNullOrWhiteSpace(postgresConnectionString);
+
         services.AddDbContext<BankDb>(options =>
         {
-            var postgresConnectionString = Environment.GetEnvironmentVariable("ConnectionStrings__bank-api-postgres");
-
-            if (string.IsNullOrWhiteSpace(postgresConnectionString))
-                options.UseInMemoryDatabase(GlobalConfiguration.ApiSettings!.DatabaseName);
+            if (useInMemoryDatabase)
+                options.UseInMemoryDatabase("bank-api-db");
             else
                 options.UseNpgsql(postgresConnectionString);
         });

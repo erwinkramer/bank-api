@@ -2,27 +2,27 @@
 apiVersion: "apps/v1"
 kind: "StatefulSet"
 metadata:
-  name: "bank-api-postgres-statefulset"
+  name: "bank-api-db-statefulset"
   labels:
     app.kubernetes.io/name: "{{ .Chart.Name }}"
-    app.kubernetes.io/component: "bank-api-postgres"
+    app.kubernetes.io/component: "bank-api-db"
     app.kubernetes.io/instance: "{{ .Release.Name }}"
 spec:
   template:
     metadata:
       labels:
         app.kubernetes.io/name: "{{ .Chart.Name }}"
-        app.kubernetes.io/component: "bank-api-postgres"
+        app.kubernetes.io/component: "bank-api-db"
         app.kubernetes.io/instance: "{{ .Release.Name }}"
     spec:
       containers:
         - image: "docker.io/postgres:18-alpine"
-          name: "bank-api-postgres"
+          name: "bank-api-db"
           envFrom:
             - configMapRef:
-                name: "bank-api-postgres-config"
+                name: "bank-api-db-config"
             - secretRef:
-                name: "bank-api-postgres-secrets"
+                name: "bank-api-db-secrets"
           ports:
             - name: "tcp"
               protocol: "TCP"
@@ -31,7 +31,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: "{{ .Chart.Name }}"
-      app.kubernetes.io/component: "bank-api-postgres"
+      app.kubernetes.io/component: "bank-api-db"
       app.kubernetes.io/instance: "{{ .Release.Name }}"
   replicas: 1
   persistentVolumeClaimRetentionPolicy: {}

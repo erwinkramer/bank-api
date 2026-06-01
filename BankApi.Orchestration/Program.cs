@@ -7,7 +7,7 @@ var k8s = builder.AddKubernetesEnvironment("k8s").WithContainerRegistry(registry
 
 var dotEnvParams = builder.AddParametersFromDotEnv();
 
-var postgres = builder.AddPostgres("bank-api-postgres").WithImage("postgres:18-alpine"); // default is 17.x at the moment, so force later version
+var postgres = builder.AddPostgres("bank-api-db").WithImage("postgres:18-alpine"); // default is 17.x at the moment, so force later version
 
 var s3Proxy = builder.AddDockerfile("bank-api-s3proxy", "../Sidecar.S3Proxy").WithHttpEndpoint(port: 6070, targetPort: 6070);
 s3Proxy.WithEnvironmentParameters(dotEnvParams);
@@ -16,18 +16,21 @@ var dapr = builder.AddDockerfile("bank-api-dapr", "../Sidecar.Dapr").WithEndpoin
 dapr.WithEnvironmentParameters(dotEnvParams);
 
 var apiStable = builder.AddProject<Projects.BankApi_Service_Stable>("bank-api")
+    .WithExternalHttpEndpoints()
     .WithHttpHealthCheck("/.well-known/jwks.json")
     .WaitFor(postgres).WithReference(postgres)
     .WaitFor(s3Proxy)
     .WaitFor(dapr);
 
 var apiBeta = builder.AddProject<Projects.BankApi_Service_Beta>("bank-api-beta")
+    .WithExternalHttpEndpoints()
     .WithHttpHealthCheck("/.well-known/jwks.json")
     .WaitFor(postgres).WithReference(postgres)
     .WaitFor(s3Proxy)
     .WaitFor(dapr);
 
-var mcpStable = builder.AddProject<Projects.BankApi_Mcp>("bank-api-mcp");
+var mcpStable = builder.AddProject<Projects.BankApi_Mcp>("bank-api-mcp")
+    .WithExternalHttpEndpoints();
 
 k8s.AddGateway("bank-gateway")
     .WithGatewayClass("bank-gateway-class")

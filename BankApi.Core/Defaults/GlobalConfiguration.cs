@@ -25,7 +25,6 @@ public static class GlobalConfiguration
       public required GenericBoundariesModel GenericBoundaries { get; set; }
       public required FixedWindowRateLimiterOptions FixedWindowRateLimit { get; set; }
       public required HybridCacheEntryOptions Cache { get; set; }
-      public required string DatabaseName { get; set; }
    }
 
    public class EntraIdOptions

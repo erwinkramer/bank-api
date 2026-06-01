@@ -20,7 +20,7 @@ builder.AddStorageClients();
 builder.Services.ConfigureJson();
 builder.Services.AddHealthChecks();
 builder.Services.AddAuthServices(builder.Environment);
-builder.Services.AddDataServices();
+builder.Services.AddDataServices(builder.Configuration);
 builder.Services.AddDapr();
 builder.Services.AddDownstreamApiServices();
 builder.Services.AddOpenApiServices();

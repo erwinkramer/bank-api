@@ -5,7 +5,7 @@ public class MockDb : IDbContextFactory<BankDb>
     public BankDb CreateDbContext()
     {
         var options = new DbContextOptionsBuilder<BankDb>()
-            .UseInMemoryDatabase(GlobalConfiguration.ApiSettings!.DatabaseName)
+            .UseInMemoryDatabase("bank-api-db")
             .Options;
 
         var context = new BankDb(options);

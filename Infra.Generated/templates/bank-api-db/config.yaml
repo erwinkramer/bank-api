@@ -1,0 +1,13 @@
+---
+apiVersion: "v1"
+kind: "ConfigMap"
+metadata:
+  name: "bank-api-db-config"
+  labels:
+    app.kubernetes.io/name: "{{ .Chart.Name }}"
+    app.kubernetes.io/component: "bank-api-db"
+    app.kubernetes.io/instance: "{{ .Release.Name }}"
+data:
+  POSTGRES_HOST_AUTH_METHOD: "{{ .Values.config.bank_api_db.POSTGRES_HOST_AUTH_METHOD }}"
+  POSTGRES_INITDB_ARGS: "{{ .Values.config.bank_api_db.POSTGRES_INITDB_ARGS }}"
+  POSTGRES_USER: "{{ .Values.config.bank_api_db.POSTGRES_USER }}"
