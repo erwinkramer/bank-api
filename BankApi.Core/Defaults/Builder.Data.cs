@@ -19,6 +19,9 @@ public static partial class ApiBuilder
         }).AddKubernetesServiceAccountBearer();
 
         services.AddHostedService<BankEventOutboxBackgroundService>();
+
+        // Consider adding the distributed cache layer (L2) for hybrid cache:
+        // https://learn.microsoft.com/en-us/dotnet/core/extensions/caching#configure-distributed-cache
         services.AddHybridCache(options =>
         {
             options.DefaultEntryOptions = GlobalConfiguration.ApiSettings!.Cache;
