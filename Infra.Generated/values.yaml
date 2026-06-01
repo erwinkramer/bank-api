@@ -13,6 +13,8 @@ parameters:
     port_http: 8080
     bank_api_mcp_image: "bank-api-mcp:latest"
 secrets:
+  bank_api_postgres:
+    bank_api_postgres_password: ""
   bank_api_s3proxy:
     ASPNETCORE_ENVIRONMENT: ""
     AZURE_TENANT_ID: ""
@@ -23,11 +25,27 @@ secrets:
     AZURE_TENANT_ID: ""
     AZURE_CLIENT_ID: ""
     AZURE_CLIENT_SECRET: ""
+  bank_api:
+    ConnectionStrings__bank_api_postgres: ""
+    bank_api_postgres_password: ""
+    BANK_API_POSTGRES_URI: ""
+  bank_api_beta:
+    ConnectionStrings__bank_api_postgres: ""
+    bank_api_postgres_password: ""
+    BANK_API_POSTGRES_URI: ""
 config:
+  bank_api_postgres:
+    POSTGRES_HOST_AUTH_METHOD: "scram-sha-256"
+    POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256 --auth-local=scram-sha-256"
+    POSTGRES_USER: "postgres"
   bank_api:
     OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY: "in_memory"
     ASPNETCORE_FORWARDEDHEADERS_ENABLED: "true"
     HTTP_PORTS: ""
+    BANK_API_POSTGRES_HOST: "bank-api-postgres-service"
+    BANK_API_POSTGRES_PORT: "5432"
+    BANK_API_POSTGRES_USERNAME: "postgres"
+    BANK_API_POSTGRES_JDBCCONNECTIONSTRING: "jdbc:postgresql://bank-api-postgres-service:5432"
     OTEL_EXPORTER_OTLP_ENDPOINT: "http://k8s-dashboard-service:18889"
     OTEL_EXPORTER_OTLP_PROTOCOL: "grpc"
     OTEL_SERVICE_NAME: "bank-api"
@@ -35,6 +53,10 @@ config:
     OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY: "in_memory"
     ASPNETCORE_FORWARDEDHEADERS_ENABLED: "true"
     HTTP_PORTS: ""
+    BANK_API_POSTGRES_HOST: "bank-api-postgres-service"
+    BANK_API_POSTGRES_PORT: "5432"
+    BANK_API_POSTGRES_USERNAME: "postgres"
+    BANK_API_POSTGRES_JDBCCONNECTIONSTRING: "jdbc:postgresql://bank-api-postgres-service:5432"
     OTEL_EXPORTER_OTLP_ENDPOINT: "http://k8s-dashboard-service:18889"
     OTEL_EXPORTER_OTLP_PROTOCOL: "grpc"
     OTEL_SERVICE_NAME: "bank-api-beta"

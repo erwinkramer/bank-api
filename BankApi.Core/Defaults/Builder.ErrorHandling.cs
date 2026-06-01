@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 
 public static partial class ApiBuilder
 {
@@ -23,8 +24,10 @@ public class ExceptionHandler(IProblemDetailsService problemDetailsService) : IE
     {
         var statusCode = exception switch
         {
-            InvalidOperationException or ArgumentException => StatusCodes.Status422UnprocessableEntity,
-            BadHttpRequestException or FormatException => StatusCodes.Status400BadRequest,
+            InvalidOperationException or ArgumentException or DbUpdateException
+              => StatusCodes.Status422UnprocessableEntity,
+            BadHttpRequestException or FormatException
+              => StatusCodes.Status400BadRequest,
             _ => StatusCodes.Status500InternalServerError
         };
 

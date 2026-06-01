@@ -14,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.Kubernetes" Version="13.3.5-*" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="13.*" />
+    <PackageReference Include="Aspire.Hosting.Kubernetes" Version="13.*-*" />
   </ItemGroup>
 
 </Project>

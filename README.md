@@ -136,6 +136,12 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 - All [recommended Visual Studio Code extensions](.vscode/extensions.json)
 
+- [Aspire CLI](https://aspire.dev/reference/cli/install-script/#:~:text=Or-,download%20and%20install,-in%20one%20command):
+
+  ```bash
+  curl -fsSL https://aspire.dev/install.sh | bash -s --
+  ```
+
 ## Quick start
 
 - Use a `pwsh` shell (for a click-a-long experience).
@@ -150,7 +156,7 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
   dotnet dev-certs https --clean && dotnet dev-certs https -ep ./.certs/AspNetDev.pfx -p '' --trust
   ```
 
-- (Optionally) regenerate the [Helm chart artifacts](https://aspire.dev/deployment/kubernetes/kubernetes/#publish-helm-chart-artifacts) via the [Aspire CLI](https://aspire.dev/get-started/install-cli/#install-the-aspire-cli):
+- (Optionally) regenerate the [Helm chart artifacts](https://aspire.dev/deployment/kubernetes/kubernetes/#publish-helm-chart-artifacts) via the Aspire CLI:
 
   ```bash
   rm -r Infra.Generated/* && aspire --version && aspire publish -o Infra.Generated

@@ -21,6 +21,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: "bank-api-config"
+            - secretRef:
+                name: "bank-api-secrets"
           ports:
             - name: "http"
               protocol: "TCP"

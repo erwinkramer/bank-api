@@ -17,17 +17,17 @@ public class BankDb : DbContext
                 BankModel[] data = [
                     new ()
                     {
-                        Id = Guid.Parse("29e26195-cf57-417d-ac1b-998398e2dc88"),
+                        Id = Guid.NewGuid(),
                         BankTier = BankTier.A,
                         IsCompliant = true,
-                        Name = "Foo"
+                        Name = $"Bank branch {Random.Shared.Next(10, 1000)}"
                     },
                     new ()
                     {
-                        Id = Guid.Parse("bed8a856-1d6a-4c2e-9392-a126a7eda415"),
+                        Id = Guid.NewGuid(),
                         BankTier = BankTier.B,
                         IsCompliant = false,
-                        Name = "Bar"
+                        Name = $"Bank branch {Random.Shared.Next(10, 1000)}"
                     }
                 ];
 

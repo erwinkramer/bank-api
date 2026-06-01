@@ -6,7 +6,12 @@ public static partial class ApiBuilder
     {
         services.AddDbContext<BankDb>(options =>
         {
-            options.UseInMemoryDatabase(GlobalConfiguration.ApiSettings!.DatabaseName);
+            var postgresConnectionString = Environment.GetEnvironmentVariable("ConnectionStrings__bank-api-postgres");
+
+            if (string.IsNullOrWhiteSpace(postgresConnectionString))
+                options.UseInMemoryDatabase(GlobalConfiguration.ApiSettings!.DatabaseName);
+            else
+                options.UseNpgsql(postgresConnectionString);
         });
         services.AddHttpClient("bank-outbox-publisher", client =>
         {
