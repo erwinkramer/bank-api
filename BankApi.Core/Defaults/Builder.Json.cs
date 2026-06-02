@@ -12,7 +12,7 @@ public static partial class ApiBuilder
             options.SerializerOptions.NumberHandling = JsonNumberHandling.Strict;
         });
 
-        var jsonEventFormatter = new JsonEventFormatter(
+        GlobalConfiguration.JsonEventFormatter = new JsonEventFormatter(
             new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -22,8 +22,6 @@ public static partial class ApiBuilder
                 }
             },
             new JsonDocumentOptions());
-
-        GlobalConfiguration.JsonEventFormatter = jsonEventFormatter;
 
         return services;
     }

@@ -9,18 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 GlobalConfiguration.ApiDocument = builder.Configuration.GetRequiredSection("ApiDocument").Get<OpenApiDocument>()!;
 GlobalConfiguration.ApiSettings = builder.Configuration.GetRequiredSection("ApiSettings").Get<GlobalConfiguration.SettingsModel>()!;
 GlobalConfiguration.ApiExamples = JsonSerializer.Deserialize<JsonObject>(File.ReadAllText("./appexamples.json"))!;
-GlobalConfiguration.ApiVersion = Version.Parse(GlobalConfiguration.ApiDocument.Info.Version!);
 
 GridifyGlobalConfiguration.EnableEntityFrameworkCompatibilityLayer();
 GridifyGlobalConfiguration.DefaultPageSize = GlobalConfiguration.ApiSettings.PageSize.Default;
 
-builder.AddLoggingServices();
 builder.AddComplianceServices();
-builder.AddStorageClients();
+builder.Services.AddStorageClients();
+builder.Services.AddDataServices(builder.Configuration);
+builder.Services.AddLoggingServices();
 builder.Services.ConfigureJson();
 builder.Services.AddHealthChecks();
 builder.Services.AddAuthServices(builder.Environment);
-builder.Services.AddDataServices(builder.Configuration);
 builder.Services.AddDapr();
 builder.Services.AddDownstreamApiServices();
 builder.Services.AddOpenApiServices();
@@ -35,9 +34,9 @@ app.MapJwk(out var jwk); // register JWKS endpoint
 app.UseMiddleware<JwsResponseSigningMiddleware>(jwk);
 app.UseMiddleware<ApiVersionHeaderMiddleware>();
 app.UseExceptionHandler();
-app.UsePathBase(new($"/v{GlobalConfiguration.ApiVersion!.Major}")); // Useful when versioning routing happens in an API Management system
+app.UsePathBase(new($"/v{GlobalConfiguration.ApiMajorVersion}")); // Useful when versioning routing happens in an API Management system
 app.UseAuthorization(); // explicitly register because we use path base
-app.UseMiddleware<EntraIdTokenReuseMiddleware>(); // needs to be at least after authorization
+app.UseMiddleware<EntraIdTokenReuseMiddleware>(); // Needs to be at least after authorization
 app.UseRateLimiter();
 app.UseCors();
 

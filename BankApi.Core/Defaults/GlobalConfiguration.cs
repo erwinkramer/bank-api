@@ -13,18 +13,26 @@ public static class GlobalConfiguration
 
    public static SettingsModel? ApiSettings { get; set; }
 
-   public static Version? ApiVersion { get; set; }
+   public static int ApiMajorVersion { get => Version.Parse(ApiDocument!.Info.Version!).Major; }
 
    public static JsonEventFormatter? JsonEventFormatter { get; set; }
 
    public class SettingsModel
    {
+      public required S3StorageOptions Storage { get; set; }
       public required EntraIdOptions EntraId { get; set; }
       public required TokenValidationParameters TokenValidation { get; set; }
       public required PageSizeModel PageSize { get; set; }
       public required GenericBoundariesModel GenericBoundaries { get; set; }
       public required FixedWindowRateLimiterOptions FixedWindowRateLimit { get; set; }
       public required HybridCacheEntryOptions Cache { get; set; }
+   }
+
+      
+   public class S3StorageOptions
+   {
+      public string ServiceUrl { get; set; } = "";
+      public bool ForcePathStyle { get; set; } = true;
    }
 
    public class EntraIdOptions

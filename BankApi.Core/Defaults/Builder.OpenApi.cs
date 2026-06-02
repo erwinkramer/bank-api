@@ -5,7 +5,7 @@ public static partial class ApiBuilder
 {
     public static IServiceCollection AddOpenApiServices(this IServiceCollection services)
     {
-        services.AddOpenApi($"v{GlobalConfiguration.ApiVersion!.Major}", options =>
+        services.AddOpenApi($"v{GlobalConfiguration.ApiMajorVersion}", options =>
         {
             // Purposely set the spec to a version that is supported by Azure APIM, 
             // the 'Specs.Generated' output files still use the latest spec versions.

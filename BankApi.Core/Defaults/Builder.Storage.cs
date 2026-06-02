@@ -7,23 +7,23 @@ public static partial class ApiBuilder
 {
     private const string ReportsBucketName = "reports";
 
-    public static IHostApplicationBuilder AddStorageClients(this IHostApplicationBuilder builder)
+    public static IServiceCollection AddStorageClients(this IServiceCollection services)
     {
-        var storageOptions = builder.Configuration.GetRequiredSection("Storage").Get<S3StorageOptions>()!;
+        var storage = GlobalConfiguration.ApiSettings!.Storage;
 
-        builder.Services.AddSingleton<IAmazonS3>(_ =>
+        services.AddSingleton<IAmazonS3>(_ =>
         {
             var s3Config = new AmazonS3Config
             {
-                ServiceURL = storageOptions.ServiceUrl,
-                ForcePathStyle = storageOptions.ForcePathStyle,
-                UseHttp = storageOptions.ServiceUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+                ServiceURL = storage.ServiceUrl,
+                ForcePathStyle = storage.ForcePathStyle,
+                UseHttp = storage.ServiceUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
             };
 
             return new AmazonS3Client(new AnonymousAWSCredentials(), s3Config);
         });
 
-        return builder;
+        return services;
     }
 
     public static async Task ProvisionStorage(this IServiceProvider provider)
@@ -45,11 +45,5 @@ public static partial class ApiBuilder
             Key = "secretz.txt",
             ContentBody = "you found the file :o"
         });
-    }
-
-    public sealed class S3StorageOptions
-    {
-        public string ServiceUrl { get; set; } = "";
-        public bool ForcePathStyle { get; set; } = true;
     }
 }
