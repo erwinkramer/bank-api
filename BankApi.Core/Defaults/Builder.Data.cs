@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 public static partial class ApiBuilder
 {
-    public static IServiceCollection AddDataServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDataServices(this IServiceCollection services, IHostEnvironment environment, IConfiguration configuration)
     {
         var postgresConnectionString = configuration.GetConnectionString("bank-api-db");
         var useInMemoryDatabase = string.IsNullOrWhiteSpace(postgresConnectionString);
@@ -14,6 +14,12 @@ public static partial class ApiBuilder
             else
                 options.UseNpgsql(postgresConnectionString);
         });
+
+        if (environment.IsDevelopment())
+        {
+            services.AddDatabaseDeveloperPageExceptionFilter();
+        }
+
         services.AddHttpClient("bank-outbox-publisher", client =>
         {
             client.Timeout = TimeSpan.FromSeconds(30);
@@ -27,7 +33,6 @@ public static partial class ApiBuilder
         {
             options.DefaultEntryOptions = GlobalConfiguration.ApiSettings!.Cache;
         });
-        services.AddDatabaseDeveloperPageExceptionFilter();
 
         return services;
     }

@@ -15,7 +15,7 @@ GridifyGlobalConfiguration.DefaultPageSize = GlobalConfiguration.ApiSettings.Pag
 
 builder.AddComplianceServices();
 builder.Services.AddStorageClients();
-builder.Services.AddDataServices(builder.Configuration);
+builder.Services.AddDataServices(builder.Environment, builder.Configuration);
 builder.Services.AddLoggingServices();
 builder.Services.ConfigureJson();
 builder.Services.AddHealthChecks();

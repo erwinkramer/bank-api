@@ -23,6 +23,7 @@ var apiStable = builder.AddProject<Projects.BankApi_Service_Stable>("bank-api")
     .WaitFor(dapr);
 
 var apiBeta = builder.AddProject<Projects.BankApi_Service_Beta>("bank-api-beta")
+    .WithExplicitStart()
     .WithExternalHttpEndpoints()
     .WithHttpHealthCheck("/.well-known/jwks.json")
     .WaitFor(postgres).WithReference(postgres)
