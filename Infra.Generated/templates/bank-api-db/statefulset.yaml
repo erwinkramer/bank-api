@@ -16,7 +16,7 @@ spec:
         app.kubernetes.io/instance: "{{ .Release.Name }}"
     spec:
       containers:
-        - image: "docker.io/postgres:18-alpine"
+        - image: "docker.io/library/postgres:18-alpine"
           name: "bank-api-db"
           envFrom:
             - configMapRef:
