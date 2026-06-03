@@ -138,8 +138,8 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
 - [Aspire CLI](https://aspire.dev/reference/cli/install-script/#:~:text=Or-,download%20and%20install,-in%20one%20command):
 
-  ```bash
-  curl -fsSL https://aspire.dev/install.sh | bash -s --
+  ```pwsh
+  irm https://aspire.dev/install.ps1 | iex
   ```
 
 ## Quick start

@@ -16,12 +16,10 @@ secrets:
   bank_api_db:
     bank_api_db_password: ""
   bank_api_s3proxy:
-    ASPNETCORE_ENVIRONMENT: ""
     AZURE_TENANT_ID: ""
     AZURE_CLIENT_ID: ""
     AZURE_CLIENT_SECRET: ""
   bank_api_dapr:
-    ASPNETCORE_ENVIRONMENT: ""
     AZURE_TENANT_ID: ""
     AZURE_CLIENT_ID: ""
     AZURE_CLIENT_SECRET: ""
