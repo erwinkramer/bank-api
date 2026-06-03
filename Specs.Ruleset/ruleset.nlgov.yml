@@ -20,7 +20,18 @@
 extends: spectral:oas
 
 rules:
+  #/core/publish-openapi (deze error-rules valideren of OAS valid is)
+  oas3-schema: error
+  operation-operationId-unique: error
+  path-params: error
+  openapi-tags-uniqueness: error
+  oas3-valid-media-example: error
+  oas3-valid-schema-example: error
+  oas3-server-variables: error
   oas3-api-servers: error
+
+  #/core/no-trailing-slash
+  path-keys-no-trailing-slash: error
 
   #/core/doc-openapi
   nlgov:openapi3:
@@ -137,7 +148,7 @@ rules:
   nlgov:paths-kebab-case:
     severity: error
     message: "{{property}} is not kebab-case."
-    given: $.paths[?(@property && !@property.match(/\/openapi\.json/))]~
+    given: $.paths[?(@property && !@property.match(/\/openapi\.(json)|(yaml)/))]~
     then:
       function: pattern
       functionOptions:
@@ -186,8 +197,9 @@ rules:
       functionOptions:
         match: ^https://.*
 
+  #/core/error-handling/problem-details
   nlgov:use-problem-schema:
-    severity: warn
+    severity: error
     message: "The content type of an error response should be application/problem+json or application/problem+xml to match RFC 9457."
     given: $..[responses][?(@property && @property.match(/(4|5)\d\d/))].content
     then:
@@ -197,6 +209,41 @@ rules:
           anyOf:
             - required: ["application/problem+json"]
             - required: ["application/problem+xml"]
+
+  nlgov:problem-schema-members:
+    severity: error
+    message: "{{error}}. These fields are required: status, title and detail."
+    given: $..[responses][?(@property && @property.match(/(4|5)\d\d/))].content[?(@property=="application/problem+json" || @property=="application/problem+xml")]..schema
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            properties:
+              type: object
+              required:
+              - status
+              - title
+              - detail
+
+  #/core/error-handling/invalid-input
+  nlgov:problem-invalid-input:
+    severity: error
+    message: "GET and DELETE endpoints that have parameters, and all other endpoints must be able to return a 400 response"
+    given:
+      - $.paths..[?( @property.match(/(get)|(delete)/) && @.parameters && @.parameters.length > 0 )]
+      - $.paths..[?( @property.match(/(put)|(post)|(patch)/))]
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            responses:
+              type: object
+              required:
+              - "400"
 
   nlgov:property-casing:
     severity: warn
@@ -208,6 +255,56 @@ rules:
         type: camel
       field: "@key"
     message: Properties must be lowerCamelCase.
+
+  #/core/date-time/timezone
+  nlgov:date-time-ensure-timezone:
+    severity: error
+    given: $..properties[*].format
+    message: "Use date-time format which includes a timezone"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/^date-time-local$/"
+
+  nlgov:time-without-timezone:
+    severity: error
+    given: $..properties[*].format
+    message: "Use time-local format without a timezone"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/^time$/"
+
+  #/core/date-time/date-omit-time-portion
+  nlgov:specify-format-for-date-and-time:
+    severity: error
+    given:
+      - $..properties[date,datum]
+      - $..properties[?(@property && @property.match(/((\w+D)|(_[dD]))((ate)|(atum))/))]
+    message: "Any date field must set 'format' to 'date'"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["format"]
+            - properties:
+                allOf:
+                  type: array
+                  items:
+                    required: ["format"]
+              required: ["allOf"]
+
+  nlgov:use-date-instead-of-datetime:
+    severity: error
+    given:
+      - $..properties[date,datum]..format
+      - $..properties[?(@property && @property.match(/((\w+D)|(_[dD]))((ate)|(atum))/))]..format
+    message: "Field represents a date and therefore must set 'format' to 'date'"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/^date-time$/"
 
   nlgov:semver:
     severity: error
