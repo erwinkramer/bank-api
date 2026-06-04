@@ -56,6 +56,13 @@ spec:
               labels:
                 app.kubernetes.io/name: ${schema.spec.name}
             spec:
+              resources:
+                requests:
+                  cpu: "100m"
+                  memory: "512Mi"
+                limits:
+                  cpu: "500m"
+                  memory: "2Gi"
               serviceAccountName: ${serviceAccount.metadata.name}
               automountServiceAccountToken: false
 
