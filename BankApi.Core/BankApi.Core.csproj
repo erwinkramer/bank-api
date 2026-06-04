@@ -24,7 +24,7 @@
     <PackageReference Include="Microsoft.Extensions.Compliance.Redaction" Version="10.*" />
     <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="10.*" />
     <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="10.*" />
-    <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="8.18.*" /> <!-- https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/issues/3512 -->
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="8.*" />
     <PackageReference Include="Microsoft.Kiota.Bundle" Version="2.*" />
     <PackageReference Include="Microsoft.OpenApi" Version="2.*" /> <!-- Requires to stay on v2, please read https://github.com/microsoft/OpenAPI.NET/blob/main/CONTRIBUTING.md#branches-and-support-policy -->
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.*" />
