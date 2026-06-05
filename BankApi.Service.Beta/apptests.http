@@ -65,19 +65,21 @@ Content-Type: application/json
 
 ###
 
+# @name getBank
 https://{{host}}/{{apiVersion}}/banks/{{createBank.response.body.$.id}}
 Origin: https://{{host}} 
 Ocp-Apim-Subscription-Key: Lifetime Subscription
 
 ###
 
-PUT https://{{host}}/{{apiVersion}}/banks/{{createBank.response.body.$.id}}
+PUT https://{{host}}/{{apiVersion}}/banks/{{getBank.response.body.$.id}}
 Origin: https://{{host}} 
 Ocp-Apim-Subscription-Key: Lifetime Subscription
 Content-Type: application/json
-  
+If-Match: {{getBank.response.headers.ETag}}
+
 {
-  "name": "{{createBank.response.body.$.name}}",
+  "name": "{{getBank.response.body.$.name}}",
   "isCompliant": true,
   "bankTier": "B"
 }

@@ -163,6 +163,9 @@
               },
               "X-Rate-Limit-Limit": {
                 "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "ETag": {
+                "$ref": "#/components/headers/ETag"
               }
             },
             "content": {
@@ -235,6 +238,9 @@
               },
               "X-Rate-Limit-Limit": {
                 "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              },
+              "ETag": {
+                "$ref": "#/components/headers/ETag"
               }
             },
             "content": {
@@ -305,6 +311,9 @@
               "type": "string",
               "format": "uuid"
             }
+          },
+          {
+            "$ref": "#/components/parameters/If-Match"
           }
         ],
         "requestBody": {
@@ -1225,6 +1234,17 @@
         }
       }
     },
+    "parameters": {
+      "If-Match": {
+        "name": "If-Match",
+        "in": "header",
+        "description": "Current entity tag for optimistic concurrency.",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/GenericString"
+        }
+      }
+    },
     "headers": {
       "GenericStringHeader": {
         "schema": {
@@ -1237,6 +1257,12 @@
         }
       },
       "API-Version": {
+        "schema": {
+          "$ref": "#/components/schemas/GenericString"
+        }
+      },
+      "ETag": {
+        "description": "Current entity tag for optimistic concurrency. Send this value in the 'If-Match' header when doing update requests.",
         "schema": {
           "$ref": "#/components/schemas/GenericString"
         }

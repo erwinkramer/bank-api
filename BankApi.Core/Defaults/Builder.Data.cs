@@ -7,12 +7,14 @@ public static partial class ApiBuilder
         var postgresConnectionString = configuration.GetConnectionString("bank-api-db");
         var useInMemoryDatabase = string.IsNullOrWhiteSpace(postgresConnectionString);
 
-        services.AddDbContext<BankDb>(options =>
+        services.AddDbContextPool<BankDb>(options =>
         {
             if (useInMemoryDatabase)
                 options.UseInMemoryDatabase("bank-api-db");
             else
                 options.UseNpgsql(postgresConnectionString);
+
+            BankDb.ConfigureOptions(options);
         });
 
         if (environment.IsDevelopment())

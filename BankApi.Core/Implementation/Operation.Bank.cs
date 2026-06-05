@@ -20,34 +20,40 @@ public class BankOperation
         return TypedResults.Ok(cachedResult);
     }
 
-    public static async Task<Results<Ok<BankModel>, NotFound, UnprocessableEntity>> GetBank([Bank] Guid id, BankDb db, HybridCache cache, CancellationToken token = default)
+    public static async Task<Results<Ok<BankModel>, NotFound, UnprocessableEntity>> GetBank([Bank] Guid id, HttpContext httpContext, BankDb db, HybridCache cache, CancellationToken token = default)
     {
-        return await cache.GetOrCreateAsync(
-        $"bank-{id}",
-        async innerToken => await db.Banks.FindAsync(id, innerToken), cancellationToken: token)
-            is BankModel bank
-                ? TypedResults.Ok(bank)
-                : TypedResults.NotFound();
+        var bank = await cache.GetOrCreateAsync($"bank-{id}",
+            async innerToken => await db.Banks.FindAsync(id, innerToken), cancellationToken: token);
+
+        if (bank is null) return TypedResults.NotFound();
+
+        httpContext.Response.Headers.ETag = $"\"{bank.VersionToken}\"";
+        return TypedResults.Ok(bank);
     }
 
-    public static async Task<Results<Created<BankModel>, UnprocessableEntity>> CreateBank(BankModel bank, BankDb db, HybridCache? cache)
+    public static async Task<Results<Created<BankModel>, UnprocessableEntity>> CreateBank(BankModel bank, HttpContext httpContext, BankDb db, HybridCache? cache)
     {
         await db.Banks.AddAsync(bank);
         await db.SaveChangesAsync();
         if (cache != null)
             await cache.RemoveByTagAsync("banks");
 
+        httpContext.Response.Headers.ETag = $"\"{bank.VersionToken}\"";
         return TypedResults.Created($"/bankitems/{bank.Id}", bank);
     }
 
-    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> UpdateBank([Bank] Guid id, BankModel inputBank, BankDb db, HybridCache? cache)
+    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> UpdateBank([Bank] Guid id, BankModel inputBank, HttpContext httpContext, BankDb db, HybridCache? cache)
     {
         var bank = await db.Banks.FindAsync(id);
         if (bank is null) return TypedResults.NotFound();
 
+        Guid.TryParse(httpContext.Request.Headers.IfMatch.ToString()?.Trim('"'), out var versionToken);
+        db.Entry(bank).Property(b => b.VersionToken).OriginalValue = versionToken;
+
         bank.Name = inputBank.Name;
         bank.IsCompliant = inputBank.IsCompliant;
         bank.BankTier = inputBank.BankTier;
+        bank.VersionToken = Guid.NewGuid();
 
         await db.SaveChangesAsync();
         if (cache != null)

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +12,8 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         operation.Security ??= new List<OpenApiSecurityRequirement>();
 
         AddStandardResponses(operation, context.Document!);
-        AddHeadersToResponses(operation, context.Document!);
+        AddHeadersToResponses(operation, context);
+        AddHeadersToRequests(operation, context);
         await AddSecurityPolicyToRequest(operation, authorizationPolicyProvider, context);
         AddMaxLengthToGuidParameters(operation);
     }
@@ -25,9 +27,11 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         operation.Responses!["429"] = new OpenApiResponseReference("429", document);
     }
 
-    private void AddHeadersToResponses(OpenApiOperation operation, OpenApiDocument document)
+    private void AddHeadersToResponses(OpenApiOperation operation, OpenApiOperationTransformerContext context)
     {
         if (operation.Responses == null) return;
+
+        var document = context.Document!;
         
         foreach (var response in operation.Responses)
         {
@@ -43,9 +47,26 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
                 {
                     concrete.Headers["X-Rate-Limit-Limit"] = new OpenApiHeaderReference("X-Rate-Limit-Limit", document);
                 }
+
+                if (response.Key[0] == '2' && context.Description.SupportedResponseTypes.Any(type => HasConcurrencyToken(type.Type)))
+                {
+                    concrete.Headers["ETag"] = new OpenApiHeaderReference("ETag", document);
+                }
             }
         }
     }
+
+    private void AddHeadersToRequests(OpenApiOperation operation, OpenApiOperationTransformerContext context)
+    {
+        if (context.Description.HttpMethod is not ("PUT" or "PATCH") ||
+            !context.Description.ParameterDescriptions.Any(parameter => HasConcurrencyToken(parameter.Type))) return;
+
+        operation.Parameters ??= [];
+        operation.Parameters.Add(new OpenApiParameterReference("If-Match", context.Document!));
+    }
+
+    private static bool HasConcurrencyToken(Type? type)
+        => type?.GetProperties().Any(property => Attribute.IsDefined(property, typeof(ConcurrencyCheckAttribute))) == true;
 
     private async Task AddSecurityPolicyToRequest(OpenApiOperation operation, IAuthorizationPolicyProvider authorizationPolicyProvider, OpenApiOperationTransformerContext context)
     {

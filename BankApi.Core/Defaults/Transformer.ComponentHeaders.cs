@@ -7,6 +7,7 @@ class TransformerComponentHeaders() : IOpenApiDocumentTransformer
     {
         document.Components ??= new();
         document.Components.Headers ??= new Dictionary<string, IOpenApiHeader>();
+        document.Components.Parameters ??= new Dictionary<string, IOpenApiParameter>();
 
         document.Components.Headers["GenericStringHeader"] = OpenApiFactory.CreateHeaderString(document);
 
@@ -16,6 +17,10 @@ class TransformerComponentHeaders() : IOpenApiDocumentTransformer
         document.Components.Headers["Access-Control-Allow-Origin"] = OpenApiFactory.CreateHeaderString(document);
 
         document.Components.Headers["API-Version"] = OpenApiFactory.CreateHeaderString(document);
+
+        document.Components.Headers["ETag"] = OpenApiFactory.CreateHeaderString(document, "Current entity tag for optimistic concurrency. Send this value in the 'If-Match' header when doing update requests.");
+
+        document.Components.Parameters["If-Match"] = new OpenApiParameter { Name = "If-Match", In = ParameterLocation.Header, Required = true, Description = "Current entity tag for optimistic concurrency.", Schema = new OpenApiSchemaReference("GenericString", document) };
 
         document.Components.Headers["X-Rate-Limit-Limit"] = OpenApiFactory.CreateHeaderInt(document, $"The maximum number of requests you're permitted to make in a window of {GlobalConfiguration.ApiSettings!.FixedWindowRateLimit.Window.Minutes} minutes.");
     }

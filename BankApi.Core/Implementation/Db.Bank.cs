@@ -9,7 +9,7 @@ public class BankDb : DbContext
 
     public DbSet<BankEventOutboxModel> Outbox => Set<BankEventOutboxModel>();
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public static void ConfigureOptions(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder
             .AddInterceptors(new BankEventInterceptor())
             .UseSeeding((context, _) =>

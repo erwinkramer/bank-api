@@ -93,7 +93,7 @@ public class BankEventOutboxBackgroundService(
             {
                 outboxEntry.LockedBy = null;
                 outboxEntry.LockedUntil = DateTimeOffset.UtcNow;
-                outboxEntry.ClaimVersion = Guid.NewGuid();
+                outboxEntry.VersionToken = Guid.NewGuid();
 
                 try
                 {
@@ -129,7 +129,7 @@ public class BankEventOutboxBackgroundService(
             candidate.Status = "processing";
             candidate.LockedBy = workerId;
             candidate.LockedUntil = now.Add(LeaseDuration);
-            candidate.ClaimVersion = Guid.NewGuid();
+            candidate.VersionToken = Guid.NewGuid();
         }
 
         try

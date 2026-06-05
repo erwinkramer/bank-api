@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
@@ -26,4 +27,10 @@ public class BankModel
     [DefaultValue(BankTier.A)]
     [Description("Tier of the bank.")]
     public BankTier BankTier { get; set; }
+
+    /// <summary>
+    /// Optimistic concurrency token used during claim/update.
+    /// </summary>
+    [ConcurrencyCheck]
+    public Guid VersionToken { get; set; } = Guid.NewGuid();
 }

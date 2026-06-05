@@ -19,6 +19,7 @@ public static partial class ApiBuilder
             options.AddDocumentTransformer<TransformerSecurityScheme>();
             options.AddSchemaTransformer<TransformerExampleSchema>();
             options.AddSchemaTransformer<TransformerGuidSchema>();
+            options.AddSchemaTransformer<TransformerConcurrencySchema>();
             options.AddOperationTransformer<TransformerOperation>();
         });
 

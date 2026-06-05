@@ -86,5 +86,5 @@ public class BankEventOutboxModel
     /// Optimistic concurrency token used during claim/update.
     /// </summary>
     [ConcurrencyCheck]
-    public Guid ClaimVersion { get; set; } = Guid.NewGuid();
+    public Guid VersionToken { get; set; } = Guid.NewGuid();
 }

@@ -42,7 +42,7 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             Description = "Gone.",
             Headers = new Dictionary<string, IOpenApiHeader>()
         };
-        
+
         document.Components.Responses["415"] = new OpenApiResponse // https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/http-webhook.md#22-delivery-response
         {
             Description = "Unsupported Media Type.",
