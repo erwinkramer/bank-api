@@ -13,6 +13,19 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - image: ghcr.io/${{ github.repository }}:latest
+            context: .
+          - image: ghcr.io/${{ github.repository }}-dapr:latest
+            context: ./Sidecar.Dapr
+          - image: ghcr.io/${{ github.repository }}-proxy:latest
+            context: ./Sidecar.Proxy
+          - image: ghcr.io/${{ github.repository }}-s3proxy:latest
+            context: ./Sidecar.S3Proxy
+          - image: ghcr.io/${{ github.repository }}-otelcol:latest
+            context: ./Sidecar.OpenTelemetry
     steps:
       - uses: actions/checkout@v6
       - name: Login and push with Podman
@@ -21,13 +34,5 @@ jobs:
             podman login ghcr.io \
               --username ${{ github.actor }} \
               --password-stdin
-          podman build -t ghcr.io/${{ github.repository }}:latest .
-          podman push ghcr.io/${{ github.repository }}:latest
-          podman build -t ghcr.io/${{ github.repository }}-dapr:latest ./Sidecar.Dapr
-          podman push ghcr.io/${{ github.repository }}-dapr:latest
-          podman build -t ghcr.io/${{ github.repository }}-proxy:latest ./Sidecar.Proxy
-          podman push ghcr.io/${{ github.repository }}-proxy:latest
-          podman build -t ghcr.io/${{ github.repository }}-s3proxy:latest ./Sidecar.S3Proxy
-          podman push ghcr.io/${{ github.repository }}-s3proxy:latest
-          podman build -t ghcr.io/${{ github.repository }}-otelcol:latest ./Sidecar.OpenTelemetry
-          podman push ghcr.io/${{ github.repository }}-otelcol:latest
+          podman build -t ${{ matrix.image }} ${{ matrix.context }}
+          podman push ${{ matrix.image }}
