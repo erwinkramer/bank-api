@@ -1,5 +1,7 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using CloudNative.CloudEvents.SystemTextJson;
 
 public static partial class ApiBuilder
@@ -10,6 +12,16 @@ public static partial class ApiBuilder
         {
             options.SerializerOptions.UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow;
             options.SerializerOptions.NumberHandling = JsonNumberHandling.Strict;
+            var jsonResolver = new DefaultJsonTypeInfoResolver();
+            jsonResolver.Modifiers.Add(static typeInfo =>
+            {
+                if (typeInfo.Properties.FirstOrDefault(property => property.AttributeProvider?.IsDefined(typeof(ConcurrencyCheckAttribute), true) == true) is not { } property)
+                    return;
+
+                property.Set = null;
+                property.ShouldSerialize = static (_, _) => false;
+            });
+            options.SerializerOptions.TypeInfoResolverChain.Insert(0, jsonResolver);
         });
 
         GlobalConfiguration.JsonEventFormatter = new JsonEventFormatter(

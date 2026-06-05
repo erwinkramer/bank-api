@@ -367,6 +367,26 @@
               }
             }
           },
+          "409": {
+            "description": "Conflict",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              },
+              "Access-Control-Allow-Origin": {
+                "$ref": "#/components/headers/Access-Control-Allow-Origin"
+              },
+              "Access-Control-Expose-Headers": {
+                "$ref": "#/components/headers/GenericStringHeader"
+              },
+              "X-JWS-Signature": {
+                "$ref": "#/components/headers/GenericStringHeader"
+              },
+              "X-Rate-Limit-Limit": {
+                "$ref": "#/components/headers/X-Rate-Limit-Limit"
+              }
+            }
+          },
           "422": {
             "$ref": "#/components/responses/422"
           },

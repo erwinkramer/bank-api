@@ -24,6 +24,8 @@ public class ExceptionHandler(IProblemDetailsService problemDetailsService) : IE
     {
         var statusCode = exception switch
         {
+            DbUpdateConcurrencyException
+                => StatusCodes.Status409Conflict,
             InvalidOperationException or ArgumentException or DbUpdateException
               => StatusCodes.Status422UnprocessableEntity,
             BadHttpRequestException or FormatException
