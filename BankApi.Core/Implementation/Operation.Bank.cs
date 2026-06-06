@@ -42,7 +42,7 @@ public class BankOperation
         return TypedResults.Created($"/bankitems/{bank.Id}", bank);
     }
 
-    public static async Task<Results<NoContent, NotFound, Conflict, UnprocessableEntity>> UpdateBank([Bank] Guid id, BankModel inputBank, HttpContext httpContext, BankDb db, HybridCache? cache)
+    public static async Task<Results<NoContent, NotFound, UnprocessableEntity>> UpdateBank([Bank] Guid id, BankModel inputBank, HttpContext httpContext, BankDb db, HybridCache? cache)
     {
         var bank = await db.Banks.FindAsync(id);
         if (bank is null) return TypedResults.NotFound();

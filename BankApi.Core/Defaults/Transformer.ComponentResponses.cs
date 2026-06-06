@@ -37,6 +37,16 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             }
         };
 
+        document.Components.Responses["409"] = new OpenApiResponse
+        {
+            Description = "Conflict.",
+            Content = new Dictionary<string, OpenApiMediaType>
+            {
+                { "application/problem+json", new () { Schema = new OpenApiSchemaReference("Problem", document) } }
+            },
+            Headers = new Dictionary<string, IOpenApiHeader>()
+        };
+
         document.Components.Responses["410"] = new OpenApiResponse // https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/http-webhook.md#22-delivery-response
         {
             Description = "Gone.",

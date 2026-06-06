@@ -367,26 +367,6 @@
               }
             }
           },
-          "409": {
-            "description": "Conflict",
-            "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              },
-              "Access-Control-Allow-Origin": {
-                "$ref": "#/components/headers/Access-Control-Allow-Origin"
-              },
-              "Access-Control-Expose-Headers": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-JWS-Signature": {
-                "$ref": "#/components/headers/GenericStringHeader"
-              },
-              "X-Rate-Limit-Limit": {
-                "$ref": "#/components/headers/X-Rate-Limit-Limit"
-              }
-            }
-          },
           "422": {
             "$ref": "#/components/responses/422"
           },
@@ -401,6 +381,9 @@
           },
           "429": {
             "$ref": "#/components/responses/429"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
           }
         },
         "security": [
@@ -1127,6 +1110,33 @@
         },
         "content": {
           "application/problem+plain": { }
+        }
+      },
+      "409": {
+        "description": "Conflict.",
+        "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          },
+          "Access-Control-Allow-Origin": {
+            "$ref": "#/components/headers/Access-Control-Allow-Origin"
+          },
+          "Access-Control-Expose-Headers": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-JWS-Signature": {
+            "$ref": "#/components/headers/GenericStringHeader"
+          },
+          "X-Rate-Limit-Limit": {
+            "$ref": "#/components/headers/X-Rate-Limit-Limit"
+          }
+        },
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Problem"
+            }
+          }
         }
       },
       "410": {

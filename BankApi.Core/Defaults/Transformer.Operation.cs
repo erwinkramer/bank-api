@@ -13,7 +13,7 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
 
         AddStandardResponses(operation, context.Document!);
         AddHeadersToResponses(operation, context);
-        AddHeadersToRequests(operation, context);
+        AddOptimisticConcurrencyRequirements(operation, context);
         await AddSecurityPolicyToRequest(operation, authorizationPolicyProvider, context);
         AddMaxLengthToGuidParameters(operation);
     }
@@ -56,10 +56,12 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         }
     }
 
-    private void AddHeadersToRequests(OpenApiOperation operation, OpenApiOperationTransformerContext context)
+    private void AddOptimisticConcurrencyRequirements(OpenApiOperation operation, OpenApiOperationTransformerContext context)
     {
         if (context.Description.HttpMethod is not ("PUT" or "PATCH") ||
             !context.Description.ParameterDescriptions.Any(parameter => HasConcurrencyToken(parameter.Type))) return;
+
+        operation.Responses!["409"] = new OpenApiResponseReference("409", context.Document!);
 
         operation.Parameters ??= [];
         operation.Parameters.Add(new OpenApiParameterReference("If-Match", context.Document!));
