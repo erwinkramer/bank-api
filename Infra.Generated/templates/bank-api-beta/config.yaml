@@ -13,7 +13,7 @@ data:
   HTTP_PORTS: "{{ .Values.parameters.bank_api_beta.port_http | int | toString }}"
   BANK_API_DB_HOST: "{{ .Values.config.bank_api_beta.BANK_API_DB_HOST }}"
   BANK_API_DB_PORT: "{{ .Values.config.bank_api_beta.BANK_API_DB_PORT }}"
-  BANK_API_DB_USERNAME: "{{ .Values.config.bank_api_beta.BANK_API_DB_USERNAME }}"
+  BANK_API_DB_USERNAME: "{{ .Values.config.bank_api_beta.bank_api_db_username }}"
   BANK_API_DB_JDBCCONNECTIONSTRING: "{{ .Values.config.bank_api_beta.BANK_API_DB_JDBCCONNECTIONSTRING }}"
   OTEL_EXPORTER_OTLP_ENDPOINT: "{{ .Values.config.bank_api_beta.OTEL_EXPORTER_OTLP_ENDPOINT }}"
   OTEL_EXPORTER_OTLP_PROTOCOL: "{{ .Values.config.bank_api_beta.OTEL_EXPORTER_OTLP_PROTOCOL }}"

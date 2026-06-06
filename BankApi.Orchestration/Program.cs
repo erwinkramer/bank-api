@@ -7,7 +7,9 @@ var k8s = builder.AddKubernetesEnvironment("k8s").WithContainerRegistry(registry
 
 var dotEnvParams = builder.AddParametersFromDotEnv();
 
-var postgres = builder.AddPostgres("bank-api-db").WithImageTag("18-alpine");
+var postgresUsername = builder.AddParameter("bank-api-db-username", "admin");
+var postgresPassword = builder.AddParameter("bank-api-db-password", "admin", secret: true);
+var postgres = builder.AddPostgres("bank-api-db", postgresUsername, postgresPassword, 5432).WithImageTag("18-alpine");
 
 var s3Proxy = builder.AddDockerfile("bank-api-s3proxy", "../Sidecar.S3Proxy").WithHttpEndpoint(port: 6070, targetPort: 6070);
 s3Proxy.WithEnvironmentParameters(dotEnvParams);

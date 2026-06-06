@@ -12,7 +12,8 @@
 				"stoplight.spectral",
 				"streetsidesoftware.code-spell-checker",
 				"github.copilot",
-				"microsoft-aspire.aspire-vscode"
+				"microsoft-aspire.aspire-vscode",
+				"ms-ossdata.vscode-pgsql"
 			],
 			"settings": {
 				"terminal.integrated.shell.linux": "/bin/bash",

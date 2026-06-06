@@ -7,7 +7,7 @@ public class BankEventOutboxBackgroundService(
     IHttpClientFactory httpClientFactory,
     ILogger<BankEventOutboxBackgroundService> logger) : BackgroundService
 {
-    private static readonly TimeSpan PollInterval = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan PollInterval = TimeSpan.FromSeconds(5);
     private static readonly TimeSpan LeaseDuration = TimeSpan.FromSeconds(60); // make this longer than the expected max processing time to reduce chances of multiple workers processing the same message concurrently
     private const int BatchSize = 50;
     private readonly string workerId = $"{Environment.MachineName}-{Guid.NewGuid():N}";

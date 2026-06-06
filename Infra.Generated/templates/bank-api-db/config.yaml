@@ -10,4 +10,4 @@ metadata:
 data:
   POSTGRES_HOST_AUTH_METHOD: "{{ .Values.config.bank_api_db.POSTGRES_HOST_AUTH_METHOD }}"
   POSTGRES_INITDB_ARGS: "{{ .Values.config.bank_api_db.POSTGRES_INITDB_ARGS }}"
-  POSTGRES_USER: "{{ .Values.config.bank_api_db.POSTGRES_USER }}"
+  POSTGRES_USER: "{{ .Values.config.bank_api_db.bank_api_db_username }}"
