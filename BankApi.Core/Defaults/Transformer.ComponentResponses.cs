@@ -37,6 +37,12 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
             }
         };
 
+        document.Components.Responses["404"] = new OpenApiResponse
+        {
+            Description = "Resource not found.",
+            Headers = new Dictionary<string, IOpenApiHeader>()
+        };
+
         document.Components.Responses["409"] = new OpenApiResponse
         {
             Description = "Conflict.",

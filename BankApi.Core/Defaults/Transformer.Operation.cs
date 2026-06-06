@@ -11,20 +11,26 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         operation.Responses ??= new();
         operation.Security ??= new List<OpenApiSecurityRequirement>();
 
-        AddStandardResponses(operation, context.Document!);
+        AddStandardResponses(operation, context);
         AddHeadersToResponses(operation, context);
         AddOptimisticConcurrencyRequirements(operation, context);
         await AddSecurityPolicyToRequest(operation, authorizationPolicyProvider, context);
         AddMaxLengthToGuidParameters(operation);
     }
 
-    private void AddStandardResponses(OpenApiOperation operation, OpenApiDocument document)
+    private void AddStandardResponses(OpenApiOperation operation, OpenApiOperationTransformerContext context)
     {
+        var document = context.Document!;
         operation.Responses!["500"] = new OpenApiResponseReference("500", document);
         operation.Responses!["422"] = new OpenApiResponseReference("422", document);
         operation.Responses!["400"] = new OpenApiResponseReference("400", document);
         operation.Responses!["401"] = new OpenApiResponseReference("401", document);
         operation.Responses!["429"] = new OpenApiResponseReference("429", document);
+
+        if (operation.Responses!.ContainsKey("404"))
+        {
+            operation.Responses!["404"] = new OpenApiResponseReference("404", document);
+        }
     }
 
     private void AddHeadersToResponses(OpenApiOperation operation, OpenApiOperationTransformerContext context)
@@ -32,7 +38,7 @@ class TransformerOperation(IAuthorizationPolicyProvider authorizationPolicyProvi
         if (operation.Responses == null) return;
 
         var document = context.Document!;
-        
+
         foreach (var response in operation.Responses)
         {
             if (response.Value is OpenApiResponse concrete)
