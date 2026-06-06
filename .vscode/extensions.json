@@ -10,8 +10,6 @@
 		"ms-graph.kiota",
 		"stoplight.spectral",
 		"streetsidesoftware.code-spell-checker",
-		"ms-vscode.live-server",
-		"github.copilot-chat",
 		"microsoft-aspire.aspire-vscode",
 		"ms-ossdata.vscode-pgsql"
 	],
