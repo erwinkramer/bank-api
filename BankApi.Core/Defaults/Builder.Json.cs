@@ -15,11 +15,14 @@ public static partial class ApiBuilder
             var jsonResolver = new DefaultJsonTypeInfoResolver();
             jsonResolver.Modifiers.Add(static typeInfo =>
             {
-                if (typeInfo.Properties.FirstOrDefault(property => property.AttributeProvider?.IsDefined(typeof(ConcurrencyCheckAttribute), true) == true) is not { } property)
-                    return;
+                var property = typeInfo.Properties.FirstOrDefault(p =>
+                    p.AttributeProvider?.IsDefined(typeof(ConcurrencyCheckAttribute), inherit: true) == true);
 
-                property.Set = null;
-                property.ShouldSerialize = static (_, _) => false;
+                if (property is not null)
+                {
+                    property.Set = null;
+                    property.ShouldSerialize = static (_, _) => false;
+                }
             });
             options.SerializerOptions.TypeInfoResolverChain.Insert(0, jsonResolver);
         });
