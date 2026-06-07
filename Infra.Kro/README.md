@@ -47,7 +47,7 @@ Without the `HTTPRoute`:
 kubectl port-forward -n infra-services svc/bank-api 5201:80
 ```
 
-With the `HTTPRoute`: <https://bankapi.w.guanchen.nl/scalar>
+With the `HTTPRoute`: <https://bankapi.w.guanchen.nl/v1/docs>
 
 Renew pod:
 

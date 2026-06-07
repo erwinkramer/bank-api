@@ -5,7 +5,7 @@ public static partial class ApiBuilder
 {
     public static IServiceCollection AddOpenApiServices(this IServiceCollection services)
     {
-        services.AddOpenApi($"v{GlobalConfiguration.ApiMajorVersion}", options =>
+        services.AddOpenApi("spec", options =>
         {
             // Purposely set the spec to a version that is supported by Azure APIM, 
             // the 'Specs.Generated' output files still use the latest spec versions.
@@ -28,8 +28,9 @@ public static partial class ApiBuilder
 
     public static void AddOpenApiScalarReference(this IEndpointRouteBuilder app)
     {
-        app.MapScalarApiReference(options =>
+        app.MapScalarApiReference("/docs", options =>
         {
+            options.WithOpenApiRoutePattern("/openapi/spec.json");
             options.Theme = ScalarTheme.DeepSpace;
             options.ForceDarkMode();
             options.AddApiKeyAuthentication($"{ApiKeyDefaults.AuthenticationScheme}-Header", options =>

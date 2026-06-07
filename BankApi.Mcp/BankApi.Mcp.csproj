@@ -14,10 +14,10 @@
     <None Include="LoginSuccessful.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="../Specs.Generated/openapi_v1.json" Link="openapi_v1.json">
+    <None Include="../Specs.Generated/openapi_v1_spec.json" Link="openapi_v1_spec.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="../Specs.Generated/openapi_v2.json" Link="openapi_v2.json">
+    <None Include="../Specs.Generated/openapi_v2_spec.json" Link="openapi_v2_spec.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

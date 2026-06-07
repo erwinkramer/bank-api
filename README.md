@@ -11,7 +11,7 @@
 
 The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.
 
-Explore the live [🌐 API with sidecars](https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/scalar) (hosted on Azure Container Apps) and [🌐 MCP server](https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net/.well-known/oauth-protected-resource) (hosted on F1 tier Azure App Service).
+Explore the live [🌐 API with sidecars](https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/docs) (hosted on Azure Container Apps) and [🌐 MCP server](https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net/.well-known/oauth-protected-resource) (hosted on F1 tier Azure App Service).
 
 ## Compliance
 
@@ -174,7 +174,7 @@ If not using the [Dev Container](.devcontainer/devcontainer.json), install:
   setx ASPNETCORE_ENVIRONMENT "Development"
   ```
 
-- Validate the OpenAPI definition by going to the [openapi_v1.json](/Specs.Generated/openapi_v1.json) definition and check for problems via the Spectral extension.
+- Validate the OpenAPI definition by going to the [openapi_v1_spec.json](/Specs.Generated/openapi_v1_spec.json) definition and check for problems via the Spectral extension.
 
 ### Container images
 
@@ -223,7 +223,7 @@ podman build -t bank-api-proxy:v1 ./Sidecar.Proxy
 podman run --pod bank-api-pod bank-api-proxy:v1
 ```
 
-Then navigate to the proxied [OpenAPI Spec](http://localhost:5201/openapi/v1.json) or [Scalar UI](http://localhost:5201/scalar/), or use `:8080` to directly call the API.
+Then navigate to the proxied [OpenAPI Spec](http://localhost:5201/v1/openapi/spec.json) or [Scalar UI](http://localhost:5201/v1/docs/), or use `:8080` to directly call the API.
 
 Run `podman pod rm -f bank-api-pod` to teardown.
 

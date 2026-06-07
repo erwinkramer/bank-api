@@ -74,6 +74,10 @@ resources:
                     domains: ["*"]
                     routes:
                       - match:
-                          prefix: "/"
+                          prefix: "/v1"
                         route:
-                          cluster: service_local
+                          cluster: api_stable
+                      - match:
+                          prefix: "/v2"
+                        route:
+                          cluster: api_beta

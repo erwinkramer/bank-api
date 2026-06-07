@@ -18,6 +18,9 @@ jobs:
         include:
           - image: ghcr.io/${{ github.repository }}:latest
             context: .
+          - image: ghcr.io/${{ github.repository }}:nightly
+            context: .
+            args: --build-arg SERVICENAME=BankApi.Service.Beta
           - image: ghcr.io/${{ github.repository }}-dapr:latest
             context: ./Sidecar.Dapr
           - image: ghcr.io/${{ github.repository }}-proxy:latest
@@ -34,5 +37,5 @@ jobs:
             podman login ghcr.io \
               --username ${{ github.actor }} \
               --password-stdin
-          podman build -t ${{ matrix.image }} ${{ matrix.context }}
+          podman build ${{ matrix.args}} -t ${{ matrix.image }} ${{ matrix.context }}
           podman push ${{ matrix.image }}

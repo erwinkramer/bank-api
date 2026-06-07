@@ -8,7 +8,10 @@ public class JwsResponseSigningMiddleware
     private readonly RequestDelegate _next;
     private readonly Jwk _jwk;
     private static readonly string[] headerCritValue = ["kid", "alg"];
-    private static readonly string[] pathsToSkip = ["/scalar", "/openapi", "/health"];
+    private static readonly string[] pathsToSkip = [
+        $"/v{GlobalConfiguration.ApiMajorVersion}/docs",
+        $"/v{GlobalConfiguration.ApiMajorVersion}/openapi",
+        $"/v{GlobalConfiguration.ApiMajorVersion}/health"];
 
     public JwsResponseSigningMiddleware(RequestDelegate next, Jwk jwk)
     {

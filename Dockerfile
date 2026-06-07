@@ -2,6 +2,9 @@
 # For more information on the alpine composite image, see: https://github.com/richlander/container-workshop/issues/7
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
 ARG TARGETARCH=x64
+ARG SERVICENAME=BankApi.Service.Stable
+ARG PUBLISHPROFILE=AlpineContainer
+
 WORKDIR /source
 
 COPY . .
@@ -11,12 +14,16 @@ COPY . .
 RUN cat .certs/*.crt >> /etc/ssl/certs/ca-certificates.crt
 
 # Restore and publish from the service project
-RUN dotnet restore BankApi.Service.Stable/BankApi.Service.Stable.csproj -a $TARGETARCH \
-	-p:PublishProfile=AlpineContainer
-WORKDIR /source/BankApi.Service.Stable
+RUN dotnet restore $SERVICENAME/$SERVICENAME.csproj -a $TARGETARCH \
+	-p:PublishProfile=$PUBLISHPROFILE
+WORKDIR /source/$SERVICENAME
 RUN dotnet publish -c Release -a $TARGETARCH --no-restore \
-	-p:PublishProfile=AlpineContainer \
+	-p:PublishProfile=$PUBLISHPROFILE \
 	-o /app
+
+# Create a symlink to the service executable with a generic name, 
+# so that the runtime image can use a common entry point
+RUN ln -s /app/$SERVICENAME /app/app-entrypoint
 
 # Enable globalization and time zones:
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/enable-globalization.md
@@ -29,4 +36,4 @@ COPY --from=build /source/.certs/*.crt /usr/local/share/ca-certificates/
 RUN cat /usr/local/share/ca-certificates/*.crt >> /etc/ssl/certs/ca-certificates.crt
 COPY --from=build /app .
 USER $APP_UID
-ENTRYPOINT ["./BankApi.Service.Stable"]
+ENTRYPOINT ["./app-entrypoint"]
