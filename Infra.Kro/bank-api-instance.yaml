@@ -7,6 +7,4 @@ spec:
   envSecretName: bank-api-env
   gateway:
     enabled: true
-    hosts:
-      - "bankapi.w.guanchen.nl"
-    path: /
+    host: "bankapi.w.guanchen.nl"

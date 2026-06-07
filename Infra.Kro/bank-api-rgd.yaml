@@ -15,7 +15,7 @@ spec:
         enabled: boolean | default=false
         gatewayName: string | default="eg"
         gatewayNamespace: string | default="infra-services"
-        hosts: "[]string"
+        host: string
         path: string | default="/"
     status:
       availableReplicas: ${deployment.status.availableReplicas}
@@ -114,11 +114,16 @@ spec:
 
               # The main application container
               containers:
-                - name: api
+                - name: api-stable
                   image: ghcr.io/erwinkramer/bank-api:latest
                   ports:
                     - containerPort: 8080
-                      name: http-api
+                      name: http-api-stable
+                  env:
+                    - name: ApiDocument__Servers__0__Url
+                      value: https://${schema.spec.gateway.host}/v1
+                    - name: ApiDocument__Servers__1__Url
+                      value: http://localhost:5201/v1
                   envFrom:
                     - secretRef:
                         name: ${schema.spec.envSecretName}
@@ -129,7 +134,32 @@ spec:
                   readinessProbe:
                     httpGet:
                       path: /.well-known/jwks.json
-                      port: http-api
+                      port: http-api-stable
+                    initialDelaySeconds: 3
+                    periodSeconds: 5
+                - name: api-beta
+                  image: ghcr.io/erwinkramer/bank-api:nightly
+                  ports:
+                    - containerPort: 8081
+                      name: http-api-beta
+                  env:
+                    - name: ASPNETCORE_HTTP_PORTS
+                      value: "8081"
+                    - name: ApiDocument__Servers__0__Url
+                      value: https://${schema.spec.gateway.host}/v2
+                    - name: ApiDocument__Servers__1__Url
+                      value: http://localhost:5201/v2
+                  envFrom:
+                    - secretRef:
+                        name: ${schema.spec.envSecretName}
+                  volumeMounts:
+                    - name: serviceaccount-token
+                      mountPath: /var/run/secrets/${schema.spec.name}
+                      readOnly: true
+                  readinessProbe:
+                    httpGet:
+                      path: /.well-known/jwks.json
+                      port: http-api-beta
                     initialDelaySeconds: 3
                     periodSeconds: 5
     - id: service
@@ -147,9 +177,12 @@ spec:
             - name: http
               port: 80
               targetPort: http-proxy
-            - name: api
+            - name: api-stable
               port: 8080
-              targetPort: http-api
+              targetPort: http-api-stable
+            - name: api-beta
+              port: 8081
+              targetPort: http-api-beta
             - name: dapr
               port: 3500
               targetPort: dapr-http
@@ -170,7 +203,8 @@ spec:
           parentRefs:
             - name: ${schema.spec.gateway.gatewayName}
               namespace: ${schema.spec.gateway.gatewayNamespace}
-          hostnames: ${schema.spec.gateway.hosts}
+          hostnames:
+            - ${schema.spec.gateway.host}
           rules:
             - matches:
                 - path:
