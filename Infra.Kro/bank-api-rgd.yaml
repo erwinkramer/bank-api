@@ -120,8 +120,10 @@ spec:
                     - containerPort: 8080
                       name: http-api-stable
                   env:
-                    - name: ASPNETCORE_URLS
-                      value: https://${schema.spec.gateway.host}/v1;http://localhost:5201/v1
+                    - name: ApiDocument__Servers__0__Url
+                      value: https://${schema.spec.gateway.host}/v1
+                    - name: ApiDocument__Servers__1__Url
+                      value: http://localhost:5201/v1
                   envFrom:
                     - secretRef:
                         name: ${schema.spec.envSecretName}
@@ -143,8 +145,10 @@ spec:
                   env:
                     - name: ASPNETCORE_HTTP_PORTS
                       value: "8081"
-                    - name: ASPNETCORE_URLS
-                      value: https://${schema.spec.gateway.host}/v2;http://localhost:5201/v2
+                    - name: ApiDocument__Servers__0__Url
+                      value: https://${schema.spec.gateway.host}/v2
+                    - name: ApiDocument__Servers__1__Url
+                      value: http://localhost:5201/v2
                   envFrom:
                     - secretRef:
                         name: ${schema.spec.envSecretName}

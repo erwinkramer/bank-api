@@ -13,5 +13,6 @@ class TransformerDocInfo() : IOpenApiDocumentTransformer
         }
 
         document.Info = GlobalConfiguration.ApiDocument!.Info;
+        document.Servers = GlobalConfiguration.ApiDocument!.Servers;
     }
 }
