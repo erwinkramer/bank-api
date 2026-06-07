@@ -15,12 +15,6 @@
     },
     "version": "1.1.0"
   },
-  "servers": [
-    {
-      "url": "https://localhost:5201/v1",
-      "x-internal": false
-    }
-  ],
   "paths": {
     "/banks": {
       "get": {
