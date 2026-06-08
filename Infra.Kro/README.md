@@ -58,7 +58,8 @@ kubectl delete pod -n infra-services -l app.kubernetes.io/name=bank-api
 Teardown `kro` setup:
 
 ```bash
-kubectl delete resourcegraphdefinition bank-api
+kubectl delete -f bank-api-instance.yaml
+kubectl delete -f bank-api-rgd.yaml
 kubectl delete crd bankapis.kro.run
 ```
 

@@ -2,6 +2,7 @@ apiVersion: kro.run/v1alpha1
 kind: BankApi
 metadata:
   name: bank-api
+  namespace: infra-services
 spec:
   replicas: 1
   envSecretName: bank-api-env

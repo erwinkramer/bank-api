@@ -21,13 +21,6 @@ spec:
       availableReplicas: ${deployment.status.availableReplicas}
 
   resources:
-    - id: targetNamespace
-      template:
-        apiVersion: v1
-        kind: Namespace
-        metadata:
-          name: ${schema.spec.namespace}
-
     - id: serviceAccount
       template:
         apiVersion: v1
