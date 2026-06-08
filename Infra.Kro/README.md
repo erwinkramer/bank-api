@@ -55,6 +55,13 @@ Renew pod:
 kubectl delete pod -n infra-services -l app.kubernetes.io/name=bank-api
 ```
 
+Teardown `kro` setup:
+
+```bash
+kubectl delete resourcegraphdefinition bank-api
+kubectl delete crd bankapis.kro.run
+```
+
 ## Keycloak configuration
 
 Configure a [Keycloak Kubernetes identity provider](https://www.keycloak.org/docs/latest/server_admin/index.html#_identity_broker_kubernetes), with issuer: `https://kubernetes.default.svc` and name `local-kubus`.

@@ -162,6 +162,7 @@ spec:
                       port: http-api-beta
                     initialDelaySeconds: 3
                     periodSeconds: 5
+
     - id: service
       template:
         apiVersion: v1
@@ -177,18 +178,6 @@ spec:
             - name: http
               port: 80
               targetPort: http-proxy
-            - name: api-stable
-              port: 8080
-              targetPort: http-api-stable
-            - name: api-beta
-              port: 8081
-              targetPort: http-api-beta
-            - name: dapr
-              port: 3500
-              targetPort: dapr-http
-            - name: s3proxy
-              port: 6070
-              targetPort: s3proxy
 
     - id: httproute
       includeWhen:
