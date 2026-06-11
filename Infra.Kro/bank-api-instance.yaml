@@ -5,7 +5,6 @@ metadata:
   namespace: infra-services
 spec:
   replicas: 1
-  envSecretName: bank-api-env
   gateway:
     enabled: true
     host: "bankapi.w.guanchen.nl"
