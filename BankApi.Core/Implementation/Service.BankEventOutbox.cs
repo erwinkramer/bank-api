@@ -8,7 +8,6 @@ public class BankEventOutboxBackgroundService(
     ILogger<BankEventOutboxBackgroundService> logger) : BackgroundService
 {
     private static readonly TimeSpan PollInterval = TimeSpan.FromSeconds(5);
-    private static readonly TimeSpan LeaseDuration = TimeSpan.FromSeconds(60); // make this longer than the expected max processing time to reduce chances of multiple workers processing the same message concurrently
     private const int BatchSize = 50;
     private readonly string workerId = $"{Environment.MachineName}-{Guid.NewGuid():N}";
 
@@ -35,14 +34,15 @@ public class BankEventOutboxBackgroundService(
         var dbContext = scope.ServiceProvider.GetRequiredService<BankDb>();
         var eventFormatter = GlobalConfiguration.JsonEventFormatter!;
 
-        var claimedMessages = await ClaimPendingMessages(dbContext, cancellationToken);
+        var httpClient = httpClientFactory.CreateClient("bank-outbox-publisher");
+        var leaseDuration = httpClient.Timeout * BatchSize;
+
+        var claimedMessages = await ClaimPendingMessages(dbContext, leaseDuration, cancellationToken);
 
         if (claimedMessages.Count == 0)
         {
             return;
         }
-
-        var httpClient = httpClientFactory.CreateClient("bank-outbox-publisher");
 
         foreach (var outboxEntry in claimedMessages)
         {
@@ -72,7 +72,7 @@ public class BankEventOutboxBackgroundService(
                     outboxEntry.Status = "delivered";
                     outboxEntry.TimeDelivered = DateTimeOffset.UtcNow;
                 }
-                else if( response.StatusCode == System.Net.HttpStatusCode.Gone) // treat 410 Gone as a signal that the message should be discarded without further retries, as per CloudEvents spec for webhooks
+                else if(response.StatusCode == System.Net.HttpStatusCode.Gone) // treat 410 Gone as a signal that the message should be discarded without further retries, as per CloudEvents spec for webhooks
                 {
                     outboxEntry.Status = "gone";
                     outboxEntry.LastErrorMessage = $"HTTP 410 Gone - the message will be discarded without further retries.";
@@ -107,13 +107,13 @@ public class BankEventOutboxBackgroundService(
         }
     }
 
-    private async Task<List<BankEventOutboxModel>> ClaimPendingMessages(BankDb dbContext, CancellationToken cancellationToken)
+    private async Task<List<BankEventOutboxModel>> ClaimPendingMessages(BankDb dbContext, TimeSpan leaseDuration, CancellationToken cancellationToken)
     {
         var now = DateTimeOffset.UtcNow;
 
         var candidates = await dbContext.Outbox
-            .Where(x => 
-                (x.Status == "pending" && x.TimeUntilAttempt < now) || 
+            .Where(x =>
+                (x.Status == "pending" && x.TimeUntilAttempt < now) ||
                 (x.Status == "processing" && x.LockedUntil < now))
             .OrderBy(x => x.TimeCreated)
             .Take(BatchSize)
@@ -128,7 +128,7 @@ public class BankEventOutboxBackgroundService(
         {
             candidate.Status = "processing";
             candidate.LockedBy = workerId;
-            candidate.LockedUntil = now.Add(LeaseDuration);
+            candidate.LockedUntil = now.Add(leaseDuration);
             candidate.VersionToken = Guid.NewGuid();
         }
 
