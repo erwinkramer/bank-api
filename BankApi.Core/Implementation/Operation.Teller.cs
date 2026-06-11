@@ -1,6 +1,6 @@
 using Amazon.S3;
 using Amazon.S3.Model;
-using Dapr.Client;
+using Dapr.SecretsManagement;
 using DownstreamClients.GitHub;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System.Security.Claims;
@@ -43,7 +43,7 @@ public class TellerOperation
             : TypedResults.NotFound();
     }
 
-    public static async Task<Results<Ok<TellerReportList>, NotFound, UnprocessableEntity>> GetBankTellerSecretReports(DaprClient daprClient, CancellationToken token = default)
+    public static async Task<Results<Ok<TellerReportList>, NotFound, UnprocessableEntity>> GetBankTellerSecretReports(DaprSecretsManagementClient daprClient, CancellationToken token = default)
     {
         var response = await daprClient.GetSecretAsync("secretstore-bankapi", "banksecret", cancellationToken: token);
 

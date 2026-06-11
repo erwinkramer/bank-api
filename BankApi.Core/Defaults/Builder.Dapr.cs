@@ -1,9 +1,11 @@
 using System.Text.Json;
+using Dapr.SecretsManagement.Extensions;
+
 public static partial class ApiBuilder
 {
     public static IServiceCollection AddDapr(this IServiceCollection services)
     {
-        services.AddDaprClient(daprBuilder =>
+        services.AddDaprSecretsManagementClient((_, daprBuilder) =>
         {
             daprBuilder.UseJsonSerializationOptions(new JsonSerializerOptions
             {
