@@ -16,7 +16,7 @@ helm install kro oci://registry.k8s.io/kro/charts/kro \
 
 ### Deploy to cluster
 
-First, rename the secret file [bank-api-secret.yaml.sample](./bank-api-secret.yaml.sample) to `bank-api-secret.yaml` and replace the `AZURE_CLIENT_SECRET` value.
+First, rename the secret file [bank-api-secret.yaml.sample](./bank-api-secret.yaml.sample) to `bank-api-secret.yaml` and replace all occurrences of the text `REPLACE_ME`.
 
 You can validate the deploy structure using:
 
