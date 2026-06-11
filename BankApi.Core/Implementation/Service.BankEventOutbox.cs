@@ -8,7 +8,7 @@ public class BankEventOutboxBackgroundService(
     ILogger<BankEventOutboxBackgroundService> logger) : BackgroundService
 {
     private static readonly TimeSpan PollInterval = TimeSpan.FromSeconds(5);
-    private const int BatchSize = 50;
+    private const int BatchSize = 5;
     private readonly string workerId = $"{Environment.MachineName}-{Guid.NewGuid():N}";
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -92,7 +92,6 @@ public class BankEventOutboxBackgroundService(
             }
             finally
             {
-                outboxEntry.LockedBy = null;
                 outboxEntry.LockedUntil = DateTimeOffset.UtcNow;
                 outboxEntry.VersionToken = Guid.NewGuid();
 
