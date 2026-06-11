@@ -37,7 +37,7 @@ var mcpStable = builder.AddProject<Projects.BankApi_Mcp>("bank-api-mcp")
 
 k8s.AddGateway("bank-gateway")
     .WithGatewayClass("bank-gateway-class")
-    .WithGatewayAnnotation("metallb.io/loadBalancerIPs", "192.168.6.7")
+    .WithGatewayAnnotation("metallb.io/loadBalancerIPs", "192.168.0.30")
     .WithHostname("guanchen.nl").WithTls()
     .WithRoute("/v1", apiStable.GetEndpoint("http"))
     .WithRoute("/v2", apiBeta.GetEndpoint("http"))

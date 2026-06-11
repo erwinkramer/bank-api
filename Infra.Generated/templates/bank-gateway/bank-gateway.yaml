@@ -4,7 +4,7 @@ kind: "Gateway"
 metadata:
   name: "bank-gateway"
   annotations:
-    metallb.io/loadBalancerIPs: "192.168.6.7"
+    metallb.io/loadBalancerIPs: "192.168.0.30"
 spec:
   gatewayClassName: "bank-gateway-class"
   listeners:

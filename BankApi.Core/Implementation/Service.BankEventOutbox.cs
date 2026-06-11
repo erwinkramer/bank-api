@@ -88,6 +88,7 @@ public class BankEventOutboxBackgroundService(
             {
                 outboxEntry.Status = "pending";
                 outboxEntry.LastErrorMessage = ex.Message;
+                outboxEntry.TimeUntilAttempt = DateTimeOffset.UtcNow.AddSeconds(Math.Pow(2, outboxEntry.AttemptCount)); // simple exponential backoff strategy
             }
             finally
             {
