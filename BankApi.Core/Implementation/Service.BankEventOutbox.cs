@@ -111,10 +111,7 @@ public class BankEventOutboxBackgroundService(
         var now = DateTimeOffset.UtcNow;
 
         var candidates = await dbContext.Outbox
-            .Where(x =>
-                x.Status != "delivered" &&
-                x.Status != "gone" &&
-                x.NextAttemptAt <= now)
+            .Where(x => (x.Status == "pending" || x.Status == "processing") && x.NextAttemptAt <= now)
             .OrderBy(x => x.TimeCreated)
             .Take(BatchSize)
             .ToListAsync(cancellationToken);

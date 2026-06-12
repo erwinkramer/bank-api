@@ -9,6 +9,13 @@ public class BankDb : DbContext
 
     public DbSet<BankEventOutboxModel> Outbox => Set<BankEventOutboxModel>();
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<BankEventOutboxModel>()
+            .HasIndex(x => new { x.NextAttemptAt, x.TimeCreated })
+            .HasFilter($"\"{nameof(BankEventOutboxModel.Status)}\" IN ('pending', 'processing')");
+    }
+
     public static void ConfigureOptions(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder
             .AddInterceptors(new BankEventInterceptor())
