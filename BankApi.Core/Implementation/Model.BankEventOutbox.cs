@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
+[Index(nameof(Status))]
 public class BankEventOutboxModel
 {
     private BankEventOutboxModel() { }

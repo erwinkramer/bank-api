@@ -133,6 +133,7 @@ spec:
                     periodSeconds: 5
                 - name: api-beta
                   image: ghcr.io/erwinkramer/bank-api:nightly
+                  imagePullPolicy: Always
                   ports:
                     - containerPort: 8081
                       name: http-api-beta
