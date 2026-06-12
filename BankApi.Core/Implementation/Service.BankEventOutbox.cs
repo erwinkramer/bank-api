@@ -46,7 +46,7 @@ public class BankEventOutboxBackgroundService(
 
         foreach (var outboxEntry in claimedMessages)
         {
-            if (outboxEntry.LockedUntil <= DateTimeOffset.UtcNow)
+            if (outboxEntry.NextAttemptAt <= DateTimeOffset.UtcNow)
             {
                 break;
             }
@@ -81,18 +81,17 @@ public class BankEventOutboxBackgroundService(
                 {
                     outboxEntry.Status = "pending";
                     outboxEntry.LastErrorMessage = $"HTTP {(int)response.StatusCode} ({response.ReasonPhrase})";
-                    outboxEntry.TimeUntilAttempt = response.Headers.RetryAfter?.Date ?? DateTimeOffset.UtcNow.AddSeconds(Math.Pow(2, outboxEntry.AttemptCount)); // simple exponential backoff strategy
+                    outboxEntry.NextAttemptAt = response.Headers.RetryAfter?.Date ?? DateTimeOffset.UtcNow.AddSeconds(Math.Pow(2, outboxEntry.AttemptCount)); // simple exponential backoff strategy
                 }
             }
             catch (Exception ex)
             {
                 outboxEntry.Status = "pending";
                 outboxEntry.LastErrorMessage = ex.Message;
-                outboxEntry.TimeUntilAttempt = DateTimeOffset.UtcNow.AddSeconds(Math.Pow(2, outboxEntry.AttemptCount)); // simple exponential backoff strategy
+                outboxEntry.NextAttemptAt = DateTimeOffset.UtcNow.AddSeconds(Math.Pow(2, outboxEntry.AttemptCount)); // simple exponential backoff strategy
             }
             finally
             {
-                outboxEntry.LockedUntil = DateTimeOffset.UtcNow;
                 outboxEntry.VersionToken = Guid.NewGuid();
 
                 try
@@ -113,8 +112,9 @@ public class BankEventOutboxBackgroundService(
 
         var candidates = await dbContext.Outbox
             .Where(x =>
-                (x.Status == "pending" && x.TimeUntilAttempt < now) ||
-                (x.Status == "processing" && x.LockedUntil < now))
+                x.Status != "delivered" &&
+                x.Status != "gone" &&
+                x.NextAttemptAt <= now)
             .OrderBy(x => x.TimeCreated)
             .Take(BatchSize)
             .ToListAsync(cancellationToken);
@@ -128,7 +128,7 @@ public class BankEventOutboxBackgroundService(
         {
             candidate.Status = "processing";
             candidate.LockedBy = workerId;
-            candidate.LockedUntil = now.Add(leaseDuration);
+            candidate.NextAttemptAt = now.Add(leaseDuration);
             candidate.VersionToken = Guid.NewGuid();
         }
 

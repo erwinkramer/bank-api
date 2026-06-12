@@ -13,8 +13,7 @@ public class BankEventOutboxModel
         BankId = bankId;
         EventSubtype = eventSubtype.ToString().ToLower();
         TimeCreated = now;
-        TimeUntilAttempt = now;
-        LockedUntil = now;
+        NextAttemptAt = now;
     }
 
     /// <summary>
@@ -69,11 +68,6 @@ public class BankEventOutboxModel
     public string? LockedBy { get; set; }
 
     /// <summary>
-    /// Lease expiration timestamp.
-    /// </summary>
-    public DateTimeOffset LockedUntil { get; set; }
-
-    /// <summary>
     /// Last time delivery was attempted.
     /// </summary>
     public DateTimeOffset? TimeLastAttempted { get; set; }
@@ -81,7 +75,7 @@ public class BankEventOutboxModel
     /// <summary>
     /// The time until the next delivery attempt is allowed for this outbox entry.
     /// </summary>
-    public DateTimeOffset TimeUntilAttempt { get; set; }
+    public DateTimeOffset NextAttemptAt { get; set; }
 
     /// <summary>
     /// Optimistic concurrency token used during claim/update.
