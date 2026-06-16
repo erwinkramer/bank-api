@@ -109,7 +109,7 @@ spec:
                         name: ${schema.spec.authSecretName}
                   livenessProbe:
                     httpGet:
-                      path: /healthz
+                      path: /v1.0/healthz
                       port: dapr-http
                     initialDelaySeconds: 3
                     periodSeconds: 10
