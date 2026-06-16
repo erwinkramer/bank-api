@@ -18,6 +18,20 @@ extensions:
       tenant_id: "${env:AZURE_TENANT_ID}"
       client_id: "${env:AZURE_CLIENT_ID}"
       client_secret: "${env:AZURE_CLIENT_SECRET}"
+  healthcheckv2:
+    use_v2: true
+    component_health:
+      include_permanent_errors: true
+      include_recoverable_errors: true
+      recovery_duration: 5m
+    http:
+      endpoint: "localhost:13133"
+      status:
+        enabled: true
+        path: "/health/status"
+        include_attributes: true
+      config:
+        enabled: false
 
 exporters:
   otlphttp/azuremonitor:
@@ -31,6 +45,7 @@ exporters:
 service:
   extensions:
     - azureauth/monitor
+    - healthcheckv2
   pipelines:
     traces:
       receivers: [otlp]
