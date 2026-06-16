@@ -2,4 +2,5 @@ FROM ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-colle
 
 COPY otelcol.yaml /etc/otelcol-contrib/config.yaml
 
-CMD ["--feature-gates=+extension.healthcheck.useComponentStatus"]
+# https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/42256#issuecomment-3685808950
+CMD ["--config=/etc/otelcol-contrib/config.yaml", "--feature-gates=+extension.healthcheck.useComponentStatus"]
