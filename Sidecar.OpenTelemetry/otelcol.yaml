@@ -19,8 +19,11 @@ extensions:
       client_id: "${env:AZURE_CLIENT_ID}"
       client_secret: "${env:AZURE_CLIENT_SECRET}"
   health_check:
-    endpoint: "0.0.0.0:13133"
-    path: "/health/status"
+    http:
+      endpoint: "0.0.0.0:13133"
+      status:
+        path: "/health/status"
+        include_attributes: true
 
 exporters:
   otlphttp/azuremonitor:
