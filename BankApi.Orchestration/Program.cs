@@ -9,13 +9,19 @@ var dotEnvParams = builder.AddParametersFromDotEnv();
 
 var postgresUsername = builder.AddParameter("bank-api-db-username", "admin");
 var postgresPassword = builder.AddParameter("bank-api-db-password", "admin", secret: true);
-var postgres = builder.AddPostgres("bank-api-db", postgresUsername, postgresPassword, 5432).WithImageTag("18-alpine");
+var postgres = builder.AddPostgres("bank-api-db", postgresUsername, postgresPassword, 5432)
+    .WithImageTag("18-alpine");
 
-var s3Proxy = builder.AddDockerfile("bank-api-s3proxy", "../Sidecar.S3Proxy").WithHttpEndpoint(port: 6070, targetPort: 6070);
-s3Proxy.WithEnvironmentParameters(dotEnvParams);
+var s3Proxy = builder.AddDockerfile("bank-api-s3proxy", "../Sidecar.S3Proxy")
+    .WithHttpEndpoint(port: 6070, targetPort: 6070)
+    .WithHttpHealthCheck("/healthz")
+    .WithEnvironmentParameters(dotEnvParams);
 
-var dapr = builder.AddDockerfile("bank-api-dapr", "../Sidecar.Dapr").WithEndpoint(port: 50002, targetPort: 50002);
-dapr.WithEnvironmentParameters(dotEnvParams);
+var dapr = builder.AddDockerfile("bank-api-dapr", "../Sidecar.Dapr")
+    .WithHttpEndpoint(port: 3500, targetPort: 3500, name: "dapr-http")
+    .WithEndpoint(port: 50002, targetPort: 50002, name: "dapr-grpc")
+    .WithHttpHealthCheck("/v1.0/healthz", endpointName: "dapr-http", statusCode: 204)
+    .WithEnvironmentParameters(dotEnvParams);
 
 var apiStable = builder.AddProject<Projects.BankApi_Service_Stable>("bank-api")
     .WithExternalHttpEndpoints()

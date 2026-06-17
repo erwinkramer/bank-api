@@ -22,7 +22,10 @@ spec:
             - secretRef:
                 name: "bank-api-dapr-secrets"
           ports:
-            - name: "tcp"
+            - name: "dapr-http"
+              protocol: "TCP"
+              containerPort: 3500
+            - name: "dapr-grpc"
               protocol: "TCP"
               containerPort: 50002
           imagePullPolicy: "IfNotPresent"

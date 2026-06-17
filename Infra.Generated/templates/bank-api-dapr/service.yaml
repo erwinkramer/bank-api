@@ -14,7 +14,11 @@ spec:
     app.kubernetes.io/component: "bank-api-dapr"
     app.kubernetes.io/instance: "{{ .Release.Name }}"
   ports:
-    - name: "tcp"
+    - name: "dapr-http"
+      protocol: "TCP"
+      port: 3500
+      targetPort: 3500
+    - name: "dapr-grpc"
       protocol: "TCP"
       port: 50002
       targetPort: 50002
