@@ -64,6 +64,18 @@ resources:
                               key: x-petro
                               value: lira
                             append_action: OVERWRITE_IF_EXISTS_OR_ADD
+                - name: envoy.filters.http.compressor
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.compressor.v3.Compressor
+                    response_direction_config:
+                      common_config:
+                        min_content_length: 1024
+                      disable_on_etag_header: true # The API returns strong ETags which are checked in the backend, so we don't want to compress responses with ETags. See https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/compressor_filter#etag-handling
+                      status_header_enabled: true
+                    compressor_library:
+                      name: zstd
+                      typed_config:
+                        "@type": type.googleapis.com/envoy.extensions.compression.zstd.compressor.v3.Zstd
                 - name: envoy.filters.http.router
                   typed_config:
                     "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
