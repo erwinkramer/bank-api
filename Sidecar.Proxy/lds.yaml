@@ -70,7 +70,9 @@ resources:
                     response_direction_config:
                       common_config:
                         min_content_length: 1024
-                      disable_on_etag_header: true # The API returns strong ETags which are checked in the backend, so we don't want to compress responses with ETags. See https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/compressor_filter#etag-handling
+                      # Some API operations return an ETag, this value is checked when passed in If-Match header. 
+                      # We don't want to weaken or remove ETags during compression, see https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/compressor_filter#etag-handling
+                      disable_on_etag_header: true 
                       status_header_enabled: true
                     compressor_library:
                       name: zstd
