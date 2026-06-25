@@ -30,7 +30,7 @@ jobs:
           - image: ghcr.io/${{ github.repository }}-otelcol:latest
             context: ./Sidecar.OpenTelemetry
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Login and push with Podman
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | \
