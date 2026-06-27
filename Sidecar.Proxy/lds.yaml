@@ -47,6 +47,8 @@ resources:
                               # Keep request WAF checks, but skip response-body inspection for the generated Scalar bundle.
                               # https://github.com/united-security-providers/coraza-envoy-go-filter/issues/129
                               - "SecRule REQUEST_URI \"@rx ^/v[0-9]+/docs/scalar\\.js(\\?.*)?$\" \"id:100001,phase:1,pass,nolog,ctl:responseBodyAccess=Off\""
+                              # VS Code MCP sends json.params._meta.vscode.conversationId; CRS 930120 treats the .vscode key path as LFI.
+                              - "SecRule REQUEST_URI \"@beginsWith /mcp\" \"id:100002,phase:1,pass,nolog,ctl:ruleRemoveTargetById=930120;ARGS_POST_NAMES:json.params._meta.vscode.conversationId\""
                               - "Include @owasp_crs/*.conf"
                               # disable rule about missing User-Agent 
                               - "SecRuleRemoveById 920320"
