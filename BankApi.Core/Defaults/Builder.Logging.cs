@@ -18,7 +18,7 @@ public static partial class ApiBuilder
         });
         otel.WithTracing(tracing =>
         {
-            tracing.AddAspNetCoreInstrumentation(); //inbound http
+            tracing.AddSource("Microsoft.AspNetCore"); //inbound http
             tracing.AddHttpClientInstrumentation(); //outbound http
             tracing.AddEntityFrameworkCoreInstrumentation();
         });

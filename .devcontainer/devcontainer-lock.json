@@ -1,0 +1,24 @@
+{
+  "features": {
+    "ghcr.io/devcontainers/features/azure-cli:1": {
+      "version": "1.3.0",
+      "resolved": "ghcr.io/devcontainers/features/azure-cli@sha256:d98f1066c077be0fa9d115b718f458bd803e415181b4a96f82a6f5d9f77241ac",
+      "integrity": "sha256:d98f1066c077be0fa9d115b718f458bd803e415181b4a96f82a6f5d9f77241ac"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:3": {
+      "version": "3.1.0",
+      "resolved": "ghcr.io/devcontainers/features/docker-in-docker@sha256:62e04ec83d944da4fd2830f68a677d1f5466c0654aea1e4baa30232d16029ac1",
+      "integrity": "sha256:62e04ec83d944da4fd2830f68a677d1f5466c0654aea1e4baa30232d16029ac1"
+    },
+    "ghcr.io/devcontainers/features/dotnet:2": {
+      "version": "2.5.0",
+      "resolved": "ghcr.io/devcontainers/features/dotnet@sha256:0fc16547ed4db6d7ff2a9f5981d2b93eb314e568affb9958029ad794f1f9a093",
+      "integrity": "sha256:0fc16547ed4db6d7ff2a9f5981d2b93eb314e568affb9958029ad794f1f9a093"
+    },
+    "ghcr.io/microsoft/aspire-devcontainer-feature/aspire:2": {
+      "version": "2.0.0",
+      "resolved": "ghcr.io/microsoft/aspire-devcontainer-feature/aspire@sha256:85cef97f2de880d21a742f799120af2e53f69f4c9334d525381629f81c0409af",
+      "integrity": "sha256:85cef97f2de880d21a742f799120af2e53f69f4c9334d525381629f81c0409af"
+    }
+  }
+}
