@@ -39,7 +39,8 @@ var apiBeta = builder.AddProject<Projects.BankApi_Service_Beta>("bank-api-beta")
     .WaitFor(dapr);
 
 var mcpStable = builder.AddProject<Projects.BankApi_Mcp>("bank-api-mcp")
-    .WithExternalHttpEndpoints();
+    .WithExternalHttpEndpoints()
+    .WithHttpHealthCheck("/.well-known/oauth-protected-resource");
 
 k8s.AddGateway("bank-gateway")
     .WithGatewayClass("bank-gateway-class")

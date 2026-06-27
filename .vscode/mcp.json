@@ -1,11 +1,11 @@
 {
 	"servers": {
 		"bankapi-v1-local": {
-			"url": "http://localhost:5200",
+			"url": "http://localhost:5200/mcp",
 			"type": "http"
 		},
 		"bankapi-v1-web": {
-			"url": "https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net/",
+			"url": "https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/mcp",
 			"type": "http"
 		}
 	},

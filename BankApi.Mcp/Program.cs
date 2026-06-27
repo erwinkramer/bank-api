@@ -6,6 +6,7 @@ await builder.Services.AddMCPService(builder.Configuration["ApiBaseUrl"]!, "v1",
 
 var app = builder.Build();
 
+app.UsePathBase("/mcp");
 app.UseMcpifyContext(); // Enable MCPify's context accessor middleware
 app.UseMcpifyOAuth(); // Enable MCPify's OAuth middleware
 

@@ -11,7 +11,7 @@
 
 The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.
 
-Explore the live [🌐 API with sidecars](https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/docs) (hosted on Azure Container Apps) and [🌐 MCP server](https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net/.well-known/oauth-protected-resource) (hosted on F1 tier Azure App Service).
+Explore the live [🌐 API with sidecars](https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/docs) and [🌐 MCP server](https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/mcp/.well-known/oauth-protected-resource) (both hosted on Azure Container Apps).
 
 ## Compliance
 
@@ -280,7 +280,7 @@ Configure your `claude_desktop_config.json` with the following `mcpServers` entr
       "command": "npx",
       "args": [
         "mcp-remote",
-        "https://bankapi-mcp-001-ctcahwhschgrdqb4.westeurope-01.azurewebsites.net",
+        "https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/mcp",
         "--allow-http",
         "--debug"
       ]
@@ -289,7 +289,7 @@ Configure your `claude_desktop_config.json` with the following `mcpServers` entr
 }
 ```
 
- > Replace the URL with `http://localhost:5200` when using the local MCP server.
+ > Replace the URL with `http://localhost:5200/mcp` when using the local MCP server.
 
 #### GitHub Copilot
 
