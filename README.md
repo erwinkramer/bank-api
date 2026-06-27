@@ -33,7 +33,7 @@ Explore the live [🌐 API with sidecars](https://app.bravestone-75bd2261.german
 
 ### EDA ([Event-driven architecture](https://en.wikipedia.org/wiki/Event-driven_architecture)) with [outbox-pattern](https://en.wikipedia.org/wiki/Inbox_and_outbox_pattern#The_outbox_pattern)
 
-✅ [OpenAPI Specification v3.1.1 - webhook field](https://spec.openapis.org/oas/v3.1.1.html#oas-webhooks)
+✅ [OpenAPI Specification v3.2.0 - webhook field](https://spec.openapis.org/oas/v3.2.0.html#oas-webhooks)
 
 ✅ [CloudEvents - Version 1.0.2](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md) for defining the format of event data
 
