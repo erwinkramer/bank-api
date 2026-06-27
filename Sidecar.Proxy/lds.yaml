@@ -45,6 +45,7 @@ resources:
                               - "SecAction \"id:900200,phase:1,nolog,pass,setvar:'tx.allowed_methods=GET HEAD POST PUT QUERY OPTIONS DELETE'\"" 
                               - "Include @crs-setup"
                               # Keep request WAF checks, but skip response-body inspection for the generated Scalar bundle.
+                              # https://github.com/united-security-providers/coraza-envoy-go-filter/issues/129
                               - "SecRule REQUEST_URI \"@rx ^/v[0-9]+/docs/scalar\\.js(\\?.*)?$\" \"id:100001,phase:1,pass,nolog,ctl:responseBodyAccess=Off\""
                               - "Include @owasp_crs/*.conf"
                               # disable rule about missing User-Agent 

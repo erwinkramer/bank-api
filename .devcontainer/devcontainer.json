@@ -36,9 +36,9 @@
 			"aspNetCoreRuntimeVersions": "11.0-preview"
 		},
 		"ghcr.io/devcontainers/features/azure-cli:1": {}, // for using the host az cli credentials
-		"ghcr.io/devcontainers/features/docker-in-docker:3": {
+		"ghcr.io/devcontainers/features/docker-in-docker:4": {
 			"version": "latest",
-			"moby": true
+			"moby": false // https://github.com/devcontainers/features/issues/1660
 		} // for .NET Aspire resource emulation
 	},
 	"mounts": [
