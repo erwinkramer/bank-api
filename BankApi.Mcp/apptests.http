@@ -4,11 +4,11 @@
 
 ###
 
-http://{{host}}/.well-known/oauth-protected-resource
+http://{{host}}/mcp/.well-known/oauth-protected-resource
 
 ###
 
-http://{{host}}
+http://{{host}}/mcp
 Accept: text/event-stream
 
 ###
