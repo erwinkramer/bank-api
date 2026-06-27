@@ -19,7 +19,7 @@ class TransformerWebhooks() : IOpenApiDocumentTransformer
                     RequestBody = new OpenApiRequestBody
                     {
                         Required = true,
-                        Content = new Dictionary<string, OpenApiMediaType>
+                        Content = new Dictionary<string, IOpenApiMediaType>
                         {
                             ["application/cloudevents+json; charset=utf-8"] = new OpenApiMediaType
                             {

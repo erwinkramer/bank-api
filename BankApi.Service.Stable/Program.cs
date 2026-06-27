@@ -26,7 +26,7 @@ builder.Services.AddOpenApiServices();
 builder.Services.AddRateLimitServices();
 builder.Services.AddCorsServices();
 builder.Services.AddErrorHandling();
-builder.Services.AddValidation(); // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-10.0#enable-built-in-validation-support-for-minimal-apis
+builder.Services.AddValidation(); // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0#enable-built-in-validation-support-for-minimal-apis
 
 var app = builder.Build();
 
@@ -43,7 +43,7 @@ app.UseCors();
 app.MapOpenApi("/openapi/{documentName}.json");
 app.AddOpenApiScalarReference();
 
-if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider" && // see https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-10.0&tabs=visual-studio%2Cvisual-studio-code#customize-runtime-behavior-during-build-time-document-generation
+if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider" && // see https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-11.0&tabs=visual-studio%2Cvisual-studio-code#customize-runtime-behavior-during-build-time-document-generation
     (app.Environment.IsDevelopment() || app.Environment.IsStaging()))
 {
     //await app.Services.ProvisionStorage();

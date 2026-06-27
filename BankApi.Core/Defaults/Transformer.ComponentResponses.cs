@@ -17,9 +17,9 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
         document.Components.Responses["400"] = new OpenApiResponse
         {
             Description = "Bad request.",
-            Content = new Dictionary<string, OpenApiMediaType>
+            Content = new Dictionary<string, IOpenApiMediaType>
             {
-                { "application/problem+json", new () { Schema = new OpenApiSchemaReference("Problem", document) } }
+                ["application/problem+json"] = new OpenApiMediaType { Schema = new OpenApiSchemaReference("Problem", document) }
             },
             Headers = new Dictionary<string, IOpenApiHeader>()
         };
@@ -27,13 +27,13 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
         document.Components.Responses["401"] = new OpenApiResponse
         {
             Description = "Unauthorized request.",
-            Content = new Dictionary<string, OpenApiMediaType>
+            Content = new Dictionary<string, IOpenApiMediaType>
             {
-                { "application/problem+plain", new () }
+                ["application/problem+plain"] = new OpenApiMediaType()
             },
             Headers = new Dictionary<string, IOpenApiHeader>
             {
-                { "WWW-Authenticate", new OpenApiHeaderReference("GenericStringHeader", document) }
+                ["WWW-Authenticate"] = new OpenApiHeaderReference("GenericStringHeader", document)
             }
         };
 
@@ -46,9 +46,9 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
         document.Components.Responses["409"] = new OpenApiResponse
         {
             Description = "Conflict.",
-            Content = new Dictionary<string, OpenApiMediaType>
+            Content = new Dictionary<string, IOpenApiMediaType>
             {
-                { "application/problem+json", new () { Schema = new OpenApiSchemaReference("Problem", document) } }
+                ["application/problem+json"] = new OpenApiMediaType { Schema = new OpenApiSchemaReference("Problem", document) }
             },
             Headers = new Dictionary<string, IOpenApiHeader>()
         };
@@ -68,9 +68,9 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
         document.Components.Responses["422"] = new OpenApiResponse
         {
             Description = "Unprocessable Entity.",
-            Content = new Dictionary<string, OpenApiMediaType>()
+            Content = new Dictionary<string, IOpenApiMediaType>
             {
-                { "application/problem+json", new () { Schema = new OpenApiSchemaReference("Problem", document) } }
+                ["application/problem+json"] = new OpenApiMediaType { Schema = new OpenApiSchemaReference("Problem", document) }
             },
             Headers = new Dictionary<string, IOpenApiHeader>()
         };
@@ -78,22 +78,22 @@ class TransformerComponentResponses() : IOpenApiDocumentTransformer
         document.Components.Responses["429"] = new OpenApiResponse
         {
             Description = "Too many requests.",
-            Content = new Dictionary<string, OpenApiMediaType>
+            Content = new Dictionary<string, IOpenApiMediaType>
             {
-                { "application/problem+plain", new () { Schema = new OpenApiSchemaReference("GenericString", document) } }
+                ["application/problem+plain"] = new OpenApiMediaType { Schema = new OpenApiSchemaReference("GenericString", document) }
             },
             Headers = new Dictionary<string, IOpenApiHeader>
             {
-                { "Retry-After", OpenApiFactory.CreateHeaderInt(document, "The number of seconds to wait before retrying the request.") }
+                ["Retry-After"] = OpenApiFactory.CreateHeaderInt(document, "The number of seconds to wait before retrying the request.")
             }
         };
 
         document.Components.Responses["500"] = new OpenApiResponse
         {
             Description = "Internal server error.",
-            Content = new Dictionary<string, OpenApiMediaType>
+            Content = new Dictionary<string, IOpenApiMediaType>
             {
-                { "application/problem+json", new () { Schema = new OpenApiSchemaReference("Problem", document) } }
+                ["application/problem+json"] = new OpenApiMediaType { Schema = new OpenApiSchemaReference("Problem", document) }
             },
             Headers = new Dictionary<string, IOpenApiHeader>()
         };

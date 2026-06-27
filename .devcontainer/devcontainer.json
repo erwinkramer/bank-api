@@ -1,8 +1,8 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/dotnet
 {
-	"name": "Bank API dotnet10",
-	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-10.0-noble", // https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/dotnet/tags
+	"name": "Bank API dotnet11",
+	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-11.0-preview-resolute", // https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/dotnet/tags
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -33,7 +33,7 @@
 		"ghcr.io/microsoft/aspire-devcontainer-feature/aspire:2": {}, // https://github.com/microsoft/aspire-devcontainer/blob/main/.devcontainer/devcontainer.json
 		"ghcr.io/devcontainers/features/dotnet:2": {
 			"version": "none", // already pre-installed with image
-			"aspNetCoreRuntimeVersions": "10.0"
+			"aspNetCoreRuntimeVersions": "11.0-preview"
 		},
 		"ghcr.io/devcontainers/features/azure-cli:1": {}, // for using the host az cli credentials
 		"ghcr.io/devcontainers/features/docker-in-docker:3": {

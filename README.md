@@ -19,7 +19,7 @@ Explore the live [🌐 API with sidecars](https://app.bravestone-75bd2261.german
 
 ✅ [OWASP API Security Top 10 - v2023](https://owasp.org/API-Security/editions/2023/en/0x11-t10/) via [Spectral OWASP API Security ruleset](https://github.com/stoplightio/spectral-owasp-ruleset?tab=readme-ov-file#spectral-owasp-api-security)
 
-✅ [OpenAPI Specification v3.1.1](https://spec.openapis.org/oas/v3.1.1.html) via [Spectral "oas" ruleset](https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules)
+✅ [OpenAPI Specification v3.2](https://spec.openapis.org/oas/v3.2.0.html) via [Spectral "oas" ruleset](https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules)
 
 ✅ [NLGov (Dutch Public Sector) REST API Design Rules 2.2.0](https://github.com/Logius-standaarden/API-Design-Rules/) via [API Design Rules ruleset](https://github.com/Logius-standaarden/publicatie/blob/main/api/adr/2.2.0/media/linter.yaml)
 
@@ -47,7 +47,7 @@ Explore the live [🌐 API with sidecars](https://app.bravestone-75bd2261.german
 
 ## Technology stack
 
-- [ASP.NET Core 10.0 - Minimal API](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/overview?view=aspnetcore-10.0) for API development, with following base services:
+- [ASP.NET Core 11.0 - Minimal API](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0) for API development, with following base services:
 
   - [Resilience](https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience?tabs=package-reference) for resilience when calling downstream APIs
 
@@ -69,7 +69,7 @@ Explore the live [🌐 API with sidecars](https://app.bravestone-75bd2261.german
 
   - [Cross-Origin Resource Sharing (CORS)](https://learn.microsoft.com/en-us/aspnet/core/security/cors) for cross-origin requests
 
-  - [Validation](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-10.0#enable-built-in-validation-support-for-minimal-apis) for validating requests on endpoints
+  - [Validation](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0#enable-built-in-validation-support-for-minimal-apis) for validating requests on endpoints
 
 - [OpenTelemetry (OTel)](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel) for observability
 
@@ -132,7 +132,7 @@ specs_gen --> mcp
 
 If not using the [Dev Container](.devcontainer/devcontainer.json), install:
 
-- [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
+- [.NET 11 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/11.0)
 
 - All [recommended Visual Studio Code extensions](.vscode/extensions.json)
 

@@ -1,4 +1,5 @@
 {
+    "aspire.dashboardBrowser": "openExternalBrowser",
     "git.alwaysSignOff": true,
     "spectral.rulesetFile": "Specs.Ruleset/main.yml",
     "spectral.validateFiles": [

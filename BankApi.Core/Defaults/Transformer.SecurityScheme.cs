@@ -20,59 +20,51 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
             {
                 JwtBearerDefaults.AuthenticationScheme => new()
                 {
+                    [JwtBearerDefaults.AuthenticationScheme] = new OpenApiSecurityScheme
                     {
-                        JwtBearerDefaults.AuthenticationScheme,
-                        new OpenApiSecurityScheme
-                        {
-                            Description = "Bearer scheme, please see: https://learn.openapis.org/specification/security.html#http-authentication.",
-                            Type = SecuritySchemeType.Http,
-                            Scheme = "bearer",
-                            In = ParameterLocation.Header,
-                            BearerFormat = "Json Web Token"
-                        }
+                        Description = "Bearer scheme, please see: https://learn.openapis.org/specification/security.html#http-authentication.",
+                        Type = SecuritySchemeType.Http,
+                        Scheme = "bearer",
+                        In = ParameterLocation.Header,
+                        BearerFormat = "Json Web Token"
                     },
+                    ["OpenIdConnect"] = new OpenApiSecurityScheme
                     {
-                        "OpenIdConnect",
-                        new OpenApiSecurityScheme
-                        {
-                            Description = "OpenID Connect scheme, please see: https://learn.openapis.org/specification/security.html#openid-connect.",
-                            Type = SecuritySchemeType.OpenIdConnect,
-                            OpenIdConnectUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/v2.0/.well-known/openid-configuration")
-                        }
+                        Description = "OpenID Connect scheme, please see: https://learn.openapis.org/specification/security.html#openid-connect.",
+                        Type = SecuritySchemeType.OpenIdConnect,
+                        OpenIdConnectUrl = new($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/v2.0/.well-known/openid-configuration")
                     },
+                    ["OAuth2"] = new OpenApiSecurityScheme
                     {
-                        "OAuth2",
-                        new OpenApiSecurityScheme
+                        Description = "OAuth2 scheme, supports RFC8725. Please see: https://learn.openapis.org/specification/security.html#oauth2-1.",
+                        Type = SecuritySchemeType.OAuth2,
+                        Flows = new OpenApiOAuthFlows
                         {
-                            Description = "OAuth2 scheme, supports RFC8725. Please see: https://learn.openapis.org/specification/security.html#oauth2-1.",
-                            Type = SecuritySchemeType.OAuth2,
-                            Flows = new OpenApiOAuthFlows
+                            AuthorizationCode = new OpenApiOAuthFlow
                             {
-                                AuthorizationCode = new OpenApiOAuthFlow
+                                AuthorizationUrl = new($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/authorize"),
+                                TokenUrl = new($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token"),
+                                RefreshUrl = new($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token"),
+                                Scopes = new Dictionary<string, string>
                                 {
-                                    AuthorizationUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/authorize"),
-                                    TokenUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token"),
-                                    RefreshUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token"),
-                                    Scopes = new Dictionary<string, string>
-                                    {
-                                        { $"{GlobalConfiguration.ApiSettings!.EntraId.ClientId}/.default", "Access to Bank API" }
-                                    },
-                                    Extensions = new Dictionary<string, IOpenApiExtension>
-                                    {
-                                        { "x-client-id",  new JsonNodeExtension(JsonValue.Create( GlobalConfiguration.ApiSettings!.EntraId.ClientId)) }
-                                    }
+                                    [$"{GlobalConfiguration.ApiSettings!.EntraId.ClientId}/.default"] = "Access to Bank API"
                                 },
-                                ClientCredentials = new OpenApiOAuthFlow{
-                                    TokenUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token"),
-                                    RefreshUrl = new ($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token"),
-                                    Scopes = new Dictionary<string, string>
-                                    {
-                                        { $"{GlobalConfiguration.ApiSettings!.EntraId.ClientId}/.default", "Access to Bank API" }
-                                    },
-                                    Extensions = new Dictionary<string, IOpenApiExtension>
-                                    {
-                                        { "x-client-id",  new JsonNodeExtension(JsonValue.Create( GlobalConfiguration.ApiSettings!.EntraId.ClientId)) }
-                                    }
+                                Extensions = new Dictionary<string, IOpenApiExtension>
+                                {
+                                    ["x-client-id"] = new JsonNodeExtension(JsonValue.Create(GlobalConfiguration.ApiSettings!.EntraId.ClientId))
+                                }
+                            },
+                            ClientCredentials = new OpenApiOAuthFlow
+                            {
+                                TokenUrl = new($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token"),
+                                RefreshUrl = new($"https://login.microsoftonline.com/{GlobalConfiguration.ApiSettings!.EntraId.TenantId}/oauth2/v2.0/token"),
+                                Scopes = new Dictionary<string, string>
+                                {
+                                    [$"{GlobalConfiguration.ApiSettings!.EntraId.ClientId}/.default"] = "Access to Bank API"
+                                },
+                                Extensions = new Dictionary<string, IOpenApiExtension>
+                                {
+                                    ["x-client-id"] = new JsonNodeExtension(JsonValue.Create(GlobalConfiguration.ApiSettings!.EntraId.ClientId))
                                 }
                             }
                         }
@@ -80,15 +72,12 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
                 },
                 $"{ApiKeyDefaults.AuthenticationScheme}-Header" => new()
                 {
+                    [$"{ApiKeyDefaults.AuthenticationScheme}-Header"] = new OpenApiSecurityScheme
                     {
-                        $"{ApiKeyDefaults.AuthenticationScheme}-Header",
-                        new OpenApiSecurityScheme
-                        {
-                            Type = SecuritySchemeType.ApiKey,
-                            Description = "Api Key scheme, please see: https://learn.openapis.org/specification/security.html#api-keys.",
-                            Name = "Ocp-Apim-Subscription-Key",
-                            In = ParameterLocation.Header
-                        }
+                        Type = SecuritySchemeType.ApiKey,
+                        Description = "Api Key scheme, please see: https://learn.openapis.org/specification/security.html#api-keys.",
+                        Name = "Ocp-Apim-Subscription-Key",
+                        In = ParameterLocation.Header
                     }
                 },
                 _ => new()
@@ -102,7 +91,7 @@ class TransformerSecurityScheme(IAuthenticationSchemeProvider authenticationSche
                 document.Security ??= new List<OpenApiSecurityRequirement>();
                 document.Security.Add(new()
                 {
-                    { new OpenApiSecuritySchemeReference(scheme.Key, document), [] }
+                    [new OpenApiSecuritySchemeReference(scheme.Key, document)] = []
                 });
             }
         }

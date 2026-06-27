@@ -38,7 +38,7 @@ class TransformerComponentSchemas() : IOpenApiDocumentTransformer
                 ["instance"] = new OpenApiSchemaReference("GenericString", document),
                 ["traceId"] = new OpenApiSchemaReference("GenericString", document),
                 ["requestId"] = new OpenApiSchemaReference("GenericString", document),
-                ["errors"] = new OpenApiSchema // matches https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpvalidationproblemdetails.errors?view=aspnetcore-10.0#microsoft-aspnetcore-http-httpvalidationproblemdetails-errors
+                ["errors"] = new OpenApiSchema // matches https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpvalidationproblemdetails.errors?view=aspnetcore-11.0#microsoft-aspnetcore-http-httpvalidationproblemdetails-errors
                 {
                     Type = JsonSchemaType.Object,
                     AdditionalProperties = new OpenApiSchema

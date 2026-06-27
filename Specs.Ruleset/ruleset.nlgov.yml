@@ -21,7 +21,7 @@ extends: spectral:oas
 
 rules:
   #/core/publish-openapi (deze error-rules valideren of OAS valid is)
-  oas3-schema: error
+  oas3-schema: off # Does not support OpenAPI 3.2.0 yet.
   operation-operationId-unique: error
   path-params: error
   openapi-tags-uniqueness: error
@@ -40,7 +40,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: '^3(.\d+){1,2}$'
+        match: '^3\.\d+\.\d+(-.+)?$'
     message: "The OpenAPI Specification is versioned using a `major.minor.patch` versioning scheme. Use a version 3 OpenAPI Specification for documentation."
 
   nlgov:openapi-root-exists:

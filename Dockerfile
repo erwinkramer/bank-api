@@ -1,6 +1,6 @@
 # Structure of this file is based of https://github.com/dotnet/dotnet-docker/blob/main/samples/aspnetapp/Dockerfile.alpine-composite
 # For more information on the alpine composite image, see: https://github.com/richlander/container-workshop/issues/7
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:11.0-preview-alpine AS build
 ARG TARGETARCH=x64
 ARG SERVICENAME=BankApi.Service.Stable
 ARG PUBLISHPROFILE=AlpineContainer
@@ -29,7 +29,7 @@ RUN ln -s /app/$SERVICENAME /app/app-entrypoint
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/enable-globalization.md
 
 # Runtime stage
-FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine-composite
+FROM mcr.microsoft.com/dotnet/aspnet:11.0-preview-alpine-composite
 EXPOSE 8080
 WORKDIR /app
 COPY --from=build /source/.certs/*.crt /usr/local/share/ca-certificates/

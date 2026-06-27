@@ -1,5 +1,5 @@
 {
-  "openapi": "3.1.1",
+  "openapi": "3.2.0",
   "info": {
     "title": "Bank API",
     "description": "The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.",
