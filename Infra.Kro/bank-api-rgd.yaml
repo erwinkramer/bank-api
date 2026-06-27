@@ -130,7 +130,7 @@ spec:
                     initialDelaySeconds: 3
                     periodSeconds: 10
 
-              # The main application container
+              # The main application containers
               containers:
                 - name: api-stable
                   image: ghcr.io/erwinkramer/bank-api:latest
@@ -181,7 +181,24 @@ spec:
                       port: http-api-beta
                     initialDelaySeconds: 3
                     periodSeconds: 5
-
+                - name: mcp
+                  image: ghcr.io/erwinkramer/bank-api-mcp:latest
+                  ports:
+                    - containerPort: 8082
+                      name: http-mcp
+                  env:
+                    - name: ASPNETCORE_HTTP_PORTS
+                      value: "8082"
+                    - name: ApiBaseUrl
+                      value: http://localhost:8080
+                    - name: McpServerBaseUrl
+                      value: https://${schema.spec.gateway.host}/mcp
+                  readinessProbe:
+                    httpGet:
+                      path: /.well-known/oauth-protected-resource
+                      port: http-mcp
+                    initialDelaySeconds: 3
+                    periodSeconds: 5
     - id: service
       template:
         apiVersion: v1

@@ -4,6 +4,10 @@
 			"url": "http://localhost:5200/mcp",
 			"type": "http"
 		},
+		"bankapi-v1-localcluster": {
+			"url": "https://bankapi.w.guanchen.nl/mcp",
+			"type": "http"
+		},
 		"bankapi-v1-web": {
 			"url": "https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/mcp",
 			"type": "http"

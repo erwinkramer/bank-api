@@ -35,5 +35,9 @@ WORKDIR /app
 COPY --from=build /source/.certs/*.crt /usr/local/share/ca-certificates/
 RUN cat /usr/local/share/ca-certificates/*.crt >> /etc/ssl/certs/ca-certificates.crt
 COPY --from=build /app .
+
+# Specifically for the MCP server. Keep this in until following issue is solved: https://github.com/abdebek/MCPify/issues/20
+RUN mkdir -p /app/AuthTokens && chown -R $APP_UID:$APP_UID /app/AuthTokens
+
 USER $APP_UID
 ENTRYPOINT ["./app-entrypoint"]
