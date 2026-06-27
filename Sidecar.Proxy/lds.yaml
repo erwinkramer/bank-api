@@ -100,3 +100,8 @@ resources:
                         route:
                           cluster: api_beta
                           timeout: 60s # defaults to 15s
+                      - match:
+                          prefix: "/mcp"
+                        route:
+                          cluster: api_mcp
+                          timeout: 60s # defaults to 15s

@@ -23,3 +23,15 @@ resources:
                   socket_address:
                     address: 127.0.0.1
                     port_value: 8081
+  - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+    name: api_mcp
+    type: STATIC
+    load_assignment:
+      cluster_name: api_mcp
+      endpoints:
+        - lb_endpoints:
+            - endpoint:
+                address:
+                  socket_address:
+                    address: 127.0.0.1
+                    port_value: 8082
