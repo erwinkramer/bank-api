@@ -21,6 +21,9 @@ jobs:
           - image: ghcr.io/${{ github.repository }}:nightly
             context: .
             args: --build-arg SERVICENAME=BankApi.Service.Beta
+          - image: ghcr.io/${{ github.repository }}-mcp:latest
+            context: .
+            args: --build-arg SERVICENAME=BankApi.Mcp
           - image: ghcr.io/${{ github.repository }}-dapr:latest
             context: ./Sidecar.Dapr
           - image: ghcr.io/${{ github.repository }}-proxy:latest
