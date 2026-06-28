@@ -21,7 +21,7 @@ Explore the live [🌐 API with sidecars](https://app.bravestone-75bd2261.german
 
 ✅ [OpenAPI Specification v3.2](https://spec.openapis.org/oas/v3.2.0.html) via [Spectral "oas" ruleset](https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules)
 
-✅ [NLGov (Dutch Public Sector) REST API Design Rules 2.2.0](https://github.com/Logius-standaarden/API-Design-Rules/) via [API Design Rules ruleset](https://github.com/Logius-standaarden/publicatie/blob/main/api/adr/2.2.0/media/linter.yaml)
+✅ [NLGov (Dutch Public Sector) REST API Design Rules 2.2.1](https://github.com/Logius-standaarden/API-Design-Rules/) via [API Design Rules ruleset](https://github.com/Logius-standaarden/publicatie/blob/main/api/adr/2.2.1/media/linter.yaml)
 
 ✅ Additional naming conventions, structure, and clarity via [Bank API  project ruleset](Specs.Ruleset/ruleset.bank.yml)
 

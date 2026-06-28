@@ -13,8 +13,8 @@
 #
 # ```
 # npm install -g @stoplight/spectral-cli
-# curl -L https://static.developer.overheid.nl/adr/ruleset.yaml > .linter.yml
-# spectral lint -r .linter.yml $OAS_URL_OR_FILE
+# curl -L https://static.developer.overheid.nl/adr/ruleset.yaml > .linter.yaml
+# spectral lint -r .linter.yaml $OAS_URL_OR_FILE
 # ```
 
 extends: spectral:oas
@@ -40,7 +40,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: '^3\.\d+\.\d+(-.+)?$'
+        match: '^3(.\d+){1,2}$'
     message: "The OpenAPI Specification is versioned using a `major.minor.patch` versioning scheme. Use a version 3 OpenAPI Specification for documentation."
 
   nlgov:openapi-root-exists:
@@ -173,20 +173,8 @@ rules:
       functionOptions:
         match: ^\$?[a-z][a-z\d]*([A-Z][a-z\d]*)*$
 
-  nlgov:schema-camel-case:
-    severity: warn
-    message: "Schema name should be UpperCamelCase in {{path}}"
-    given: >-
-      $.components.schemas[*]~
-    then:
-      function: casing
-      functionOptions:
-        type: pascal
-        separator:
-          char: ""
-
   nlgov:servers-use-https:
-    severity: warn
+    severity: error
     message: "Server URL {{value}} {{error}}."
     given:
       - $.servers[*]
@@ -244,17 +232,6 @@ rules:
               type: object
               required:
               - "400"
-
-  nlgov:property-casing:
-    severity: warn
-    given:
-      - "$.*.schemas[*].properties.[?(@property && @property.match(/_links/i))]"
-    then:
-      function: casing
-      functionOptions:
-        type: camel
-      field: "@key"
-    message: Properties must be lowerCamelCase.
 
   #/core/date-time/timezone
   nlgov:date-time-ensure-timezone:
