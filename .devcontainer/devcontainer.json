@@ -16,7 +16,8 @@
 			],
 			"settings": {
 				"terminal.integrated.shell.linux": "/bin/bash",
-				"dotnetAcquisitionExtension.sharedExistingDotnetPath": "/usr/share/dotnet/dotnet"
+				"dotnetAcquisitionExtension.sharedExistingDotnetPath": "/usr/share/dotnet/dotnet",
+				"dotnetAcquisitionExtension.allowInvalidPaths": true
 			}
 		}
 	},
@@ -31,10 +32,6 @@
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/microsoft/aspire-devcontainer-feature/aspire:2": {}, // https://github.com/microsoft/aspire-devcontainer/blob/main/.devcontainer/devcontainer.json
-		"ghcr.io/devcontainers/features/dotnet:2": {
-			"version": "none", // already pre-installed with image
-			"aspNetCoreRuntimeVersions": "11.0-preview"
-		},
 		"ghcr.io/devcontainers/features/azure-cli:1": {}, // for using the host az cli credentials
 		"ghcr.io/devcontainers/features/docker-in-docker:4": {
 			"version": "latest",
@@ -51,7 +48,7 @@
 		// Bind ASP.NET user secrets folder (please see https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets#how-the-secret-manager-tool-works)
 		"source=${localEnv:APPDATA}/Microsoft/UserSecrets,target=/home/vscode/.microsoft/usersecrets,type=bind"
 	],
-	// Remove absolutely every file on the .gitignore list (except .env file), so we don't run into permission issues. 
+	// Remove absolutely every file on the .gitignore list (except .env and secret files), so we don't run into permission issues. 
 	// Also see https://github.com/microsoft/vscode-remote-release/issues/9099#issuecomment-2541564211
-	"postStartCommand": "git clean -xdf -e .env -e 'Infra.Kro/' && dotnet dev-certs https --clean --import ${containerWorkspaceFolder}/.certs/AspNetDev.pfx -p ''"
+	"postStartCommand": "git clean -xdf -e .env -e 'Infra.Kro/' && dotnet dev-certs https --clean --import ${containerWorkspaceFolder}/.certs/AspNetDev.pfx -p '' -v"
 }
