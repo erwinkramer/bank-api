@@ -19,7 +19,7 @@ Explore the live [🌐 API with sidecars](https://app.bravestone-75bd2261.german
 
 ✅ [OWASP API Security Top 10 - v2023](https://owasp.org/API-Security/editions/2023/en/0x11-t10/) via [Spectral OWASP API Security ruleset](https://github.com/stoplightio/spectral-owasp-ruleset?tab=readme-ov-file#spectral-owasp-api-security)
 
-✅ [OpenAPI Specification v3.2](https://spec.openapis.org/oas/v3.2.0.html) via [Spectral "oas" ruleset](https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules)
+✅ [OpenAPI Specification v3.2.0](https://spec.openapis.org/oas/v3.2.0.html) via [Spectral "oas" ruleset](https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules)
 
 ✅ [NLGov (Dutch Public Sector) REST API Design Rules 2.2.1](https://github.com/Logius-standaarden/API-Design-Rules/) via [API Design Rules ruleset](https://github.com/Logius-standaarden/publicatie/blob/main/api/adr/2.2.1/media/linter.yaml)
 
