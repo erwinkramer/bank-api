@@ -4,4 +4,4 @@ WORKDIR /envoy-config
 
 COPY . /envoy-config
 
-CMD ["-c", "/envoy-config/bootstrap.yaml"]
+CMD ["-c", "/envoy-config/bootstrap.yaml", "-l", "debug"]
