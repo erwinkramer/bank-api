@@ -1,5 +1,6 @@
 using Gridify.EntityFramework;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Hybrid;
 
 public class BankOperation
@@ -10,7 +11,7 @@ public class BankOperation
             $"banks-{query.Page}-{query.PageSize}-{query.Filter}-{query.OrderBy}",
             async innerToken =>
             {
-                var pagingResult = await db.Banks.GridifyAsync(query, innerToken);
+                var pagingResult = await db.Banks.AsNoTracking().GridifyAsync(query, innerToken);
                 return new Paging<BankModel>(pagingResult.Count, pagingResult.Data);
             },
             cancellationToken: token,
@@ -23,7 +24,7 @@ public class BankOperation
     public static async Task<Results<Ok<BankModel>, NotFound, UnprocessableEntity>> GetBank([Bank] Guid id, HttpContext httpContext, BankDb db, HybridCache cache, CancellationToken token = default)
     {
         var bank = await cache.GetOrCreateAsync($"bank-{id}",
-            async innerToken => await db.Banks.FindAsync(id, innerToken), cancellationToken: token);
+            async innerToken => await db.Banks.AsNoTracking().FirstOrDefaultAsync(b => b.Id == id, innerToken), cancellationToken: token);
 
         if (bank is null) return TypedResults.NotFound();
 
