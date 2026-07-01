@@ -1,3 +1,6 @@
+# Visual overview:
+# https://arazzo-ui.jentic.com/?document=https%3A%2F%2Fraw.githubusercontent.com%2Ferwinkramer%2Fbank-api%2Frefs%2Fheads%2Fmain%2F.arazzo%2Fv1_arazzo.yaml
+# Definition:
 arazzo: 1.1.0 # 1.1.0 exists, but spectral only validates if the version is set to 1.0.0 at the moment, otherwise it will ignore the ruleset.
 info:
   title: Bank API workflows
