@@ -19,6 +19,9 @@
 
 extends: spectral:oas
 
+formats:
+  - oas3
+
 rules:
   #/core/publish-openapi (deze error-rules valideren of OAS valid is)
   oas3-schema: off # Does not support OpenAPI 3.2.0 yet.

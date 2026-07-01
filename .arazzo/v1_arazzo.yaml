@@ -1,0 +1,80 @@
+arazzo: 1.1.0 # 1.1.0 exists, but spectral only validates if the version is set to 1.0.0 at the moment, otherwise it will ignore the ruleset.
+info:
+  title: Bank API workflows
+  summary: Workflows for common Bank API operations.
+  description: Arazzo workflows that compose Bank API v1 operations from the OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+  - name: bankApiV1
+    url: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/openapi/spec.json
+    type: openapi
+workflows:
+  - workflowId: getAndUpdateBank
+    summary: List banks, get one, and update it
+    description: Gets the available banks, retrieves the first bank from the result, captures its entity tag, and updates that bank using optimistic concurrency.
+    inputs:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          minimum: 1
+          default: 1
+          description: Page to request when listing banks.
+        pageSize:
+          type: integer
+          format: int32
+          minimum: 1
+          default: 21
+          description: Page size to request when listing banks.
+    steps:
+      - stepId: getAllBanks
+        description: Retrieve banks and select the first returned bank id.
+        operationId: GetAllBanks
+        parameters:
+          - name: page
+            in: query
+            value: $inputs.page
+          - name: pageSize
+            in: query
+            value: $inputs.pageSize
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/count > 0
+        outputs:
+          banks: $response.body
+          selectedBankId: $response.body#/data/0/id
+      - stepId: getBank
+        description: Retrieve the bank and its current entity tag.
+        operationId: GetBank
+        parameters:
+          - name: id
+            in: path
+            value: $steps.getAllBanks.outputs.selectedBankId
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          bank: $response.body
+          etag: $response.headers.etag
+      - stepId: updateBank
+        description: Update the bank using the entity tag returned by the get step.
+        operationId: UpdateBank
+        parameters:
+          - name: id
+            in: path
+            value: $steps.getBank.outputs.bank.id
+          - name: If-Match
+            in: header
+            value: $steps.getBank.outputs.etag
+        requestBody:
+          contentType: application/json
+          payload: $steps.getBank.outputs.bank
+        successCriteria:
+          - condition: $statusCode == 204
+        outputs:
+          statusCode: $statusCode
+    outputs:
+      bankCount: $steps.getAllBanks.outputs.banks.count
+      bankId: $steps.getBank.outputs.bank.id
+      etag: $steps.getBank.outputs.etag
+      updateStatusCode: $steps.updateBank.outputs.statusCode

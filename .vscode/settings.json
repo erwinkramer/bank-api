@@ -3,7 +3,8 @@
     "git.alwaysSignOff": true,
     "spectral.rulesetFile": "Specs.Ruleset/main.yml",
     "spectral.validateFiles": [
-        "**/Specs.Generated/*.json"
+        "**/Specs.Generated/*.json",
+        "**/.arazzo/*.yaml",
     ],
     "rest-client.defaultHeaders": {
         "User-Agent": null

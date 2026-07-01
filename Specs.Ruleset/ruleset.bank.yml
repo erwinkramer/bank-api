@@ -1,3 +1,6 @@
+formats:
+  - oas3
+
 aliases:
   requestOrResponseJsonContent:
     - "$..content[application/json]"

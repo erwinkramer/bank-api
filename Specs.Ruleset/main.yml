@@ -1,6 +1,7 @@
 extends:
   - ruleset.bank.yml # Bank API project ruleset
   - ruleset.nlgov.yml # Dutch Public Sector (NLGov) REST API Design Rules, includes Spectral "oas" ruleset
+  - spectral:arazzo # Arazzo workflow ruleset
   - https://unpkg.com/@stoplight/spectral-owasp-ruleset/dist/ruleset.mjs # OWASP API Security Top 10 - v2023
 
 rules: 
