@@ -17,15 +17,9 @@ workflows:
       properties:
         page:
           type: integer
-          format: int32
-          minimum: 1
-          default: 1
           description: Page to request when listing banks.
         pageSize:
           type: integer
-          format: int32
-          minimum: 1
-          default: 21
           description: Page size to request when listing banks.
     steps:
       - stepId: getAllBanks
@@ -67,7 +61,6 @@ workflows:
             in: header
             value: $steps.getBank.outputs.etag
         requestBody:
-          contentType: application/json
           payload: $steps.getBank.outputs.bank
         successCriteria:
           - condition: $statusCode == 204
