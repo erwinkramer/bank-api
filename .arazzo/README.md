@@ -14,5 +14,6 @@ Uses [Arazzo Runner](https://github.com/jentic/arazzo-engine/blob/main/runner/RE
 $env:BANK_APIKEY_HEADER = "Lifetime Subscription"
 
 python -m pip install arazzo-runner
+python -m pip install truststore
 python .\.arazzo\run.py .\.arazzo\v1_arazzo.yaml
 ```
