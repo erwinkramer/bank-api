@@ -39,16 +39,12 @@ rules:
   #/core/doc-openapi
   nlgov:openapi3:
     severity: error
-    given: $
+    given: $.['openapi']
     then:
-      - field: openapi
-        function: truthy
-      - field: openapi
-        function: pattern
-        functionOptions:
-          match: '^3(.\d+){1,2}$'
+      function: pattern
+      functionOptions:
+        match: '^3(.\d+){1,2}$'
     message: "The OpenAPI Specification is versioned using a `major.minor.patch` versioning scheme. Use a version 3 OpenAPI Specification for documentation."
-    formats: [oas2, oas3]
 
   nlgov:openapi-root-exists:
     severity: error
@@ -57,6 +53,7 @@ rules:
       field: openapi
       function: truthy
     message: "The root of the document must contain the `openapi` property."
+    formats: [oas2]
 
   #/core/version-header
   nlgov:missing-version-header:
