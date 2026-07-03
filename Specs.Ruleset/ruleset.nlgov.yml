@@ -39,12 +39,16 @@ rules:
   #/core/doc-openapi
   nlgov:openapi3:
     severity: error
-    given: $.['openapi']
+    given: $
     then:
-      function: pattern
-      functionOptions:
-        match: '^3(.\d+){1,2}$'
+      - field: openapi
+        function: truthy
+      - field: openapi
+        function: pattern
+        functionOptions:
+          match: '^3(.\d+){1,2}$'
     message: "The OpenAPI Specification is versioned using a `major.minor.patch` versioning scheme. Use a version 3 OpenAPI Specification for documentation."
+    formats: [oas2, oas3]
 
   nlgov:openapi-root-exists:
     severity: error
@@ -214,9 +218,9 @@ rules:
             properties:
               type: object
               required:
-              - status
-              - title
-              - detail
+                - status
+                - title
+                - detail
 
   #/core/error-handling/invalid-input
   nlgov:problem-invalid-input:
@@ -234,7 +238,7 @@ rules:
             responses:
               type: object
               required:
-              - "400"
+                - "400"
 
   #/core/date-time/timezone
   nlgov:date-time-ensure-timezone:
