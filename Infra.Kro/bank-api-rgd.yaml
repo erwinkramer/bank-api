@@ -78,12 +78,27 @@ spec:
                   envFrom:
                     - secretRef:
                         name: ${schema.spec.authSecretName}
+                  startupProbe:
+                    httpGet:
+                      path: /health/status
+                      port: 13133
+                    periodSeconds: 5
+                    timeoutSeconds: 2
+                    failureThreshold: 24
                   livenessProbe:
                     httpGet:
                       path: /health/status
                       port: 13133
-                    initialDelaySeconds: 3
                     periodSeconds: 10
+                    timeoutSeconds: 2
+                    failureThreshold: 6
+                  readinessProbe:
+                    httpGet:
+                      path: /health/status
+                      port: 13133
+                    periodSeconds: 5
+                    timeoutSeconds: 2
+                    failureThreshold: 3
 
                 - name: proxy
                   image: ghcr.io/erwinkramer/bank-api-proxy:latest
@@ -91,12 +106,27 @@ spec:
                   ports:
                     - containerPort: 10000
                       name: http-proxy
+                  startupProbe:
+                    httpGet:
+                      path: /ready
+                      port: 9901
+                    periodSeconds: 5
+                    timeoutSeconds: 2
+                    failureThreshold: 24
                   livenessProbe:
                     httpGet:
                       path: /ready
                       port: 9901
-                    initialDelaySeconds: 3
                     periodSeconds: 10
+                    timeoutSeconds: 2
+                    failureThreshold: 6
+                  readinessProbe:
+                    httpGet:
+                      path: /ready
+                      port: 9901
+                    periodSeconds: 5
+                    timeoutSeconds: 2
+                    failureThreshold: 3
 
                 - name: dapr
                   image: ghcr.io/erwinkramer/bank-api-dapr:latest
@@ -107,12 +137,27 @@ spec:
                   envFrom:
                     - secretRef:
                         name: ${schema.spec.authSecretName}
+                  startupProbe:
+                    httpGet:
+                      path: /v1.0/healthz
+                      port: dapr-http
+                    periodSeconds: 5
+                    timeoutSeconds: 2
+                    failureThreshold: 24
                   livenessProbe:
                     httpGet:
                       path: /v1.0/healthz
                       port: dapr-http
-                    initialDelaySeconds: 3
                     periodSeconds: 10
+                    timeoutSeconds: 2
+                    failureThreshold: 6
+                  readinessProbe:
+                    httpGet:
+                      path: /v1.0/healthz
+                      port: dapr-http
+                    periodSeconds: 5
+                    timeoutSeconds: 2
+                    failureThreshold: 3
 
                 - name: s3proxy
                   image: ghcr.io/erwinkramer/bank-api-s3proxy:latest
@@ -123,12 +168,27 @@ spec:
                   envFrom:
                     - secretRef:
                         name: ${schema.spec.authSecretName}
+                  startupProbe:
+                    httpGet:
+                      path: /healthz
+                      port: s3proxy
+                    periodSeconds: 5
+                    timeoutSeconds: 2
+                    failureThreshold: 24
                   livenessProbe:
                     httpGet:
                       path: /healthz
                       port: s3proxy
-                    initialDelaySeconds: 3
                     periodSeconds: 10
+                    timeoutSeconds: 2
+                    failureThreshold: 6
+                  readinessProbe:
+                    httpGet:
+                      path: /healthz
+                      port: s3proxy
+                    periodSeconds: 5
+                    timeoutSeconds: 2
+                    failureThreshold: 3
 
               # The main application containers
               containers:
