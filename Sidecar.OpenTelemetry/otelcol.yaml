@@ -14,10 +14,7 @@ extensions:
   azureauth/monitor:
     scopes:
       - https://monitor.azure.com/.default
-    service_principal:
-      tenant_id: "${env:AZURE_TENANT_ID}"
-      client_id: "${env:AZURE_CLIENT_ID}"
-      client_secret: "${env:AZURE_CLIENT_SECRET}"
+    use_default: true # DefaultAzureCredential authentication order
   health_check:
     http:
       endpoint: "0.0.0.0:13133"
