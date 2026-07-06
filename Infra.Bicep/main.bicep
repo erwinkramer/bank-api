@@ -3,6 +3,42 @@ param appName string = 'app'
 param revisionSuffix string = 'rev-${uniqueString(utcNow())}'
 param location string = 'Germany West Central'
 
+var appBaseUrl = 'https://${appName}.${appEnv.properties.defaultDomain}'
+var sidecarResources = {
+  cpu: json('0.25')
+  memory: '0.5Gi'
+}
+var apiResources = {
+  cpu: json('0.50')
+  memory: '1.0Gi'
+}
+var apiProbeSettings = {
+  type: 'Readiness'
+  initialDelaySeconds: 3
+  periodSeconds: 5
+}
+var sidecarProbeSettings = [
+  {
+    type: 'Startup'
+    initialDelaySeconds: 0
+    periodSeconds: 5
+    timeoutSeconds: 2
+    failureThreshold: 24
+  }
+  {
+    type: 'Liveness'
+    periodSeconds: 10
+    timeoutSeconds: 2
+    failureThreshold: 6
+  }
+  {
+    type: 'Readiness'
+    periodSeconds: 5
+    timeoutSeconds: 2
+    failureThreshold: 3
+  }
+]
+
 resource appEnv 'Microsoft.App/managedEnvironments@2026-01-01' = {
   name: appEnvName
   location: location
@@ -57,210 +93,81 @@ resource app 'Microsoft.App/containerApps@2026-01-01' = {
         {
           image: 'ghcr.io/erwinkramer/bank-api-proxy:latest'
           name: 'envoy-proxy'
-          resources: {
-            cpu: json('0.25')
-            memory: '0.5Gi'
-          }
+          resources: sidecarResources
           probes: [
-            {
-              type: 'Startup'
+            for probe in sidecarProbeSettings: union(probe, {
               httpGet: {
                 path: '/ready'
                 port: 9901
                 scheme: 'HTTP'
               }
-              initialDelaySeconds: 0
-              periodSeconds: 5
-              timeoutSeconds: 2
-              failureThreshold: 24
-            }
-            {
-              type: 'Liveness'
-              httpGet: {
-                path: '/ready'
-                port: 9901
-                scheme: 'HTTP'
-              }
-              periodSeconds: 10
-              timeoutSeconds: 2
-              failureThreshold: 6
-            }
-            {
-              type: 'Readiness'
-              httpGet: {
-                path: '/ready'
-                port: 9901
-                scheme: 'HTTP'
-              }
-              periodSeconds: 5
-              timeoutSeconds: 2
-              failureThreshold: 3
-            }
+            })
           ]
         }
         {
           image: 'ghcr.io/erwinkramer/bank-api:latest'
           name: 'bank-api'
-          env:  [
+          env: [
             {
               name: 'ASPNETCORE_ENVIRONMENT'
               value: 'Production'
             }
             {
               name: 'ApiDocument__Servers__0__Url'
-              value: 'https://${appName}.${appEnv.properties.defaultDomain}/v1'
+              value: '${appBaseUrl}/v1'
             }
           ]
-          resources: {
-            cpu: json('0.50')
-            memory: '1.0Gi'
-          }
+          resources: apiResources
           probes: [
-            {
-              type: 'Readiness'
+            union(apiProbeSettings, {
               httpGet: {
                 path: '/.well-known/jwks.json'
                 port: 8080
                 scheme: 'HTTP'
               }
-              initialDelaySeconds: 3
-              periodSeconds: 5
-            }
+            })
           ]
         }
         {
           image: 'ghcr.io/erwinkramer/bank-api-s3proxy:latest'
           name: 's3-proxy'
-          env: []
-          resources: {
-            cpu: json('0.25')
-            memory: '0.5Gi'
-          }
+          resources: sidecarResources
           probes: [
-            {
-              type: 'Startup'
+            for probe in sidecarProbeSettings: union(probe, {
               httpGet: {
                 path: '/healthz'
                 port: 6070
                 scheme: 'HTTP'
               }
-              initialDelaySeconds: 0
-              periodSeconds: 5
-              timeoutSeconds: 2
-              failureThreshold: 24
-            }
-            {
-              type: 'Liveness'
-              httpGet: {
-                path: '/healthz'
-                port: 6070
-                scheme: 'HTTP'
-              }
-              periodSeconds: 10
-              timeoutSeconds: 2
-              failureThreshold: 6
-            }
-            {
-              type: 'Readiness'
-              httpGet: {
-                path: '/healthz'
-                port: 6070
-                scheme: 'HTTP'
-              }
-              periodSeconds: 5
-              timeoutSeconds: 2
-              failureThreshold: 3
-            }
+            })
           ]
         }
         {
           image: 'ghcr.io/erwinkramer/bank-api-otelcol:latest'
           name: 'otel'
-          env: []
-          resources: {
-            cpu: json('0.25')
-            memory: '0.5Gi'
-          }
+          resources: sidecarResources
           probes: [
-            {
-              type: 'Startup'
+            for probe in sidecarProbeSettings: union(probe, {
               httpGet: {
                 path: '/health/status'
                 port: 13133
                 scheme: 'HTTP'
               }
-              initialDelaySeconds: 0
-              periodSeconds: 5
-              timeoutSeconds: 2
-              failureThreshold: 24
-            }
-            {
-              type: 'Liveness'
-              httpGet: {
-                path: '/health/status'
-                port: 13133
-                scheme: 'HTTP'
-              }
-              periodSeconds: 10
-              timeoutSeconds: 2
-              failureThreshold: 6
-            }
-            {
-              type: 'Readiness'
-              httpGet: {
-                path: '/health/status'
-                port: 13133
-                scheme: 'HTTP'
-              }
-              periodSeconds: 5
-              timeoutSeconds: 2
-              failureThreshold: 3
-            }
+            })
           ]
         }
         {
           image: 'ghcr.io/erwinkramer/bank-api-dapr:latest'
           name: 'dapr'
-          env: []
-          resources: {
-            cpu: json('0.25')
-            memory: '0.5Gi'
-          }
+          resources: sidecarResources
           probes: [
-            {
-              type: 'Startup'
+            for probe in sidecarProbeSettings: union(probe, {
               httpGet: {
                 path: '/v1.0/healthz'
                 port: 3500
                 scheme: 'HTTP'
               }
-              initialDelaySeconds: 0
-              periodSeconds: 5
-              timeoutSeconds: 2
-              failureThreshold: 24
-            }
-            {
-              type: 'Liveness'
-              httpGet: {
-                path: '/v1.0/healthz'
-                port: 3500
-                scheme: 'HTTP'
-              }
-              periodSeconds: 10
-              timeoutSeconds: 2
-              failureThreshold: 6
-            }
-            {
-              type: 'Readiness'
-              httpGet: {
-                path: '/v1.0/healthz'
-                port: 3500
-                scheme: 'HTTP'
-              }
-              periodSeconds: 5
-              timeoutSeconds: 2
-              failureThreshold: 3
-            }
+            })
           ]
         }
         {
@@ -269,7 +176,7 @@ resource app 'Microsoft.App/containerApps@2026-01-01' = {
           env: [
             {
               name: 'McpServerBaseUrl'
-              value: 'https://${appName}.${appEnv.properties.defaultDomain}/mcp'
+              value: '${appBaseUrl}/mcp'
             }
             {
               name: 'ApiBaseUrl'
@@ -280,44 +187,15 @@ resource app 'Microsoft.App/containerApps@2026-01-01' = {
               value: '8082'
             }
           ]
-          resources: {
-            cpu: json('0.25')
-            memory: '0.5Gi'
-          }
+          resources: sidecarResources
           probes: [
-            {
-              type: 'Startup'
+            union(apiProbeSettings, {
               httpGet: {
                 path: '/.well-known/oauth-protected-resource'
                 port: 8082
                 scheme: 'HTTP'
               }
-              initialDelaySeconds: 0
-              periodSeconds: 5
-              timeoutSeconds: 2
-              failureThreshold: 24
-            }
-            {
-              type: 'Liveness'
-              httpGet: {
-                path: '/.well-known/oauth-protected-resource'
-                port: 8082
-                scheme: 'HTTP'
-              }
-              periodSeconds: 10
-              timeoutSeconds: 2
-              failureThreshold: 6
-            }
-            {
-              type: 'Readiness'
-              httpGet: {
-                path: '/.well-known/oauth-protected-resource'
-                port: 8082
-                scheme: 'HTTP'
-              }
-              initialDelaySeconds: 3
-              periodSeconds: 5
-            }
+            })
           ]
         }
       ]

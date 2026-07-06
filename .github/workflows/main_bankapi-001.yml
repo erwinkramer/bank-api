@@ -10,7 +10,6 @@ on:
 env:
   AZURE_CORE_OUTPUT: none
   RESOURCE_GROUP: containering
-  APP_NAME: app
 
 jobs:
   create-revision:
@@ -28,13 +27,15 @@ jobs:
           client-id: ${{ vars.APP_AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.APP_AZURE_TENANT_ID }}
           subscription-id: ${{ vars.APP_AZURE_SUBSCRIPTION_ID }}
-
-      - name: Create Container App revision
+      - uses: actions/checkout@v7
+      - name: Deploy Bicep
         uses: azure/cli@v3
         with:
           inlineScript: |
-            az containerapp revision copy \
+            deployment_name="bank-api-${{ github.run_id }}-${{ github.run_attempt }}"
+
+            az deployment group create \
               --subscription "${{ vars.APP_AZURE_SUBSCRIPTION_ID }}" \
               --resource-group "${{ env.RESOURCE_GROUP }}" \
-              --name "${{ env.APP_NAME }}" \
-              --revision-suffix "gha-${{ github.run_id }}-${{ github.run_attempt }}"
+              --name "$deployment_name" \
+              --template-file Infra.Bicep/main.bicep
