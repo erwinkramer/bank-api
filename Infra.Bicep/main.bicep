@@ -88,7 +88,9 @@ resource app 'Microsoft.App/containerApps@2026-01-01' = {
     }
     template: {
       revisionSuffix: revisionSuffix
-      initContainers: [] // This is what we use in kro, but we can't set probes here, for now just use regular containers
+      // initContainers is what we use in kro for sidecars, but we can't set probes here. For now just use regular containers, 
+      // which is the current intended way for ACA, please see https://github.com/microsoft/azure-container-apps/issues/1409
+      initContainers: []
       containers: [
         {
           image: 'ghcr.io/erwinkramer/bank-api-proxy:latest'
