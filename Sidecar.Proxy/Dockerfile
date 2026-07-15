@@ -1,4 +1,4 @@
-FROM envoyproxy/envoy:contrib-distroless-v1.38-latest
+FROM envoyproxy/envoy:contrib-distroless-v1.39-latest
 
 WORKDIR /envoy-config
 
