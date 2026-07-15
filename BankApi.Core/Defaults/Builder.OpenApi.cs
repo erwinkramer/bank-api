@@ -9,7 +9,7 @@ public static partial class ApiBuilder
         {
             // Purposely set the spec to a version that is supported by Azure APIM, 
             // the 'Specs.Generated' output files adhere to the version in the *.csproj file.
-            options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_2;
+            //options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_2;
 
             options.AddDocumentTransformer<TransformerDocInfo>();
             options.AddDocumentTransformer<TransformerComponentSchemas>();
