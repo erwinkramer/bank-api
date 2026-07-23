@@ -11,7 +11,7 @@ public class BankOperation
             $"banks-{query.Page}-{query.PageSize}-{query.Filter}-{query.OrderBy}",
             async innerToken =>
             {
-                var pagingResult = await db.Banks.AsNoTracking().GridifyAsync(query, innerToken);
+                var pagingResult = await db.Banks.GridifyAsync(query, innerToken);
                 return new Paging<BankModel>(pagingResult.Count, pagingResult.Data);
             },
             cancellationToken: token,
