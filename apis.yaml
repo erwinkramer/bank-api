@@ -16,7 +16,7 @@ tags:
   - Bootstrapping
 apis:
   - aid: erwinkramer:bank-api-v1
-    name: Bank API
+    name: Bank API - v1
     description: The Bank API, version 1.
     humanURL: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/docs
     baseURL: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1
