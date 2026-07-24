@@ -27,7 +27,7 @@ apis:
       - Banking
     properties:
       - type: Webhooks
-        url: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/docs/#webhook/POST/createbank
+        url: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/docs/#webhook/undefined/
       - type: OpenAPI
         mediaType: application/json
         url: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/openapi/spec.json
