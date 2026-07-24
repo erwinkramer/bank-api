@@ -1,0 +1,73 @@
+aid: erwinkramer:bank-api
+name: Bank API
+description: The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.
+url: https://raw.githubusercontent.com/erwinkramer/bank-api/refs/heads/main/apis.yaml
+created: 2026-07-24
+type: Index
+kind: opensource
+position: Producing
+rating: A
+visibility: Public
+access: 3rd-Party
+specificationVersion: "0.21"
+tags:
+  - Banking
+  - Compliancy
+  - Bootstrapping
+apis:
+  - aid: erwinkramer:bank-api-v1
+    name: Bank API
+    description: The Bank API, version 1.
+    humanURL: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/docs
+    baseURL: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1
+    version: 1.1.0
+    created: 2026-07-24
+    image: https://opengraph.githubassets.com/1/erwinkramer/bank-api
+    tags:
+      - Banking
+    properties:
+      - type: Webhooks
+        url: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/docs/#webhook/POST/createbank
+      - type: OpenAPI
+        mediaType: application/json
+        url: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/openapi/spec.json
+      - type: ApiExamples
+        mediaType: application/json
+        url: https://raw.githubusercontent.com/erwinkramer/bank-api/refs/heads/main/BankApi.Service.Stable/appexamples.json
+      - type: ModelContextProtocol
+        mediaType: application/json
+        url: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/mcp/.well-known/oauth-protected-resource
+    workflows:
+      - name: Get and update bank
+        description: Arazzo workflow for listing, retrieving, and updating a bank with optimistic concurrency.
+        type: Arazzo
+        mediaType: application/yaml
+        url: https://raw.githubusercontent.com/erwinkramer/bank-api/refs/heads/main/.arazzo/v1_arazzo.yaml
+        x-humanURL: https://arazzo-ui.jentic.com/?document=https%3A%2F%2Fraw.githubusercontent.com%2Ferwinkramer%2Fbank-api%2Frefs%2Fheads%2Fmain%2F.arazzo%2Fv1_arazzo.yaml
+rules:
+  - type: SpectralRules
+    mediaType: application/yaml
+    url: https://raw.githubusercontent.com/erwinkramer/bank-api/refs/heads/main/Specs.Ruleset/main.yml
+common:
+  - type: About
+    url: https://github.com/erwinkramer#-hi-there
+  - type: Standards
+    url: https://github.com/erwinkramer/bank-api#compliance
+  - type: GitHubIssues
+    url: https://github.com/erwinkramer/bank-api/issues
+  - type: GettingStarted
+    url: https://github.com/erwinkramer/bank-api#quick-start
+  - type: Documentation
+    url: https://github.com/erwinkramer/bank-api/blob/main/README.md
+  - type: TermsOfService
+    url: https://en.wikipedia.org/wiki/Terms_of_service#Content
+  - type: License
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0
+  - type: GitHubRepository
+    url: https://github.com/erwinkramer/bank-api
+maintainers:
+  - FN: Erwin
+    email: info@guanchen.nl
+    url: https://guanchen.nl
+    X-github: erwinkramer
+    photo: https://github.com/erwinkramer.png

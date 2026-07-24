@@ -6,6 +6,9 @@
         "**/Specs.Generated/*.json",
         "**/.arazzo/*.yaml",
     ],
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/erwinkramer/api-json/refs/heads/develop/spec/schema_0.21.yml": "apis.yaml"
+    },
     "rest-client.defaultHeaders": {
         "User-Agent": null
     },
