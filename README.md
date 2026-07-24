@@ -11,7 +11,7 @@
 
 The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API. 
 
-See the [🔗 APIs.json (v0.21) complaint documentation](https://documentation.apicommons.org/?url=https%3A%2F%2Fraw.githubusercontent.com%2Ferwinkramer%2Fbank-api%2Frefs%2Fheads%2Fmain%2Fapis.yaml).
+See the [🔗 APIs.json (v0.21) complaint documentation](https://documentation.apicommons.org/?url=https%3A%2F%2Fraw.githubusercontent.com%2Ferwinkramer%2Fbank-api%2Fmain%2Fapis.yaml).
 
 Explore the live [🌐 API with sidecars](https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/docs) and [🌐 MCP server](https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/mcp/.well-known/oauth-protected-resource) (both hosted on Azure Container Apps).
 
