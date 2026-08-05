@@ -4,7 +4,7 @@ This folder contains a basic [Arazzo](https://spec.openapis.org/arazzo/latest.ht
 
 ## Visualize
 
-Navigate to the [Arazzo UI for the Bank API](https://arazzo-ui.jentic.com/?document=https%3A%2F%2Fraw.githubusercontent.com%2Ferwinkramer%2Fbank-api%2Frefs%2Fheads%2Fmain%2F.arazzo%2Fv1_arazzo.yaml) to visualize the workflow.
+Navigate to the [Arazzo UI for the Bank API](https://arazzo-ui.jentic.com/?document=https%3A%2F%2Fraw.githubusercontent.com%2Ferwinkramer%2Fbank-api%2Frefs%2Fheads%2Fmain%2F.arazzo%2Fv1.arazzo.yaml) to visualize the workflow.
 
 ## Execute
 
@@ -15,5 +15,5 @@ $env:BANK_APIKEY_HEADER = "Lifetime Subscription"
 
 python -m pip install arazzo-runner
 python -m pip install truststore
-python .\.arazzo\run.py .\.arazzo\v1_arazzo.yaml
+python .\.arazzo\run.py .\.arazzo\v1.arazzo.yaml
 ```

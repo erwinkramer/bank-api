@@ -7,7 +7,7 @@ import requests
 import truststore
 from arazzo_runner import ArazzoRunner
 
-DEFAULT_ARAZZO_PATH = Path(__file__).with_name("v1_arazzo.yaml")
+DEFAULT_ARAZZO_PATH = Path(__file__).with_name("v1.arazzo.yaml")
 
 def create_http_client():
     truststore.inject_into_ssl()
