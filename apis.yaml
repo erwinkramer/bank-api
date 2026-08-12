@@ -42,8 +42,8 @@ apis:
         description: Arazzo workflow for listing, retrieving, and updating a bank with optimistic concurrency.
         type: Arazzo
         mediaType: application/yaml
-        url: https://raw.githubusercontent.com/erwinkramer/bank-api/refs/heads/main/.arazzo/v1_arazzo.yaml
-        x-humanURL: https://arazzo-ui.jentic.com/?document=https%3A%2F%2Fraw.githubusercontent.com%2Ferwinkramer%2Fbank-api%2Frefs%2Fheads%2Fmain%2F.arazzo%2Fv1_arazzo.yaml
+        url: https://raw.githubusercontent.com/erwinkramer/bank-api/refs/heads/main/.arazzo/v1.arazzo.yaml
+        x-humanURL: https://arazzo-ui.jentic.com/?document=https%3A%2F%2Fraw.githubusercontent.com%2Ferwinkramer%2Fbank-api%2Frefs%2Fheads%2Fmain%2F.arazzo%2Fv1.arazzo.yaml
 rules:
   - type: SpectralRules
     mediaType: application/yaml
