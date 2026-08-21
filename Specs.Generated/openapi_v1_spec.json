@@ -1281,10 +1281,10 @@
   ],
   "tags": [
     {
-      "name": "Supervisory"
+      "name": "Administrative"
     },
     {
-      "name": "Administrative"
+      "name": "Supervisory"
     }
   ],
   "webhooks": {

@@ -34,7 +34,3 @@ spec:
       app.kubernetes.io/component: "bank-api-db"
       app.kubernetes.io/instance: "{{ .Release.Name }}"
   replicas: 1
-  persistentVolumeClaimRetentionPolicy: {}
-  updateStrategy:
-    rollingUpdate: {}
-    type: "RollingUpdate"
