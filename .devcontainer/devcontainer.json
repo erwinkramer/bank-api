@@ -29,6 +29,8 @@
 		// Zscaler proxy support when reading custom rulesets over https in Spectral
 		"NODE_EXTRA_CA_CERTS": "${containerWorkspaceFolder}/.certs/ZscalerRootCA.crt"
 	},
+	// Ensure host folders used by bind mounts exist before Podman/Docker creates the container.
+	"initializeCommand": "pwsh -NoProfile -Command \"New-Item -ItemType Directory -Force -Path '${localEnv:USERPROFILE}/.azure', '${localEnv:LOCALAPPDATA}/.IdentityService', '${localEnv:APPDATA}/Microsoft/UserSecrets' | Out-Null\"",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/microsoft/aspire-devcontainer-feature/aspire:2": {}, // https://github.com/microsoft/aspire-devcontainer/blob/main/.devcontainer/devcontainer.json
