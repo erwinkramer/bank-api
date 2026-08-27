@@ -1,4 +1,4 @@
-FROM docker.io/andrewgaul/s3proxy:4.0.0
+FROM docker.io/andrewgaul/s3proxy:4.1.0
 
 ENV S3PROXY_AUTHORIZATION=none \
     S3PROXY_ENDPOINT=http://0.0.0.0:6070 \
