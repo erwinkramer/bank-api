@@ -33,7 +33,7 @@
 	"initializeCommand": "pwsh -NoProfile -Command \"New-Item -ItemType Directory -Force -Path '${localEnv:USERPROFILE}/.azure', '${localEnv:LOCALAPPDATA}/.IdentityService', '${localEnv:APPDATA}/Microsoft/UserSecrets' | Out-Null\"",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-		"ghcr.io/microsoft/aspire-devcontainer-feature/aspire:2": {}, // https://github.com/microsoft/aspire-devcontainer/blob/main/.devcontainer/devcontainer.json
+		"ghcr.io/microsoft/aspire-devcontainer-feature/aspire:3": {}, // https://github.com/microsoft/aspire-devcontainer/blob/main/.devcontainer/devcontainer.json
 		"ghcr.io/devcontainers/features/azure-cli:1": {}, // for using the host az cli credentials
 		"ghcr.io/devcontainers/features/docker-in-docker:4": {
 			"version": "latest",
