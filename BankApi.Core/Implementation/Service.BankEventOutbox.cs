@@ -9,6 +9,8 @@ public class BankEventOutboxBackgroundService(
 {
     private static readonly TimeSpan PollInterval = TimeSpan.FromSeconds(5);
     private const int BatchSize = 5;
+    internal const int MaxAttempts = 10;
+    internal static readonly TimeSpan MaxBackoff = TimeSpan.FromSeconds(300);
     private readonly string workerId = $"{Environment.MachineName}-{Guid.NewGuid():N}";
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -28,7 +30,7 @@ public class BankEventOutboxBackgroundService(
         }
     }
 
-    private async Task ProcessBatch(CancellationToken cancellationToken)
+    internal async Task ProcessBatch(CancellationToken cancellationToken)
     {
         using var scope = scopeFactory.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<BankDb>();
@@ -79,16 +81,12 @@ public class BankEventOutboxBackgroundService(
                 }
                 else
                 {
-                    outboxEntry.Status = "pending";
-                    outboxEntry.LastErrorMessage = $"HTTP {(int)response.StatusCode} ({response.ReasonPhrase})";
-                    outboxEntry.NextAttemptAt = response.Headers.RetryAfter?.Date ?? DateTimeOffset.UtcNow.AddSeconds(Math.Pow(2, outboxEntry.AttemptCount)); // simple exponential backoff strategy
+                    ScheduleNextAttempt(outboxEntry, $"HTTP {(int)response.StatusCode} ({response.ReasonPhrase})", response.Headers.RetryAfter?.Date);
                 }
             }
             catch (Exception ex)
             {
-                outboxEntry.Status = "pending";
-                outboxEntry.LastErrorMessage = ex.Message;
-                outboxEntry.NextAttemptAt = DateTimeOffset.UtcNow.AddSeconds(Math.Pow(2, outboxEntry.AttemptCount)); // simple exponential backoff strategy
+                ScheduleNextAttempt(outboxEntry, ex.Message);
             }
             finally
             {
@@ -103,6 +101,26 @@ public class BankEventOutboxBackgroundService(
                     logger.LogWarning(ex, "Outbox processor encountered a concurrency conflict while finalizing message delivery for outbox id {OutboxId}.", outboxEntry.Id);
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Schedules the next delivery attempt with exponential backoff capped at <see cref="MaxBackoff"/>,
+    /// or marks the entry as permanently failed once <see cref="MaxAttempts"/> attempts have been exhausted.
+    /// </summary>
+    internal static void ScheduleNextAttempt(BankEventOutboxModel outboxEntry, string errorMessage, DateTimeOffset? retryAfter = null)
+    {
+        if (outboxEntry.AttemptCount >= MaxAttempts)
+        {
+            outboxEntry.Status = "failed";
+            outboxEntry.LastErrorMessage = $"{errorMessage} (giving up after {MaxAttempts} attempts)";
+        }
+        else
+        {
+            outboxEntry.Status = "pending";
+            outboxEntry.LastErrorMessage = errorMessage;
+            var backoffSeconds = Math.Min(MaxBackoff.TotalSeconds, Math.Pow(2, outboxEntry.AttemptCount));
+            outboxEntry.NextAttemptAt = retryAfter ?? DateTimeOffset.UtcNow.AddSeconds(backoffSeconds);
         }
     }
 

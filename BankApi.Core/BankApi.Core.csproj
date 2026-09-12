@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="BankApi.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="4.*" />
     <PackageReference Include="AWSSDK.S3" Version="4.*" />
     <PackageReference Include="AspNetCore.Authentication.ApiKey" Version="9.*" />
