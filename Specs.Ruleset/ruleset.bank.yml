@@ -123,8 +123,13 @@ rules:
     severity: warn
     given: "#requestOrResponseJsonContent"
     then:
-      field: schema.example
-      function: truthy
+      field: schema
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["example"]
+            - required: ["examples"]
 
   bank:operation-id-requires-pascal-case:
     description: Operation id's must be in PascalCase (upper camel case).
