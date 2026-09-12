@@ -1,19 +1,23 @@
-using System.ComponentModel.DataAnnotations;
 using System.Net;
 using CloudNative.CloudEvents.SystemTextJson;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Configuration;
 
 namespace BankApi.Tests.Outbox;
 
 public class BankEventOutboxTests
 {
     [Before(Class)]
-    public static void InitializeFormatters()
+    public static Task CreateContext()
     {
         GlobalConfiguration.JsonEventFormatter = new JsonEventFormatter(new JsonSerializerOptions(), new JsonDocumentOptions());
+
+        var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+        GlobalConfiguration.ApiSettings = config.GetRequiredSection("ApiSettings").Get<GlobalConfiguration.SettingsModel>()!;
+
+        return Task.CompletedTask;
     }
 
     [Test]
