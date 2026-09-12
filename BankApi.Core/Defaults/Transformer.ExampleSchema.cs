@@ -9,24 +9,19 @@ class TransformerExampleSchema : IOpenApiSchemaTransformer
         if (GlobalConfiguration.ApiExamples is not JsonObject apiExamples)
             return;
 
-        schema.Example = context.JsonTypeInfo.Type switch
+        // Every example key equals the type name, except Paging<BankModel>.
+        string? key = context.JsonTypeInfo.Type switch
         {
-            Type t when t == typeof(BankModel) =>
-                (apiExamples["BankModel"] as JsonArray)?[0],
-
-            Type t when t == typeof(Paging<BankModel>) =>
-                (apiExamples["PagingOfBankModel"] as JsonArray)?[0],
-
-            Type t when t == typeof(BankEvent) =>
-                (apiExamples["BankEvent"] as JsonArray)?[0],
-
-            Type t when t == typeof(TellerReportList) =>
-                (apiExamples["TellerReportList"] as JsonArray)?[0],
-
-            Type t when t == typeof(Teller) =>
-                (apiExamples["Teller"] as JsonArray)?[0],
-
-            _ => schema.Example
+            Type t when t == typeof(Paging<BankModel>) => "PagingOfBankModel",
+            Type t when t == typeof(BankModel) || t == typeof(BankEvent)
+                || t == typeof(TellerReportList) || t == typeof(Teller) => t.Name,
+            _ => null
         };
+
+        if (key is null)
+            return;
+
+        if (apiExamples[key] is JsonArray examples)
+            schema.Examples = [.. examples.OfType<JsonNode>()];
     }
 }

@@ -633,6 +633,19 @@
   "components": {
     "schemas": {
       "BankEvent": {
+        "examples": [
+          {
+            "specversion": "1.0",
+            "id": "e7b9dd92-81e1-4af0-bb44-612089957976",
+            "time": "2026-03-17T16:00:42.7008905Z",
+            "source": "https://github.com/erwinkramer/bank-api",
+            "type": "nl.banks.created",
+            "datacontenttype": "application/json",
+            "data": {
+              "bankId": "493939b6-c651-441c-a094-ea37de5a73e5"
+            }
+          }
+        ],
         "required": [
           "specversion",
           "id",
@@ -731,20 +744,23 @@
             "format": "byte"
           }
         },
-        "additionalProperties": false,
-        "example": {
-          "specversion": "1.0",
-          "id": "e7b9dd92-81e1-4af0-bb44-612089957976",
-          "time": "2026-03-17T16:00:42.7008905Z",
-          "source": "https://github.com/erwinkramer/bank-api",
-          "type": "nl.banks.created",
-          "datacontenttype": "application/json",
-          "data": {
-            "bankId": "493939b6-c651-441c-a094-ea37de5a73e5"
-          }
-        }
+        "additionalProperties": false
       },
       "BankModel": {
+        "examples": [
+          {
+            "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
+            "name": "Guanchen",
+            "isCompliant": true,
+            "bankTier": "A"
+          },
+          {
+            "id": "956b7056-6e98-4a92-af07-91634ce4d421",
+            "name": "Canary",
+            "isCompliant": false,
+            "bankTier": "C"
+          }
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -774,13 +790,7 @@
             "$ref": "#/components/schemas/BankTier"
           }
         },
-        "additionalProperties": false,
-        "example": {
-          "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
-          "name": "Guanchen",
-          "isCompliant": true,
-          "bankTier": "A"
-        }
+        "additionalProperties": false
       },
       "BankTier": {
         "enum": [
@@ -801,6 +811,25 @@
         "type": "string"
       },
       "PagingOfBankModel": {
+        "examples": [
+          {
+            "count": 2,
+            "data": [
+              {
+                "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
+                "name": "Foo",
+                "isCompliant": true,
+                "bankTier": "A"
+              },
+              {
+                "id": "956b7056-6e98-4a92-af07-91634ce4d421",
+                "name": "Bar",
+                "isCompliant": false,
+                "bankTier": "B"
+              }
+            ]
+          }
+        ],
         "type": "object",
         "properties": {
           "count": {
@@ -817,24 +846,7 @@
             }
           }
         },
-        "additionalProperties": false,
-        "example": {
-          "count": 2,
-          "data": [
-            {
-              "id": "24d1f3c4-a1d3-477f-9ca6-b611997e8343",
-              "name": "Foo",
-              "isCompliant": true,
-              "bankTier": "A"
-            },
-            {
-              "id": "956b7056-6e98-4a92-af07-91634ce4d421",
-              "name": "Bar",
-              "isCompliant": false,
-              "bankTier": "B"
-            }
-          ]
-        }
+        "additionalProperties": false
       },
       "Problem": {
         "type": "object",
@@ -873,6 +885,14 @@
         }
       },
       "Teller": {
+        "examples": [
+          {
+            "gitHubProfile": "https://github.com/rbhanda"
+          },
+          {
+            "gitHubProfile": "https://github.com/erwinkramer"
+          }
+        ],
         "type": "object",
         "properties": {
           "gitHubProfile": {
@@ -885,10 +905,7 @@
             "format": "uri"
           }
         },
-        "additionalProperties": false,
-        "example": {
-          "gitHubProfile": "https://github.com/rbhanda"
-        }
+        "additionalProperties": false
       },
       "TellerReport": {
         "type": "object",
@@ -906,6 +923,19 @@
         "additionalProperties": false
       },
       "TellerReportList": {
+        "examples": [
+          {
+            "count": 2,
+            "data": [
+              {
+                "name": "reportOfTheWeek.txt"
+              },
+              {
+                "name": "dailyReview.txt"
+              }
+            ]
+          }
+        ],
         "type": "object",
         "properties": {
           "data": {
@@ -922,18 +952,7 @@
             "format": "int32"
           }
         },
-        "additionalProperties": false,
-        "example": {
-          "count": 2,
-          "data": [
-            {
-              "name": "reportOfTheWeek.txt"
-            },
-            {
-              "name": "dailyReview.txt"
-            }
-          ]
-        }
+        "additionalProperties": false
       }
     },
     "responses": {
