@@ -33,6 +33,15 @@
     <PackageReference Include="Microsoft.Kiota.Bundle" Version="2.*" />
     <PackageReference Include="Microsoft.OpenApi" Version="3.*" /> <!-- Requires to stay on v3, please read https://github.com/microsoft/OpenAPI.NET/blob/main/CONTRIBUTING.md#branches-and-support-policy -->
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="11.*-*" />
+
+    <!-- temp fix for https://github.com/npgsql/efcore.pg/issues/3913#issue-5452926541 -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="11.*-*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="11.*-*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="11.*-*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="11.*-*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="11.*-*" />
+    <!-- end -->
+
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.18.*" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.18.*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.18.*-*" />

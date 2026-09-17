@@ -12,6 +12,7 @@
     "rest-client.defaultHeaders": {
         "User-Agent": null
     },
+    "xml.format.maxLineWidth": 250,
     "rest-client.rememberCookiesForSubsequentRequests": false,
     "cSpell.words": [
         "Apim",
