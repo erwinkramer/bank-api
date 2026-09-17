@@ -6,9 +6,9 @@
       "integrity": "sha256:d98f1066c077be0fa9d115b718f458bd803e415181b4a96f82a6f5d9f77241ac"
     },
     "ghcr.io/devcontainers/features/docker-in-docker:4": {
-      "version": "4.1.0",
-      "resolved": "ghcr.io/devcontainers/features/docker-in-docker@sha256:7d979c4a36d595eb4ab79909caa3f396daf3b6152dcf38e8328ea4eff42206c7",
-      "integrity": "sha256:7d979c4a36d595eb4ab79909caa3f396daf3b6152dcf38e8328ea4eff42206c7"
+      "version": "4.1.1",
+      "resolved": "ghcr.io/devcontainers/features/docker-in-docker@sha256:2b44bcb32e75d5a3c028479f7f957cf7d5e42d81761373025a8d501dd3748f88",
+      "integrity": "sha256:2b44bcb32e75d5a3c028479f7f957cf7d5e42d81761373025a8d501dd3748f88"
     },
     "ghcr.io/microsoft/aspire-devcontainer-feature/aspire:3": {
       "version": "3.0.0",
