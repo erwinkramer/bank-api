@@ -42,11 +42,11 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="11.*-*" />
     <!-- end -->
 
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.18.*" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.18.*" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.18.*-*" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.18.*" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.18.*" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.19.*" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.19.*" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.19.*-*" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.19.*" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.19.*" />
     <PackageReference Include="Scalar.AspNetCore" Version="2.17.*" />
     <PackageReference Include="jose-jwt" Version="5.*" />
   </ItemGroup>
