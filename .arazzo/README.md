@@ -15,5 +15,5 @@ $env:BANK_APIKEY_HEADER = "Lifetime Subscription"
 
 python -m pip install arazzo-runner
 python -m pip install truststore
-python .\.arazzo\run.py .\.arazzo\v1.arazzo.yaml
+python ./.arazzo/run.py ./.arazzo/v1.arazzo.yaml
 ```

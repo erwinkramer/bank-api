@@ -25,13 +25,11 @@ workflows:
       - stepId: getAllBanks
         description: Retrieve banks and select the first returned bank id.
         operationId: GetAllBanks
-        parameters:
-          - name: page
-            in: query
-            value: $inputs.page
-          - name: pageSize
-            in: query
-            value: $inputs.pageSize
+        requestBody:      
+          contentType: application/json
+          payload:
+            page: $inputs.page
+            pageSize: $inputs.pageSize
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.body#/count > 0
