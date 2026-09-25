@@ -11,10 +11,11 @@ resources:
             typed_config:
               "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
               common_http_protocol_options:
-                # HTTP QUERY method is not supported yet by default, enable custom methods for now
-                allow_custom_methods: true
                 # Only set max requests to 1 in dev, so we're sure every request hits the latest config
                 max_requests_per_connection: 1
+              # HTTP QUERY method is not supported yet by default, enable custom methods for now
+              http_protocol_options:
+                allow_custom_methods: true
               # Trust the upstream LB proxy (1 means 1 more proxy) so remote_ip resolves to the true client
               xff_num_trusted_hops: 0
               stat_prefix: ingress_http
@@ -44,7 +45,7 @@ resources:
                               - "SecRuleEngine On"
                               - "SecRequestBodyAccess On"
                               - "Include @crs-setup"
-                              # Extend the OWASP CRS allowed methods list; the default setup omits PUT, QUERY, and DELETE:
+                              # Extend the OWASP CRS allowed methods list before method enforcement runs:
                               - "SecAction \"id:900200,phase:1,nolog,pass,setvar:'tx.allowed_methods=GET HEAD POST PUT QUERY OPTIONS DELETE'\""
                               # Keep request WAF checks, but skip response-body inspection for the generated Scalar bundle:
                               # https://github.com/united-security-providers/coraza-envoy-go-filter/issues/129
