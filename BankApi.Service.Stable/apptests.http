@@ -41,15 +41,19 @@ https://{{host}}/{{apiVersion}}/teller
 Origin: https://{{host}} 
 Authorization: Bearer {{openIdToken}}
 
-###
-
-https://{{host}}/{{apiVersion}}/banks
-  ?page=1
-  &pageSize=21
-  &sort=bankTier asc, id desc
-  &filter=bankTier != B
+### Requires merge of https://github.com/Huachao/vscode-restclient/pull/1438
+### Or any other fork (referenced in the PR) that implements QUERY support
+QUERY https://{{host}}/{{apiVersion}}/banks
 Origin: https://{{host}} 
 Ocp-Apim-Subscription-Key: Lifetime Subscription
+Content-Type: application/json
+
+{
+  "page": 1,
+  "pageSize": 21,
+  "sort": "bankTier asc, id desc",
+  "filter": "bankTier != B"
+}
 
 ### Error Handler
 

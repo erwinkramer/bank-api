@@ -1,5 +1,6 @@
 using Gridify;
 using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 public class GridQuery : IGridifyQuery
 {
@@ -24,6 +25,7 @@ public class GridQuery : IGridifyQuery
 
     [GenericMaxLength]
     [GenericRegularExpression]
+    [JsonPropertyName("sort")]
     [Description(@"The sorting query expression can be built with a comma-delimited sorted list of field/property names, followed by `asc` or `desc` keywords. 
 
 By default, if you don't add these keywords, the API assumes you need Ascending sorting.")]

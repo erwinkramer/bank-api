@@ -49,7 +49,7 @@
     {
       "page": 1,
       "pageSize": 21,
-      "orderBy": "bankTier desc, name",
+      "sort": "bankTier desc, name",
       "filter": "isCompliant = true"
     }
   ],

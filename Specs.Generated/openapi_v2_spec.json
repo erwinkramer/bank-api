@@ -777,7 +777,7 @@
           {
             "page": 1,
             "pageSize": 21,
-            "orderBy": "bankTier desc, name",
+            "sort": "bankTier desc, name",
             "filter": "isCompliant = true"
           }
         ],
@@ -799,7 +799,7 @@
             "format": "int32",
             "default": 21
           },
-          "orderBy": {
+          "sort": {
             "maxLength": 70707070,
             "pattern": ".*",
             "type": [
