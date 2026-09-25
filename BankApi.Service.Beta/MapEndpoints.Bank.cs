@@ -8,7 +8,7 @@ public static partial class ApiMapper
             .RequireAuthorization("bank_subscription")
             .RequireCors("generic");
 
-        bankItems.MapGet("/", BankOperation.GetAllBanks)
+        bankItems.MapMethods("/", ["QUERY"], BankOperation.GetAllBanks)
             .WithName("GetAllBanks").WithSummary("Get all banks")
             .WithDescription("Get all banks in the Netherlands.");
 

@@ -45,6 +45,14 @@
       ]
     }
   ],
+  "GridQuery": [
+    {
+      "page": 1,
+      "pageSize": 21,
+      "orderBy": "bankTier desc, name",
+      "filter": "isCompliant = true"
+    }
+  ],
   "TellerReportList": [
     {
       "count": 2,

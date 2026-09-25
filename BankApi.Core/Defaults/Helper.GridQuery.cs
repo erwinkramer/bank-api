@@ -1,5 +1,4 @@
 using Gridify;
-using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
 
 public class GridQuery : IGridifyQuery
@@ -15,17 +14,14 @@ public class GridQuery : IGridifyQuery
 
     [PageDefaultValue]
     [PageRange]
-    [FromQuery(Name = "page")]
     [Description("The page of the result.")]
     public int Page { get; set; }
 
     [PageSizeDefaultValue()]
     [PageSizeRange]
-    [FromQuery(Name = "pageSize")]
     [Description("The pagesize of the result.")]
     public int PageSize { get; set; }
 
-    [FromQuery(Name = "sort")]
     [GenericMaxLength]
     [GenericRegularExpression]
     [Description(@"The sorting query expression can be built with a comma-delimited sorted list of field/property names, followed by `asc` or `desc` keywords. 
@@ -33,7 +29,6 @@ public class GridQuery : IGridifyQuery
 By default, if you don't add these keywords, the API assumes you need Ascending sorting.")]
     public string? OrderBy { get; set; }
 
-    [FromQuery(Name = "filter")]
     [GenericMaxLength]
     [GenericRegularExpression]
     [Description(@"The following filter operators are supported:

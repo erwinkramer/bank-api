@@ -6,13 +6,13 @@ using Microsoft.Extensions.Caching.Hybrid;
 
 public class BankOperation
 {
-    public static async Task<Results<Ok<Paging<BankModel>>, UnprocessableEntity>> GetAllBanks([AsParameters] GridQuery query, BankDb db, HybridCache cache, CancellationToken token = default)
+    public static async Task<Results<Ok<Paging<BankModel>>, UnprocessableEntity>> GetAllBanks(GridQuery query, BankDb db, HybridCache cache, CancellationToken token = default)
     {
         var parentActivity = Activity.Current;
         var banks = await cache.GetOrCreateAsync($"banks-{query.Page}-{query.PageSize}-{query.Filter}-{query.OrderBy}",
             async innerToken =>
             {
-                Activity.Current = parentActivity; // workaround for: https://github.com/dotnet/extensions/issues/6543
+                Activity.Current = parentActivity; // workaround for: https://github.com/dotnet/extensions/issues/5648
                 var pagingResult = await db.Banks.AsNoTracking().GridifyAsync(query, innerToken);
                 return new Paging<BankModel>(pagingResult.Count, pagingResult.Data);
             }, cancellationToken: token, tags: ["banks"]);
@@ -26,7 +26,7 @@ public class BankOperation
         var bank = await cache.GetOrCreateAsync($"bank-{id}",
             async innerToken =>
             {
-                Activity.Current = parentActivity; // workaround for: https://github.com/dotnet/extensions/issues/6543
+                Activity.Current = parentActivity; // workaround for: https://github.com/dotnet/extensions/issues/5648
                 return await db.Banks.AsNoTracking().FirstOrDefaultAsync(b => b.Id == id, innerToken);
             }, cancellationToken: token);
 

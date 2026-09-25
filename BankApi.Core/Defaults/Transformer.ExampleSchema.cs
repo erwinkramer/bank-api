@@ -13,8 +13,11 @@ class TransformerExampleSchema : IOpenApiSchemaTransformer
         string? key = context.JsonTypeInfo.Type switch
         {
             Type t when t == typeof(Paging<BankModel>) => "PagingOfBankModel",
-            Type t when t == typeof(BankModel) || t == typeof(BankEvent)
-                || t == typeof(TellerReportList) || t == typeof(Teller) => t.Name,
+            Type t when t == typeof(BankModel)
+                     || t == typeof(BankEvent)
+                     || t == typeof(GridQuery)
+                     || t == typeof(TellerReportList)
+                     || t == typeof(Teller) => t.Name,
             _ => null
         };
 
