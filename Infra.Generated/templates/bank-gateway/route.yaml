@@ -6,6 +6,8 @@ metadata:
 spec:
   parentRefs:
     - name: "bank-gateway"
+  hostnames:
+    - "guanchen.nl"
   rules:
     - matches:
         - path:
