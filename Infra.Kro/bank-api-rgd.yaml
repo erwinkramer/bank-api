@@ -10,6 +10,7 @@ spec:
       name: string | default="bank-api"
       namespace: string | default="infra-services"
       replicas: integer | default=1
+      keycloakHost: string | default="http://localhost:8080"
       aspSecretName: string | default="bank-aspnet-env"
       authSecretName: string | default="bank-auth-env"
       gateway:
@@ -66,7 +67,7 @@ spec:
                     sources:
                       - serviceAccountToken:
                           path: token
-                          audience: http://localhost:8080/realms/bank # Keycloak audience
+                          audience: ${schema.spec.keycloakHost}/realms/bank # Keycloak audience
                           expirationSeconds: 3600
 
               # 'restartPolicy: Always' on initContainers makes it a sidecar, please see:
