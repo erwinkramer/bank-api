@@ -13,9 +13,6 @@ resources:
               common_http_protocol_options:
                 # Only set max requests to 1 in dev, so we're sure every request hits the latest config
                 max_requests_per_connection: 1
-              # HTTP QUERY method is not supported yet by default, enable custom methods for now
-              http_protocol_options:
-                allow_custom_methods: true
               # Trust the upstream LB proxy (1 means 1 more proxy) so remote_ip resolves to the true client
               xff_num_trusted_hops: 0
               stat_prefix: ingress_http
