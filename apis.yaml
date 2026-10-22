@@ -3,6 +3,7 @@ name: Bank API
 description: The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.
 url: https://raw.githubusercontent.com/erwinkramer/bank-api/refs/heads/main/apis.yaml
 created: 2026-07-24
+modified: 2026-10-22
 type: Index
 kind: opensource
 position: Producing
