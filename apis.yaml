@@ -10,7 +10,7 @@ position: Producing
 rating: A
 visibility: Public
 access: 3rd-Party
-specificationVersion: "0.21"
+specificationVersion: "0.24"
 tags:
   - Banking
   - Compliancy
