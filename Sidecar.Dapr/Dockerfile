@@ -1,4 +1,4 @@
-FROM docker.io/daprio/daprd:1.18.7-stablecomponents
+FROM ghcr.io/dapr/daprd:1.19.0-stablecomponents
 
 COPY components /components
 
