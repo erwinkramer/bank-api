@@ -1,4 +1,4 @@
-FROM ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib:0.162.0-amd64
+FROM ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib:0.163.2-amd64
 
 COPY otelcol.yaml /etc/otelcol-contrib/config.yaml
 
