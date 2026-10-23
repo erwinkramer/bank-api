@@ -5,6 +5,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <OutputType>Library</OutputType>
+    <!-- Workaround for https://github.com/dotnet/sdk/issues/56656 (dotnet SDK 11.0.100-rc.2 Debug build regression:
+         "scoped css bundles do not have matching endpoints") -->
+    <EnableHotReloadInRuntimeConfigDevFile>false</EnableHotReloadInRuntimeConfigDevFile>
   </PropertyGroup>
 
   <ItemGroup>
