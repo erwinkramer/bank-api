@@ -1,4 +1,4 @@
-# Structure of this file is based of https://github.com/dotnet/dotnet-docker/blob/main/samples/aspnetapp/Dockerfile.alpine-composite
+# Structure of this file is based of https://github.com/dotnet/dotnet-docker/blob/main/samples/AspNetCoreRazorApp/Dockerfile.alpine-composite
 # For more information on the alpine composite image, see: https://github.com/richlander/container-workshop/issues/7
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:11.0-alpine AS build
 ARG TARGETARCH=x64
