@@ -4,7 +4,6 @@ param appName string = 'app'
 param revisionSuffix string = 'rev-${uniqueString(utcNow())}'
 param location string = 'Germany West Central'
 
-var appBaseUrl = 'https://${appName}.${appEnv.properties.defaultDomain}'
 var sidecarResources = {
   cpu: json('0.25')
   memory: '0.5Gi'
@@ -133,7 +132,7 @@ resource app 'Microsoft.App/containerApps@2026-07-01' = {
             }
             {
               name: 'ApiDocument__Servers__0__Url'
-              value: '${appBaseUrl}/v1'
+              value: 'https://${appDomainName}/v1'
             }
           ]
           resources: apiResources
@@ -195,7 +194,7 @@ resource app 'Microsoft.App/containerApps@2026-07-01' = {
           env: [
             {
               name: 'McpServerBaseUrl'
-              value: '${appBaseUrl}/mcp'
+              value: 'https://${appDomainName}/mcp'
             }
             {
               name: 'ApiBaseUrl'
