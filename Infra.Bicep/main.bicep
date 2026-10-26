@@ -1,4 +1,5 @@
 param appEnvName string = 'managedEnvironment-containering-b968'
+param appDomainName string = 'ca.guanchen.nl'
 param appName string = 'app'
 param revisionSuffix string = 'rev-${uniqueString(utcNow())}'
 param location string = 'Germany West Central'
@@ -39,7 +40,7 @@ var sidecarProbeSettings = [
   }
 ]
 
-resource appEnv 'Microsoft.App/managedEnvironments@2026-01-01' = {
+resource appEnv 'Microsoft.App/managedEnvironments@2026-07-01' = {
   name: appEnvName
   location: location
   properties: {
@@ -52,9 +53,18 @@ resource appEnv 'Microsoft.App/managedEnvironments@2026-01-01' = {
     ]
     publicNetworkAccess: 'Enabled'
   }
+
+  resource cert 'managedCertificates' = {
+    name: '${appDomainName}-managede-261026025604'
+    location: location
+    properties: {
+      subjectName: appDomainName
+      domainControlValidation: 'CNAME'
+    }
+  }
 }
 
-resource app 'Microsoft.App/containerApps@2026-01-01' = {
+resource app 'Microsoft.App/containerApps@2026-07-01' = {
   name: appName
   location: location
   kind: 'containerapps'
@@ -72,6 +82,13 @@ resource app 'Microsoft.App/containerApps@2026-01-01' = {
         targetPort: 10000
         exposedPort: 0
         transport: 'Auto'
+        customDomains: [
+          {
+            name: appEnv::cert.properties.subjectName
+            certificateId: appEnv::cert.id
+            bindingType: 'SniEnabled'
+          }
+        ]
         traffic: [
           {
             weight: 100
