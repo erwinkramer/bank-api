@@ -9,7 +9,7 @@
 			"type": "http"
 		},
 		"bankapi-v1-azurecontainerapps": {
-			"url": "https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/mcp",
+			"url": "https://ca.guanchen.nl/mcp",
 			"type": "http"
 		}
 	},

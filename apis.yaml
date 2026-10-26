@@ -19,8 +19,8 @@ apis:
   - aid: erwinkramer:bank-api-v1
     name: Bank API - v1
     description: The Bank API, version 1.
-    humanURL: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/docs
-    baseURL: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1
+    humanURL: https://ca.guanchen.nl/v1/docs
+    baseURL: https://ca.guanchen.nl/v1
     version: 1.1.0
     created: 2026-07-24
     image: https://opengraph.githubassets.com/1/erwinkramer/bank-api
@@ -28,16 +28,16 @@ apis:
       - Banking
     properties:
       - type: Webhooks
-        url: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/docs/#webhook/undefined/
+        url: https://ca.guanchen.nl/v1/docs/#webhook/undefined/
       - type: OpenAPI
         mediaType: application/json
-        url: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/v1/openapi/spec.json
+        url: https://ca.guanchen.nl/v1/openapi/spec.json
       - type: ApiExamples
         mediaType: application/json
         url: https://raw.githubusercontent.com/erwinkramer/bank-api/refs/heads/main/BankApi.Service.Stable/appexamples.json
       - type: ModelContextProtocol
         mediaType: application/json
-        url: https://app.bravestone-75bd2261.germanywestcentral.azurecontainerapps.io/mcp/.well-known/oauth-protected-resource
+        url: https://ca.guanchen.nl/mcp/.well-known/oauth-protected-resource
     workflows:
       - name: Get and update bank
         description: Arazzo workflow for listing, retrieving, and updating a bank with optimistic concurrency.
