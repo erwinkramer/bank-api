@@ -11,7 +11,6 @@
   <ItemGroup>
     <ProjectReference Include="..\BankApi.Service.Stable\BankApi.Service.Stable.csproj" />
     <ProjectReference Include="..\BankApi.Service.Beta\BankApi.Service.Beta.csproj" />
-    <ProjectReference Include="..\BankApi.Mcp\BankApi.Mcp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -23,10 +23,3 @@ spec:
       backendRefs:
         - name: "bank-api-beta-service"
           port: 8080
-    - matches:
-        - path:
-            type: "PathPrefix"
-            value: "/mcp"
-      backendRefs:
-        - name: "bank-api-mcp-service"
-          port: 8080

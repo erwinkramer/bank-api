@@ -1,9 +1,5 @@
 {
 	"servers": {
-		"bankapi-v1-local": {
-			"url": "http://localhost:5200/mcp",
-			"type": "http"
-		},
 		"bankapi-v1-kuberneteskro": {
 			"url": "https://bankapi.w.guanchen.nl/mcp",
 			"type": "http"

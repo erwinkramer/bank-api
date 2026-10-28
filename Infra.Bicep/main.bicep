@@ -189,15 +189,19 @@ resource app 'Microsoft.App/containerApps@2026-07-01' = {
           ]
         }
         {
-          image: 'ghcr.io/erwinkramer/bank-api-mcp:latest'
+          image: 'ghcr.io/erwinkramer/enframe:latest'
           name: 'mcp'
           env: [
             {
-              name: 'McpServerBaseUrl'
+              name: 'Enframe__Resource'
               value: 'https://${appDomainName}/mcp'
             }
             {
-              name: 'ApiBaseUrl'
+              name: 'Enframe__ApiSpecSource'
+              value: 'http://localhost:8080/v1/openapi/spec.json'
+            }
+            {
+              name: 'Enframe__ApiBaseUrl'
               value: 'http://localhost:8080'
             }
             {
@@ -209,7 +213,7 @@ resource app 'Microsoft.App/containerApps@2026-07-01' = {
           probes: [
             union(apiProbeSettings, {
               httpGet: {
-                path: '/.well-known/oauth-protected-resource'
+                path: '/mcp/healthz'
                 port: 8082
                 scheme: 'HTTP'
               }

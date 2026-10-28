@@ -243,20 +243,22 @@ spec:
                     initialDelaySeconds: 3
                     periodSeconds: 5
                 - name: mcp
-                  image: ghcr.io/erwinkramer/bank-api-mcp:latest
+                  image: ghcr.io/erwinkramer/enframe:latest
                   ports:
                     - containerPort: 8082
                       name: http-mcp
                   env:
                     - name: ASPNETCORE_HTTP_PORTS
                       value: "8082"
-                    - name: ApiBaseUrl
+                    - name: Enframe__ApiBaseUrl
                       value: http://localhost:8080
-                    - name: McpServerBaseUrl
+                    - name: Enframe__ApiSpecSource
+                      value: http://localhost:8080/v1/openapi/spec.json
+                    - name: Enframe__Resource
                       value: https://${schema.spec.gateway.host}/mcp
                   readinessProbe:
                     httpGet:
-                      path: /.well-known/oauth-protected-resource
+                      path: /mcp/healthz
                       port: http-mcp
                     initialDelaySeconds: 3
                     periodSeconds: 5

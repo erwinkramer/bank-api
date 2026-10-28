@@ -8,12 +8,6 @@
       "program": "${workspaceFolder}"
     },
     {
-      "name": "MCP Server",
-      "type": "dotnet",
-      "request": "launch",
-      "projectPath": "${workspaceFolder}/BankApi.Mcp/BankApi.Mcp.csproj"
-    },
-    {
       "name": "API - Stable release channel",
       "type": "dotnet",
       "request": "launch",

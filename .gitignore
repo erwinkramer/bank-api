@@ -135,9 +135,6 @@ $RECYCLE.BIN/
 _NCrunch*
 .azure
 
-# MCPify files
-AuthTokens/
-
 # Local environment secrets
 .env
 Infra.Kro/bank-api-secret.yaml

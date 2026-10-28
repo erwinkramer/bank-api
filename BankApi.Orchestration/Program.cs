@@ -38,16 +38,11 @@ var apiBeta = builder.AddProject<Projects.BankApi_Service_Beta>("bank-api-beta")
     .WaitFor(s3Proxy)
     .WaitFor(dapr);
 
-var mcpStable = builder.AddProject<Projects.BankApi_Mcp>("bank-api-mcp")
-    .WithExternalHttpEndpoints()
-    .WithHttpHealthCheck("/.well-known/oauth-protected-resource");
-
 k8s.AddGateway("bank-gateway")
     .WithGatewayClass("bank-gateway-class")
     .WithGatewayAnnotation("metallb.io/loadBalancerIPs", "192.168.0.30")
     .WithHostname("guanchen.nl").WithTls()
     .WithRoute("/v1", apiStable.GetEndpoint("http"))
-    .WithRoute("/v2", apiBeta.GetEndpoint("http"))
-    .WithRoute("/mcp", mcpStable.GetEndpoint("http"));
+    .WithRoute("/v2", apiBeta.GetEndpoint("http"));
 
 builder.Build().Run();
