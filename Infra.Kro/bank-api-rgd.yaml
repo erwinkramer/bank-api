@@ -252,6 +252,8 @@ spec:
                       value: "8082"
                     - name: Enframe__ApiBaseUrl
                       value: http://localhost:8080
+                    - name: Enframe__ApiKey
+                      value: "Lifetime Subscription"
                     - name: Enframe__ApiSpecSource
                       value: http://localhost:8080/v1/openapi/spec.json
                     - name: Enframe__Resource

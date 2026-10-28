@@ -205,6 +205,10 @@ resource app 'Microsoft.App/containerApps@2026-07-01' = {
               value: 'http://localhost:8080'
             }
             {
+              name: 'Enframe__ApiKey'
+              value: 'Lifetime Subscription'
+            }
+            {
               name: 'ASPNETCORE_HTTP_PORTS'
               value: '8082'
             }
