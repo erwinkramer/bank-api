@@ -5,23 +5,21 @@ public static partial class ApiBuilder
 {
     public static IServiceCollection AddOpenApiServices(this IServiceCollection services)
     {
-        services.AddOpenApi("spec", options =>
-        {
+        services.AddOpenApi("spec", options => options
             // Purposely set the spec to a version that is supported by Azure APIM, 
             // the 'Specs.Generated' output files adhere to the version in the *.csproj file.
             //options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_2;
-
-            options.AddDocumentTransformer<TransformerDocInfo>();
-            options.AddDocumentTransformer<TransformerComponentSchemas>();
-            options.AddDocumentTransformer<TransformerComponentHeaders>();
-            options.AddDocumentTransformer<TransformerComponentResponses>();
-            options.AddDocumentTransformer<TransformerWebhooks>();
-            options.AddDocumentTransformer<TransformerSecurityScheme>();
-            options.AddSchemaTransformer<TransformerExampleSchema>();
-            options.AddSchemaTransformer<TransformerGuidSchema>();
-            options.AddSchemaTransformer<TransformerConcurrencySchema>();
-            options.AddOperationTransformer<TransformerOperation>();
-        });
+            .AddDocumentTransformer<TransformerDocInfo>()
+            .AddDocumentTransformer<TransformerComponentSchemas>()
+            .AddDocumentTransformer<TransformerComponentHeaders>()
+            .AddDocumentTransformer<TransformerComponentResponses>()
+            .AddDocumentTransformer<TransformerWebhooks>()
+            .AddDocumentTransformer<TransformerSecurityScheme>()
+            .AddSchemaTransformer<TransformerExampleSchema>()
+            .AddSchemaTransformer<TransformerGuidSchema>()
+            .AddSchemaTransformer<TransformerConcurrencySchema>()
+            .AddOperationTransformer<TransformerOperation>()
+        );
 
         return services;
     }
