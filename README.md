@@ -7,9 +7,9 @@
 
 ![Aspire](.images/aspire.png)
 
-The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API. 
+The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.
 
-See the [🔗 APIs.json (v0.24) compliant documentation](https://documentation.apicommons.org/?url=https%3A%2F%2Fraw.githubusercontent.com%2Ferwinkramer%2Fbank-api%2Fmain%2Fapis.yaml).
+See the [🔗 APIs.json (v0.25) compliant documentation](https://documentation.apicommons.org/?url=https%3A%2F%2Fraw.githubusercontent.com%2Ferwinkramer%2Fbank-api%2Fmain%2Fapis.yaml).
 
 Explore the live [🌐 API with sidecars](https://ca.guanchen.nl/v1/docs) and [🌐 MCP server](https://ca.guanchen.nl/mcp/.well-known/oauth-protected-resource) (both hosted on Azure Container Apps).
 

@@ -3,14 +3,14 @@ name: Bank API
 description: The Bank API is a design reference project suitable to bootstrap development for a compliant and modern API.
 url: https://raw.githubusercontent.com/erwinkramer/bank-api/refs/heads/main/apis.yaml
 created: 2026-07-24
-modified: 2026-10-22
+modified: 2026-11-07
 type: Index
 kind: opensource
 position: Producing
 rating: A
 visibility: Public
 access: 3rd-Party
-specificationVersion: "0.24"
+specificationVersion: "0.25"
 tags:
   - Banking
   - Compliancy
@@ -44,7 +44,7 @@ apis:
         type: Arazzo
         mediaType: application/yaml
         url: https://raw.githubusercontent.com/erwinkramer/bank-api/refs/heads/main/.arazzo/v1.arazzo.yaml
-        x-humanURL: https://arazzo-ui.jentic.com/?document=https%3A%2F%2Fraw.githubusercontent.com%2Ferwinkramer%2Fbank-api%2Frefs%2Fheads%2Fmain%2F.arazzo%2Fv1.arazzo.yaml
+        humanURL: https://arazzo-ui.jentic.com/?document=https%3A%2F%2Fraw.githubusercontent.com%2Ferwinkramer%2Fbank-api%2Frefs%2Fheads%2Fmain%2F.arazzo%2Fv1.arazzo.yaml
 rules:
   - type: SpectralRules
     mediaType: application/yaml
