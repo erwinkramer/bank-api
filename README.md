@@ -85,7 +85,7 @@ Explore the live [üåê API with sidecars](https://ca.guanchen.nl/v1/docs) and [
 
 - [TUnit](https://thomhurst.github.io/TUnit/docs/intro) for unit tests
 
-- [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) in Visual Studio Code for quick local tests via `.http` files
+- [REST Client CE extension](https://marketplace.visualstudio.com/items?itemName=vscode-restclient.restclient) in Visual Studio Code for quick local tests via `.http` files
 
 - [Enframe](https://github.com/erwinkramer/enframe) for exposure via Model Context Protocol
 

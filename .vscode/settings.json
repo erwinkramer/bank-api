@@ -10,9 +10,8 @@
         "https://raw.githubusercontent.com/apis-json/api-json/refs/heads/develop/spec/schema_0.25.yml": "apis.yaml"
     },
     "rest-client.defaultHeaders": {
-        "User-Agent": null
+        "User-Agent": ""
     },
-    "xml.format.maxLineWidth": 250,
     "rest-client.rememberCookiesForSubsequentRequests": false,
     "cSpell.words": [
         "Apim",
@@ -28,7 +27,6 @@
         "dotnettools",
         "Gridify",
         "Guanchen",
-        "humao",
         "kiota",
         "LOCALAPPDATA",
         "nlgov",
@@ -37,5 +35,6 @@
         "specversion",
         "usersecrets",
         "zipball"
-    ]
+    ],
+    "xml.format.maxLineWidth": 250,
 }

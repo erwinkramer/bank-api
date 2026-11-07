@@ -6,7 +6,7 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"humao.rest-client",
+				"vscode-restclient.restclient",
 				"ms-dotnettools.csdevkit",
 				"ms-graph.kiota",
 				"stoplight.spectral",
