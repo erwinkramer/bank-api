@@ -20,13 +20,13 @@
     <PackageReference Include="AspNetCore.Authentication.ApiKey" Version="9.*" />
     <PackageReference Include="CloudNative.CloudEvents.AspNetCore" Version="2.*" />
     <PackageReference Include="CloudNative.CloudEvents.SystemTextJson" Version="2.*" />
-    <PackageReference Include="Dapr.SecretsManagement" Version="1.19.*-*" />
+    <PackageReference Include="Dapr.SecretsManagement" Version="1.19.*" />
     <PackageReference Include="Gridify" Version="2.*" />
     <PackageReference Include="Gridify.EntityFramework" Version="2.*" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="11.*-*" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="11.*-*" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="11.*-*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="11.*-*" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="11.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="11.*" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="11.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="11.*" />
     <PackageReference Include="Microsoft.Extensions.Caching.Hybrid" Version="10.*" />
     <PackageReference Include="Microsoft.Extensions.Compliance.Redaction" Version="10.*" />
     <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="10.*" />
@@ -40,7 +40,7 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.20.*-*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.20.*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.20.*" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.19.*" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.20.*" />
     <PackageReference Include="jose-jwt" Version="5.*" />
   </ItemGroup>
 
