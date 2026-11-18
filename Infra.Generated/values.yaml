@@ -1,14 +1,14 @@
 parameters:
   bank_api_s3proxy:
-    bank_api_s3proxy_image: "bank-api-s3proxy:latest"
+    bank_api_s3proxy_image: "ghcr.io:443/erwinkramer/bank-api-s3proxy:latest"
   bank_api_dapr:
-    bank_api_dapr_image: "bank-api-dapr:latest"
+    bank_api_dapr_image: "ghcr.io:443/erwinkramer/bank-api-dapr:latest"
   bank_api:
     port_http: 8080
-    bank_api_image: "bank-api:latest"
+    bank_api_image: "ghcr.io:443/erwinkramer/bank-api:latest"
   bank_api_beta:
     port_http: 8080
-    bank_api_beta_image: "bank-api-beta:latest"
+    bank_api_beta_image: "ghcr.io:443/erwinkramer/bank-api-beta:latest"
 secrets:
   bank_api_db:
     bank_api_db_password: ""
@@ -31,6 +31,8 @@ secrets:
     bank_api_db_password: ""
     BANK_API_DB_URI: ""
 config:
+  k8s_dashboard:
+    ASPIRE_DASHBOARD_TELEMETRY_OPTOUT: "true"
   bank_api_db:
     POSTGRES_HOST_AUTH_METHOD: "scram-sha-256"
     POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256 --auth-local=scram-sha-256"

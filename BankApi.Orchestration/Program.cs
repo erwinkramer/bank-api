@@ -23,14 +23,14 @@ var dapr = builder.AddDockerfile("bank-api-dapr", "../Sidecar.Dapr")
     .WithHttpHealthCheck("/v1.0/healthz", endpointName: "dapr-http", statusCode: 204)
     .WithEnvironmentParameters(dotEnvParams);
 
-var apiStable = builder.AddProject<Projects.BankApi_Service_Stable>("bank-api")
+var apiStable = builder.AddDotnetProject("bank-api", "../BankApi.Service.Stable/BankApi.Service.Stable.csproj")
     .WithExternalHttpEndpoints()
     .WithHttpHealthCheck("/.well-known/jwks.json")
     .WaitFor(postgres).WithReference(postgres)
     .WaitFor(s3Proxy)
     .WaitFor(dapr);
 
-var apiBeta = builder.AddProject<Projects.BankApi_Service_Beta>("bank-api-beta")
+var apiBeta = builder.AddDotnetProject("bank-api-beta", "../BankApi.Service.Beta/BankApi.Service.Beta.csproj")
     .WithExplicitStart()
     .WithExternalHttpEndpoints()
     .WithHttpHealthCheck("/.well-known/jwks.json")

@@ -8,6 +8,6 @@ metadata:
     app.kubernetes.io/component: "bank-api-db"
     app.kubernetes.io/instance: "{{ .Release.Name }}"
 data:
-  POSTGRES_HOST_AUTH_METHOD: "{{ .Values.config.bank_api_db.POSTGRES_HOST_AUTH_METHOD }}"
-  POSTGRES_INITDB_ARGS: "{{ .Values.config.bank_api_db.POSTGRES_INITDB_ARGS }}"
-  POSTGRES_USER: "{{ .Values.config.bank_api_db.bank_api_db_username }}"
+  POSTGRES_HOST_AUTH_METHOD: {{ tpl "{{ .Values.config.bank_api_db.POSTGRES_HOST_AUTH_METHOD }}" . | quote }}
+  POSTGRES_INITDB_ARGS: {{ tpl "{{ .Values.config.bank_api_db.POSTGRES_INITDB_ARGS }}" . | quote }}
+  POSTGRES_USER: {{ tpl "{{ .Values.config.bank_api_db.bank_api_db_username }}" . | quote }}
