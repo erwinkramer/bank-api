@@ -238,7 +238,7 @@ This mode just runs the ASP.NET Core API.
       -p 18888:18888 `
       -p 4317:18889 `
       --name aspire-dashboard `
-      mcr.microsoft.com/dotnet/aspire-dashboard:latest
+      mcr.microsoft.com/aspire/dashboard:latest
     ```
 
     Copy the url shown in the resulting output when running the container (e.g. <http://localhost:18888/login?t=123456780abcdef123456780>) and open that in a browser, or paste the key part seen after `/login?t=` when the login dialog is shown.
