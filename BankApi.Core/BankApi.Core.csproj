@@ -40,7 +40,7 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.21.*-*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.21.*" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.21.*" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.20.*" />
+    <PackageReference Include="Scalar.AspNetCore" Version="3.0.*" />
     <PackageReference Include="jose-jwt" Version="5.*" />
   </ItemGroup>
 
