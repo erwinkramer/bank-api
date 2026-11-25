@@ -20,6 +20,12 @@ resources:
                 - name: envoy.access_loggers.stdout
                   typed_config:
                     "@type": type.googleapis.com/envoy.extensions.access_loggers.stream.v3.StdoutAccessLog
+                - name: envoy.access_loggers.open_telemetry
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.access_loggers.open_telemetry.v3.OpenTelemetryAccessLogConfig
+                    grpc_service:
+                      envoy_grpc:
+                        cluster_name: otel_collector
               http_filters:
                 - name: envoy.filters.http.golang
                   typed_config:
@@ -77,9 +83,9 @@ resources:
                     response_direction_config:
                       common_config:
                         min_content_length: 1024
-                      # Some API operations return an ETag, this value is checked when passed in If-Match header. 
+                      # Some API operations return an ETag, this value is checked when passed in If-Match header.
                       # We don't want to weaken or remove ETags during compression, see https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/compressor_filter#etag-handling
-                      disable_on_etag_header: true 
+                      disable_on_etag_header: true
                       status_header_enabled: true
                     compressor_library:
                       name: zstd
