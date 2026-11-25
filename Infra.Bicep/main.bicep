@@ -177,6 +177,12 @@ resource app 'Microsoft.App/containerApps@2026-07-01' = {
         {
           image: 'ghcr.io/erwinkramer/bank-api-dapr:latest'
           name: 'dapr'
+          env: [
+            {
+              name: 'OTEL_EXPORTER_OTLP_ENDPOINT'
+              value: 'http://localhost:4317'
+            }
+          ]
           resources: sidecarResources
           probes: [
             for probe in sidecarProbeSettings: union(probe, {

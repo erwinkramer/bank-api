@@ -17,6 +17,7 @@ resources:
               xff_num_trusted_hops: 0
               stat_prefix: ingress_http
               tracing:
+                spawn_upstream_span: true
                 provider:
                   name: envoy.tracers.opentelemetry
                   typed_config:
@@ -37,12 +38,9 @@ resources:
                         cluster_name: otel_collector
                     attributes:
                       values:
-                        - key: response_flags
+                        - key: waf_rule_id
                           value:
-                            string_value: "%RESPONSE_FLAGS%"
-                        - key: upstream_host
-                          value:
-                            string_value: "%UPSTREAM_HOST%"
+                            string_value: "TBD"
               http_filters:
                 - name: envoy.filters.http.golang
                   typed_config:

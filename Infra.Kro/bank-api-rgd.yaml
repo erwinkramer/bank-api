@@ -135,6 +135,9 @@ spec:
                   ports:
                     - containerPort: 3500
                       name: dapr-http
+                  env:
+                    - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                      value: http://localhost:4317
                   envFrom:
                     - secretRef:
                         name: ${schema.spec.authSecretName}
