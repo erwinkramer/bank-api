@@ -16,6 +16,15 @@ resources:
               # Trust the upstream LB proxy (1 means 1 more proxy) so remote_ip resolves to the true client
               xff_num_trusted_hops: 0
               stat_prefix: ingress_http
+              tracing:
+                provider:
+                  name: envoy.tracers.opentelemetry
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.config.trace.v3.OpenTelemetryConfig
+                    service_name: sidecar-proxy
+                    grpc_service:
+                      envoy_grpc:
+                        cluster_name: otel_collector
               access_log:
                 - name: envoy.access_loggers.stdout
                   typed_config:
@@ -26,6 +35,14 @@ resources:
                     grpc_service:
                       envoy_grpc:
                         cluster_name: otel_collector
+                    attributes:
+                      values:
+                        - key: response_flags
+                          value:
+                            string_value: "%RESPONSE_FLAGS%"
+                        - key: upstream_host
+                          value:
+                            string_value: "%UPSTREAM_HOST%"
               http_filters:
                 - name: envoy.filters.http.golang
                   typed_config:

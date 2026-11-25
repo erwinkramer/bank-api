@@ -1,6 +1,6 @@
 node:
-  cluster: test-cluster
-  id: test-id
+  cluster: sidecar-proxy
+  id: sidecar-proxy
 
 dynamic_resources:
   lds_config:
