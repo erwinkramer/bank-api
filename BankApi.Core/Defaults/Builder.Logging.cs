@@ -20,6 +20,7 @@ public static partial class ApiBuilder
         {
             tracing.AddSource("Microsoft.AspNetCore"); //inbound http
             tracing.AddHttpClientInstrumentation(); //outbound http
+            tracing.AddGrpcClientInstrumentation(); //gRPC
             tracing.AddEntityFrameworkCoreInstrumentation();
         });
         otel.UseOtlpExporter();
