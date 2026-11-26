@@ -1,5 +1,7 @@
 FROM ghcr.io/gaul/s3proxy/container:4.2.0
 
+# using an agent for OTel. Native OTel is not implemented in the S3Proxy container yet
+# see current attempt: https://github.com/gaul/s3proxy/pull/1276
 COPY --from=ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-java:2.34.0 \
     /javaagent.jar /opt/otel/opentelemetry-javaagent.jar
 

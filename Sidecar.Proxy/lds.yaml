@@ -40,7 +40,7 @@ resources:
                       values:
                         - key: waf_rule_id
                           value:
-                            string_value: "TBD"
+                            string_value: "TBD" # depends on open PR: https://github.com/united-security-providers/coraza-envoy-go-filter/pull/169
               http_filters:
                 - name: envoy.filters.http.golang
                   typed_config:
