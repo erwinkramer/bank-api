@@ -1,4 +1,4 @@
-FROM ghcr.io/dapr/daprd:1.19.1-stablecomponents
+FROM ghcr.io/dapr/daprd:1.19.2-stablecomponents
 
 COPY components /components
 
